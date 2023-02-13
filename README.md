@@ -2,8 +2,8 @@
 ___________________________________________________________________________
 **Disclaimer**
 
-I'm not affiliated with Level-5, I'm just a big fan who loves his work, I don't steal their work it's their work.  
-I share the documentation about the scripts for people who want to modify their game, understand the game.
+I'm not affiliated with Level-5. All this work belongs to Level 5 and and he can delete this git without notice. 
+I share the documentation about the scripts only for educational purposes about "How scripts affect video games"
 
 **Language Script**
 

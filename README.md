@@ -32,7 +32,8 @@ I don't share the scripts, you have to get them by yourself.
 - You can't modify the game code, only the scripts
 
 **How To Compile**
-I don't know how to compile with Visual Studio Code, I show you an example of how I do it
+
+I don't know how to compile with Visual Studio Code, I will show you my method
 1. Download my [SquirrelCompiler.rar](https://mega.nz/file/RhNHyJyY#qlof7UfMDEOA_qc4AvLm1Mxp_pwe2wl-507t72_XUc8) 
 2. Extract SquirrelCompiler.rar with winrar
 3. Copy "Squirrel Compiler" folder to a safe path (a path you are sure to never delete)
@@ -45,3 +46,6 @@ I don't know how to compile with Visual Studio Code, I show you an example of ho
 10. Make sure you have checked "always use this app to open .nut"
 11. Click on Ok
 12. Now you can compile any .nut by clicking on it, you will get a file with the same name but the extension .nutb
+> - sq-compiler-2.2.4.exe is a clean file, I got it by building the Squirrel source, if you don't trust me, build the source with visual studio by yourself [here](https://sourceforge.net/projects/squirrel/files/squirrel2/squirrel%202.2.3%20stable/)
+> - Even if the game uses version 2.2.3, the 2.2.4 compiler works I had no problem
+> - Be careful when you link the .bat with the .nut each time you click on a .nut it will compile it, so if you just want to see a script open your notepad first and click on open to open the .nut (or drag the .nut file in your notepad window)

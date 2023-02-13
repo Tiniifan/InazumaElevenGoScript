@@ -33,7 +33,7 @@ I don't share the scripts, you have to get them by yourself.
 
 **How To Compile**
 I don't know how to compile with Visual Studio Code, I show you an example of how I do it
-1. Download my SquirrelCompiler.rar 
+1. Download my [SquirrelCompiler.rar](https://mega.nz/file/RhNHyJyY#qlof7UfMDEOA_qc4AvLm1Mxp_pwe2wl-507t72_XUc8) 
 2. Extract SquirrelCompiler.rar with winrar
 3. Copy "Squirrel Compiler" folder to a safe path (a path you are sure to never delete)
 4. Right click on a .nut file

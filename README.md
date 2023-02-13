@@ -2,7 +2,7 @@
 ___________________________________________________________________________
 **Disclaimer**
 
-I'm not affiliated with Level-5, I'm just a big gan who loves his work, I don't steal their work it's their work.  
+I'm not affiliated with Level-5, I'm just a big fan who loves his work, I don't steal their work it's their work.  
 I share the documentation about the scripts for people who want to modify their game, understand the game.
 
 **Language Script**

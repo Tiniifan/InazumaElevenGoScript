@@ -27,6 +27,7 @@ I don't share the scripts, you have to get them by yourself.
 **Things You Should Know**
 
 - [Squirrel Syntax](http://squirrel-lang.org/) (Squirrel Language looks like Javascript)
+- [Squirrel 2.2.3 Doc](http://squirrel-lang.org/doc/squirrel2.html)
 - [Command Function](https://github.com/Tiniifan/InazumaElevenGoScript/wiki/Functions) (These functions can be used in any script)
 - We don't have access to the print function
 - You can't modify the game code, only the scripts

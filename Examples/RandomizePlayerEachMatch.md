@@ -22,7 +22,7 @@ GetRandomNumberList <- function (n, maximum)
   return numberList;
 };
 
-CallMatchEndMatch <- function ( teamWin, id0, id1 )
+RandomizePlayer <- function ()
 {
   local memberCount = 0;
   local levels = [];
@@ -31,6 +31,7 @@ CallMatchEndMatch <- function ( teamWin, id0, id1 )
   foreach (player in players) {
     if (CMND_BTL_IS_MATCH_MEMBER(0, player)) {
       local playerHandle = CMND_GET_PARTY_HANDLE(player);
+      // Need to implement function to get the level of the player
       RemovePartyCmnd(playerHandle, false, false);
       memberCount += 1;
     }

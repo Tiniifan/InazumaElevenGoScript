@@ -13,7 +13,7 @@ I share the documentation about the scripts only for educational purposes about 
 **How to Get Script**
 
 I don't share the scripts, you have to get them by yourself.  
-1. You have to extract the ie_a.fa file with karameru
+1. You have to extract the ie_a.fa file with [kuriimu2](https://github.com/FanTranslatorsInternational/Kuriimu2): 
 2. Go to the folder ie_a_fa/data/script, you will find a lot of files with .nutb extension.
 3. Download [nutcracker.exe](https://mega.nz/file/Y1U2RIqa#RLyHy-kjnWKQQQ2V1M1WyNhxGEAWkVng9nUJCZvZf5o)
 4. Take a .nutb file

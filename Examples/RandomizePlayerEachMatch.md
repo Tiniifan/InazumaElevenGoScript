@@ -10,16 +10,16 @@ FindItemInList <- function (n, list)
 
 GetRandomNumberList <- function (n, maximum)
 {
-    local numberList = [];
+  local numberList = [];
 	
-    while (numberList.len() < n) {
-        local randomNumber = CMND_RANDOM(maximum);
-        if (!FindItemInList.find(randomNumber, numberList)) {
-          numberList.append(randomNumber);
-        }
+  while (numberList.len() < n) {
+    local randomNumber = CMND_RANDOM(maximum);
+    if (!FindItemInList.find(randomNumber, numberList)) {
+      numberList.append(randomNumber);
     }
+  }
 	
-    return numberList;
+  return numberList;
 };
 
 CallMatchEndMatch <- function ( teamWin, id0, id1 )
@@ -32,15 +32,15 @@ CallMatchEndMatch <- function ( teamWin, id0, id1 )
     if (CMND_BTL_IS_MATCH_MEMBER(0, player)) {
       local playerHandle = CMND_GET_PARTY_HANDLE(player);
       RemovePartyCmnd(playerHandle, false, false);
-			memberCount += 1;
+      memberCount += 1;
     }
-	}
+ }
 
-// Generates new random players
-	local randomPlayerIndex = GetRandomNumberList(memberCount, players.len());
-	for (local i = 0; i < memberCount; i++) {
-		  AddParty(players[randomPlayerIndex[i]], true, false, false);
-	}
+  // Generates new random players
+  local randomPlayerIndex = GetRandomNumberList(memberCount, players.len());
+  for (local i = 0; i < memberCount; i++) {
+      AddParty(players[randomPlayerIndex[i]], true, false, false);
+  }
 };
 
 

@@ -14,7 +14,7 @@ GetRandomNumberList <- function (n, maximum)
 	
   while (numberList.len() < n) {
     local randomNumber = CMND_RANDOM(maximum);
-    if (!FindItemInList.find(randomNumber, numberList)) {
+    if (!FindItemInList(randomNumber, numberList)) {
       numberList.append(randomNumber);
     }
   }

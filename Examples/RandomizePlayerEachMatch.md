@@ -1,48 +1,92 @@
-WIP to create a script to randomize player team at each end of the match
+Code to get a random team after each match, be carefull the code implements 3 functions that aren't available in the game
+- CMND_GET_LV: return the level of the player
+- CMND_SET_SPIRIT: attach an avatar to a player (this function can be replaced by RunAttachAvatar)
+- CMND_SET_SKILL: replaces a technique of a player
 
 ```squirrel
 players <- ["para_cp0001", "para_cp0002", "para_cp0003", "para_cp0004", "para_cp0005", "para_cp0006", "para_cp0007", "para_cp0008", "para_cp0009", "para_cp0010", "para_cp0011", "para_cp0012", "para_cp0013", "para_cp0014", "para_cp0015", "para_cp0016", "para_cp0017", "para_cp0021", "para_cp0022", "para_cp0023", "para_cp0024", "para_cp0025", "para_cp0026", "para_cp0027", "para_cp0028", "para_cp0029", "para_cp0030", "para_cp0031", "para_cp0032", "para_cp0033", "para_cp0034", "para_cp0035", "para_cp0036", "para_cp0037", "para_cp0038", "para_cp0041", "para_cp0042", "para_cp0043", "para_cp0044", "para_cp0045", "para_cp0046", "para_cp0047", "para_cp0048", "para_cp0049", "para_cp0051", "para_cp0052", "para_cp0053", "para_cp0054", "para_cp0055", "para_cp0056", "para_cp0061", "para_cp0062", "para_cp0063", "para_cp0064", "para_cp0065", "para_cp0066", "para_cp0067", "para_cp0068", "para_cp0069", "para_cp0070", "para_cp0071", "para_cp0072", "para_cp0073", "para_cp0074", "para_cp0075", "para_cp0076", "para_cp0081", "para_cp0082", "para_cp0083", "para_cp0084", "para_cp0085", "para_cp0086", "para_cp0087", "para_cp0088", "para_cp0089", "para_cp0090", "para_cp0091", "para_cp0092", "para_cp0093", "para_cp0094", "para_cp0095", "para_cp0096", "para_cp0101", "para_cp0102", "para_cp0103", "para_cp0104", "para_cp0105", "para_cp0106", "para_cp0107", "para_cp0108", "para_cp0109", "para_cp0110", "para_cp0111", "para_cp0112", "para_cp0113", "para_cp0114", "para_cp0115", "para_cp0116", "para_cp0121", "para_cp0122", "para_cp0123", "para_cp0124", "para_cp0125", "para_cp0126", "para_cp0127", "para_cp0128", "para_cp0129", "para_cp0130", "para_cp0131", "para_cp0132", "para_cp0133", "para_cp0134", "para_cp0135", "para_cp0136", "para_cp0141", "para_cp0142", "para_cp0143", "para_cp0144", "para_cp0145", "para_cp0146", "para_cp0147", "para_cp0148", "para_cp0149", "para_cp0150", "para_cp0151", "para_cp0152", "para_cp0153", "para_cp0154", "para_cp0155", "para_cp0156", "para_cp0161", "para_cp0162", "para_cp0163", "para_cp0164", "para_cp0165", "para_cp0166", "para_cp0167", "para_cp0168", "para_cp0170", "para_cp0171", "para_cp0172", "para_cp0173", "para_cp0174", "para_cp0175", "para_cp0176", "para_cp0201", "para_cp0202", "para_cp0203", "para_cp0204", "para_cp0205", "para_cp0206", "para_cp0207", "para_cp0208", "para_cp0209", "para_cp0210", "para_cp0211", "para_cp0212", "para_cp0213", "para_cp0214", "para_cp0215", "para_cp0216", "para_cp0221", "para_cp0222", "para_cp0223", "para_cp0224", "para_cp0225", "para_cp0226", "para_cp0227", "para_cp0228", "para_cp0229", "para_cp0230", "para_cp0231", "para_cp0232", "para_cp0233", "para_cp0234", "para_cp0235", "para_cp0236", "para_cp0241", "para_cp0242", "para_cp0243", "para_cp0244", "para_cp0245", "para_cp0246", "para_cp0247", "para_cp0248", "para_cp0249", "para_cp0250", "para_cp0251", "para_cp0252", "para_cp0253", "para_cp0254", "para_cp0255", "para_cp0256", "para_cp0281", "para_cp0282", "para_cp0283", "para_cp0284", "para_cp0285", "para_cp0286", "para_cp0287", "para_cp0288", "para_cp0289", "para_cp0290", "para_cp0291", "para_cp0292", "para_cp0293", "para_cp0294", "para_cp0295", "para_cp0296", "para_cp0301", "para_cp0302", "para_cp0303", "para_cp0304", "para_cp0305", "para_cp0306", "para_cp0307", "para_cp0308", "para_cp0309", "para_cp0310", "para_cp0311", "para_cp0312", "para_cp0313", "para_cp0314", "para_cp0315", "para_cp0316", "para_cp0321", "para_cp0322", "para_cp0323", "para_cp0324", "para_cp0325", "para_cp0326", "para_cp0327", "para_cp0328", "para_cp0329", "para_cp0330", "para_cp0331", "para_cp0332", "para_cp0333", "para_cp0334", "para_cp0335", "para_cp0336", "para_cp0341", "para_cp0342", "para_cp0343", "para_cp0344", "para_cp0345", "para_cp0346", "para_cp0347", "para_cp0348", "para_cp0349", "para_cp0350", "para_cp0351", "para_cp0361", "para_cp0362", "para_cp0363", "para_cp0364", "para_cp0365", "para_cp0366", "para_cp0367", "para_cp0368", "para_cp0369", "para_cp0370", "para_cp0371", "para_cp0381", "para_cp0382", "para_cp0383", "para_cp0384", "para_cp0385", "para_cp0386", "para_cp0387", "para_cp0388", "para_cp0389", "para_cp0390", "para_cp0391", "para_cp0401", "para_cp0402", "para_cp0403", "para_cp0404", "para_cp0405", "para_cp0406", "para_cp0407", "para_cp0408", "para_cp0409", "para_cp0410", "para_cp0411", "para_cp0412", "para_cp0413", "para_cp0414", "para_cp0415", "para_cp0416", "para_cp0421", "para_cp0422", "para_cp0423", "para_cp0424", "para_cp0425", "para_cp0426", "para_cp0427", "para_cp0428", "para_cp0429", "para_cp0430", "para_cp0431", "para_cp0432", "para_cp0433", "para_cp0434", "para_cp0435", "para_cp0436", "para_cp0441", "para_cp0442", "para_cp0443", "para_cp0444", "para_cp0445", "para_cp0446", "para_cp1001", "para_cp1002", "para_cp1003", "para_cp1004", "para_cp1005", "para_cp1006", "para_cp1007", "para_cp1008", "para_cp1009", "para_cp1010", "para_cp1011", "para_cp1012", "para_cp1013", "para_cp1014", "para_cp1015", "para_cp1016", "para_cp1017", "para_cp1018", "para_cp1019", "para_cp1020", "para_cp1021", "para_cp1022", "para_cp1023", "para_cp1024", "para_cp1025", "para_cp1026", "para_cp1027", "para_cp1028", "para_cp1029", "para_cp1030", "para_cp1031", "para_cp1032", "para_cp1033", "para_cp1034", "para_cp1035", "para_cp1036", "para_cp1037", "para_cp1038", "para_cp1039", "para_cp1040", "para_cp1041", "para_cp1042", "para_cp1043", "para_cp1044", "para_cp1045", "para_cp1046", "para_cp1047", "para_cp1048", "para_cp1049", "para_cp1050", "para_cp1051", "para_cp1052", "para_cp1053", "para_cp1054", "para_cp1055", "para_cp1056", "para_cp1057", "para_cp1058", "para_cp1059", "para_cp1060", "para_cp1061", "para_cp1062", "para_cp1063", "para_cp1064", "para_cp1065", "para_cp1066", "para_cp1067", "para_cp1068", "para_cp1069", "para_cp1070", "para_cp1071", "para_cp1072", "para_cp1073", "para_cp1074", "para_cp1075", "para_cp1076", "para_cp1077", "para_cp1078", "para_cp1079", "para_cp1080", "para_cp1081", "para_cp1082", "para_cp1083", "para_cp1084", "para_cp1085", "para_cp1086", "para_cp1087", "para_cp1088", "para_cp1089", "para_cp1090", "para_cp1091", "para_cp1092", "para_cp1093", "para_cp1094", "para_cp1095", "para_cp1096", "para_cp1097", "para_cp1098", "para_cp1099", "para_cp1100", "para_cp1101", "para_cp1102", "para_cp1103", "para_cp1104", "para_cp1105", "para_cp1106", "para_cp1107", "para_cp1108", "para_cp1109", "para_cp1110", "para_cp1111", "para_cp1112", "para_cp1113", "para_cp1114", "para_cp1115", "para_cp1116", "para_cp1117", "para_cp1118", "para_cp1119", "para_cp1120", "para_cp1121", "para_cp1122", "para_cp1123", "para_cp1124", "para_cp1125", "para_cp1126", "para_cp1127", "para_cp1128", "para_cp1129", "para_cp1130", "para_cp1131", "para_cp1132", "para_cp1133", "para_cp1134", "para_cp1135", "para_cp1136", "para_cp1137", "para_cp1138", "para_cp1139", "para_cp1140", "para_cp1141", "para_cp1142", "para_cp1143", "para_cp1144", "para_cp1145", "para_cp1146", "para_cp1147", "para_cp1148", "para_cp1149", "para_cp1150", "para_cp1151", "para_cp1152", "para_cp1153", "para_cp1154", "para_cp1155", "para_cp1156", "para_cp1157", "para_cp1158", "para_cp1159", "para_cp1160", "para_cp1161", "para_cp1162", "para_cp1163", "para_cp1164", "para_cp1165", "para_cp1166", "para_cp1167", "para_cp1168", "para_cp1169", "para_cp1170", "para_cp1171", "para_cp1172", "para_cp1173", "para_cp1174", "para_cp1175", "para_cp1176", "para_cp1177", "para_cp1178", "para_cp1179", "para_cp1180", "para_cp1181", "para_cp1182", "para_cp1183", "para_cp1184", "para_cp1185", "para_cp1186", "para_cp1187", "para_cp1188", "para_cp1189", "para_cp1190", "para_cp1191", "para_cp1192", "para_cp1193", "para_cp1194", "para_cp1195", "para_cp1196", "para_cp1197", "para_cp1198", "para_cp1199", "para_cp1200", "para_cp1201", "para_cp1202", "para_cp1203", "para_cp1204", "para_cp1205", "para_cp1206", "para_cp1207", "para_cp1208", "para_cp1209", "para_cp1210", "para_cp1211", "para_cp1212", "para_cp1213", "para_cp1214", "para_cp1215", "para_cp1216", "para_cp1217", "para_cp1218", "para_cp1219", "para_cp1220", "para_cp1221", "para_cp1222", "para_cp1223", "para_cp1224", "para_cp1225", "para_cp1226", "para_cp1227", "para_cp1228", "para_cp1229", "para_cp1230", "para_cp1231", "para_cp1232", "para_cp1233", "para_cp1234", "para_cp1235", "para_cp1236", "para_cp1237", "para_cp1238", "para_cp1239", "para_cp1240", "para_cp1241", "para_cp1242", "para_cp1243", "para_cp1244", "para_cp1245", "para_cp1246", "para_cp1247", "para_cp1248", "para_cp1249", "para_cp1250", "para_cp1251", "para_cp1252", "para_cp1253", "para_cp1254", "para_cp1255", "para_cp1256", "para_cp1257", "para_cp1258", "para_cp1259", "para_cp1260", "para_cp1261", "para_cp1262", "para_cp1263", "para_cp1264", "para_cp1265", "para_cp1266", "para_cp1267", "para_cp1268", "para_cp1269", "para_cp1270", "para_cp1271", "para_cp1272", "para_cp1273", "para_cp1274", "para_cp1275", "para_cp1276", "para_cp1277", "para_cp1278", "para_cp1279", "para_cp1280", "para_cp1281", "para_cp1282", "para_cp1283", "para_cp1284", "para_cp1285", "para_cp1286", "para_cp1287", "para_cp1288", "para_cp1289", "para_cp1290", "para_cp1291", "para_cp1292", "para_cp1293", "para_cp1294", "para_cp1295", "para_cp1296", "para_cp1297", "para_cp1298", "para_cp1299", "para_cp1300", "para_cp1301", "para_cp1302", "para_cp1303", "para_cp1304", "para_cp1305", "para_cp1306", "para_cp1307", "para_cp1308", "para_cp1309", "para_cp1310", "para_cp1311", "para_cp1312", "para_cp1313", "para_cp1314", "para_cp1315", "para_cp1316", "para_cp1317", "para_cp1318", "para_cp1319", "para_cp1320", "para_cp1321", "para_cp1322", "para_cp1323", "para_cp1324", "para_cp1325", "para_cp1326", "para_cp1327", "para_cp1328", "para_cp1329", "para_cp1330", "para_cp1331", "para_cp1332", "para_cp1333", "para_cp1334", "para_cp1335", "para_cp1336", "para_cp1337", "para_cp1338", "para_cp1339", "para_cp1340", "para_cp1341", "para_cp1342", "para_cp1343", "para_cp1344", "para_cp1345", "para_cp1346", "para_cp1347", "para_cp1348", "para_cp1349", "para_cp1350", "para_cp1351", "para_cp1352", "para_cp1353", "para_cp1354", "para_cp1355", "para_cp1356", "para_cp1357", "para_cp1358", "para_cp1359", "para_cp1360", "para_cp1361", "para_cp1362", "para_cp1363", "para_cp1364", "para_cp1365", "para_cp1366", "para_cp1367", "para_cp1368", "para_cp1369", "para_cp1370", "para_cp1371", "para_cp1372", "para_cp1373", "para_cp1374", "para_cp1375", "para_cp1376", "para_cp1377", "para_cp1378", "para_cp1379", "para_cp1380", "para_cp1381", "para_cp1382", "para_cp1383", "para_cp1384", "para_cp1385", "para_cp1386", "para_cp1387", "para_cp1388", "para_cp1389", "para_cp1390", "para_cp1391", "para_cp1392", "para_cp1393", "para_cp1394", "para_cp1395", "para_cp1396", "para_cp1397", "para_cp1398", "para_cp1399", "para_cp1400", "para_cp1401", "para_cp1402", "para_cp1403", "para_cp1404", "para_cp1405", "para_cp1406", "para_cp1407", "para_cp1408", "para_cp1409", "para_cp1410", "para_cp1411", "para_cp1412", "para_cp1413", "para_cp1414", "para_cp1415", "para_cp1416", "para_cp1417", "para_cp1418", "para_cp1419", "para_cp1420", "para_cp1421", "para_cp1422", "para_cp1423", "para_cp1424", "para_cp1425", "para_cp1426", "para_cp1427", "para_cp1428", "para_cp1429", "para_cp1430", "para_cp1431", "para_cp1432", "para_cp1433", "para_cp1434", "para_cp1435", "para_cp1436", "para_cp1437", "para_cp1438", "para_cp1439", "para_cp1440", "para_cp1441", "para_cp1442", "para_cp1443", "para_cp1444", "para_cp1445", "para_cp1446", "para_cp1447", "para_cp1448", "para_cp1449", "para_cp1450", "para_cp1451", "para_cp1452", "para_cp1453", "para_cp1454", "para_cp1455", "para_cp1456", "para_cp1457", "para_cp1458", "para_cp1459", "para_cp1460", "para_cp1461", "para_cp1462", "para_cp1463", "para_cp1464", "para_cp1465", "para_cp1466", "para_cp1467", "para_cp1468", "para_cp1469", "para_cp1470", "para_cp1471", "para_cp1472", "para_cp1473", "para_cp1474", "para_cp1475", "para_cp1476", "para_cp1477", "para_cp1478", "para_cp1479", "para_cp1480", "para_cp1481", "para_cp1482", "para_cp1483", "para_cp1484", "para_cp1485", "para_cp1486", "para_cp1487", "para_cp1488", "para_cp1489", "para_cp1490", "para_cp1491", "para_cp1492", "para_cp1493", "para_cp1494", "para_cp1495", "para_cp1496", "para_cp1497", "para_cp1498", "para_cp1499", "para_cp1500", "para_cp1501", "para_cp1502", "para_cp1503", "para_cp1504", "para_cp1505", "para_cp1506", "para_cp1507", "para_cp1508", "para_cp1509", "para_cp1510", "para_cp1511", "para_cp1512", "para_cp1513", "para_cp1514", "para_cp1515", "para_cp1516", "para_cp1517", "para_cp1518", "para_cp1519", "para_cp1520", "para_cp1521", "para_cp1522", "para_cp1523", "para_cp1524", "para_cp1525", "para_cp1526", "para_cp1527", "para_cp1528", "para_cp1529", "para_cp1530", "para_cp1531", "para_cp1532", "para_cp1533", "para_cp1534", "para_cp1535", "para_cp1536", "para_cp1537", "para_cp1538", "para_cp1539", "para_cp1540", "para_cp1541", "para_cp1542", "para_cp1605", "para_cp1606", "para_cp1607", "para_cp1608", "para_cp1609", "para_cp1610", "para_cp1611", "para_cp1613", "para_cp1614", "para_cp1615", "para_cp1616", "para_cp1617", "para_cp1618", "para_cp1619", "para_cp1620", "para_cp1621", "para_cp1701", "para_cp1702", "para_cp1703", "para_cp1704", "para_cp1705", "para_cp1706", "para_cp1707", "para_cp1708", "para_cp1709", "para_cp1710", "para_cp1711", "para_cp1712", "para_cp1713", "para_cp1714", "para_cp1715", "para_cp1716", "para_cp1717", "para_cp1718", "para_cp1719", "para_cp1720", "para_cp1721", "para_cp1722", "para_cp1723", "para_cp1724", "para_cp1725", "para_cp1726", "para_cp1727", "para_cp1728", "para_cp1729", "para_cp1730", "para_cp1731", "para_cp1732", "para_cp1733", "para_cp1734", "para_cp1735", "para_cp1736", "para_cp1737", "para_cp1738", "para_cp1739", "para_cp1740", "para_cp1741", "para_cp1742", "para_cp1743", "para_cp1744", "para_cp1745", "para_cp1746", "para_cp1747", "para_cp1748", "para_cp1749", "para_cp1750", "para_cp1751", "para_cp1752", "para_cp1753", "para_cp1754", "para_cp1755", "para_cp1756", "para_cp1757", "para_cp1758", "para_cp1759", "para_cp1760", "para_cp1761", "para_cp1762", "para_cp1763", "para_cp1764", "para_cp1765", "para_cp1766", "para_cp1767", "para_cp1768", "para_cp1769", "para_cp1770", "para_cp1771", "para_cp1772", "para_cp1773", "para_cp1774", "para_cp1775", "para_cp1776", "para_cp1777", "para_cp1778", "para_cp1779", "para_cp1780", "para_cp1781", "para_cp1782", "para_cp1783", "para_cp1784", "para_cp1785", "para_cp1786", "para_cp1787", "para_cp1788", "para_cp1789", "para_cp1790", "para_cp1791", "para_cp1792", "para_cp1793", "para_cp1794", "para_cp1795", "para_cp1796", "para_cp1797", "para_cp1798", "para_cp1799", "para_cp1800", "para_cp1801", "para_cp1802", "para_cp1803", "para_cp1804", "para_cp1805", "para_cp1806", "para_cp1807", "para_cp1808", "para_cp1809", "para_cp1810", "para_cp1811", "para_cp1812", "para_cp1813", "para_cp1814", "para_cp1815", "para_cp1816", "para_cp1817", "para_cp1818", "para_cp1819", "para_cp1820", "para_cp1821", "para_cp1822", "para_cp1823", "para_cp1824", "para_cp1825", "para_cp1826"];
 
-FindItemInList <- function (n, list)
-{
-  // Unfortunately Squirrel 2. doesn't have a find/index of function so this function must be implemented.
-};
+moves <- [0xB4AE0D0B, 0x2DA75CB1, 0x5AA06C27, 0xC4C4F984, 0xB3C3C912, 0x2ACA98A8, 0x5DCDA83E, 0xCD72B5AF, 0xBA758539, 0xDAB20CDC, 0xADB53C4A, 0x34BC6DF0, 0x43BB5D66, 0xDDDFC8C5, 0xAAD8F853, 0x33D1A9E9, 0x44D6997F, 0xD46984EE, 0xA36EB478, 0xF19F5F1F, 0x86986F89, 0x1F913E33, 0x68960EA5, 0xF6F29B06, 0x81F5AB90, 0x18FCFA2A, 0xB2F532A1, 0x6FFBCABC, 0xFF44D72D, 0x8843E7BB, 0xE8846E5E, 0x9F835EC8, 0x068A0F72, 0x718D3FE4, 0xEFE9AA47, 0x98EE9AD1, 0x32E7525A, 0x11BE7788, 0x88B72632, 0xFFB016A4, 0x61D48307, 0x16D3B391, 0x8FDAE22B, 0xF8DDD2BD, 0x6862CF2C, 0x1F65FFBA, 0x7FA2765F, 0x08A546C9, 0x91AC1773, 0xE6AB27E5, 0x78CFB246, 0x0FC882D0, 0x96C1D36A, 0xE1C6E3FC, 0x7179FE6D, 0x067ECEFB, 0x548F259C, 0x2388150A, 0xBA8144B0, 0xCD867426, 0x53E2E185, 0x666E4699, 0xFF671723, 0x886027B5, 0x1604B216, 0x61038280, 0xF80AD33A, 0x8F0DE3AC, 0x1FB2FE3D, 0x68B5CEAB, 0x0872474E, 0x7F7577D8, 0xE67C2662, 0x917B16F4, 0x0F1F8357, 0x7818B3C1, 0xE111E27B, 0x9616D2ED, 0x06A9CF7C, 0x71AEFFEA, 0x235F148D, 0x5458241B, 0xCD5175A1, 0xBA564537, 0xE43ED148, 0x7D3780F2, 0x0A30B064, 0x945425C7, 0xE3531551, 0x7A5A44EB, 0x0D5D747D, 0x9DE269EC, 0xEAE5597A, 0x8A22D09F, 0xFD25E009, 0x642CB1B3, 0x132B8125, 0x8D4F1486, 0xFA482410, 0x634175AA, 0x1446453C, 0x84F958AD];
 
-GetRandomNumberList <- function (n, maximum)
+skills <- [0xF30E77DB, 0x6A072661, 0x1D0016F7, 0x83648354, 0xF463B3C2, 0x6D6AE278, 0x1A6DD2EE, 0x8AD2CF7F, 0xFDD5FFE9, 0x9D12760C, 0xEA15469A, 0x731C1720, 0x041B27B6, 0x9A7FB215, 0xED788283, 0x7471D339, 0x0376E3AF, 0x93C9FE3E, 0xE4CECEA8, 0xB63F25CF, 0xC1381559, 0x583144E3, 0x2F367475, 0xB152E1D6, 0xC655D140, 0x5F5C80FA, 0x285BB06C, 0xB8E4ADFD, 0xD8232418, 0x412A75A2, 0x362D4534, 0xA849D097, 0xDF4EE001, 0x4647B1BB, 0x3140812D, 0xA1FF9CBC, 0xD6F8AC2A, 0xE0658249, 0xCFE39D6B];
+
+avatars <- [0x8B98B1F3, 0x1291E049, 0x6596D0DF, 0xFBF2457C, 0x8CF575EA, 0x15FC2450, 0x62FB14C6, 0xF2440957, 0x854339C1, 0xE584B024, 0x928380B2, 0x0B8AD108, 0x7C8DE19E, 0xE2E9743D, 0x95EE44AB, 0x0CE71511, 0x7BE02587, 0xEB5F3816, 0x9C580880, 0xCEA9E3E7, 0xB9AED371, 0x20A782CB, 0x57A0B25D, 0xBEC31768, 0x27CA46D2, 0x50CD7644, 0xC0726BD5, 0xB7755B43, 0xA0B5E230, 0x39BCB38A, 0x4EBB831C, 0xD0DF16BF, 0xA7D82629, 0x3ED17793, 0x49D64705, 0xD9695A94, 0xAE6E6A02, 0x98F34461, 0xEFF474F7, 0x76FD254D, 0x01FA15DB, 0x9F9E8078, 0xE899B0EE, 0x7190E154, 0x0697D1C2, 0x9628CC53, 0xE12FFCC5, 0x81E87520, 0xF6EF45B6, 0x6FE6140C, 0x18E1249A, 0x8685B139, 0xC9C427FE, 0xD7B2D2A6];
+
+// The function for randomize team starts only when the match is ended
+CallMatchEndMatch <- function ( teamWin, id0, id1 )
 {
-  local numberList = [];
+	local memberCount = 0;
+	local levels = [];
+		
+	// Removes all players from the save and keeps their level in a list
+	foreach (player in players) {
+		if (CMND_GET_PARTY_HANDLE(player)) {
+			levels.append(CMND_GET_LV(CMND_GET_PARTY_HANDLE(player)));
+			RemovePartyCmnd(player, true, false);
+			memberCount += 1;
+		}
+	}
 	
-  while (numberList.len() < n) {
-    local randomNumber = CMND_RANDOM(maximum);
-    if (!FindItemInList(randomNumber, numberList)) {
-      numberList.append(randomNumber);
+	// Generates new players and adds them to the save
+	local randomParamID = GetRandomNumberList(memberCount, players.len());
+	for (local i = 0; i < memberCount; i++) {
+		local newPlayer = CMND_ADD_PARTY(players[randomParamID[i]]);
+		CMND_SET_LV(newPlayer, levels[i]);
+		GenerateMoveset(newPlayer);
+		GenerateRandomAvatar(newPlayer);
+	}
+};
+
+// Function to obtain a list of random numbers without duplicate of size n that doesn't exceed the maximum
+function GetRandomNumberList(n, maximum) {
+	local numberList = [];
+    
+	while (numberList.len() < n) {
+		local randomNumber = CMND_RANDOM(maximum);
+		local isDuplicate = false;
+        
+		foreach (number in numberList) {
+            	if (number == randomNumber) {
+                	isDuplicate = true;
+                	break;
+            	}
+        }
+        
+        if (!isDuplicate) {
+            numberList.append(randomNumber);
+        }
     }
-  }
+    
+    return numberList;
+}
+
+// Function to generate a random moveset, the maximum skill is 2
+function GenerateMoveset(player) {
+	local number_skill = CMND_RANDOM(3);
+	local moveset = [];
 	
-  return numberList;
-};
+	local my_moves = GetRandomNumberList(4-number_skill, moves.len());
+	for (local i = 0; i < my_moves.len(); i++) {
+		moveset.append(moves[my_moves[i]]);
+	}
+	
+	if (number_skill > 0) {
+		local my_skills = GetRandomNumberList(number_skill, skills.len());
+		for (local i = 0; i < number_skill; i++) {
+			moveset.append(skills[my_skills[i]]);
+		}
+	}
+	
+	for (local i = 0; i < 4; i++) {
+		CMND_SET_SKILL(player, moveset[i], i)
+	}
+}
 
-RandomizePlayer <- function ()
-{
-  local memberCount = 0;
-  local levels = [];
-
-  // Deletes players who have participated to the match
-  foreach (player in players) {
-    if (CMND_BTL_IS_MATCH_MEMBER(0, player)) {
-      local playerHandle = CMND_GET_PARTY_HANDLE(player);
-      // Need to implement function to get the level of the player
-      RemovePartyCmnd(playerHandle, false, false);
-      memberCount += 1;
-    }
- }
-
-  // Generates new random players
-  local randomPlayerIndex = GetRandomNumberList(memberCount, players.len());
-  for (local i = 0; i < memberCount; i++) {
-      AddParty(players[randomPlayerIndex[i]], true, false, false);
-  }
-};
-
-
+// Function to generate a fighting spirit, the percentage of having an avatar is 20%.
+function GenerateRandomAvatar(player) {
+	local random = CMND_RANDOM(101);
+	if (random < 20) {
+		CMND_SET_SPIRIT(player, avatars[CMND_RANDOM(avatars.len())]);
+	}
+}
 ```

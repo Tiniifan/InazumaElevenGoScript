@@ -1258,18 +1258,38 @@ hard_flag <- 13;
 legend_flag <- 14;
 win_flag <- 15;
 
+/**
+ * filterList - Function to filter a list based on a predicate.
+ *
+ * @param {array} inputList - The list to be filtered.
+ * @param {function} predicate - The predicate function used to filter elements in the list.
+ * @return {array} filteredList - The filtered list.
+ */
 function filterList(inputList, predicate) {
+    // Initialize an empty list to store filtered elements.
     local filteredList = [];
     
+    // Iterate over each element in the input list.
     foreach (item in inputList) {
+        // Check if the element satisfies the predicate.
         if (predicate(item)) {
+            // Append the element to the filtered list.
             filteredList.append(item);
         }
     }
     
+    // Return the filtered list.
     return filteredList;
 }
 
+
+/**
+ * isPlayerInTeam - Check if a player is in a team.
+ *
+ * @param {object} player - The player to check.
+ * @param {array} team - The team to check for the player.
+ * @return {boolean} - Returns true if the player is in the team, otherwise false.
+ */
 function isPlayerInTeam(player, team) {
     foreach (p in team) {
         if (p.name == player.name) {
@@ -1279,10 +1299,22 @@ function isPlayerInTeam(player, team) {
     return false;
 }
 
+/**
+ * selectRandom - Select a random element from a list.
+ *
+ * @param {array} list - The list from which to select a random element.
+ * @return {*} - The randomly selected element.
+ */
 function selectRandom(list) {
     return list[CMND_RANDOM(list.len())];
 }
 
+/**
+ * getRandomKeyWithWeights - Select a random key from a weighted collection.
+ *
+ * @param {table} weights - A table where keys are items and values are their weights.
+ * @return {*} - The randomly selected key based on weights.
+ */
 function getRandomKeyWithWeights(weights) {
     local totalWeight = 0;
 
@@ -1301,6 +1333,13 @@ function getRandomKeyWithWeights(weights) {
     }
 }
 
+/**
+ * isHissatsusInMoveset - Check if a hissatsu is in a moveset.
+ *
+ * @param {object} hissatsu - The hissatsu to check.
+ * @param {array} moveset - The moveset to check for the hissatsu.
+ * @return {boolean} - Returns true if the hissatsu is in the moveset, otherwise false.
+ */
 function isHissatsusInMoveset(hissatsu, moveset) {
     foreach (h in moveset) {
         if (h.name == hissatsu.name) {
@@ -1310,13 +1349,19 @@ function isHissatsusInMoveset(hissatsu, moveset) {
     return false;
 }
 
+/**
+ * sortList - Sort a list using a custom comparison function.
+ *
+ * @param {array} list - The list to be sorted.
+ * @param {function} compareFunction - The comparison function for sorting.
+ */
 function sortList(list, compareFunction) {
     local len = list.len();
 
     for (local i = 0; i < len - 1; i++) {
         for (local j = 0; j < len - i - 1; j++) {
             if (compareFunction(list[j], list[j + 1]) > 0) {
-                // Échanger les éléments s'ils sont dans le mauvais ordre
+                // Swap elements if they are in the wrong order
                 local temp = list[j];
                 list[j] = list[j + 1];
                 list[j + 1] = temp;
@@ -1325,16 +1370,30 @@ function sortList(list, compareFunction) {
     }
 }
 
+/**
+ * indexOfList - Get the index of an item in a list.
+ *
+ * @param {array} list - The list to search.
+ * @param {*} item - The item to find in the list.
+ * @return {number} - The index of the item in the list, or -1 if not found.
+ */
 function indexOfList(list, item) {
     for (local i = 0; i < list.len(); i++) {
         if (list[i] == item) {
             return i;
         }
     }
-	
-    return -1; // Retourne -1 si l'élément n'est pas trouvé
+
+    return -1; // Return -1 if the element is not found
 }
 
+/**
+ * removeElementList - Remove an element from a list.
+ *
+ * @param {array} list - The list from which to remove the element.
+ * @param {*} element - The element to remove.
+ * @return {boolean} - Returns true if the element is removed, otherwise false.
+ */
 function removeElementList(list, element) {
     local index = list.indexOfList(element);
 
@@ -1346,28 +1405,48 @@ function removeElementList(list, element) {
     }
 }
 
+
+/**
+ * customSort - Custom sorting function for hissatsu objects.
+ *
+ * @param {object} hissatsuA - First hissatsu object to compare.
+ * @param {object} hissatsuB - Second hissatsu object to compare.
+ * @return {number} - A negative value if hissatsuA should come before hissatsuB,
+ *                   a positive value if hissatsuA should come after hissatsuB,
+ *                   and 0 if they are equal.
+ */
 function customSort(hissatsuA, hissatsuB) {
-    // Définir l'ordre de tri en fonction du type de hissatsu
+    // Define the sorting order based on hissatsu type
     local order = ["shoot", "dribble", "defense", "save", "skill"];
     
-    // Obtenir l'indice du type de hissatsu pour chaque hissatsu
+    // Get the index of the hissatsu type for each hissatsu
     local indexA = indexOfList(order, hissatsuA.position);
     local indexB = indexOfList(order, hissatsuB.position);
     
-    // Comparer les indices pour déterminer l'ordre de tri
+    // Compare the indices to determine the sorting order
     return indexA - indexB;
 }
 
+/**
+ * generateHissatsuList - Generate a list of hissatus based on position and difficulty.
+ *
+ * @param {string} poste - The player's position.
+ * @param {string} difficulty - The difficulty level.
+ * @return {array} hissatsuList - The generated list of hissatus.
+ */
 function generateHissatsuList(poste, difficulty) {
     local hissatsuList = [];
     globalDifficulty <- difficulty;
 
-    local poids = {};
-    poids["GK"] <- {save = 80, skill = 20};
-    poids["DF"] <- {defense = 60, skill = 20, dribble = 10, shoot = 10};
-    poids["MF"] <- {dribble = 60, skill = 20, defense = 10, shoot = 10};
-    poids["FW"] <- {shoot = 60, skill = 20, dribble = 10, defense = 10};
+    // Define weights for each position
+    local weights = {
+        GK = {save = 80, skill = 20},
+        DF = {defense = 60, skill = 20, dribble = 10, shoot = 10},
+        MF = {dribble = 60, skill = 20, defense = 10, shoot = 10},
+        FW = {shoot = 60, skill = 20, dribble = 10, defense = 10}
+    };
 
+    // Define conditions for each position
     local conditions = {
         GK = {save = 1},
         DF = {defense = 1},
@@ -1375,22 +1454,23 @@ function generateHissatsuList(poste, difficulty) {
         FW = {shoot = 1}
     };
 
+    // Define min and max skills for each difficulty
     local minSkills = {
         easy = 1,
         hard = 1,
         legend = 2
     };
-
-    local maxSkills = {
+	local maxSkills = {
         easy = 1,
         hard = 2,
         legend = 5
     };
 
+    // Initialize counters
     local skillCount = 0;
     local totalHissatsus = 0;
 
-    // Calcul du nombre total d'éléments en fonction de la difficulté
+    // Calculate the total number of elements based on difficulty
     switch (globalDifficulty) {
         case "easy":
             totalHissatsus = 4;
@@ -1403,96 +1483,119 @@ function generateHissatsuList(poste, difficulty) {
             break;
     }
 
-    // Ajoute une hissatsu jusqu'à ce que la condition minimale soit satisfaite
+    // Add hissatus until the minimum condition is met
     for (local i = 0; i < minSkills[difficulty]; i++) {
         local matchHissatsus = filterList(skills, function(h) {
-                return h.difficulty == globalDifficulty;
-       	});
+            return h.difficulty == globalDifficulty;
+        });
 
         local randHissatsu = CMND_RANDOM(matchHissatsus.len());
         hissatsuList.append(matchHissatsus[randHissatsu]);
         skillCount += 1;
     }
 
-    // Ajoute le reste des hissatsus
+    // Add the rest of the hissatus
     while (hissatsuList.len() < totalHissatsus) {
-	    local matchHissatsus = [];
-		local getRandomPosition = getRandomKeyWithWeights(poids[poste]);
-		
+        local matchHissatsus = [];
+        local getRandomPosition = getRandomKeyWithWeights(weights[poste]);
+        
         if (getRandomPosition == "shoot") {
-        	matchHissatsus = filterList(shoots, function(h) {
-        		return h.difficulty == globalDifficulty;
-        	});
+            matchHissatsus = filterList(shoots, function(h) {
+                return h.difficulty == globalDifficulty;
+            });
         } else if (getRandomPosition == "defense") {
-        	matchHissatsus = filterList(defenses, function(h) {
-        		return h.difficulty == globalDifficulty;
-        	});
+            matchHissatsus = filterList(defenses, function(h) {
+                return h.difficulty == globalDifficulty;
+            });
         } else if (getRandomPosition == "dribble") {
-        	matchHissatsus = filterList(dribbles, function(h) {
-        		return h.difficulty == globalDifficulty;
-        	});
+            matchHissatsus = filterList(dribbles, function(h) {
+                return h.difficulty == globalDifficulty;
+            });
         } else if (getRandomPosition == "save") {
-        	matchHissatsus = filterList(saves, function(h) {
-        		return h.difficulty == globalDifficulty;
-        	});
+            matchHissatsus = filterList(saves, function(h) {
+                return h.difficulty == globalDifficulty;
+            });
         } else if (getRandomPosition == "skill") {
-        	matchHissatsus = filterList(skills, function(h) {
-        		return h.difficulty == globalDifficulty;
-        	});
+            matchHissatsus = filterList(skills, function(h) {
+                return h.difficulty == globalDifficulty;
+            });
         }
 
-		if (getRandomPosition == "skill") {
-			if (skillCount < maxSkills[difficulty]) {
-				local randHissatsu = CMND_RANDOM(matchHissatsus.len());
-				hissatsuList.append(matchHissatsus[randHissatsu]);
-			}
-		} else {
-			local randHissatsu = CMND_RANDOM(matchHissatsus.len());
-			local newHissatsu = matchHissatsus[randHissatsu];
-			if (!isHissatsusInMoveset(newHissatsu, hissatsuList)) {
-				hissatsuList.append(newHissatsu);
-			}
-		}
+        if (getRandomPosition == "skill") {
+            if (skillCount < maxSkills[difficulty]) {
+                local randHissatsu = CMND_RANDOM(matchHissatsus.len());
+                hissatsuList.append(matchHissatsus[randHissatsu]);
+            }
+        } else {
+            local randHissatsu = CMND_RANDOM(matchHissatsus.len());
+            local newHissatsu = matchHissatsus[randHissatsu];
+            if (!isHissatsusInMoveset(newHissatsu, hissatsuList)) {
+                hissatsuList.append(newHissatsu);
+            }
+        }
     }
 
     return hissatsuList;
 }
 
-function generatePlayerWithHissatsus(player, difficulte) {
-    player.hissatsus = generateHissatsuList(player.position, difficulte);
-	sortList(player.hissatsus, customSort);
+/**
+ * generatePlayerWithHissatsus - Generate a player with hissatus and sort them.
+ *
+ * @param {object} player - The player object.
+ * @param {string} difficulty - The difficulty level.
+ * @return {object} player - The player object with sorted hissatus.
+ */
+function generatePlayerWithHissatsus(player, difficulty) {
+    player.hissatsus = generateHissatsuList(player.position, difficulty);
+    sortList(player.hissatsus, customSort);
     return player;
 }
 
-function addPlayerToTeam(players, team, positionPredicat, difficulte) {
-	local player = generatePlayerWithHissatsus(selectRandom(filterList(players, positionPredicat)), difficulte);
-	
-	while (isPlayerInTeam(player, team)) {
-		player = generatePlayerWithHissatsus(selectRandom(filterList(players, positionPredicat)), difficulte);
-	}
-	
-	team.append(player);
-}
-
-function CreateTeam(players, difficulte) {
-    local team = [];
+/**
+ * addPlayerToTeam - Add a player with hissatus to a team.
+ *
+ * @param {array} players - The list of available players.
+ * @param {array} team - The team to which the player will be added.
+ * @param {function} positionPredicate - The predicate function for player position.
+ * @param {string} difficulty - The difficulty level.
+ */
+function addPlayerToTeam(players, team, positionPredicate, difficulty) {
+    local player = generatePlayerWithHissatsus(selectRandom(filterList(players, positionPredicate)), difficulty);
     
-    // Ajoute le gardien de but
-    addPlayerToTeam(players, team, function(p) { return p.position == "GK"; }, difficulte);
-    
-    // Ajoute le défenseur
-    addPlayerToTeam(players, team, function(p) { return p.position == "DF"; }, difficulte);
-    
-    // Ajoute les joueurs de champ
-    for (local i = 0; i < 2; i++) {
-        addPlayerToTeam(players, team, function(p) { return p.position == "DF" || p.position == "MF" || p.position == "FW"; }, difficulte);
+    while (isPlayerInTeam(player, team)) {
+        player = generatePlayerWithHissatsus(selectRandom(filterList(players, positionPredicate)), difficulty);
     }
     
-    // Ajoute l'attaquant
-    addPlayerToTeam(players, team, function(p) { return p.position == "FW"; }, difficulte);
+    team.append(player);
+}
+
+/**
+ * CreateTeam - Create a team with specific positions.
+ *
+ * @param {array} players - The list of available players.
+ * @param {string} difficulty - The difficulty level.
+ * @return {array} team - The created team.
+ */
+function CreateTeam(players, difficulty) {
+    local team = [];
+    
+    // Add goalkeeper
+    addPlayerToTeam(players, team, function(p) { return p.position == "GK"; }, difficulty);
+    
+    // Add defender
+    addPlayerToTeam(players, team, function(p) { return p.position == "DF"; }, difficulty);
+    
+    // Add field players
+    for (local i = 0; i < 2; i++) {
+        addPlayerToTeam(players, team, function(p) { return p.position == "DF" || p.position == "MF" || p.position == "FW"; }, difficulty);
+    }
+    
+    // Add forward
+    addPlayerToTeam(players, team, function(p) { return p.position == "FW"; }, difficulty);
     
     return team;
 }
+
 
 OPEN_CPU_BTL_FLAG <- function ( _flag )
 {
@@ -1511,25 +1614,29 @@ OPEN_CPU_BTL_FLAG <- function ( _flag )
 };
 
 InitBtl <- function ()
-{
-	CMND_BTL_SET_FORMATIONID(1, formations[CMND_RANDOM(formations.len())]);
-	
+{	
+	// Set raimon equipment for user team
 	CMND_BTL_SET_SHOES_AND_GLOVE(0, "ssa0001", "sga0001");
+	
+	// Set random formation for opponent team
+	CMND_BTL_SET_FORMATIONID(1, formations[CMND_RANDOM(formations.len())]);
 
+	// Generate a random team based on difficulty for opponent team
 	if (CMND_GET_TEMP_BIT_FLAG(easy_flag))
 	{
 		battleTeam = CreateTeam(players, "easy");
-		CMND_BTL_SET_SHOES_AND_GLOVE(1, "ssa0006", "sga0006");
+		CMND_BTL_SET_SHOES_AND_GLOVE(1, "ssa0006", "sga0006"); // Royal Academy
 	} else if (CMND_GET_TEMP_BIT_FLAG(hard_flag))
 	{
 		battleTeam = CreateTeam(players, "hard");
-		CMND_BTL_SET_SHOES_AND_GLOVE(1, "ssa0010", "sga0010");
+		CMND_BTL_SET_SHOES_AND_GLOVE(1, "ssa0010", "sga0010"); // Alpine
 	} else if (CMND_GET_TEMP_BIT_FLAG(legend_flag))
 	{
 		battleTeam = CreateTeam(players, "legend");
-		CMND_BTL_SET_SHOES_AND_GLOVE(1, "ssa0019", "sga0019");
+		CMND_BTL_SET_SHOES_AND_GLOVE(1, "ssa0019", "sga0019"); // Zero
 	}
 	
+	// Add random players to the opponent team
 	for (local i = 0; i < 5; i++) {
 		CMND_BTL_ADD_MEMBER(1, battleTeam[i].name, 99, i+1);
 	}
@@ -1537,12 +1644,15 @@ InitBtl <- function ()
 
 BtlSetting <- function ()
 {
-	CMND_BTL_SET_TEAM_NAME(0, 1, "name_bfte_0001");
-	CMND_BTL_SET_TEAM_NAME(1, 1, "name_bfte_0002");
+	// Set team name
+	CMND_BTL_SET_TEAM_NAME(0, 1, "name_bfte_0001"); // Borrow Team
+	CMND_BTL_SET_TEAM_NAME(1, 1, "name_bfte_0002"); // Battle Factory
 	
-	local uniform = CMND_RANDOM(uniforms.len());
+	// Set random uniform for opponent team
+	local uniform = uniforms[CMND_RANDOM(uniforms.len())];
 	local uniform_outdoor = CMND_RANDOM(100);
 	
+	// Forces the game to remove basic moves to learn randomized moveset
 	for (local i = 0; i < 5; i++) {
 		foreach(hissatsu in defenses) {
 			CMND_BTL_FORGET_SKILL(1, battleTeam[i].name, hissatsu.name, false);
@@ -1605,6 +1715,7 @@ CallMatchKickoffFirst <- function ()
 
 CallMatchEndMatch <- function ( teamWin, id0, id1 )
 {
+	// the user won
 	if (teamWin == 0) {
 		foreach(player in battleTeam) {
 			if (!CMND_GET_PARTY_HANDLE(player.name)) {

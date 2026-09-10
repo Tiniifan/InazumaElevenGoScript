@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inazuma Eleven Go — Script Function Reference</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f6f6f7;
+    --text: #1f2328;
+    --text-muted: #57606a;
+    --border: #d8dee4;
+    --accent: #0552b5;
+    --accent-bg: #eaf1fb;
+    --code-bg: #f6f8fa;
+    --native: #0552b5;
+    --ev_main: #7a3e9d;
+    --builtin: #1a7f37;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171a;
+      --bg-alt: #1b1f23;
+      --text: #e6edf3;
+      --text-muted: #9aa4af;
+      --border: #30363d;
+      --accent: #6cb0ff;
+      --accent-bg: #1b2b3d;
+      --code-bg: #1b1f23;
+      --native: #6cb0ff;
+      --ev_main: #d0a6f0;
+      --builtin: #7ee2a8;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171a;
+    --bg-alt: #1b1f23;
+    --text: #e6edf3;
+    --text-muted: #9aa4af;
+    --border: #30363d;
+    --accent: #6cb0ff;
+    --accent-bg: #1b2b3d;
+    --code-bg: #1b1f23;
+    --native: #6cb0ff;
+    --ev_main: #d0a6f0;
+    --builtin: #7ee2a8;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 14px/1.5 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  a { color: var(--accent); }
+  code, pre {
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  }
+
+  #layout {
+    display: flex;
+    height: 100vh;
+  }
+
+  /* Sidebar */
+  #sidebar {
+    width: 300px;
+    flex: none;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-alt);
+  }
+  #sidebar-header {
+    padding: 14px 14px 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  #sidebar-header h1 {
+    font-size: 14px;
+    margin: 0 0 8px 0;
+    font-weight: 600;
+  }
+  #sidebar-header .count {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+  #search {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+  }
+  #kind-filters {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .kind-filter {
+    font-size: 11px;
+    padding: 2px 7px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    background: var(--bg);
+    color: var(--text-muted);
+    user-select: none;
+  }
+  .kind-filter.active {
+    background: var(--accent-bg);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  #list {
+    overflow-y: auto;
+    flex: 1;
+  }
+  #list ul { list-style: none; margin: 0; padding: 0; }
+  #list li a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 12.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-left: 3px solid transparent;
+  }
+  #list li a:hover { background: var(--accent-bg); }
+  #list li a.selected {
+    background: var(--accent-bg);
+    border-left-color: var(--accent);
+    font-weight: 600;
+  }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex: none;
+  }
+  .dot.native { background: var(--native); }
+  .dot.ev_main { background: var(--ev_main); }
+  .dot.builtin { background: var(--builtin); }
+
+  /* Main content */
+  #main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px 40px 60px 40px;
+  }
+  #empty {
+    color: var(--text-muted);
+    max-width: 560px;
+  }
+  #content { max-width: 780px; }
+  #content h1 {
+    font-size: 22px;
+    margin: 0 0 4px 0;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border);
+  }
+  .badge.native { color: var(--native); border-color: var(--native); }
+  .badge.ev_main { color: var(--ev_main); border-color: var(--ev_main); }
+  .badge.builtin { color: var(--builtin); border-color: var(--builtin); }
+
+  #content section { margin-bottom: 24px; }
+  #content h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    margin: 0 0 8px 0;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+  }
+  #content .description { white-space: pre-wrap; }
+
+  table.params {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  table.params th, table.params td {
+    text-align: left;
+    padding: 6px 10px 6px 0;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  table.params th {
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  table.params td.pname { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; white-space: nowrap; }
+  table.params td.ptype { color: var(--text-muted); white-space: nowrap; }
+
+  pre.code {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    overflow-x: auto;
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .example-tag {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .example-tag.invented { color: #b35900; }
+
+  .returns-type {
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  #no-results {
+    padding: 20px 14px;
+    color: var(--text-muted);
+    font-size: 12.5px;
+  }
+</style>
+</head>
+<body>
+<div id="layout">
+  <div id="sidebar">
+    <div id="sidebar-header">
+      <h1>IE Go Script Functions</h1>
+      <input id="search" type="text" placeholder="Search functions…" autocomplete="off">
+      <div id="kind-filters">
+        <span class="kind-filter active" data-kind="native">native</span>
+        <span class="kind-filter active" data-kind="ev_main">ev_main</span>
+        <span class="kind-filter active" data-kind="builtin">builtin</span>
+      </div>
+      <div class="count" id="count"></div>
+    </div>
+    <div id="list">
+      <ul id="list-ul"></ul>
+      <div id="no-results" hidden>No function matches.</div>
+    </div>
+  </div>
+  <div id="main">
+    <div id="empty">
+      <p>Reference for every scriptable function available to Inazuma Eleven Go (3DS) Squirrel scripts.</p>
+      <p>Pick a function on the left, or search by name.</p>
+    </div>
+    <div id="content" hidden></div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  var FUNCTIONS = window.FUNCTIONS || [];
+  var byName = {};
+  FUNCTIONS.forEach(function (f) { byName[f.name] = f; });
+
+  var listUl = document.getElementById("list-ul");
+  var searchInput = document.getElementById("search");
+  var countEl = document.getElementById("count");
+  var noResults = document.getElementById("no-results");
+  var contentEl = document.getElementById("content");
+  var emptyEl = document.getElementById("empty");
+  var activeKinds = { native: true, ev_main: true, builtin: true };
+
+  document.querySelectorAll(".kind-filter").forEach(function (el) {
+    el.addEventListener("click", function () {
+      var kind = el.getAttribute("data-kind");
+      activeKinds[kind] = !activeKinds[kind];
+      el.classList.toggle("active", activeKinds[kind]);
+      renderList();
+    });
+  });
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function renderList() {
+    var q = searchInput.value.trim().toLowerCase();
+    var items = FUNCTIONS.filter(function (f) {
+      if (!activeKinds[f.kind]) return false;
+      if (q && f.name.toLowerCase().indexOf(q) === -1) return false;
+      return true;
+    });
+
+    listUl.innerHTML = items.map(function (f) {
+      var selected = currentName === f.name ? " selected" : "";
+      return '<li><a href="#' + encodeURIComponent(f.name) + '" class="' + selected.trim() + '" data-name="' + escapeHtml(f.name) + '">' +
+        '<span class="dot ' + f.kind + '"></span>' + escapeHtml(f.name) + '</a></li>';
+    }).join("");
+
+    noResults.hidden = items.length > 0;
+    countEl.textContent = items.length + " / " + FUNCTIONS.length + " functions";
+  }
+
+  var currentName = null;
+
+  function renderFunction(f) {
+    if (!f) return;
+    var html = "";
+    html += "<h1>" + escapeHtml(f.name) + "</h1>";
+    html += '<span class="badge ' + f.kind + '">' + f.kind + "</span>";
+
+    html += "<section><h2>Description</h2><div class=\"description\">" + escapeHtml((f.description && f.description.en) || "") + "</div></section>";
+
+    html += "<section><h2>Parameters</h2>";
+    if (f.params && f.params.length) {
+      html += '<table class="params"><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>';
+      f.params.forEach(function (p) {
+        html += "<tr><td class=\"pname\">" + escapeHtml(p.name) + "</td><td class=\"ptype\">" + escapeHtml(p.type || "") + "</td><td>" + escapeHtml((p.description && p.description.en) || "") + "</td></tr>";
+      });
+      html += "</tbody></table>";
+    } else {
+      html += '<div class="description">None.</div>';
+    }
+    html += "</section>";
+
+    if (f.returns) {
+      html += "<section><h2>Returns</h2>";
+      html += '<div class="returns-type">' + escapeHtml(f.returns.type || "") + "</div>";
+      html += '<div class="description">' + escapeHtml((f.returns.description && f.returns.description.en) || "") + "</div>";
+      html += "</section>";
+    }
+
+    if (f.example) {
+      html += "<section><h2>Example</h2>";
+      html += '<div class="example-tag' + (f.example.source === "invented" ? " invented" : "") + '">' +
+        (f.example.source === "invented" ? "Invented example (not an attested in-game call site)" : "Real call site from script_clean/") +
+        "</div>";
+      html += '<pre class="code">' + escapeHtml(f.example.code) + "</pre>";
+      html += "</section>";
+    }
+
+    contentEl.innerHTML = html;
+  }
+
+  function showByHash() {
+    var name = decodeURIComponent(location.hash.replace(/^#/, ""));
+    currentName = name || null;
+    var f = byName[name];
+    if (f) {
+      emptyEl.hidden = true;
+      contentEl.hidden = false;
+      renderFunction(f);
+    } else {
+      emptyEl.hidden = false;
+      contentEl.hidden = true;
+    }
+    renderList();
+  }
+
+  searchInput.addEventListener("input", renderList);
+  window.addEventListener("hashchange", showByHash);
+
+  renderList();
+  showByHash();
+})();
+</script>
+</body>
+</html>

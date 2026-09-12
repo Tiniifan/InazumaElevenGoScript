@@ -7,152 +7,260 @@
 <style>
   :root {
     --bg: #ffffff;
-    --bg-alt: #f6f6f7;
-    --text: #1f2328;
-    --text-muted: #57606a;
-    --border: #d8dee4;
-    --accent: #0552b5;
-    --accent-bg: #eaf1fb;
-    --code-bg: #f6f8fa;
-    --native: #0552b5;
-    --ev_main: #7a3e9d;
-    --builtin: #1a7f37;
-    --message-tag: #b5560a;
+    --bg-elevated: #ffffff;
+    --bg-subtle: #f6f7f9;
+    --bg-inset: #eef0f3;
+    --border: #e2e5ea;
+    --border-strong: #cfd4dc;
+    --text: #1a1d21;
+    --text-muted: #63697a;
+    --text-faint: #8b91a0;
+    --accent: #2f5fd6;
+    --accent-soft: #e9eefc;
+    --code-bg: #f6f7f9;
+    --shadow: 0 8px 24px rgba(20, 24, 32, 0.08);
+    --native: #2f5fd6;
+    --ev_main: #8a3ec7;
+    --builtin: #1a8f4c;
+    --message-tag: #b5650a;
+    --ok: #1a8f4c;
+    --warn: #b5650a;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #14171a;
-      --bg-alt: #1b1f23;
-      --text: #e6edf3;
-      --text-muted: #9aa4af;
-      --border: #30363d;
-      --accent: #6cb0ff;
-      --accent-bg: #1b2b3d;
-      --code-bg: #1b1f23;
-      --native: #6cb0ff;
-      --ev_main: #d0a6f0;
-      --builtin: #7ee2a8;
-      --message-tag: #f0b070;
+      --bg: #0e1013;
+      --bg-elevated: #14171b;
+      --bg-subtle: #14171b;
+      --bg-inset: #1b1f25;
+      --border: #262b32;
+      --border-strong: #343b44;
+      --text: #e8eaed;
+      --text-muted: #9aa1ac;
+      --text-faint: #6b7280;
+      --accent: #86a9f7;
+      --accent-soft: #1a2740;
+      --code-bg: #14171b;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --native: #86a9f7;
+      --ev_main: #d3aaf5;
+      --builtin: #7fe0a9;
+      --message-tag: #f2b673;
+      --ok: #7fe0a9;
+      --warn: #f2b673;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #14171a;
-    --bg-alt: #1b1f23;
-    --text: #e6edf3;
-    --text-muted: #9aa4af;
-    --border: #30363d;
-    --accent: #6cb0ff;
-    --accent-bg: #1b2b3d;
-    --code-bg: #1b1f23;
-    --native: #6cb0ff;
-    --ev_main: #d0a6f0;
-    --builtin: #7ee2a8;
-    --message-tag: #f0b070;
+    --bg: #0e1013;
+    --bg-elevated: #14171b;
+    --bg-subtle: #14171b;
+    --bg-inset: #1b1f25;
+    --border: #262b32;
+    --border-strong: #343b44;
+    --text: #e8eaed;
+    --text-muted: #9aa1ac;
+    --text-faint: #6b7280;
+    --accent: #86a9f7;
+    --accent-soft: #1a2740;
+    --code-bg: #14171b;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --native: #86a9f7;
+    --ev_main: #d3aaf5;
+    --builtin: #7fe0a9;
+    --message-tag: #f2b673;
+    --ok: #7fe0a9;
+    --warn: #f2b673;
   }
 
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; }
+  html { overflow-x: hidden; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font: 14px/1.5 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font: 14px/1.55 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
   }
+  body.no-scroll { overflow: hidden; }
   a { color: var(--accent); }
-  code, pre {
+  code, pre, .mono {
     font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
   }
+  button { font: inherit; }
 
   #layout {
     display: flex;
     height: 100vh;
+    min-height: 100vh;
   }
 
-  /* Sidebar */
+  /* ---------- Mobile top bar ---------- */
+  #topbar {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    height: 52px;
+    flex: none;
+    padding: 0 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-elevated);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  #menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-subtle);
+    color: var(--text);
+    cursor: pointer;
+    flex: none;
+  }
+  #menu-btn:active { background: var(--bg-inset); }
+  #menu-btn svg { width: 18px; height: 18px; }
+  #topbar .topbar-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #overlay {
+    display: none;
+  }
+
+  /* ---------- Sidebar ---------- */
   #sidebar {
     width: 300px;
     flex: none;
     border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-    background: var(--bg-alt);
+    background: var(--bg-subtle);
   }
   #sidebar-header {
-    padding: 14px 14px 10px 14px;
+    padding: 16px 14px 12px 14px;
     border-bottom: 1px solid var(--border);
+    flex: none;
   }
   #sidebar-header h1 {
-    font-size: 14px;
-    margin: 0 0 8px 0;
-    font-weight: 600;
+    font-size: 13.5px;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
   #sidebar-header .count {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 6px;
+    font-size: 11.5px;
+    color: var(--text-faint);
+    margin-top: 7px;
+  }
+  .search-wrap {
+    position: relative;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    color: var(--text-faint);
+    pointer-events: none;
   }
   #search {
     width: 100%;
-    padding: 6px 8px;
+    padding: 7px 8px 7px 29px;
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 6px;
     background: var(--bg);
     color: var(--text);
     font-size: 13px;
   }
+  #search:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
   #list {
     overflow-y: auto;
+    overflow-x: hidden;
     flex: 1;
-    padding: 6px 0;
+    padding: 8px 0 24px 0;
   }
   #list ul { list-style: none; margin: 0; padding: 0; }
 
-  /* Tree (kind > category > functions) */
-  .tree-kind > summary { font-size: 12.5px; font-weight: 600; }
-  .tree-kind > summary .dot { margin-right: 6px; }
+  /* Tree (Old/New root > kind > category > functions) */
+  .tree-root { margin-bottom: 4px; }
+  .tree-root > summary.root-summary {
+    font-size: 12.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-faint);
+  }
+  .tree-root > summary.root-summary .cat-count { text-transform: none; letter-spacing: 0; }
+  .tree-kind { margin-bottom: 2px; }
+  .tree-kind > summary { font-size: 12.5px; font-weight: 700; }
+  .tree-kind > summary .dot { margin-right: 7px; }
   .tree-cat > summary {
     font-size: 12px;
     color: var(--text-muted);
-    padding: 5px 14px 5px 28px;
+    padding: 5px 14px 5px 30px;
+    font-weight: 500;
   }
-  .tree-cat > summary .cat-count { color: var(--text-muted); font-weight: 400; }
+  .tree-cat > summary .cat-count { color: var(--text-faint); font-weight: 400; }
   details { border: none; }
   details > summary {
     cursor: pointer;
-    padding: 6px 14px;
+    padding: 7px 14px;
     list-style: none;
     user-select: none;
     display: flex;
     align-items: center;
+    border-radius: 6px;
+    margin: 0 6px;
   }
+  details > summary:hover { background: var(--bg-inset); }
   details > summary::-webkit-details-marker { display: none; }
   details > summary::before {
-    content: "\25B8";
+    content: "";
     display: inline-block;
     width: 14px;
-    font-size: 10px;
-    color: var(--text-muted);
-    transition: transform 0.1s;
+    height: 14px;
+    margin-right: 2px;
+    flex: none;
+    background: currentColor;
+    color: var(--text-faint);
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" fill="none" stroke="black" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>') center / contain no-repeat;
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" fill="none" stroke="black" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>') center / contain no-repeat;
+    transition: transform 0.12s ease;
   }
   details[open] > summary::before { transform: rotate(90deg); }
 
   #list li a {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 5px 14px 5px 42px;
+    gap: 7px;
+    margin: 0 6px;
+    padding: 6px 10px 6px 40px;
     text-decoration: none;
     color: var(--text);
     font-size: 12.5px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    border-left: 3px solid transparent;
+    border-radius: 6px;
   }
-  #list.search-mode li a { padding-left: 14px; }
-  #list li a:hover { background: var(--accent-bg); }
+  #list.search-mode li a { padding-left: 12px; }
+  #list li a:hover { background: var(--bg-inset); }
   #list li a.selected {
-    background: var(--accent-bg);
-    border-left-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent);
     font-weight: 600;
   }
   .dot {
@@ -166,87 +274,196 @@
   .dot.builtin { background: var(--builtin); }
   .dot.message-tag { background: var(--message-tag); }
 
-  /* Main content */
+  .root-tag {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 1px 5px;
+    border-radius: 4px;
+    flex: none;
+    margin-left: auto;
+  }
+  .root-tag.old { color: var(--text-faint); background: var(--bg-inset); }
+  .root-tag.new { color: var(--ok); background: color-mix(in srgb, var(--ok) 16%, transparent); }
+
+  /* ---------- Main content ---------- */
   #main {
     flex: 1;
+    min-width: 0;
     overflow-y: auto;
-    padding: 32px 40px 60px 40px;
+    overflow-x: hidden;
+  }
+  #main-inner {
+    padding: 40px 44px 80px 44px;
+    max-width: 820px;
   }
   #empty {
     color: var(--text-muted);
     max-width: 560px;
   }
-  #content { max-width: 780px; }
+  #empty h2 {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+    color: var(--text);
+  }
+  #content { max-width: 820px; }
+
+  .crumb {
+    font-size: 12px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
   #content h1 {
-    font-size: 22px;
-    margin: 0 0 4px 0;
+    font-size: 24px;
+    margin: 0 0 12px 0;
     font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    letter-spacing: -0.01em;
+    word-break: break-word;
+  }
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
   }
   .badge {
     display: inline-block;
     font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 10px;
-    margin-bottom: 18px;
-    border: 1px solid var(--border);
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted);
   }
   .badge.native { color: var(--native); border-color: var(--native); }
   .badge.ev_main { color: var(--ev_main); border-color: var(--ev_main); }
   .badge.builtin { color: var(--builtin); border-color: var(--builtin); }
   .badge.message-tag { color: var(--message-tag); border-color: var(--message-tag); }
 
-  #content section { margin-bottom: 24px; }
-  #content h2 {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--text-muted);
-    margin: 0 0 8px 0;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 4px;
-  }
-  #content .description { white-space: pre-wrap; }
+  .compare-link { margin: -8px 0 18px 0; }
+  .compare-link a { font-size: 12.5px; text-decoration: none; }
+  .compare-link a:hover { text-decoration: underline; }
 
+  pre.signature {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    overflow-x: auto;
+    font-size: 13px;
+    margin: 0 0 24px 0;
+    color: var(--text);
+  }
+
+  #content section { margin-bottom: 26px; }
+  #content h2 {
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-faint);
+    margin: 0 0 10px 0;
+    font-weight: 700;
+  }
+  #content .description { white-space: pre-wrap; color: var(--text); }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
   table.params {
     width: 100%;
+    min-width: 480px;
     border-collapse: collapse;
     font-size: 13px;
   }
   table.params th, table.params td {
     text-align: left;
-    padding: 6px 10px 6px 0;
+    padding: 8px 12px;
     border-bottom: 1px solid var(--border);
     vertical-align: top;
   }
+  table.params tr:last-child td { border-bottom: none; }
   table.params th {
-    color: var(--text-muted);
+    color: var(--text-faint);
     font-weight: 600;
-    font-size: 11px;
+    font-size: 10.5px;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: var(--bg-subtle);
   }
   table.params td.pname { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; white-space: nowrap; }
-  table.params td.ptype { color: var(--text-muted); white-space: nowrap; }
+  table.params td.ptype { color: var(--text-muted); white-space: nowrap; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 12px; }
+  table.params td.pdefault { color: var(--text-muted); white-space: nowrap; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 12px; }
+
+  .req-badge {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .req-badge.required { color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, transparent); }
+  .req-badge.optional { color: var(--text-muted); background: var(--bg-inset); }
 
   pre.code {
     background: var(--code-bg);
     border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px 14px;
+    border-radius: 8px;
+    padding: 14px 16px;
     overflow-x: auto;
     font-size: 12.5px;
-    line-height: 1.5;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .example-case {
+    font-size: 12.5px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
   }
   .example-tag {
     font-size: 11px;
-    color: var(--text-muted);
-    margin-bottom: 6px;
+    color: var(--ok);
+    margin-bottom: 8px;
+    font-weight: 600;
   }
-  .example-tag.invented { color: #b35900; }
+  .example-tag.invented { color: var(--warn); }
+
+  .example-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  .example-tab {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-muted);
+    padding: 7px 4px;
+    margin-right: 14px;
+    font-size: 12.5px;
+    cursor: pointer;
+  }
+  .example-tab:hover { color: var(--text); }
+  .example-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+  }
+  .example-panel[hidden] { display: none; }
 
   .returns-type {
     font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
     font-size: 13px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
+    display: inline-block;
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2px 8px;
   }
 
   #no-results {
@@ -254,14 +471,58 @@
     color: var(--text-muted);
     font-size: 12.5px;
   }
+
+  /* ---------- Mobile layout ---------- */
+  @media (max-width: 880px) {
+    #layout { height: auto; min-height: 100vh; flex-direction: column; }
+    #topbar { display: flex; }
+    #sidebar {
+      position: fixed;
+      top: 52px;
+      left: 0;
+      bottom: 0;
+      width: min(320px, 84vw);
+      z-index: 30;
+      transform: translateX(-100%);
+      transition: transform 0.18s ease;
+      box-shadow: var(--shadow);
+    }
+    #sidebar.open { transform: translateX(0); }
+    #overlay.open {
+      display: block;
+      position: fixed;
+      inset: 52px 0 0 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 25;
+    }
+    #main { overflow-y: visible; height: auto; }
+    #main-inner { padding: 24px 18px 60px 18px; max-width: 100%; }
+    #content { max-width: 100%; }
+    #content h1 { font-size: 20px; }
+  }
 </style>
 </head>
 <body>
 <div id="layout">
+  <div id="topbar">
+    <button id="menu-btn" aria-label="Toggle function list" type="button">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 5.5h14M3 10h14M3 14.5h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="topbar-title">IE Go Script Functions</div>
+  </div>
+  <div id="overlay"></div>
   <div id="sidebar">
     <div id="sidebar-header">
       <h1>IE Go Script Functions</h1>
-      <input id="search" type="text" placeholder="Search functions…" autocomplete="off">
+      <div class="search-wrap">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M14 14l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <input id="search" type="text" placeholder="Search functions…" autocomplete="off">
+      </div>
       <div class="count" id="count"></div>
     </div>
     <div id="list">
@@ -270,11 +531,14 @@
     </div>
   </div>
   <div id="main">
-    <div id="empty">
-      <p>Reference for every scriptable function available to Inazuma Eleven Go (3DS) Squirrel scripts.</p>
-      <p>Pick a function on the left, or search by name.</p>
+    <div id="main-inner">
+      <div id="empty">
+        <h2>Script Function Reference</h2>
+        <p>Reference for every scriptable function available to Inazuma Eleven Go (3DS) Squirrel scripts.</p>
+        <p>Pick a function on the left, or search by name.</p>
+      </div>
+      <div id="content" hidden></div>
     </div>
-    <div id="content" hidden></div>
   </div>
 </div>
 
@@ -865,9 +1129,60 @@ var FUNCTION_FILES = [
   "GameOver"
 ];
 
+// Functions that have been migrated to the new schema and therefore have a
+// second, separate "data/<NAME>-new.json" sibling file alongside the
+// original, untouched "data/<NAME>.json" (old schema). Append a name here in
+// the same commit that adds its "-new.json" file. The plain ".json" stays in
+// FUNCTION_FILES above unchanged — both files coexist so Old and New can be
+// compared side by side in the sidebar.
+var MIGRATED_FUNCTIONS = [
+  "CMND_ATTACH_AVATAR",
+  "CMND_RANDOM",
+  "GameOver",
+  "CMND_NONE",
+  "AddChildThread",
+  "AddParty",
+  "AddParty_MessageEx",
+  "AddParty_Message",
+  "AddParty_Message_Back",
+  "AddParty_Message_NoFadeBGM",
+  "AddParty_Message_NoFadeBGM_Back",
+  "AddParty_Important_Message",
+  "AddParty_Important_Message_Back",
+  "AddParty_Important_Message_NoFadeBGM",
+  "AddParty_Important_Message_NoFadeBGM_Back",
+  "AddPartyNum_Message",
+  "AddPartyNum_Message_Back",
+  "AddPartyNum_Message_NoFadeBGM",
+  "AddPartyNum_Message_NoFadeBGM_Back",
+  "AddPartyNum_Important_Message",
+  "AddPartyNum_Important_Message_Back",
+  "AddPartyNum_Important_Message_NoFadeBGM",
+  "AddPartyNum_Important_Message_NoFadeBGM_Back",
+  "BtnImageNext",
+  "CalcPosRefToDistRot",
+  "CallEvent",
+  "CallKiznaxEvent",
+  "CallShopEvent",
+  "CallMasterAvatar",
+  "CamCtrlInit",
+  "CamCtrlReset",
+  "CamCtrlExit",
+  "IsCamCtrlMove",
+  "CamCtrlLookAtChara",
+  "CamCtrlSetPosRef",
+  "CamCtrlMoveTo",
+  "CamSettingBattlePosRef",
+  "ChapterTitleCall"
+];
+
 (function () {
-  var FUNCTIONS = [];
+  var FUNCTIONS = [];       // "Old" root: every non-migrated-schema *.json (the original files)
+  var FUNCTIONS_NEW = [];   // "New" root: only the *-new.json siblings of migrated functions
   var byName = {};
+  var byNameNew = {};
+  var currentName = null;
+  var currentRoot = "old";  // "old" | "new" — which sidebar root is currently active
 
   // Display order/labels for the kind tier of the tree.
   var KIND_LABELS = { native: "native", ev_main: "ev_main", builtin: "builtin", "message-tag": "message-tag" };
@@ -902,6 +1217,9 @@ var FUNCTION_FILES = [
   var noResults = document.getElementById("no-results");
   var contentEl = document.getElementById("content");
   var emptyEl = document.getElementById("empty");
+  var sidebarEl = document.getElementById("sidebar");
+  var overlayEl = document.getElementById("overlay");
+  var menuBtn = document.getElementById("menu-btn");
 
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
@@ -909,17 +1227,41 @@ var FUNCTION_FILES = [
     });
   }
 
-  function linkHtml(f) {
-    var selected = currentName === f.name ? " selected" : "";
-    return '<li><a href="#' + encodeURIComponent(f.name) + '" class="' + selected.trim() + '" data-name="' + escapeHtml(f.name) + '">' +
-      '<span class="dot ' + f.kind + '"></span>' + escapeHtml(f.name) + '</a></li>';
+  // ---------- Mobile drawer ----------
+  function openDrawer() {
+    sidebarEl.classList.add("open");
+    overlayEl.classList.add("open");
+    document.body.classList.add("no-scroll");
+  }
+  function closeDrawer() {
+    sidebarEl.classList.remove("open");
+    overlayEl.classList.remove("open");
+    document.body.classList.remove("no-scroll");
+  }
+  menuBtn.addEventListener("click", function () {
+    if (sidebarEl.classList.contains("open")) closeDrawer(); else openDrawer();
+  });
+  overlayEl.addEventListener("click", closeDrawer);
+  listEl.addEventListener("click", function (e) {
+    if (e.target.closest("a")) closeDrawer();
+  });
+
+  // `root` is "old" or "new" — which top-level sidebar node this link belongs
+  // to (drives the "#old/NAME" vs "#new/NAME" hash). `showRootTag` adds a
+  // small OLD/NEW badge, used in the flat search list where both roots are
+  // mixed together and would otherwise look like duplicate entries.
+  function linkHtml(f, root, showRootTag) {
+    var selected = (currentRoot === root && currentName === f.name) ? " selected" : "";
+    var tag = showRootTag ? ' <span class="root-tag ' + root + '">' + (root === "new" ? "NEW" : "OLD") + "</span>" : "";
+    return '<li><a href="#' + root + "/" + encodeURIComponent(f.name) + '" class="' + selected.trim() + '" data-name="' + escapeHtml(f.name) + '">' +
+      '<span class="dot ' + f.kind + '"></span>' + escapeHtml(f.name) + tag + '</a></li>';
   }
 
-  // Tree mode: kind > category > functions, using native <details> for collapsing.
-  function renderTree() {
-    listEl.classList.remove("search-mode");
+  // kind > category > functions for one root's function list. Shared by both
+  // the "Old" and "New" root nodes so the grouping logic only lives once.
+  function buildKindCategoryHtml(functions, root) {
     var byKind = {};
-    FUNCTIONS.forEach(function (f) { (byKind[f.kind] = byKind[f.kind] || []).push(f); });
+    functions.forEach(function (f) { (byKind[f.kind] = byKind[f.kind] || []).push(f); });
 
     var html = "";
     KIND_ORDER.forEach(function (kind) {
@@ -933,38 +1275,63 @@ var FUNCTION_FILES = [
       var categories = Object.keys(byCat).sort(function (a, b) {
         return (CATEGORY_LABELS[a] || a).localeCompare(CATEGORY_LABELS[b] || b);
       });
-      var kindHasSelection = fns.some(function (f) { return f.name === currentName; });
+      var kindHasSelection = root === currentRoot && fns.some(function (f) { return f.name === currentName; });
 
-      html += '<details class="tree-kind"' + (kindHasSelection || !currentName ? " open" : "") + '>';
+      html += '<details class="tree-kind"' + (kindHasSelection || (root === currentRoot && !currentName) ? " open" : "") + '>';
       html += '<summary><span class="dot ' + kind + '"></span>' + escapeHtml(KIND_LABELS[kind] || kind) + ' <span class="cat-count">(' + fns.length + ')</span></summary>';
       categories.forEach(function (cat) {
         var items = byCat[cat].slice().sort(function (a, b) { return a.name.localeCompare(b.name); });
-        var catHasSelection = items.some(function (f) { return f.name === currentName; });
+        var catHasSelection = root === currentRoot && items.some(function (f) { return f.name === currentName; });
         html += '<details class="tree-cat"' + (catHasSelection ? " open" : "") + '>';
         html += '<summary>' + escapeHtml(CATEGORY_LABELS[cat] || cat) + ' <span class="cat-count">(' + items.length + ')</span></summary>';
-        html += "<ul>" + items.map(linkHtml).join("") + "</ul>";
+        html += "<ul>" + items.map(function (f) { return linkHtml(f, root, false); }).join("") + "</ul>";
         html += "</details>";
       });
       html += "</details>";
     });
+    return html;
+  }
+
+  // Tree mode: two root nodes, Old and New, each containing the usual
+  // kind > category > functions tree (native <details> for collapsing).
+  function renderTree() {
+    listEl.classList.remove("search-mode");
+
+    var html = "";
+    html += '<details class="tree-root"' + (currentRoot === "old" || !currentName ? " open" : "") + '>';
+    html += '<summary class="root-summary">Old <span class="cat-count">(' + FUNCTIONS.length + ')</span></summary>';
+    html += buildKindCategoryHtml(FUNCTIONS, "old");
+    html += "</details>";
+
+    html += '<details class="tree-root"' + (currentRoot === "new" ? " open" : "") + '>';
+    html += '<summary class="root-summary">New <span class="cat-count">(' + FUNCTIONS_NEW.length + ')</span></summary>';
+    html += buildKindCategoryHtml(FUNCTIONS_NEW, "new");
+    html += "</details>";
 
     treeEl.innerHTML = html;
     treeEl.hidden = false;
     noResults.hidden = true;
-    countEl.textContent = FUNCTIONS.length + " functions";
+    countEl.textContent = FUNCTIONS.length + " functions (" + FUNCTIONS_NEW.length + " migrated)";
   }
 
-  // Search mode: flat filtered list, no tree/collapsing.
+  // Search mode: flat filtered list across both roots, no tree/collapsing.
+  // A migrated function can match twice (its old and new version); each is
+  // tagged OLD/NEW so they don't read as accidental duplicates.
   function renderSearchResults(q) {
     listEl.classList.add("search-mode");
-    var items = FUNCTIONS.filter(function (f) {
-      return f.name.toLowerCase().indexOf(q) !== -1;
-    }).sort(function (a, b) { return a.name.localeCompare(b.name); });
+    var oldItems = FUNCTIONS.filter(function (f) { return f.name.toLowerCase().indexOf(q) !== -1; })
+      .map(function (f) { return { f: f, root: "old" }; });
+    var newItems = FUNCTIONS_NEW.filter(function (f) { return f.name.toLowerCase().indexOf(q) !== -1; })
+      .map(function (f) { return { f: f, root: "new" }; });
+    var items = oldItems.concat(newItems).sort(function (a, b) {
+      var c = a.f.name.localeCompare(b.f.name);
+      return c !== 0 ? c : a.root.localeCompare(b.root);
+    });
 
-    treeEl.innerHTML = "<ul>" + items.map(linkHtml).join("") + "</ul>";
+    treeEl.innerHTML = "<ul>" + items.map(function (it) { return linkHtml(it.f, it.root, true); }).join("") + "</ul>";
     treeEl.hidden = items.length === 0;
     noResults.hidden = items.length > 0;
-    countEl.textContent = items.length + " / " + FUNCTIONS.length + " functions";
+    countEl.textContent = items.length + " / " + (FUNCTIONS.length + FUNCTIONS_NEW.length) + " functions";
   }
 
   function renderList() {
@@ -976,30 +1343,141 @@ var FUNCTION_FILES = [
     }
   }
 
-  var currentName = null;
+  // ---------- Function detail rendering ----------
 
-  function renderFunction(f) {
+  // Old schema: a single `example` object. New schema: an `examples` array,
+  // each entry carrying a `case` label. Normalize both into one array shape
+  // so the renderer only has to deal with one thing.
+  function normalizeExamples(f) {
+    if (Array.isArray(f.examples) && f.examples.length) return f.examples;
+    if (f.example) return [{ case: null, source: f.example.source, code: f.example.code }];
+    return [];
+  }
+
+  // Build a `CMND_FOO(a, b[, c[, d]])`-style signature. Old-schema params
+  // carry no `required` flag at all, in which case we don't guess — just a
+  // flat, unbracketed argument list. New-schema params carry `required`, so
+  // a trailing run of optional params gets nested brackets to communicate
+  // the real positional constraint (an optional param not at the trailing
+  // edge is a schema irregularity; it's marked with a "?" instead of being
+  // bracket-nested, since Squirrel doesn't support required-after-optional).
+  function buildSignature(f) {
+    var params = f.params || [];
+    if (!params.length) return f.name + "()";
+
+    var hasFlag = params.some(function (p) { return typeof p.required === "boolean"; });
+    if (!hasFlag) {
+      return f.name + "(" + params.map(function (p) { return p.name; }).join(", ") + ")";
+    }
+
+    var n = params.length;
+    var cut = n;
+    for (var i = n - 1; i >= 0; i--) {
+      if (params[i].required === false) cut = i; else break;
+    }
+    var head = params.slice(0, cut);
+    var tail = params.slice(cut);
+    var headNames = head.map(function (p) {
+      return p.required === false ? p.name + "?" : p.name;
+    });
+
+    var sig = f.name + "(" + headNames.join(", ");
+    if (tail.length) {
+      var nested = "";
+      for (var k = tail.length - 1; k >= 0; k--) {
+        var piece = (k === 0 && headNames.length === 0) ? tail[k].name : ", " + tail[k].name;
+        nested = "[" + piece + nested + "]";
+      }
+      sig += nested;
+    }
+    sig += ")";
+    return sig;
+  }
+
+  function renderParams(params) {
+    if (!params || !params.length) {
+      return '<section><h2>Parameters</h2><div class="description">None.</div></section>';
+    }
+    var anyRequired = params.some(function (p) { return typeof p.required === "boolean"; });
+    var anyDefault = params.some(function (p) { return p.default; });
+
+    var html = '<section><h2>Parameters</h2><div class="table-wrap"><table class="params"><thead><tr><th>Name</th><th>Type</th>';
+    if (anyRequired) html += "<th>Required</th>";
+    if (anyDefault) html += "<th>Default</th>";
+    html += "<th>Description</th></tr></thead><tbody>";
+
+    params.forEach(function (p) {
+      html += '<tr><td class="pname">' + escapeHtml(p.name) + '</td><td class="ptype">' + escapeHtml(p.type || "") + "</td>";
+      if (anyRequired) {
+        var cell = typeof p.required === "boolean"
+          ? '<span class="req-badge ' + (p.required ? "required" : "optional") + '">' + (p.required ? "required" : "optional") + "</span>"
+          : "—";
+        html += "<td>" + cell + "</td>";
+      }
+      if (anyDefault) {
+        html += '<td class="pdefault">' + (p.default ? escapeHtml(p.default) : "—") + "</td>";
+      }
+      html += "<td>" + escapeHtml((p.description && p.description.en) || "") + "</td></tr>";
+    });
+
+    html += "</tbody></table></div></section>";
+    return html;
+  }
+
+  function renderExamples(examples) {
+    if (!examples.length) return "";
+    var html = "<section><h2>Example" + (examples.length > 1 ? "s" : "") + "</h2>";
+
+    if (examples.length > 1) {
+      html += '<div class="example-tabs" role="tablist">';
+      examples.forEach(function (ex, i) {
+        html += '<button type="button" class="example-tab' + (i === 0 ? " active" : "") + '" data-idx="' + i + '">' +
+          escapeHtml(ex.case || ("Example " + (i + 1))) + "</button>";
+      });
+      html += "</div>";
+    }
+
+    examples.forEach(function (ex, i) {
+      html += '<div class="example-panel" data-idx="' + i + '"' + (i === 0 ? "" : " hidden") + ">";
+      if (examples.length === 1 && ex.case) {
+        html += '<div class="example-case">' + escapeHtml(ex.case) + "</div>";
+      }
+      html += '<div class="example-tag' + (ex.source === "invented" ? " invented" : "") + '">' +
+        (ex.source === "invented" ? "Invented example — not an attested in-game call site" : "Real call site from script_clean/") +
+        "</div>";
+      html += '<pre class="code">' + escapeHtml(ex.code) + "</pre>";
+      html += "</div>";
+    });
+
+    html += "</section>";
+    return html;
+  }
+
+  function renderFunction(f, root) {
     if (!f) return;
+    var examples = normalizeExamples(f);
+    var dupExists = !!(byName[f.name] && byNameNew[f.name]);
+
     var html = "";
+    html += '<div class="crumb">' + (root === "new" ? "New" : "Old") + " &middot; " + escapeHtml(KIND_LABELS[f.kind] || f.kind) +
+      (f.category ? " / " + escapeHtml(CATEGORY_LABELS[f.category] || f.category) : "") + "</div>";
     html += "<h1>" + escapeHtml(f.name) + "</h1>";
-    html += '<span class="badge ' + f.kind + '">' + f.kind + "</span>";
+    html += '<div class="badges"><span class="badge ' + f.kind + '">' + f.kind + "</span>";
     if (f.category) {
       html += ' <span class="badge">' + escapeHtml(CATEGORY_LABELS[f.category] || f.category) + "</span>";
     }
+    html += ' <span class="badge ' + (root === "new" ? "builtin" : "message-tag") + '">' + (root === "new" ? "new schema" : "old schema") + "</span>";
+    html += "</div>";
+    if (dupExists) {
+      var otherRoot = root === "new" ? "old" : "new";
+      html += '<div class="compare-link"><a href="#' + otherRoot + "/" + encodeURIComponent(f.name) + '">&larr; view the ' + otherRoot + " version of " + escapeHtml(f.name) + "</a></div>";
+    }
+
+    html += '<pre class="signature">' + escapeHtml(buildSignature(f)) + "</pre>";
 
     html += "<section><h2>Description</h2><div class=\"description\">" + escapeHtml((f.description && f.description.en) || "") + "</div></section>";
 
-    html += "<section><h2>Parameters</h2>";
-    if (f.params && f.params.length) {
-      html += '<table class="params"><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>';
-      f.params.forEach(function (p) {
-        html += "<tr><td class=\"pname\">" + escapeHtml(p.name) + "</td><td class=\"ptype\">" + escapeHtml(p.type || "") + "</td><td>" + escapeHtml((p.description && p.description.en) || "") + "</td></tr>";
-      });
-      html += "</tbody></table>";
-    } else {
-      html += '<div class="description">None.</div>';
-    }
-    html += "</section>";
+    html += renderParams(f.params);
 
     if (f.returns) {
       html += "<section><h2>Returns</h2>";
@@ -1008,26 +1486,40 @@ var FUNCTION_FILES = [
       html += "</section>";
     }
 
-    if (f.example) {
-      html += "<section><h2>Example</h2>";
-      html += '<div class="example-tag' + (f.example.source === "invented" ? " invented" : "") + '">' +
-        (f.example.source === "invented" ? "Invented example (not an attested in-game call site)" : "Real call site from script_clean/") +
-        "</div>";
-      html += '<pre class="code">' + escapeHtml(f.example.code) + "</pre>";
-      html += "</section>";
-    }
+    html += renderExamples(examples);
 
     contentEl.innerHTML = html;
+
+    contentEl.querySelectorAll(".example-tab").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var idx = btn.getAttribute("data-idx");
+        contentEl.querySelectorAll(".example-tab").forEach(function (b) { b.classList.toggle("active", b === btn); });
+        contentEl.querySelectorAll(".example-panel").forEach(function (p) { p.hidden = p.getAttribute("data-idx") !== idx; });
+      });
+    });
+  }
+
+  // Hash scheme is "#old/NAME" or "#new/NAME". A bare "#NAME" (no root
+  // prefix) is also accepted for backward compatibility with links/bookmarks
+  // made before the Old/New split existed, and defaults to "old".
+  function parseHash() {
+    var raw = decodeURIComponent(location.hash.replace(/^#/, ""));
+    if (!raw) return { root: "old", name: null };
+    var m = raw.match(/^(old|new)\/(.+)$/);
+    if (m) return { root: m[1], name: m[2] };
+    return { root: "old", name: raw };
   }
 
   function showByHash() {
-    var name = decodeURIComponent(location.hash.replace(/^#/, ""));
-    currentName = name || null;
-    var f = byName[name];
+    var parsed = parseHash();
+    currentRoot = parsed.root;
+    currentName = parsed.name;
+    var f = currentName ? (currentRoot === "new" ? byNameNew[currentName] : byName[currentName]) : null;
     if (f) {
       emptyEl.hidden = true;
       contentEl.hidden = false;
-      renderFunction(f);
+      renderFunction(f, currentRoot);
+      document.getElementById("main").scrollTop = 0;
     } else {
       emptyEl.hidden = false;
       contentEl.hidden = true;
@@ -1038,14 +1530,19 @@ var FUNCTION_FILES = [
   searchInput.addEventListener("input", renderList);
   window.addEventListener("hashchange", showByHash);
 
-  Promise.all(
-    FUNCTION_FILES.map(function (name) {
+  Promise.all([
+    Promise.all(FUNCTION_FILES.map(function (name) {
       return fetch("data/" + name + ".json").then(function (r) { return r.json(); });
-    })
-  )
-    .then(function (data) {
-      FUNCTIONS = data;
+    })),
+    Promise.all(MIGRATED_FUNCTIONS.map(function (name) {
+      return fetch("data/" + name + "-new.json").then(function (r) { return r.json(); });
+    }))
+  ])
+    .then(function (results) {
+      FUNCTIONS = results[0];
+      FUNCTIONS_NEW = results[1];
       FUNCTIONS.forEach(function (f) { byName[f.name] = f; });
+      FUNCTIONS_NEW.forEach(function (f) { byNameNew[f.name] = f; });
       renderList();
       showByHash();
     })

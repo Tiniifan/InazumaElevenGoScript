@@ -1,0 +1,34 @@
+{
+  "name": "CMND_CHR_WARP_SET",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Toggles \"warp\" mode for a character, making its next position change (e.g. via CMND_SET_POSRY) apply instantly instead of being interpolated."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to configure."
+      }
+    },
+    {
+      "name": "enabled",
+      "type": "boolean",
+      "description": {
+        "en": "True to enable instant warp positioning."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "Always 0 once applied; null if the call was invalid (fewer than 2 arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Enable instant warp positioning for a character\nCMND_CHR_WARP_SET(hTenmaL, true);"
+  }
+}

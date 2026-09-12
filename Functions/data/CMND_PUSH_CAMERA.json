@@ -1,0 +1,27 @@
+{
+  "name": "CMND_PUSH_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Pushes a camera onto the active camera stack, making it the currently rendered camera (the previous camera is restored later with CMND_POP_CAMERA)."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Handle of the camera to activate."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Switch to a loaded scripted camera\nCMND_PUSH_CAMERA(hCamera);"
+  }
+}

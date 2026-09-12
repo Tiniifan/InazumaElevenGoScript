@@ -1,0 +1,20 @@
+{
+  "name": "CreateEvLowMdlForCharaNo_AnimalNoBustup",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Shorthand for CreateEvLowMdlForCharaNo_Animal with its _no_bustup argument forced to true — creates a low-detail animal-type NPC model without its bustup portrait."
+  },
+  "params": [
+    { "name": "_charaName", "type": "string", "description": { "en": "Name to assign the created model." } },
+    { "name": "_npc_no", "type": "integer", "description": { "en": "NPC number used to build the model's file path." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created character model." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Create a low-detail animal-type NPC model without a bustup portrait\nlocal hAnimalL = CreateEvLowMdlForCharaNo_AnimalNoBustup(\"animalL\", 5);"
+  }
+}

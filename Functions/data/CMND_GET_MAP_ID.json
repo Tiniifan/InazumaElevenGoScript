@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_MAP_ID",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Returns the string identifier of the currently loaded map. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [],
+  "returns": {
+    "type": "string",
+    "description": {
+      "en": "The current map's ID, or null if none is loaded."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Read the current map's string identifier\nlocal mapId = CMND_GET_MAP_ID();"
+  }
+}

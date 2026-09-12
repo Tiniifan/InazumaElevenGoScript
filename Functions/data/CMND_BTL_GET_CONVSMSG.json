@@ -1,0 +1,28 @@
+{
+  "name": "CMND_BTL_GET_CONVSMSG",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Reads up to two entries of a scripted in-match conversation's data (which characters are speaking, their message ID, motion/model info and team/order) out of an internal table, writing the results into the eight output arrays passed by the caller."
+  },
+  "params": [
+    { "name": "chara", "type": "array", "description": { "en": "Output array; filled with the character ID/index of each speaker." } },
+    { "name": "msg", "type": "array", "description": { "en": "Output array; filled with each entry's message ID." } },
+    { "name": "motPath", "type": "array", "description": { "en": "Output array; filled with each entry's motion file path." } },
+    { "name": "motType", "type": "array", "description": { "en": "Output array; filled with each entry's motion type." } },
+    { "name": "extMtnPath", "type": "array", "description": { "en": "Output array; filled with each entry's extra motion file path." } },
+    { "name": "extMtnName", "type": "array", "description": { "en": "Output array; filled with each entry's extra motion name." } },
+    { "name": "teamID", "type": "array", "description": { "en": "Output array; filled with each entry's team ID." } },
+    { "name": "order", "type": "array", "description": { "en": "Output array; filled with each entry's display order." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the available entries (up to 2, limited by the size of the chara array) have been written into the output arrays; null if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read a scripted 2-character conversation's data into output arrays, then use it to set up the models\nlocal chara = [0, 0];\nlocal msg = [0, 0];\nlocal motPath = [\"\", \"\"];\nlocal motType = [0, 0];\nlocal extMtnPath = [\"\", \"\"];\nlocal extMtnName = [\"\", \"\"];\nlocal teamID = [2, 2];\nlocal order = [0, 1];\nCMND_BTL_GET_CONVSMSG(chara, msg, motPath, motType, extMtnPath, extMtnName, teamID, order);"
+  }
+}

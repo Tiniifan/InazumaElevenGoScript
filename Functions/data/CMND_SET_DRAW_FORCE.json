@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_DRAW_FORCE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Forces a character to keep rendering, bypassing the engine's normal visibility/draw-skip logic. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation, which accepts an optional mode string on top of the handle."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to force-draw."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "string",
+      "description": {
+        "en": "Optional force-draw mode (defaults to an internal \"on\" mode when omitted)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Force a character to keep rendering regardless of normal visibility rules\nCMND_SET_DRAW_FORCE(hChara);"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_IS_FINISH_ACTEV",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Intended to report whether the active-event cutscene started with CMND_BTL_SET_ACTIVE_EVENT has finished playing. The native implementation always reports the same result regardless of the actual event state, so a `while (!CMND_BTL_IS_FINISH_ACTEV()) suspend();` wait loop never actually waits."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on every valid call, regardless of whether the event has actually finished; null if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Intended to wait for the active-event cutscene to finish before continuing\nCMND_BTL_SET_ACTIVE_EVENT(1, _is_upper);\nwhile (!CMND_BTL_IS_FINISH_ACTEV())\n{\n\tsuspend();\n}"
+  }
+}

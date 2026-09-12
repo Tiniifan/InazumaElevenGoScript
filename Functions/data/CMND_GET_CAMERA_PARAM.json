@@ -1,0 +1,34 @@
+{
+  "name": "CMND_GET_CAMERA_PARAM",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Reads back a named camera parameter previously set with CMND_SET_CAMERA_PARAM."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Camera handle to query."
+      }
+    },
+    {
+      "name": "paramName",
+      "type": "string",
+      "description": {
+        "en": "Name of the parameter to read, e.g. \"DepthLevel\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "float",
+    "description": {
+      "en": "Current value of the parameter."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read the camera's current depth level before overriding it\nEV_TALK_DP_LVL_TMP = CMND_GET_CAMERA_PARAM(hCam, \"DepthLevel\");"
+  }
+}

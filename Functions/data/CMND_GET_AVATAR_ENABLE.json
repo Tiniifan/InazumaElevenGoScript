@@ -1,0 +1,27 @@
+{
+  "name": "CMND_GET_AVATAR_ENABLE",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns whether a character's avatar is currently enabled, the counterpart to CMND_SET_AVATAR_ENABLE. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to query."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True if the character's avatar is enabled."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Check whether a character's avatar is currently enabled\nlocal avatarEnabled = CMND_GET_AVATAR_ENABLE(hdl);"
+  }
+}

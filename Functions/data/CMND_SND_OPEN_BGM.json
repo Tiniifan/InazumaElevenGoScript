@@ -1,0 +1,41 @@
+{
+  "name": "CMND_SND_OPEN_BGM",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Opens/starts a BGM track by name, optionally with a playback mode and starting position (e.g. to resume a previously interrupted track)."
+  },
+  "params": [
+    {
+      "name": "bgmName",
+      "type": "string",
+      "description": {
+        "en": "Name of the BGM track to play."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer",
+      "description": {
+        "en": "Optional playback mode."
+      }
+    },
+    {
+      "name": "position",
+      "type": "integer",
+      "description": {
+        "en": "Optional starting playback position."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|handle|null",
+    "description": {
+      "en": "0 if the named BGM is already the one playing (no-op); otherwise a handle for the newly opened BGM sound; null if the call was invalid (no name given)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Resume a BGM track from a saved position\nCMND_SND_OPEN_BGM(history_bgm_name, 0, history_bgm_pos);"
+  }
+}

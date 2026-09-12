@@ -1,0 +1,19 @@
+{
+  "name": "CreateEvLowMdlBall_Shadow",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Shorthand for CreateEvLowMdlBall(_ballName, true) — creates a shadow-casting cutscene ball model."
+  },
+  "params": [
+    { "name": "_ballName", "type": "string", "description": { "en": "Name to assign the created ball model." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created ball model." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Create a shadow-casting cutscene ball model\nlocal hBall = CreateEvLowMdlBall_Shadow(\"ball1\");"
+  }
+}

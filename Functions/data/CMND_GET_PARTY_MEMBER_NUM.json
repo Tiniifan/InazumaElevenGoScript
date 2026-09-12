@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_PARTY_MEMBER_NUM",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the current number of characters in the player's party/roster."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "Current party member count."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Only add a new party member if there's room\nif (CMND_GET_PARTY_MEMBER_NUM() < 13)\n{\n\t// ...\n}"
+  }
+}

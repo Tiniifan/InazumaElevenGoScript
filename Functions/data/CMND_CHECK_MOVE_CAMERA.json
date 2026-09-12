@@ -1,0 +1,19 @@
+{
+  "name": "CMND_CHECK_MOVE_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Returns whether the active camera is currently performing an animated move started with CMND_SET_MOVE_INFO_CAMERA."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the camera is moving."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Check whether the camera is still animating a move\nlocal is_mv_cmr = CMND_CHECK_MOVE_CAMERA();"
+  }
+}

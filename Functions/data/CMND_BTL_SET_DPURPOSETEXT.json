@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_SET_DPURPOSETEXT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Shows (or hides) a secondary/\"defense-side\" purpose text bubble, similar to CMND_BTL_SET_PURPOSETEXT — formatted from a message-table text ID and optionally substituting a character's name into it."
+  },
+  "params": [
+    { "name": "textId", "type": "string|integer", "description": { "en": "Message-table text ID string (e.g. \"d_purpose_021\") to display, or 0 to hide the text." } },
+    { "name": "charaId", "type": "string|integer", "description": { "en": "Character ID string whose name is substituted into the text, or 0 when hiding the text." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the purpose text has been updated; null if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Show a secondary purpose text naming a character, then hide it again\nCMND_BTL_SET_DPURPOSETEXT(\"d_purpose_021\", \"para_cp0009\");\n// ... scripted sequence plays out ...\nCMND_BTL_SET_DPURPOSETEXT(0, 0);"
+  }
+}

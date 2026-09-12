@@ -1,0 +1,31 @@
+{
+  "name": "AddParty_Message_NoFadeBGM_Back",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Same as AddParty_Message_Back, but without fading/stopping the current BGM (passes -1 for both the fade and wait durations)."
+  },
+  "params": [
+    { "name": "_paramID", "type": "string", "required": true, "description": { "en": "Param ID of the character to add back to the party." } },
+    { "name": "_ptLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's position slot." } },
+    { "name": "_avatarEnable", "type": "boolean", "required": true, "description": { "en": "Whether to enable the member's Fighting Spirit." } },
+    { "name": "_avatarLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's Fighting Spirit." } },
+    { "name": "_lv", "type": "integer", "required": false, "default": "-1 (don't change the member's level)", "description": { "en": "Level to set for the member." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "examples": [
+    {
+      "case": "Bringing a member back without changing their level (not found in script_clean/; invented, following the sibling functions' real usage pattern)",
+      "source": "invented",
+      "code": "// Bring a party member back with the \"rejoined\" presentation, without fading the BGM, keeping their current level\nAddParty_Message_NoFadeBGM_Back(\"para_cp0005\", true, false, false);"
+    },
+    {
+      "case": "Bringing a member back and setting their level",
+      "source": "invented",
+      "code": "// Bring a party member back with the \"rejoined\" presentation, without fading the BGM, and set their level to 18\nAddParty_Message_NoFadeBGM_Back(\"para_cp0015\", true, false, false, 18);"
+    }
+  ]
+}

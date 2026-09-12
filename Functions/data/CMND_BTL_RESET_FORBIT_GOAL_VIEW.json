@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_RESET_FORBIT_GOAL_VIEW",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Clears the goal-view forbid flags previously set with CMND_BTL_SET_FORBIT_GOAL_VIEW, restoring the automatic goal-celebration camera/cutscene."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Forbid the automatic goal view for a scripted sequence, then restore it afterwards\nCMND_BTL_SET_FORBIT_GOAL_VIEW(0, true);\n// ... scripted goal sequence plays out ...\nCMND_BTL_RESET_FORBIT_GOAL_VIEW();"
+  }
+}

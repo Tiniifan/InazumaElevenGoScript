@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SET_SOCCER_POSITION_ALL",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets the soccer field positions for the whole team at once, from an array of position indices (see CMND_SET_SOCCER_POSITION for a single character)."
+  },
+  "params": [
+    {
+      "name": "positions",
+      "type": "array",
+      "description": {
+        "en": "Array of field position indices, one per roster slot."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Set the whole team's field positions at once\nCMND_SET_SOCCER_POSITION_ALL([\n\t9,\n\t2,\n\t3\n]);"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "CreateEvHiMdlForNPCID_Animal",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Same as CreateEvHiMdlForNPCID, but always creates the model without a base (_no_base is fixed to false and _mem fixed to DEV_MEM_NAME_EVENT) — intended for animal-type NPC dialogue models looked up by NPC ID."
+  },
+  "params": [
+    { "name": "_charaName", "type": "string", "description": { "en": "Name to assign the created model." } },
+    { "name": "_npc_id", "type": "string", "description": { "en": "NPC ID string identifying the character to create." } },
+    { "name": "_talk", "type": "boolean", "description": { "en": "Optional; whether to create it in \"Talk\" mode for dialogue (defaults to true)." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created character model." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Create a high-detail dialogue model for an animal-type NPC\nlocal hAnimalH = CreateEvHiMdlForNPCID_Animal(\"animalH\", \"evc0020\");"
+  }
+}

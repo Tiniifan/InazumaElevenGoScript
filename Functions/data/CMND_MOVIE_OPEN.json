@@ -1,0 +1,27 @@
+{
+  "name": "CMND_MOVIE_OPEN",
+  "kind": "native",
+  "category": "movie",
+  "description": {
+    "en": "Opens a full-screen movie file by path, returning a handle to poll with CMND_MOVIE_IS_LOADING before playing it with CMND_MOVIE_PLAY. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation, mirroring the CMND_SND_OPEN_*/CMND_SND_PLAY pattern."
+  },
+  "params": [
+    {
+      "name": "path",
+      "type": "string",
+      "description": {
+        "en": "Path to the movie file to open."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the opened movie."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Open a full-screen movie file\nlocal hMovie = CMND_MOVIE_OPEN(\"data/movie/op.mvd\");"
+  }
+}

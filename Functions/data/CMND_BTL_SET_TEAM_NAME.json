@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_SET_TEAM_NAME",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets the display name shown for a match team, by team slot and a name-table string ID."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side to rename." } },
+    { "name": "unused", "type": "integer", "description": { "en": "Read but not used by the implementation." } },
+    { "name": "nameId", "type": "string", "description": { "en": "Team-name string ID (e.g. \"name_te0997\", hashed via CRC32) to display." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the name has been stored for that team slot (a no-op if the team slot or nameId is invalid); null if fewer than 3 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Give team 0 a custom display name for this match\nCMND_BTL_SET_TEAM_NAME(0, 1, \"name_te0997\");"
+  }
+}

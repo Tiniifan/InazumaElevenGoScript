@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SET_MAP_BGM",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Changes the background music track playing for the current map."
+  },
+  "params": [
+    {
+      "name": "bgmName",
+      "type": "string",
+      "description": {
+        "en": "Name/ID of the BGM track to play, e.g. \"M_07\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Switch the map's background music\nCMND_SET_MAP_BGM(\"M_07\");"
+  }
+}

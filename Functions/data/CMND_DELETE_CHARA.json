@@ -1,0 +1,34 @@
+{
+  "name": "CMND_DELETE_CHARA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Destroys a character/model instance previously created with CMND_CREATE_CHARA, CMND_CREATE_MANIP_CHARA or similar, freeing its handle."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Handle of the instance to destroy."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer",
+      "description": {
+        "en": "Optional deletion mode (defaults to 2)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the character has been found and deleted; null if no handle argument was given, or if the handle doesn't resolve to an existing character."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Play a one-shot effect model, then delete it once its motion has finished\nlocal hEffMdl = CMND_CREATE_CHARA(7, \"CmrEff\", \"data/effect/ega0018.xc\", \"Effect\");\nCMND_SET_ENABLE(hEffMdl, 1);\nwhile (CMND_IS_LOADING(hEffMdl))\n{\n\tsuspend();\n}\nCMND_SET_MOTION(hEffMdl, \"01\", 3, 0);\nwhile (!CMND_CHR_MTN_IS_END(hEffMdl))\n{\n\tsuspend();\n}\nCMND_DELETE_CHARA(hEffMdl);"
+  }
+}

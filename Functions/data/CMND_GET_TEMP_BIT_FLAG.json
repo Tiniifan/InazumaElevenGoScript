@@ -1,0 +1,27 @@
+{
+  "name": "CMND_GET_TEMP_BIT_FLAG",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Reads a temporary, non-persistent bit flag previously set with CMND_SET_TEMP_BIT_FLAG. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "bitIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the temporary bit flag to read."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The flag's current value (0 or 1)."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Check a temporary session flag\nif (CMND_GET_TEMP_BIT_FLAG(heal_bit))\n{\n\t// ...\n}"
+  }
+}

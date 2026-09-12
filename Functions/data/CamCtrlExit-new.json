@@ -1,0 +1,20 @@
+{
+  "name": "CamCtrlExit",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Tears down the current event context's camera-control state, replacing it with a fresh CCamCtrlData — used when leaving a scripted camera-controlled sequence."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "examples": [
+    {
+      "case": "Tearing down camera control at the end of a scripted sequence",
+      "source": "real",
+      "code": "// Tear down camera control once the scripted sequence is done\nCamCtrlExit();"
+    }
+  ]
+}

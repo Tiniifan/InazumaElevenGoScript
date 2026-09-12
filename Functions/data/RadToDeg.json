@@ -1,0 +1,19 @@
+{
+  "name": "RadToDeg",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Converts an angle from radians to degrees."
+  },
+  "params": [
+    { "name": "_r", "type": "float", "description": { "en": "Angle in radians." } }
+  ],
+  "returns": {
+    "type": "float",
+    "description": { "en": "The angle converted to degrees." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Convert an angle computed with atan2 (in radians) to degrees\nlocal angleDeg = RadToDeg(atan2(_pos[0] - chpos[0], _pos[2] - chpos[2]));"
+  }
+}

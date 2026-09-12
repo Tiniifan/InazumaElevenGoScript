@@ -1,0 +1,24 @@
+{
+  "name": "CMND_BTL_FORGET_SKILL",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Makes a match member forget a previously learned technique/skill, looked up by team slot and character ID."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side the character belongs to." } },
+    { "name": "charaId", "type": "string", "description": { "en": "Character ID string identifying which member forgets the skill." } },
+    { "name": "skillId", "type": "string", "description": { "en": "Skill/technique ID string to forget." } },
+    { "name": "keepSlot", "type": "boolean", "description": { "en": "Optional flag; when explicitly false, also frees up the member's internal skill slot so a new one can be learned in its place." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if fewer than 3 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Make a match member forget a technique and free up its skill slot\nCMND_BTL_FORGET_SKILL(1, \"para_cp0010\", \"whs0035\", false);"
+  }
+}

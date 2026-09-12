@@ -1,0 +1,17 @@
+{
+  "name": "StartSetupHQEventChara",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Prevents newly created character models from auto-loading their base motion, used while setting up characters for an HQ cutscene so their motion can be controlled precisely. Pair with EndSetupHQEventChara."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Set up characters for an HQ cutscene without auto-loading their base motion\nStartSetupHQEventChara();\n// ... create and configure characters ...\nEndSetupHQEventChara();"
+  }
+}

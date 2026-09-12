@@ -1,0 +1,19 @@
+{
+  "name": "CMND_SND_LOCK_MAP_BGM",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Locks the map's BGM so it won't automatically change/restart (e.g. while a script is manually managing sound), until the map is left."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Prevent the map's BGM from automatically changing\nCMND_SND_LOCK_MAP_BGM();"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_GET_NOT_FORCE_FAUL_FLAG",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Intended to read back the flag set by CMND_BTL_SET_NOT_FORCE_FAUL_FLAG. The native implementation never actually reads or pushes the stored flag value."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on every valid call, regardless of the flag's actual stored value; null if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Intended to check whether forced fouls are currently disabled\nlocal flag = CMND_BTL_GET_NOT_FORCE_FAUL_FLAG();"
+  }
+}

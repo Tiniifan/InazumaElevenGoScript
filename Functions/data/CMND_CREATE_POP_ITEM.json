@@ -1,0 +1,19 @@
+{
+  "name": "CMND_CREATE_POP_ITEM",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Creates the visual \"pop item\" effect object (the item that pops out and floats, e.g. from an opened treasure chest). Called with no arguments; the item's identity/position is configured afterwards with CMND_SET_POP_ITEM."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Spawn the pop-item effect when a treasure chest is opened\nif (\"CMND_CREATE_POP_ITEM\" in getroottable())\n{\n\tCMND_CREATE_POP_ITEM();\n}"
+  }
+}

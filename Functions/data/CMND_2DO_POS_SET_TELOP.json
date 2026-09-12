@@ -1,0 +1,41 @@
+{
+  "name": "CMND_2DO_POS_SET_TELOP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Sets the screen position of a named telop caption created with CMND_2DO_CREATE_TELOP."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": {
+        "en": "Name of the telop to move."
+      }
+    },
+    {
+      "name": "x",
+      "type": "float",
+      "description": {
+        "en": "New X position."
+      }
+    },
+    {
+      "name": "y",
+      "type": "float",
+      "description": {
+        "en": "New Y position."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once it succeeded; false if the named telop isn't ready/found; null if the call itself was invalid (too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Reposition a telop caption\nCMND_2DO_POS_SET_TELOP(_name, pose[0], pose[1]);"
+  }
+}

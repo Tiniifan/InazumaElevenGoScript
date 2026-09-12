@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_RESET_FORCE_LOSE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Clears every forced-loss entry previously set with CMND_BTL_SET_FORCE_LOSE, for every team/player at once."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Clear all forced-loss entries once the scripted sequence is done\nCMND_BTL_RESET_FORCE_LOSE();"
+  }
+}

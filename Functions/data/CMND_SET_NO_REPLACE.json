@@ -1,0 +1,19 @@
+{
+  "name": "CMND_SET_NO_REPLACE",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Disables the automatic NPC-replace system (see CMND_NPC_REPLACE) for the current map, so its NPCs won't be swapped based on story/flag state."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Prevent this map's NPCs from being auto-replaced\nif (\"CMND_SET_NO_REPLACE\" in getroottable())\n{\n\tCMND_SET_NO_REPLACE();\n}"
+  }
+}

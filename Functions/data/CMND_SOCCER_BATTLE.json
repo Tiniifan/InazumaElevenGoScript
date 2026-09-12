@@ -1,0 +1,41 @@
+{
+  "name": "CMND_SOCCER_BATTLE",
+  "kind": "native",
+  "category": "encounter",
+  "description": {
+    "en": "Starts a soccer match/challenge on a given map with a given battle script ID, with an options table (or a legacy boolean) controlling the match setup."
+  },
+  "params": [
+    {
+      "name": "mapId",
+      "type": "string",
+      "description": {
+        "en": "ID of the match map, e.g. \"mf01b01\"."
+      }
+    },
+    {
+      "name": "battleId",
+      "type": "string",
+      "description": {
+        "en": "ID of the battle/challenge script to run, e.g. \"btl0302\"."
+      }
+    },
+    {
+      "name": "options",
+      "type": "table|boolean",
+      "description": {
+        "en": "Match options table, or a boolean for simple cases."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Start a scripted soccer challenge\nCMND_SOCCER_BATTLE(\"mf01b01\", \"btl0302\", true);"
+  }
+}

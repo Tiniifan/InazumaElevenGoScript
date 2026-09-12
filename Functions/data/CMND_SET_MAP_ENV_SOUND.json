@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SET_MAP_ENV_SOUND",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Sets (or clears, with an empty string) the ambient environment sound loop for the current map."
+  },
+  "params": [
+    {
+      "name": "envSoundName",
+      "type": "string",
+      "description": {
+        "en": "Name of the ambient sound to play, or \"\" to clear it."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Clear the map's ambient environment sound\nCMND_SET_MAP_ENV_SOUND(\"\");"
+  }
+}

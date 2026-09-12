@@ -1,0 +1,34 @@
+{
+  "name": "CMND_2DO_STATE_DRAW_TELOP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Sets the draw/visibility state of a named telop caption created with CMND_2DO_CREATE_TELOP."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": {
+        "en": "Name of the telop to update."
+      }
+    },
+    {
+      "name": "state",
+      "type": "integer",
+      "description": {
+        "en": "Draw state to apply."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once it succeeded; false if the named telop isn't ready/found; null if the call itself was invalid (too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Update a telop caption's draw state\nCMND_2DO_STATE_DRAW_TELOP(_name, _pro_data[1]);"
+  }
+}

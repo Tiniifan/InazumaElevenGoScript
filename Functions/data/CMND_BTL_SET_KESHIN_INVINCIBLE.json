@@ -1,0 +1,24 @@
+{
+  "name": "CMND_BTL_SET_KESHIN_INVINCIBLE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Makes a match member invincible while transformed (\"keshin\"/avatar mode), or clears that invincibility. Accepts the same flexible 2-4 argument forms as CMND_BTL_SET_FORCE_WIN: a character ID string, or a team+player-number pair."
+  },
+  "params": [
+    { "name": "enable", "type": "boolean", "description": { "en": "True to make the member invincible while transformed, false to stop forcing it." } },
+    { "name": "teamOrCharaId", "type": "integer|string", "description": { "en": "Team ID (when called with 3-4 arguments) or a character ID string (when called with exactly 2 arguments)." } },
+    { "name": "playerNum", "type": "integer", "description": { "en": "Optional player number within the team; only used in the 3-4 argument forms." } },
+    { "name": "mode", "type": "integer", "description": { "en": "Optional extra mode parameter; only used in the 4-argument form." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Make a match member invincible while transformed for a scripted sequence\nCMND_BTL_SET_KESHIN_INVINCIBLE(true, \"para_cp0009\");"
+  }
+}

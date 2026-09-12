@@ -1,0 +1,21 @@
+{
+  "name": "RunAttachAvatar",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Attaches an avatar to a character with the standard \"sysmes-Avatar-00001\" message — a fixed-preset wrapper around RunAttachAvatarUseMsg."
+  },
+  "params": [
+    { "name": "_chr", "type": "string", "description": { "en": "Character ID to attach the avatar to." } },
+    { "name": "_avt", "type": "string", "description": { "en": "Avatar ID to attach." } },
+    { "name": "_lock", "type": "boolean", "description": { "en": "Optional; whether to lock the avatar after attaching (defaults to true)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Attach and lock an avatar to a character with the standard presentation\nRunAttachAvatar(\"para_cp0005\", \"ck0025\");"
+  }
+}

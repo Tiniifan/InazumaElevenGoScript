@@ -1,0 +1,27 @@
+{
+  "name": "RunEvolutionAvatarEx",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Runs the full \"avatar evolved\" presentation: fades out the BGM, plays a jingle, shows the message (with the character and avatar substituted into it), and — if _evol is set — actually evolves the character's avatar (temporarily unlocking it if needed, then restoring or forcing the lock afterwards), before restoring the BGM. The general engine behind RunEvolutionAvatar/RunEvolutionAvatarOnlyMsg."
+  },
+  "params": [
+    { "name": "_chr", "type": "string", "description": { "en": "Character ID whose avatar evolves, substituted into the message." } },
+    { "name": "_avt", "type": "string", "description": { "en": "Target avatar ID, substituted into the message." } },
+    { "name": "_fade", "type": "integer", "description": { "en": "BGM fade-out duration in frames before the sequence." } },
+    { "name": "_wait", "type": "integer", "description": { "en": "Number of frames to wait after the BGM fade before starting." } },
+    { "name": "_jingle", "type": "string", "description": { "en": "Jingle sound event ID to play." } },
+    { "name": "_index", "type": "integer", "description": { "en": "Message substitution slot index for the character/avatar." } },
+    { "name": "_event", "type": "string", "description": { "en": "Message ID shown via CreateSpeech." } },
+    { "name": "_evol", "type": "boolean", "description": { "en": "Whether to actually evolve the avatar (false shows the message only, without evolving)." } },
+    { "name": "_lock", "type": "boolean", "description": { "en": "Whether to lock the avatar in place after evolving it." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Evolve and lock an avatar with the standard presentation (as RunEvolutionAvatar does internally)\nRunEvolutionAvatarEx(\"para_cp0008\", \"ck0033\", 30, 30, \"J_07\", 0, \"sysmes-Avatar-00002\", true, true);"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "EvLowMdlSetLookAtChara",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Turns a low-detail cutscene character model to face another character, over a number of frames — the character-to-character counterpart to EvLowMdlSetLookAtPos."
+  },
+  "params": [
+    { "name": "_hdl", "type": "handle", "description": { "en": "Handle of the character model to turn." } },
+    { "name": "_targetHdl", "type": "handle", "description": { "en": "Handle of the character to face." } },
+    { "name": "_frame", "type": "integer", "description": { "en": "Number of frames the turn should take." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Turn two characters to face each other\nEvLowMdlSetLookAtChara(hTenmaL, hHarunaL, 30);\nEvLowMdlSetLookAtChara(hHarunaL, hTenmaL, 30);"
+  }
+}

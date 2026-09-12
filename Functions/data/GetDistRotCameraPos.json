@@ -1,0 +1,20 @@
+{
+  "name": "GetDistRotCameraPos",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Computes a camera position/reference pair by orbiting a given distance, horizontal angle and vertical angle around a reference point — the inverse of CalcPosRefToDistRot."
+  },
+  "params": [
+    { "name": "_ref", "type": "array", "description": { "en": "3-element array [x, y, z] with the reference point to orbit around." } },
+    { "name": "_dhv", "type": "array", "description": { "en": "3-element array [distance, horizontalAngleDeg, verticalAngleDeg] describing the orbit." } }
+  ],
+  "returns": {
+    "type": "array",
+    "description": { "en": "A 6-element array [posX, posY, posZ, refX, refY, refZ] with the computed camera position and the original reference point." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Compute a camera position orbiting a reference point by a given distance/angle\nlocal posref = GetDistRotCameraPos(cam_ctrl.now_ref, dhv);"
+  }
+}

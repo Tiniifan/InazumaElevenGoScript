@@ -1,0 +1,27 @@
+{
+  "name": "CMND_GET_AVATAR_LOCK_FLAG",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns whether a character's avatar slot is currently locked, the counterpart to CMND_SET_AVATAR_LOCK_FLAG."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to query."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Get a roster character's handle by base ID, then read its avatar lock state\nlocal hdl = CMND_GET_PARTY_HANDLE(_chr);\nlocal wasLocked = CMND_GET_AVATAR_LOCK_FLAG(hdl);"
+  }
+}

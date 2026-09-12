@@ -1,0 +1,19 @@
+{
+  "name": "CMND_INIT_SKILL_SCRIPT",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Initializes the technique/skill-script (\"waza\") cutscene system, before setting up its participant characters/avatars with the CMND_SETUP_SKL_SQ_* commands and playing it with CMND_RUN_SKILL_SCRIPT."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Start setting up a technique cutscene\nCMND_INIT_SKILL_SCRIPT();"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_LANGUAGE_CODE",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Returns the game's current language/region code, used by scripts to branch localized behavior (e.g. picking a language-specific asset or text variant)."
+  },
+  "params": [],
+  "returns": {
+    "type": "string",
+    "description": {
+      "en": "The active language code."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read the active language code to pick localized content\nlocal lang = CMND_GET_LANGUAGE_CODE();"
+  }
+}

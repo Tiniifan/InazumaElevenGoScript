@@ -1,0 +1,27 @@
+{
+  "name": "SetChrPrmDetailForSkillScript",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Sets up the appearance/equipment parameters of the character playing one side (attack or defense) of a technique cutscene started with RunSkillScript."
+  },
+  "params": [
+    { "name": "_side", "type": "string", "description": { "en": "Which side to configure: \"ATK\" or \"DEF\"." } },
+    { "name": "_index", "type": "integer", "description": { "en": "Slot index on that side (for multi-character techniques)." } },
+    { "name": "_face", "type": "integer", "description": { "en": "Face/head model ID." } },
+    { "name": "_body", "type": "integer", "description": { "en": "Body model ID." } },
+    { "name": "_home", "type": "boolean", "description": { "en": "Whether to use the home uniform variant." } },
+    { "name": "_keeper", "type": "boolean", "description": { "en": "Whether the character is a goalkeeper." } },
+    { "name": "_shoes_no", "type": "integer", "description": { "en": "Shoes item ID." } },
+    { "name": "_glove_no", "type": "integer", "description": { "en": "Glove item ID." } },
+    { "name": "_number", "type": "integer", "description": { "en": "Shirt/uniform number." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Set up the attacking character's shot parameters, then play the technique cutscene\nSetChrPrmDetailForSkillScript(\"ATK\", 1, 13, 1, true, false, 0, 0, 10);\nRunSkillScript(\"vsj0001\", \"mv01i21\", 0, 0, true, false, true, false, 1);"
+  }
+}

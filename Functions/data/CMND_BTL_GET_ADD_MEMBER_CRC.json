@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_GET_ADD_MEMBER_CRC",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Reads back a CRC32 checksum value associated with the last member added via CMND_BTL_ADD_MEMBER."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The stored CRC32 value; null if the call was invalid or no member has been added yet."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read back the CRC of the last member added to the match roster\nlocal crc = CMND_BTL_GET_ADD_MEMBER_CRC();"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_FRIENDSHIP_PT",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the team's current \"Friendship Points\" value."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The current Friendship Points value; null only if the call is made before the engine/script state is ready."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Award 50 Friendship Points\nlocal FriendPNT = CMND_GET_FRIENDSHIP_PT();\nCMND_SET_FRIENDSHIP_PT(FriendPNT + 50);"
+  }
+}

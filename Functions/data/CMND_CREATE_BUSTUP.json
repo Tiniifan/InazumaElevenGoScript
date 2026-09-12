@@ -1,0 +1,48 @@
+{
+  "name": "CMND_CREATE_BUSTUP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Creates a \"bust-up\" portrait (the close-up upper-body character art shown during dialogue) for a character model handle, returning its handle."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character model handle to create the bust-up from."
+      }
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": {
+        "en": "Internal name for the bust-up instance."
+      }
+    },
+    {
+      "name": "autoAppear",
+      "type": "boolean",
+      "description": {
+        "en": "Optional; whether the bust-up should appear automatically when its character talks."
+      }
+    },
+    {
+      "name": "npcIndex",
+      "type": "integer",
+      "description": {
+        "en": "Optional NPC index, used when the bust-up is for a generic NPC slot."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the created bust-up."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create a talking NPC's bust-up portrait\nlocal bustupHdl = CMND_CREATE_BUSTUP(npcHdl, \"talk\\x008a\\x00e7\");"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "GameOver",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Plays the full game-over sequence: fades to black, shows the \"game over\" image, plays the game-over sound, fades screen A back in, waits, shows a final message, fades everything to black again, cleans up, and returns to the title screen."
+  },
+  "params": [
+    { "name": "_snd", "type": "string", "description": { "en": "Optional game-over BGM/sound ID to play (defaults to \"evt_006\")." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Trigger the game-over sequence and return to the title screen\nGameOver();"
+  }
+}

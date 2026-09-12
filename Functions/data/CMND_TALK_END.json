@@ -1,0 +1,27 @@
+{
+  "name": "CMND_TALK_END",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Ends a talk interaction started with CMND_TALK_START, releasing the NPC handle back to its normal behavior."
+  },
+  "params": [
+    {
+      "name": "npcHandle",
+      "type": "handle",
+      "description": {
+        "en": "Handle of the NPC that was talked to."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the talk interaction ended; null if the call was invalid (no handle given) or the handle doesn't resolve to an existing character."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// End the talk interaction with this NPC\nCMND_TALK_END(npcHdl);"
+  }
+}

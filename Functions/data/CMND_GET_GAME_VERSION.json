@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_GAME_VERSION",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Returns which of the two game versions is currently running: Inazuma Eleven Go: Light (Shine) or Inazuma Eleven Go: Dark (Chrono Stone in some regions). Scripts use it to branch version-exclusive content (dialogue, characters, items) with the GAME_VER_SH / GAME_VER_DR constants declared in ie4_ev_main.nut."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "GAME_VER_DR (0) or GAME_VER_SH (1)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Branch dialogue depending on which game version is running\nif (CMND_GET_GAME_VERSION() == GAME_VER_SH)\n{\n\t// Shine-only text\n}"
+  }
+}

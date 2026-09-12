@@ -1,0 +1,22 @@
+{
+  "name": "ObjFade",
+  "kind": "ev_main",
+  "category": "image-ui",
+  "description": {
+    "en": "Fades an object's (typically an image's) alpha from a start value to an end value over a number of frames, interpolating frame by frame via CMND_SET_ALPHA."
+  },
+  "params": [
+    { "name": "_hdl", "type": "handle", "description": { "en": "Handle of the object to fade." } },
+    { "name": "_frm", "type": "float", "description": { "en": "Duration of the fade, in frames." } },
+    { "name": "_alp_bgn", "type": "float", "description": { "en": "Optional starting alpha (defaults to 0.0)." } },
+    { "name": "_alp_end", "type": "float", "description": { "en": "Optional ending alpha (defaults to 1.0)." } }
+  ],
+  "returns": {
+    "type": "float",
+    "description": { "en": "The elapsed frame count when the fade finished (approximately equal to _frm)." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Fade an image in over 20 frames\nObjFade(hImg[1], 20);"
+  }
+}

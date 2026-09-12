@@ -1,0 +1,20 @@
+{
+  "name": "CreateMakikaeshi",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Same as CreateMonologue, but first computes the score difference between the two match teams (player score minus opponent score, plus one) and substitutes it into the message via CMND_MESSAGE_REPLACE_VAL — used for a \"comeback\" narration line referencing the current score gap."
+  },
+  "params": [
+    { "name": "_id", "type": "string", "description": { "en": "Message ID to display." } },
+    { "name": "_drawScreen", "type": "integer", "description": { "en": "Screen buffer to draw the monologue box on." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Show a comeback-narration monologue referencing the current score gap\nCreateMakikaeshi(\"ev100\", SCREEN_A);"
+  }
+}

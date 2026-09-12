@@ -1,0 +1,24 @@
+{
+  "name": "AddPartyNum_Message",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Multi-member version of AddParty_Message: adds several party members in sequence, each with the standard \"J_08\" jingle and \"sysmes-add_party\" message presentation and a BGM fade — a fixed-preset wrapper around AddParty_MessageEx."
+  },
+  "params": [
+    { "name": "_add_num", "type": "integer", "description": { "en": "Number of members to add." } },
+    { "name": "_aParamID", "type": "array", "description": { "en": "Array of param IDs, one per member to add." } },
+    { "name": "_aPtLock", "type": "array", "description": { "en": "Array of position-lock flags, one per member." } },
+    { "name": "_aAvatarEnable", "type": "array", "description": { "en": "Array of avatar-enable flags, one per member." } },
+    { "name": "_aAvatarLock", "type": "array", "description": { "en": "Array of avatar-lock flags, one per member." } },
+    { "name": "_aLv", "type": "array", "description": { "en": "Array of levels to set, one per member (-1 to leave unchanged)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Add three party members in sequence with the standard recruitment presentation\nAddPartyNum_Message(3, charaID, ptLock, avaEnable, avaLock, level);"
+  }
+}

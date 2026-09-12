@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SKILL_UNLOCK",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Unlocks a technique/skill for a character, identified by their base parameter ID and the skill's ID."
+  },
+  "params": [
+    {
+      "name": "charaParamId",
+      "type": "string",
+      "description": {
+        "en": "Base character parameter ID."
+      }
+    },
+    {
+      "name": "skillId",
+      "type": "string",
+      "description": {
+        "en": "ID of the skill to unlock, e.g. \"whd0008\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Unlock a technique for a character\nCMND_SKILL_UNLOCK(\"para_cp0008\", \"whd0008\");"
+  }
+}

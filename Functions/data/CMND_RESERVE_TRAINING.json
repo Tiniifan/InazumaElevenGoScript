@@ -1,0 +1,27 @@
+{
+  "name": "CMND_RESERVE_TRAINING",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Reserves the lightning-bolt training minigame of the given type to start after the current script finishes."
+  },
+  "params": [
+    {
+      "name": "trainingType",
+      "type": "integer",
+      "description": {
+        "en": "Type of training minigame to start."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Likely true once the training minigame was reserved; null if the call was invalid (no training type given). The success value is produced by an internal reservation helper that wasn't fully traceable from the decompiled code."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Reserve a training minigame of a given type\nCMND_RESERVE_TRAINING(traType);"
+  }
+}

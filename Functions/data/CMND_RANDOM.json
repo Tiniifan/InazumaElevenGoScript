@@ -1,0 +1,27 @@
+{
+  "name": "CMND_RANDOM",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Returns a random integer in [0, max). Internally checks a QA/debug override table (keyed \"SP_NUMBER\") that can force a specific result during testing; in normal play it returns a real random value."
+  },
+  "params": [
+    {
+      "name": "max",
+      "type": "integer",
+      "description": {
+        "en": "Exclusive upper bound."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The random value."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Pick one of 3 outcomes at random\nreturn CMND_RANDOM(3);"
+  }
+}

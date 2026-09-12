@@ -1,0 +1,19 @@
+{
+  "name": "CMND_IS_NPC_REPLACING",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Checks whether the NPC refresh started by CMND_NPC_REPLACE is still in progress."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while NPCs are still being replaced."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait for the NPC refresh to complete\nwhile (CMND_IS_NPC_REPLACING())\n{\n\tsuspend();\n}"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "CMND_BTL_SET_EVPARAM",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets an in-match event/cutscene parameter code, and optionally up to two ID pairs (each accepted as a string, hashed via CRC32, or a raw numeric ID) that the triggered match event can use."
+  },
+  "params": [
+    { "name": "eventCode", "type": "integer", "description": { "en": "Numeric event/cutscene code to trigger." } },
+    { "name": "id1", "type": "string|integer", "description": { "en": "Optional first ID (character/skill/etc.), only read when at least 3 arguments are given." } },
+    { "name": "id2", "type": "string|integer", "description": { "en": "Optional second ID, only read when at least 3 arguments are given." } },
+    { "name": "id3", "type": "string|integer", "description": { "en": "Optional third ID, only read when at least 5 arguments are given." } },
+    { "name": "id4", "type": "string|integer", "description": { "en": "Optional fourth ID, only read when at least 5 arguments are given." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the event code (and any given ID pairs) has been stored; null if no eventCode argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Trigger a specific in-match cutscene event by its numeric code\nCMND_BTL_SET_EVPARAM(44060010);"
+  }
+}

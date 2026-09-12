@@ -1,0 +1,19 @@
+{
+  "name": "DegToRad",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Converts an angle from degrees to radians — the inverse of RadToDeg."
+  },
+  "params": [
+    { "name": "_r", "type": "float", "description": { "en": "Angle in degrees." } }
+  ],
+  "returns": {
+    "type": "float",
+    "description": { "en": "The angle converted to radians." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Convert a horizontal/vertical angle pair (in degrees) to radians for camera math\nlocal rh = DegToRad(_dhv[1]);\nlocal rv = DegToRad(_dhv[2]);"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "CMND_END_SOCCER_VIEW",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Leaves the soccer/match view mode started by CMND_START_SOCCER_VIEW, restoring the game's normal rendering/camera state."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the soccer view has been disabled (this also runs a bit of related field-position cleanup on the map's crc32 table when the map system is initialized); null if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Enter the pitch view before running the technique cutscene, then leave it once done\nCMND_START_SOCCER_VIEW();\nCMND_GET_WAZA_MAP_HANDLE();\nCMND_END_SOCCER_VIEW();"
+  }
+}

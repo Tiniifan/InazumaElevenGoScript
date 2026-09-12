@@ -1,0 +1,27 @@
+{
+  "name": "CMND_CREATE_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Creates a new camera object and returns its handle, for scripts that build a camera programmatically instead of loading one from a file (see CMND_LOAD_CAMERA). Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": {
+        "en": "Internal name for the camera instance."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the created camera."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Create a new camera object\nlocal hCamera = CMND_CREATE_CAMERA(\"eventCam\");"
+  }
+}

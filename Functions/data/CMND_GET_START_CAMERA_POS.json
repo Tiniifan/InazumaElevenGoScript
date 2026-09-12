@@ -1,0 +1,34 @@
+{
+  "name": "CMND_GET_START_CAMERA_POS",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Fills the given arrays with the map's starting camera position and reference point."
+  },
+  "params": [
+    {
+      "name": "outPos",
+      "type": "array",
+      "description": {
+        "en": "Array that receives the [x, y, z] camera position; passed by reference and filled in place."
+      }
+    },
+    {
+      "name": "outRef",
+      "type": "array",
+      "description": {
+        "en": "Array that receives the [x, y, z] look-at reference; passed by reference and filled in place."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read the map's starting camera position/reference\nCMND_GET_START_CAMERA_POS(pos, ref);"
+  }
+}

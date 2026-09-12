@@ -1,0 +1,21 @@
+{
+  "name": "SetCharaPosAndMotName",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Immediately places a character at a given position/rotation and sets its motion by name, combining CMND_SET_POSRY, CMND_CHR_POS_VAL_TRG and CMND_SET_MOTION into one call."
+  },
+  "params": [
+    { "name": "_hdl", "type": "handle", "description": { "en": "Handle of the character to position." } },
+    { "name": "_stdPos", "type": "array", "description": { "en": "4-element array [x, y, z, rotY] with the target position and Y rotation." } },
+    { "name": "_motion", "type": "string", "description": { "en": "Motion name to set on the character." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Place the player character and set their standing motion\nSetCharaPosAndMotName(hTenmaL, [_pos[0], _pos[1], _pos[2], _roty], \"\\x0097\\x00a7\\x0082\\x00bf01\");"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "CMND_TEAM_GP_IS_MAX",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Intended to check whether the whole team's GP gauges are maxed out (loops the roster comparing each member's GP against a stored value). Never called from any shipped script in script_clean/. As with CMND_GP_IS_MAX, the loop's comparison result doesn't appear to feed into the traced return value — treat the exact check semantics with caution."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on any valid call (the internal per-member comparison doesn't visibly affect the returned value in the decompiled code); null if the call was invalid or the roster data isn't ready."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Check whether the whole team's GP gauges are maxed out\nlocal teamGpMaxed = CMND_TEAM_GP_IS_MAX();"
+  }
+}

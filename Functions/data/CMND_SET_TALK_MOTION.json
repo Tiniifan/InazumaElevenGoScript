@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_TALK_MOTION",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Plays (or stops) an NPC's talking idle motion during a conversation started with CMND_TALK_START."
+  },
+  "params": [
+    {
+      "name": "npcHandle",
+      "type": "handle",
+      "description": {
+        "en": "Handle of the NPC being talked to."
+      }
+    },
+    {
+      "name": "enabled",
+      "type": "boolean",
+      "description": {
+        "en": "True to play the talking motion."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Play the NPC's talking motion while the conversation is open\nCMND_SET_TALK_MOTION(npcHdl, true);"
+  }
+}

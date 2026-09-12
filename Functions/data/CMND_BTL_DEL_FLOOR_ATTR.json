@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_DEL_FLOOR_ATTR",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Removes a numbered attribute previously added with CMND_BTL_ADD_FLOOR_ATTR from a floor zone."
+  },
+  "params": [
+    { "name": "name", "type": "string", "description": { "en": "Name of the floor zone (as registered with CMND_BTL_REGIST_FLOOR_ATTR)." } },
+    { "name": "attr", "type": "integer", "description": { "en": "Attribute ID to remove from the zone." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the attribute has been removed from the zone; null if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Clear out every attribute previously added to two floor zones\nCMND_BTL_DEL_FLOOR_ATTR(\"FL01\", 1);\nCMND_BTL_DEL_FLOOR_ATTR(\"FL01\", 2);\nCMND_BTL_DEL_FLOOR_ATTR(\"FL02\", 1);"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "RunTactics",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Plays a tactic cutscene, disabling the map/camera pause bit and the automatic end-fade-in system flag for its duration, then restoring them once the cutscene finishes."
+  },
+  "params": [
+    { "name": "_tacID", "type": "string", "description": { "en": "Tactic ID whose cutscene to play." } },
+    { "name": "_aAtk", "type": "handle", "description": { "en": "Handle of the attacking team's model." } },
+    { "name": "_aDef", "type": "handle", "description": { "en": "Handle of the defending team's model." } },
+    { "name": "_mapID", "type": "string", "description": { "en": "Optional technique map to use for the cutscene (defaults to \"\")." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Play a tactic cutscene between an attacking and defending team model\nRunTactics(\"vet0001\", hAtk, hDef, \"mf01i21\");"
+  }
+}

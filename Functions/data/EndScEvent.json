@@ -1,0 +1,20 @@
+{
+  "name": "EndScEvent",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Ends a match-side cutscene started with StartScEvent, if a match is currently active: on the upper display side, swaps the technique map back for the normal match map and deletes the temporary goal model, then clears the active-event state."
+  },
+  "params": [
+    { "name": "_is_upper", "type": "boolean", "description": { "en": "Whether the cutscene ran on the \"upper\" display side." } },
+    { "name": "aHdl", "type": "array", "description": { "en": "The [normalMapHandle, wazaMapHandle, goalModelHandle] array filled by StartScEvent." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement (an early `return;` with no value when no match is active) — implicitly null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Start a match-side cutscene, then end it once done\nlocal scEvHdl = [0, 0, 0];\nStartScEvent(isEvUpperDisp, scEvHdl);\n// ... cutscene plays out ...\nEndScEvent(isEvUpperDisp, scEvHdl);"
+  }
+}

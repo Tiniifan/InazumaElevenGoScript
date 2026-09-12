@@ -1,0 +1,41 @@
+{
+  "name": "CMND_SET_MAP_LIGHT_ENABLE",
+  "kind": "native",
+  "category": "lighting",
+  "description": {
+    "en": "Enables or disables one specific light slot (index 0-8) on a map. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "mapHandle",
+      "type": "handle",
+      "description": {
+        "en": "Handle of the map, from CMND_GET_MAP_HANDLE."
+      }
+    },
+    {
+      "name": "lightIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the light slot to configure (0-8)."
+      }
+    },
+    {
+      "name": "enabled",
+      "type": "boolean",
+      "description": {
+        "en": "True to enable that light, false to disable it."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Turn off light slot 2 on the current map\nCMND_SET_MAP_LIGHT_ENABLE(CMND_GET_MAP_HANDLE(), 2, false);"
+  }
+}

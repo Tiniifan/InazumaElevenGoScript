@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_SET_AVATER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets a decorative avatar/accessory model on a match member, by character ID, avatar ID string, and attachment slot."
+  },
+  "params": [
+    { "name": "charaId", "type": "string", "description": { "en": "Character ID string identifying the member to attach the avatar to." } },
+    { "name": "avatarId", "type": "string", "description": { "en": "Avatar/accessory ID string to attach." } },
+    { "name": "slot", "type": "integer", "description": { "en": "Attachment slot index to use." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the avatar has been attached; null if fewer than 3 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Attach a decorative avatar accessory to a match member\nCMND_BTL_SET_AVATER(\"para_cp0370\", \"ck0024\", 1);"
+  }
+}

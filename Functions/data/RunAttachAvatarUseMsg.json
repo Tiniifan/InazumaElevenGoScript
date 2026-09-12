@@ -1,0 +1,22 @@
+{
+  "name": "RunAttachAvatarUseMsg",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Attaches an avatar to a character with the standard \"J_07\" jingle presentation and a caller-specified message — a fixed-preset wrapper around RunAttachAvatarEx (with actual attachment enabled)."
+  },
+  "params": [
+    { "name": "_chr", "type": "string", "description": { "en": "Character ID to attach the avatar to." } },
+    { "name": "_avt", "type": "string", "description": { "en": "Avatar ID to attach." } },
+    { "name": "_msg", "type": "string", "description": { "en": "Message ID to show." } },
+    { "name": "_lock", "type": "boolean", "description": { "en": "Optional; whether to lock the avatar after attaching (defaults to true)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Attach an avatar with a specific message, as RunAttachAvatar does internally\nRunAttachAvatarUseMsg(_chr, _avt, \"sysmes-Avatar-00001\", _lock);"
+  }
+}

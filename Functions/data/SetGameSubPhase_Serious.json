@@ -1,0 +1,23 @@
+{
+  "name": "SetGameSubPhase_Serious",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Same as SetGameSubPhase, but always uses the \"J_18\" jingle for the purpose effect instead of the default \"J_10\" — used for more serious/dramatic story sub-phase transitions."
+  },
+  "params": [
+    { "name": "_subPhase", "type": "integer", "description": { "en": "New game sub-phase value to set." } },
+    { "name": "_ppsEffFlag", "type": "boolean", "description": { "en": "Whether to play the purpose-update jingle/flash effect for this transition." } },
+    { "name": "_fade_out", "type": "float", "description": { "en": "Optional fade-out duration in frames (defaults to 15.0)." } },
+    { "name": "_fade_in", "type": "float", "description": { "en": "Optional fade-in duration in frames; a negative value skips the fade-in (defaults to 15.0)." } },
+    { "name": "_scr", "type": "integer", "description": { "en": "Optional screen buffer to fade (defaults to SCREEN_AB)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Advance to a new game sub-phase with the \"serious\" purpose jingle\nSetGameSubPhase_Serious(10020050, true, EV_FADE_SLOW, -1.0, SCREEN_AB);"
+  }
+}

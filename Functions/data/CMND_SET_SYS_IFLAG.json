@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_SYS_IFLAG",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Sets a global engine \"internal flag\" (a numbered system-wide switch, e.g. IFLAG_WAZA_EVENT, IFLAG_BUILD_FINISH, IFLAG_END_AUTO_FADEIN_OFF) to the given value. These flags are read back with CMND_GET_SYS_IFLAG and are used by scripts to coordinate state with the engine (e.g. temporarily disabling auto fade-in, or signalling that a technique/skill event is running)."
+  },
+  "params": [
+    {
+      "name": "flag",
+      "type": "integer",
+      "description": {
+        "en": "The IFLAG_* constant identifying the flag to change."
+      }
+    },
+    {
+      "name": "value",
+      "type": "integer",
+      "description": {
+        "en": "The value to store for that flag (commonly 0 or 1)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "Always true."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Tell the engine a technique event is currently running\nCMND_SET_SYS_IFLAG(IFLAG_WAZA_EVENT, 1);\n// ... later ...\nCMND_SET_SYS_IFLAG(IFLAG_WAZA_EVENT, 0);"
+  }
+}

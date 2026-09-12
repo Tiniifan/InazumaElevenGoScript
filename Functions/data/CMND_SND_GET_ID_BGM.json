@@ -1,0 +1,19 @@
+{
+  "name": "CMND_SND_GET_ID_BGM",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Returns the name/ID of the currently playing BGM track (as opposed to CMND_SND_GET_BGM_SNDID, which returns its runtime sound handle), so it can be restored later with CMND_SND_OPEN_BGM."
+  },
+  "params": [],
+  "returns": {
+    "type": "string",
+    "description": {
+      "en": "Name/ID of the currently playing BGM track."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Remember the current BGM track name to restore it later\nhistory_bgm_name = CMND_SND_GET_ID_BGM();"
+  }
+}

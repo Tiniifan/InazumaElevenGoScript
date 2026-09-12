@@ -1,0 +1,27 @@
+{
+  "name": "CMND_GET_BTLCHARA_HANDLE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Returns the handle of a character within the current soccer match/battle context, analogous to CMND_GET_CHARA_HANDLE but resolved against the active match's roster. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "battleCharaId",
+      "type": "integer",
+      "description": {
+        "en": "Identifier of the character within the match/battle context."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the requested battle character."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Get the handle of battle character index 0 during a match event\nlocal hBtlChara = CMND_GET_BTLCHARA_HANDLE(0);"
+  }
+}

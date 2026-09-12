@@ -1,0 +1,19 @@
+{
+  "name": "InitEvent",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Event initialization hook. In this build its body only logs \"InitEvent\" via SPrint and otherwise does nothing with the argument table it receives."
+  },
+  "params": [
+    { "name": "_arg_tbl", "type": "table", "description": { "en": "Argument table passed to the event; read but unused in this build." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Call the (currently no-op) event init hook with an empty argument table\nInitEvent({});"
+  }
+}

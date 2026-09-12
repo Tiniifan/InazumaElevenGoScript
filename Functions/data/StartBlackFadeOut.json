@@ -1,0 +1,20 @@
+{
+  "name": "StartBlackFadeOut",
+  "kind": "ev_main",
+  "category": "screen-fx",
+  "description": {
+    "en": "Fades a screen out to black and waits for the fade to finish."
+  },
+  "params": [
+    { "name": "_screen", "type": "integer", "description": { "en": "Screen buffer to fade (e.g. SCREEN_AB for both)." } },
+    { "name": "_frame", "type": "float", "description": { "en": "Duration of the fade, in frames." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Fade both screens to black instantly, then back in\nStartBlackFadeOut(SCREEN_AB, 0.0);\n// ... scene change happens while black ...\nStartBlackFadeIn(SCREEN_AB, 0.0);"
+  }
+}

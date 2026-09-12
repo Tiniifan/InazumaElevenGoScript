@@ -1,0 +1,55 @@
+{
+  "name": "CMND_SET_MOVE_INFO_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Starts an animated camera move: interpolates the camera from its current position/reference to a target position and reference over a number of frames, using a given movement type/easing."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Camera handle to move."
+      }
+    },
+    {
+      "name": "targetPos",
+      "type": "array",
+      "description": {
+        "en": "Target [x, y, z] position."
+      }
+    },
+    {
+      "name": "targetRef",
+      "type": "array",
+      "description": {
+        "en": "Target [x, y, z] look-at reference."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "integer",
+      "description": {
+        "en": "Duration of the move, in frames."
+      }
+    },
+    {
+      "name": "moveType",
+      "type": "integer",
+      "description": {
+        "en": "Movement type/easing curve to use."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Animate the camera to a new position/reference over several frames\nCMND_SET_MOVE_INFO_CAMERA(_hcam, move.pos, move.ref, _mv_frame, _mv_type);"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_CHANGR_MEMBER_POS",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Changes the field position of a match member already added with CMND_BTL_ADD_MEMBER, looked up by team slot and character ID or number."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side the member belongs to." } },
+    { "name": "chara", "type": "string|integer", "description": { "en": "Character ID string, or a numeric character index, identifying the member to move." } },
+    { "name": "position", "type": "integer", "description": { "en": "New field position slot to assign." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has been processed (the position is only actually updated if the member is found on that team slot; otherwise this is a silent no-op); null if fewer than 2 arguments were given or the call was otherwise invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Move an already-added member to field position 1 on team 0\nCMND_BTL_ADD_MEMBER(0, \"para_cp0032\", 1, 2);\nCMND_BTL_CHANGR_MEMBER_POS(0, \"para_cp0032\", 1);"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "CMND_POP_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Restores the previous active camera, undoing the last CMND_PUSH_CAMERA."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Restore the previous camera after the scripted shot ends\nCMND_POP_CAMERA();"
+  }
+}

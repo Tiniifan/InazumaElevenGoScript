@@ -1,0 +1,21 @@
+{
+  "name": "CMND_ADD_SET_EMBLEM",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Unlocks a team emblem, by emblem ID."
+  },
+  "params": [
+    { "name": "emblemId", "type": "string", "description": { "en": "ID of the emblem to unlock, e.g. \"iie0001\"." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect (including as a no-op if the emblem system isn't ready yet); null if the call was invalid (no ID given)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Unlock the starting formation and emblem at the beginning of the game\nCMND_ADD_SET_FORMATION(\"ifa0001\", false, true);\nCMND_ADD_SET_EMBLEM(\"iie0001\");"
+  }
+}

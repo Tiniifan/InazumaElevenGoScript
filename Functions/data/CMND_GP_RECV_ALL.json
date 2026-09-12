@@ -1,0 +1,21 @@
+{
+  "name": "CMND_GP_RECV_ALL",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Fully restores (recovers) a single party member's GP (Guts Points) gauge, by handle."
+  },
+  "params": [
+    { "name": "handle", "type": "handle", "description": { "en": "Party member handle to restore GP for." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once GP has been restored; null if the call was invalid or the handle doesn't resolve to a party member."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Fully restore one party member's GP\nlocal hdl = CMND_GET_PARTY_HANDLE(\"para_cp0008\");\nCMND_GP_RECV_ALL(hdl);"
+  }
+}

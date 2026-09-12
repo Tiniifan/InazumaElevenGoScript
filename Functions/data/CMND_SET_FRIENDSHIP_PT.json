@@ -1,0 +1,22 @@
+{
+  "name": "CMND_SET_FRIENDSHIP_PT",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets the team's \"Friendship Points\" value, either as an absolute value or (when the second argument is truthy) as a delta added to/subtracted from the current value, mirroring CMND_SET_PASSION_PT."
+  },
+  "params": [
+    { "name": "value", "type": "integer", "description": { "en": "Value to set, or delta to apply when useDelta is true." } },
+    { "name": "useDelta", "type": "boolean", "description": { "en": "Optional; when true, applies `value` as a delta instead of setting it directly." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (no value given, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Award 50 Friendship Points\nlocal FriendPNT = CMND_GET_FRIENDSHIP_PT();\nCMND_SET_FRIENDSHIP_PT(FriendPNT + 50);"
+  }
+}

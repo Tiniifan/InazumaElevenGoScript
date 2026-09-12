@@ -1,0 +1,17 @@
+{
+  "name": "StartUseGoalModel_Shadow",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Shorthand for StartUseGoalModel(true) — creates and enables a standalone, shadow-casting goal-post model for a scripted sequence."
+  },
+  "params": [],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created goal model." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Create a shadow-casting goal model for a scripted sequence\nlocal goal_hdl = StartUseGoalModel_Shadow();"
+  }
+}

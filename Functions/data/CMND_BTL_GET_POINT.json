@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_GET_POINT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Reads back a team's current match score/point count, by team slot."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side to read the score for (values above 1 are treated as 1)." } }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The team's current score; null if no teamSlot argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read both teams' current score during a match\nlocal my_point = CMND_BTL_GET_POINT(0);\nlocal enemy_point = CMND_BTL_GET_POINT(1);"
+  }
+}

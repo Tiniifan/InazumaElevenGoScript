@@ -1,0 +1,83 @@
+{
+  "name": "CMND_RUN_SKILL_SCRIPT",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Plays a technique/skill cutscene (\"waza\") for the participants set up with CMND_INIT_SKILL_SCRIPT and CMND_SETUP_SKL_SQ_*, with options controlling evolution effects, success/failure outcome, and camera/fade behavior."
+  },
+  "params": [
+    {
+      "name": "wazaId",
+      "type": "integer",
+      "description": {
+        "en": "ID of the technique to play."
+      }
+    },
+    {
+      "name": "mapId",
+      "type": "string",
+      "description": {
+        "en": "ID of the map to play the technique on."
+      }
+    },
+    {
+      "name": "evolution",
+      "type": "boolean",
+      "description": {
+        "en": "Whether to play the technique's evolution/upgrade variant."
+      }
+    },
+    {
+      "name": "production",
+      "type": "boolean",
+      "description": {
+        "en": "Whether to play the full production (cinematic) version."
+      }
+    },
+    {
+      "name": "success",
+      "type": "boolean",
+      "description": {
+        "en": "Whether the technique succeeds."
+      }
+    },
+    {
+      "name": "mapReverse",
+      "type": "boolean",
+      "description": {
+        "en": "Whether to mirror the map for this play."
+      }
+    },
+    {
+      "name": "endAutoFade",
+      "type": "boolean",
+      "description": {
+        "en": "Whether to auto fade out at the end."
+      }
+    },
+    {
+      "name": "noTelop",
+      "type": "boolean",
+      "description": {
+        "en": "Whether to suppress the technique-name telop caption."
+      }
+    },
+    {
+      "name": "cameraCut",
+      "type": "integer",
+      "description": {
+        "en": "Which camera cut to use."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Likely true once the technique cutscene was started; null if the call was invalid (fewer than 7 arguments). The success value is produced by an internal helper that wasn't fully traceable from the decompiled code."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Play a technique cutscene with the configured outcome and options\nCMND_RUN_SKILL_SCRIPT(_wazaID, _mapID, _evolution, _production, _success, _mapReverse, _endAutoFade, _noTelop, _cmrCut);"
+  }
+}

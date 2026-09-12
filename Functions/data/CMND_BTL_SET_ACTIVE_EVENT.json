@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_SET_ACTIVE_EVENT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Starts an in-match \"active event\" cutscene sequence (e.g. a special highlight play), used together with CMND_BTL_IS_FINISH_ACTEV to wait for it to finish."
+  },
+  "params": [
+    { "name": "eventId", "type": "integer", "description": { "en": "Numeric active-event ID to start." } },
+    { "name": "isUpper", "type": "boolean", "description": { "en": "Whether the event plays for the upper-displayed team." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the event has been started; null if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Start an active-event cutscene and wait for it to finish\nCMND_BTL_SET_ACTIVE_EVENT(1, _is_upper);\nwhile (!CMND_BTL_IS_FINISH_ACTEV())\n{\n\tsuspend();\n}"
+  }
+}

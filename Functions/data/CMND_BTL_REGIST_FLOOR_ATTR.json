@@ -1,0 +1,25 @@
+{
+  "name": "CMND_BTL_REGIST_FLOOR_ATTR",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Registers a named rectangular floor-attribute zone on the match field, by name and a min/max XZ bounding box (e.g. a special-terrain area the match logic can query by name)."
+  },
+  "params": [
+    { "name": "name", "type": "string", "description": { "en": "Name to register the zone under (e.g. \"FL01\")." } },
+    { "name": "minX", "type": "float", "description": { "en": "Minimum X coordinate of the zone." } },
+    { "name": "minZ", "type": "float", "description": { "en": "Minimum Z coordinate of the zone." } },
+    { "name": "maxX", "type": "float", "description": { "en": "Maximum X coordinate of the zone." } },
+    { "name": "maxZ", "type": "float", "description": { "en": "Maximum Z coordinate of the zone." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the zone has been registered; null if fewer than 5 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Register two named floor zones covering different parts of the pitch\nCMND_BTL_REGIST_FLOOR_ATTR(\"FL01\", -137, 0, 274, 283);\nCMND_BTL_REGIST_FLOOR_ATTR(\"FL02\", -137, -283, 274, 283);"
+  }
+}

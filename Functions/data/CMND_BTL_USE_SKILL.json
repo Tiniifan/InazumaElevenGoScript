@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_USE_SKILL",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Forces a match member to use a given technique/skill by ID, looked up by team slot and character ID."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side the character belongs to." } },
+    { "name": "charaId", "type": "string", "description": { "en": "Character ID string identifying which member should use the skill." } },
+    { "name": "skillId", "type": "string", "description": { "en": "Skill/technique ID string to trigger." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if fewer than 3 arguments were given."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Force a match member to immediately use a specific technique\nCMND_BTL_USE_SKILL(0, \"para_cp0008\", \"whs0035\");"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_UNIFORM_NUMBER",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets a character's uniform number."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to configure."
+      }
+    },
+    {
+      "name": "number",
+      "type": "integer",
+      "description": {
+        "en": "Uniform number to assign."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Add a character to the party, then assign their field position (9) and uniform number (8)\nlocal hdl = CMND_ADD_PARTY(\"para_cp0008\");\nCMND_SET_SOCCER_POSITION(hdl, 9);\nCMND_SET_UNIFORM_NUMBER(hdl, 8);"
+  }
+}

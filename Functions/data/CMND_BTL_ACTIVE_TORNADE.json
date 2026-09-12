@@ -1,0 +1,25 @@
+{
+  "name": "CMND_BTL_ACTIVE_TORNADE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Activates (or repositions) a tornado hazard registered with CMND_BTL_REG_TORNADE, setting its position and optionally its strength/behavior parameter."
+  },
+  "params": [
+    { "name": "handle", "type": "handle", "description": { "en": "Handle of the tornado slot, from CMND_BTL_REG_TORNADE." } },
+    { "name": "x", "type": "float", "description": { "en": "X position for the tornado." } },
+    { "name": "z", "type": "float", "description": { "en": "Z position for the tornado." } },
+    { "name": "strength", "type": "integer", "description": { "en": "Optional strength/radius parameter (values of 300 or more mark it as a stronger tornado type)." } },
+    { "name": "extra", "type": "integer", "description": { "en": "Optional extra behavior parameter." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the tornado has been activated/repositioned; null if fewer than 3 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Reposition a registered tornado hazard to a new spot\nlocal htrn = CMND_BTL_REG_TORNADE();\nCMND_BTL_ACTIVE_TORNADE(htrn, 0.0, -110.0, 0.0, 1);"
+  }
+}

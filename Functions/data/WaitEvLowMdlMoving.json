@@ -1,0 +1,19 @@
+{
+  "name": "WaitEvLowMdlMoving",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Suspends the current coroutine until the given character's position-based movement (started with e.g. EvLowMdlMove, CMND_CHR_POS_VAL_TRG) has finished."
+  },
+  "params": [
+    { "name": "_hdl", "type": "handle", "description": { "en": "Handle of the character to wait on." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Move a character and wait for the movement to finish\nEvLowMdlMove(hTenmaL, _pos, 30);\nWaitEvLowMdlMoving(hTenmaL);"
+  }
+}

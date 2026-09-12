@@ -1,0 +1,27 @@
+{
+  "name": "CMND_ENABLE_MAP_LIGHT",
+  "kind": "native",
+  "category": "lighting",
+  "description": {
+    "en": "Enables the map's lighting setup for the given map handle (used after loading/switching to a map, before its lights should take effect)."
+  },
+  "params": [
+    {
+      "name": "mapHandle",
+      "type": "handle",
+      "description": {
+        "en": "Handle of the map, from CMND_GET_MAP_HANDLE."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Enable lighting for the current map\nCMND_ENABLE_MAP_LIGHT(CMND_GET_MAP_HANDLE());"
+  }
+}

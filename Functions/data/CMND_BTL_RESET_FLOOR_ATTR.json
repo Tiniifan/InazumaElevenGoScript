@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_RESET_FLOOR_ATTR",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Clears every attribute from a single named floor zone, without removing the zone itself (unlike CMND_BTL_ALL_RESET_FLOOR, which resets every zone at once)."
+  },
+  "params": [
+    { "name": "name", "type": "string", "description": { "en": "Name of the floor zone (as registered with CMND_BTL_REGIST_FLOOR_ATTR) to reset." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the zone's attributes have been cleared; null if no name argument was given."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Register a floor zone, add an attribute to it, then clear it back to no attributes\nCMND_BTL_REGIST_FLOOR_ATTR(\"FL01\", -137, 0, 274, 283);\nCMND_BTL_ADD_FLOOR_ATTR(\"FL01\", 1);\nCMND_BTL_RESET_FLOOR_ATTR(\"FL01\");"
+  }
+}

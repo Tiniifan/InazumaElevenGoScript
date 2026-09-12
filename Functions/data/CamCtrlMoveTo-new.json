@@ -1,0 +1,30 @@
+{
+  "name": "CamCtrlMoveTo",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Queues a smooth camera movement to a given position/reference over a number of frames, resetting the camera-control state first. Check progress with IsCamCtrlMove."
+  },
+  "params": [
+    { "name": "_hcam", "type": "handle", "required": true, "description": { "en": "Handle of the camera being controlled." } },
+    { "name": "_mv_frame", "type": "integer", "required": true, "description": { "en": "Number of frames the movement should take." } },
+    { "name": "_posref", "type": "array", "required": true, "description": { "en": "6-element array [posX, posY, posZ, refX, refY, refZ] with the target camera position and reference point." } },
+    { "name": "_mv_type", "type": "integer", "required": false, "default": "0", "description": { "en": "Movement/interpolation type; values below 0 queue the move without applying it immediately." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "examples": [
+    {
+      "case": "Moving the camera with the default interpolation (real usage pattern, seen throughout script_clean/'s event scripts)",
+      "source": "real",
+      "code": "// Smoothly move the camera to a new position/reference over 40 frames\nlocal hCam = CMND_GET_ACT_CAMERA();\nCamCtrlMoveTo(hCam, 40, [122.3, 29.9, 64.6, -19.0, 17.3, -35.7]);\nwhile (IsCamCtrlMove())\n{\n\tsuspend();\n}"
+    },
+    {
+      "case": "Queuing a move without applying it immediately",
+      "source": "invented",
+      "code": "// Queue a camera move without applying it right away, by passing a negative move type\nlocal hCam = CMND_GET_ACT_CAMERA();\nCamCtrlMoveTo(hCam, 40, [122.3, 29.9, 64.6, -19.0, 17.3, -35.7], -1);"
+    }
+  ]
+}

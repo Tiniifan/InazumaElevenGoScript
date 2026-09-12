@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_SET_MATCH_RESTART",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Restarts play from a given team slot's kickoff/restart position, optionally offsetting it by a 3-element [x, ?, z]-style array."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side to restart play from." } },
+    { "name": "unused", "type": "integer", "description": { "en": "Optional; only read together with offset when at least 3 arguments are given." } },
+    { "name": "offset", "type": "array", "description": { "en": "Optional 3-element position-offset array, only read when at least 3 arguments are given." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the restart has been set up; null if no arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Restart play from team 1's side after a scripted sequence\nCMND_BTL_SET_MATCH_RESTART(1);"
+  }
+}

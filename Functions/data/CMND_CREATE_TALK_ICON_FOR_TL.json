@@ -1,0 +1,19 @@
+{
+  "name": "CMND_CREATE_TALK_ICON_FOR_TL",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Creates the \"can talk\" prompt icon shown above characters that can be interacted with on the map top layer (TL)."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Show the talk-prompt icon over interactable characters\nCMND_CREATE_TALK_ICON_FOR_TL();"
+  }
+}

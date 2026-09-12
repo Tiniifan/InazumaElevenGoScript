@@ -1,0 +1,24 @@
+{
+  "name": "CamCtrlLookAtChara",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Sets the camera-control state's follow target to a given character (with a vertical offset), so subsequent camera movements track that character."
+  },
+  "params": [
+    { "name": "_hcam", "type": "handle", "required": true, "description": { "en": "Handle of the camera being controlled (read but not itself modified here)." } },
+    { "name": "_hchara", "type": "handle", "required": true, "description": { "en": "Handle of the character to follow." } },
+    { "name": "_ofsy", "type": "float", "required": true, "description": { "en": "Vertical (Y) offset applied to the followed character's position." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "examples": [
+    {
+      "case": "Making the camera follow the player character",
+      "source": "real",
+      "code": "// Make the camera follow a character after initializing camera control\nlocal hCam = CMND_GET_ACT_CAMERA();\nlocal hChara = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC, true);\nCamCtrlInit(hCam);\nCamCtrlLookAtChara(hCam, hChara, 0);"
+    }
+  ]
+}

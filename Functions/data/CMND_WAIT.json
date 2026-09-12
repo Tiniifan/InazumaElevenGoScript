@@ -1,0 +1,19 @@
+{
+  "name": "CMND_WAIT",
+  "kind": "message-tag",
+  "category": "talk",
+  "description": {
+    "en": "An internal message/dialogue control-code identifier, not a callable Squirrel function. Found only as a debug-symbol string in the game's ELF binary, named `lxpCMessage::DATA::CMND_WAIT` — an enum value of a `DATA` enum nested in a `lxpCMessage` class, the engine's message/dialogue text parser. It appears nowhere in `script_clean/` or the IDA/Ghidra decompiles as a registered function, so it can't be called from a `.nut` script. Based on the naming, this likely marks a timed pause in message display (as opposed to CMND_TOUCH_WAIT's player-input pause)."
+  },
+  "params": [],
+  "returns": {
+    "type": "not confirmed",
+    "description": {
+      "en": "Not a callable function — this is a message-parser tag identifier, not confirmed to have any script-visible behavior."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// CMND_WAIT is not a callable function; it's a message parser tag marking a timed display pause.\n// It cannot be used from a .nut script."
+  }
+}

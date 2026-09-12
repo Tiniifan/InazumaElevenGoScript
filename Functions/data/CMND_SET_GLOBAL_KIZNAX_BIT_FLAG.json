@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_GLOBAL_KIZNAX_BIT_FLAG",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Sets a persistent, save-file-wide bit flag in a separate flag table from CMND_SET_GLOBAL_BIT_FLAG (\"Kiznax\", likely tied to the bond/friendship system), identified by a numeric bit index."
+  },
+  "params": [
+    {
+      "name": "bitIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the Kiznax bit flag to set."
+      }
+    },
+    {
+      "name": "value",
+      "type": "boolean",
+      "description": {
+        "en": "Optional value to set (defaults to true when omitted)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Mark a Kiznax-related flag as reached\nCMND_SET_GLOBAL_KIZNAX_BIT_FLAG(1609);"
+  }
+}

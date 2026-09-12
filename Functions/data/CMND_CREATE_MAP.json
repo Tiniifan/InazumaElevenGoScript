@@ -1,0 +1,27 @@
+{
+  "name": "CMND_CREATE_MAP",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Loads and creates a map by name, returning its handle. Mainly used by debug/skill-test scripts to load a map outside the normal map-transition flow."
+  },
+  "params": [
+    {
+      "name": "mapName",
+      "type": "string",
+      "description": {
+        "en": "Name of the map to load."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the created map."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Load a map by name for a debug/skill-test scene\nlocal debugMapHandle = CMND_CREATE_MAP(sMapName);"
+  }
+}

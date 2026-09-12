@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_COLOR",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Sets a color tint on a handle (character, image, ...). Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation, which sits alongside CMND_SET_ALPHA in the registration table."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Handle to tint."
+      }
+    },
+    {
+      "name": "color",
+      "type": "integer",
+      "description": {
+        "en": "Packed color/tint value to apply."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Tint a character red\nCMND_SET_COLOR(hChara, 0xFF0000);"
+  }
+}

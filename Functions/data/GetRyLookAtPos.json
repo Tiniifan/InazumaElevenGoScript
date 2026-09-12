@@ -1,0 +1,20 @@
+{
+  "name": "GetRyLookAtPos",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Computes the Y-axis rotation (in degrees) a character would need to face a given world position."
+  },
+  "params": [
+    { "name": "_hchr", "type": "handle", "description": { "en": "Handle of the character to compute the rotation for." } },
+    { "name": "_pos", "type": "array", "description": { "en": "Target world position [x, y, z] to face." } }
+  ],
+  "returns": {
+    "type": "float",
+    "description": { "en": "The Y-axis rotation, in degrees, needed to face _pos." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Turn a character to face a specific world position\nCMND_CHR_TURN_TRG(_hdl, 0, GetRyLookAtPos(_hdl, [0.0, 0.0, 0.0]), 0);"
+  }
+}

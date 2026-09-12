@@ -1,0 +1,19 @@
+{
+  "name": "RunGetTactics",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Obtains a tactic with the standard \"sysmes-Tactics-00001\" message — a fixed-preset wrapper around RunGetTacticsUseMsg."
+  },
+  "params": [
+    { "name": "_tcs", "type": "string", "description": { "en": "Tactic ID to obtain." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Obtain a tactic with the standard presentation\nRunGetTactics(\"ift0001\");"
+  }
+}

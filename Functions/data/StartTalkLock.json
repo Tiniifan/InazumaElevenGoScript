@@ -1,0 +1,19 @@
+{
+  "name": "StartTalkLock",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Locks the player out of talking to other NPCs (sets a global bit flag and shows the talk-lock icon), optionally restricting which specific NPC IDs remain talkable during the lock."
+  },
+  "params": [
+    { "name": "...", "type": "string", "description": { "en": "Optional variable list of NPC/character ID strings that should remain talkable while the lock is active." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Lock talking to other NPCs except a specific set of characters\nStartTalkLock(TL_TYPE_B, 1, \"evc0052\", \"evc0001\", \"evc0002\", \"evc0003\", \"evc0005\", \"evc0006\");"
+  }
+}

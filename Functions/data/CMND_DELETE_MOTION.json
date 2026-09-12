@@ -1,0 +1,34 @@
+{
+  "name": "CMND_DELETE_MOTION",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Frees a motion previously loaded onto a character handle with CMND_LOAD_MOTION, from the given animation pool slot."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle the motion was loaded on."
+      }
+    },
+    {
+      "name": "poolId",
+      "type": "integer",
+      "description": {
+        "en": "Animation pool slot to free."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "Always true."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Free the attacker's technique motion from pool 2\nCMND_DELETE_MOTION(ahAtk[i], 2);"
+  }
+}

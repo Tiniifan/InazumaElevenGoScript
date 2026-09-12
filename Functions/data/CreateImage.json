@@ -1,0 +1,21 @@
+{
+  "name": "CreateImage",
+  "kind": "ev_main",
+  "category": "image-ui",
+  "description": {
+    "en": "Loads a UI image from the data/tutorial/ folder and positions it, using the file's own name as its animation name."
+  },
+  "params": [
+    { "name": "_imgName", "type": "string", "description": { "en": "Name to assign the created image." } },
+    { "name": "_fileName", "type": "string", "description": { "en": "Image file name (without extension), loaded from data/tutorial/<fileName>.xa." } },
+    { "name": "_pos", "type": "array", "description": { "en": "Optional 4-element position/rotation array (defaults to [200, 120, 0, 0])." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created image." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Load and position a UI image\nlocal hImg1 = CreateImage(\"cutTitle\", \"cut0107\");"
+  }
+}

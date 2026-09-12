@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_ANTIALIASE",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Configures the renderer's antialiasing mode/level. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation, which validates the two arguments before forwarding them to the renderer's antialiasing setter."
+  },
+  "params": [
+    {
+      "name": "mode",
+      "type": "integer",
+      "description": {
+        "en": "Antialiasing mode (must be 0 or 1 for the level argument to take effect)."
+      }
+    },
+    {
+      "name": "level",
+      "type": "integer",
+      "description": {
+        "en": "Antialiasing level (must be 0, 1 or 2)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "Always true."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Enable antialiasing mode 0 at its highest level\nCMND_SET_ANTIALIASE(0, 2);"
+  }
+}

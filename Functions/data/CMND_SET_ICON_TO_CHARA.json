@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_ICON_TO_CHARA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Attaches a reaction icon/emote (e.g. surprise, sweat drop) above a character, identified by name."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to show the icon on."
+      }
+    },
+    {
+      "name": "iconName",
+      "type": "string",
+      "description": {
+        "en": "Name of the icon/emote to display."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "An integer handle for the created icon (0 if the target character doesn't exist); null only if the call itself was invalid (fewer than 2 arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Show a reaction icon above a character\nCMND_SET_ICON_TO_CHARA(hHayamiL, \"\\x0083K\\x0081[\\x0083\\x009301\");"
+  }
+}

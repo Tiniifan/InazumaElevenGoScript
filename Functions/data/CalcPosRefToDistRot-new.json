@@ -1,0 +1,23 @@
+{
+  "name": "CalcPosRefToDistRot",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Computes the distance, horizontal angle and vertical angle from a reference point to a target position — the inverse of GetDistRotCameraPos. Returns a fixed fallback [100.0, 0.0, 0.0] when the two points are extremely close together (an underflow guard in the distance check)."
+  },
+  "params": [
+    { "name": "_pos", "type": "array", "required": true, "description": { "en": "3-element array [x, y, z] with the target position." } },
+    { "name": "_ref", "type": "array", "required": true, "description": { "en": "3-element array [x, y, z] with the reference point." } }
+  ],
+  "returns": {
+    "type": "array",
+    "description": { "en": "A 3-element array [distance, horizontalAngleDeg, verticalAngleDeg]; a fixed [100.0, 0.0, 0.0] fallback if the two points are effectively coincident." }
+  },
+  "examples": [
+    {
+      "case": "Computing distance/angle between a camera's current position and reference point (real call pattern, from sysCamCtrlStep; position values here are illustrative)",
+      "source": "real",
+      "code": "// A CCamCtrlData tracks a controlled camera's current position and reference\n// point each frame; sysCamCtrlStep uses CalcPosRefToDistRot exactly like this\n// to recover the distance/angles between them.\nlocal cam_ctrl = CCamCtrlData();\ncam_ctrl.now_pos = [10.0, 5.0, -20.0];\ncam_ctrl.now_ref = [0.0, 5.0, 0.0];\nlocal dhv = CalcPosRefToDistRot(cam_ctrl.now_pos, cam_ctrl.now_ref);\nlocal distance = dhv[0];\nlocal horizontalAngleDeg = dhv[1];\nlocal verticalAngleDeg = dhv[2];"
+    }
+  ]
+}

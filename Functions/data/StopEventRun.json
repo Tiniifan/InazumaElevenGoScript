@@ -1,0 +1,20 @@
+{
+  "name": "StopEventRun",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Plays a short scripted vignette where the player character stops, turns to face a given position, and a speech bubble is shown, while the camera pans in — runs the character-turn, camera-pan and text child threads concurrently, then restores RPG control."
+  },
+  "params": [
+    { "name": "_txt_id", "type": "string", "description": { "en": "Message ID to show in the speech bubble via CreateSpeech." } },
+    { "name": "_pos", "type": "array", "description": { "en": "Optional 3-element position [x, y, z] the player character turns to face (defaults to [0, 0, 0])." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Stop the player, have them look at a position, and show a message\nStopEventRun(\"null\", pos);"
+  }
+}

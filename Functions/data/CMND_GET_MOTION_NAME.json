@@ -1,0 +1,27 @@
+{
+  "name": "CMND_GET_MOTION_NAME",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Returns the name of the motion/animation currently playing on a character handle."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to query."
+      }
+    }
+  ],
+  "returns": {
+    "type": "string",
+    "description": {
+      "en": "Name of the currently playing motion."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read the NPC's currently playing motion name\nlocal mot_name = CMND_GET_MOTION_NAME(_npc_hdl);"
+  }
+}

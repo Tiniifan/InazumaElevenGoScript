@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_SET_RESTART_BALL",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets how the ball should be put back into play for a restart (e.g. kickoff, throw-in, corner or goal kick), by a numeric restart-type ID."
+  },
+  "params": [
+    { "name": "restartType", "type": "integer", "description": { "en": "Numeric ID identifying the kind of restart to use." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the restart type has been applied; null if no restartType argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Set up the ball restart for this match's kickoff\nCMND_BTL_SET_RESTART_BALL(1);"
+  }
+}

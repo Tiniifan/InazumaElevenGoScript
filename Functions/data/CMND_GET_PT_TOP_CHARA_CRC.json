@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_PT_TOP_CHARA_CRC",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the CRC32 hash (see CMND_GET_HASH) of the base character ID of the party's top (first) roster slot."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The top party member's base-ID hash; null if the call was invalid or the party/roster data isn't ready."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Check whether a specific character is the party's top roster member\nif (CMND_GET_PT_TOP_CHARA_CRC() == CMND_GET_HASH(\"para_cp0008\"))\n{\n\t// ...\n}"
+  }
+}

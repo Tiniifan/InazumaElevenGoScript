@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_DRAW_OFF_BIT",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Returns the current \"draw off\" bitmask: a set of bit flags where each set bit disables rendering of a corresponding scene layer/element. Read together with CMND_GET_PAUSE_BIT and written back with CMND_SET_DRAW_OFF_BIT to temporarily hide parts of the scene (e.g. while showing a full-screen menu)."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The current draw-off bitmask."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read the current draw-off bits before toggling one off\nlocal now_bit_draw = CMND_GET_DRAW_OFF_BIT();"
+  }
+}

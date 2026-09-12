@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_ADD_POINT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Adds to both teams' match score at once, given a 2-element array of point deltas [team0Delta, team1Delta]."
+  },
+  "params": [
+    { "name": "pointDeltas", "type": "array", "description": { "en": "2-element array [team0Delta, team1Delta] with the amount to add to each team's score." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if no pointDeltas argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Award a goal to team 0 (team 1's score is left unchanged)\nlocal point = [1, 0];\nCMND_BTL_ADD_POINT(point);"
+  }
+}

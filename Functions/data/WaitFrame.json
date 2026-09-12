@@ -1,0 +1,19 @@
+{
+  "name": "WaitFrame",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Suspends the current coroutine, resuming once per frame, until at least the given number of frames have elapsed (accounting for possible multi-frame steps via CMND_GET_ELASPED_FRAME)."
+  },
+  "params": [
+    { "name": "_frm", "type": "integer", "description": { "en": "Number of frames to wait." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait one frame before continuing a scripted sequence\nWaitFrame(1);"
+  }
+}

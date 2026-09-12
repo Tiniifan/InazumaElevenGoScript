@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SET_DRAW_OFF_BIT",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Writes the \"draw off\" bitmask (see CMND_GET_DRAW_OFF_BIT), each set bit disabling rendering of a corresponding scene layer/element."
+  },
+  "params": [
+    {
+      "name": "bits",
+      "type": "integer",
+      "description": {
+        "en": "New draw-off bitmask."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Turn off a specific draw bit while keeping the others untouched\nCMND_SET_DRAW_OFF_BIT(now_bit_draw | _offBit);"
+  }
+}

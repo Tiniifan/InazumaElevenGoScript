@@ -1,0 +1,21 @@
+{
+  "name": "CMND_GP_IS_MAX",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Intended to check whether a party member's GP (Guts Points) gauge is maxed out, by handle. Never called from any shipped script in script_clean/. Its native implementation does read the member's GP value internally, but that value doesn't appear to feed into the traced return below — treat the exact check semantics with caution."
+  },
+  "params": [
+    { "name": "handle", "type": "handle", "description": { "en": "Party member handle to check." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the handle resolves to a party member (the internal GP-max comparison doesn't visibly affect the returned value in the decompiled code); null if the call was invalid or the handle doesn't resolve to a party member."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Check whether a party member's GP gauge is maxed out\nlocal hdl = CMND_GET_PARTY_HANDLE(\"para_cp0008\");\nlocal gpMaxed = CMND_GP_IS_MAX(hdl);"
+  }
+}

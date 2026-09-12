@@ -1,0 +1,21 @@
+{
+  "name": "RunUnlockSkillUseMsg",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Unlocks a skill with the standard \"J_08\" jingle presentation and a caller-specified message — a fixed-preset wrapper around RunUnlockSkillEx."
+  },
+  "params": [
+    { "name": "_chr", "type": "string", "description": { "en": "Character ID whose skill is unlocked." } },
+    { "name": "_skill", "type": "string", "description": { "en": "Skill ID to unlock." } },
+    { "name": "_msg", "type": "string", "description": { "en": "Message ID to show." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Unlock a skill with a specific message, as RunUnlockSkill does internally\nRunUnlockSkillUseMsg(_chr, _skill, \"sysmes-Skill-00001\");"
+  }
+}

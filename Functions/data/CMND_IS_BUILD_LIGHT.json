@@ -1,0 +1,27 @@
+{
+  "name": "CMND_IS_BUILD_LIGHT",
+  "kind": "native",
+  "category": "lighting",
+  "description": {
+    "en": "Checks whether a lighting setup loaded with CMND_LOAD_LIGHT has finished building/loading."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Handle of the light setup to check."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True once the light setup has finished building."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait for the loaded lighting setup to finish building\nif (CMND_IS_BUILD_LIGHT(hLight))\n{\n\t// ready to use\n}"
+  }
+}

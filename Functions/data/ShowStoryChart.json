@@ -1,0 +1,17 @@
+{
+  "name": "ShowStoryChart",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Fades the screen to black, opens the \"PlotMenu\" story-chart child scene, and waits for the player to close it."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Show the story chart as part of the chapter-progress transition\nShowStoryChart();"
+  }
+}

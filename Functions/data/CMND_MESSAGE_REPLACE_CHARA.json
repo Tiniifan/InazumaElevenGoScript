@@ -1,0 +1,41 @@
+{
+  "name": "CMND_MESSAGE_REPLACE_CHARA",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Registers a character name substitution for the given placeholder index, so the next opened message can embed a character's name (identified by its CRC32 hash, see CMND_GET_HASH) at that placeholder."
+  },
+  "params": [
+    {
+      "name": "placeholderIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the name placeholder within the message text to substitute."
+      }
+    },
+    {
+      "name": "charaCrc",
+      "type": "integer",
+      "description": {
+        "en": "CRC32 hash identifying the character whose name to insert."
+      }
+    },
+    {
+      "name": "useFullName",
+      "type": "boolean",
+      "description": {
+        "en": "Optional; whether to use the character's full name."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Substitute a character's name into the next message's placeholder 0\nCMND_MESSAGE_REPLACE_CHARA(0, CMND_GET_HASH(_aParamID[idx]), true);"
+  }
+}

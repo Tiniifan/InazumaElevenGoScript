@@ -1,0 +1,76 @@
+{
+  "name": "CMND_2DO_CREATE_AVA_SUB_TELOP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Creates a secondary/sub telop caption linked to an avatar name-tag telop (see CMND_2DO_CREATE_AVA_TELOP), e.g. a smaller line of text under a pet/avatar's name. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation and its similarity to CMND_2DO_CREATE_AVA_TELOP."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": {
+        "en": "Internal name to register the sub-telop under."
+      }
+    },
+    {
+      "name": "parentName",
+      "type": "string",
+      "description": {
+        "en": "Name of the parent avatar telop this sub-telop is attached to."
+      }
+    },
+    {
+      "name": "posX",
+      "type": "integer",
+      "description": {
+        "en": "Base X position."
+      }
+    },
+    {
+      "name": "fontSize",
+      "type": "integer",
+      "description": {
+        "en": "Font size."
+      }
+    },
+    {
+      "name": "posY",
+      "type": "integer",
+      "description": {
+        "en": "Base Y position."
+      }
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "description": {
+        "en": "Text to display."
+      }
+    },
+    {
+      "name": "width",
+      "type": "integer",
+      "description": {
+        "en": "Layout width."
+      }
+    },
+    {
+      "name": "color",
+      "type": "integer",
+      "description": {
+        "en": "Text color."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Create a sub-caption attached to an avatar's name telop\nCMND_2DO_CREATE_AVA_SUB_TELOP(\"petSub\", \"petName\", 0, 10, 14, \"Lv.5\", 80, 6);"
+  }
+}

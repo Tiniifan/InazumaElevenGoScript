@@ -1,0 +1,31 @@
+{
+  "name": "StandEventRun",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Runs a full \"stand event\" dialogue exchange between two characters: turns them to face each other (unless already turning), enters stand-event mode, positions their hi-detail dialogue models, fades them in, shows the message, fades them out, and exits stand-event mode."
+  },
+  "params": [
+    { "name": "_talk_id", "type": "string", "description": { "en": "Message ID to show via CreateSpeech." } },
+    { "name": "_main_hdlL", "type": "handle", "description": { "en": "Low-detail handle of the main speaker (used for turning), or 0 to skip turning." } },
+    { "name": "_main_hdl", "type": "handle", "description": { "en": "Hi-detail dialogue model handle of the main speaker." } },
+    { "name": "_main_pos", "type": "integer", "description": { "en": "Standard dialogue position slot for the main speaker (e.g. EV_CHARA_POS_RIGHT)." } },
+    { "name": "_main_mot", "type": "array", "description": { "en": "3-element motion ID array for the main speaker's hi model." } },
+    { "name": "_main_base_id", "type": "string", "description": { "en": "Base model ID for the main speaker's hi model positioning." } },
+    { "name": "_npc_hdlL", "type": "handle", "description": { "en": "Low-detail handle of the NPC speaker (used for turning), or 0 to skip turning." } },
+    { "name": "_npc_hdl", "type": "handle", "description": { "en": "Hi-detail dialogue model handle of the NPC speaker." } },
+    { "name": "_npc_pos", "type": "integer", "description": { "en": "Standard dialogue position slot for the NPC speaker." } },
+    { "name": "_npc_mot", "type": "array", "description": { "en": "3-element motion ID array for the NPC speaker's hi model." } },
+    { "name": "_npc_base_id", "type": "string", "description": { "en": "Base model ID for the NPC speaker's hi model positioning." } },
+    { "name": "_main_rot", "type": "integer", "description": { "en": "Optional turn-angle override for the main speaker (defaults to -1, auto)." } },
+    { "name": "_npc_rot", "type": "integer", "description": { "en": "Optional turn-angle override for the NPC speaker (defaults to -1, auto)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Run a full stand-event dialogue exchange between the player and an NPC\nStandEventRun(\"tlk_42011400a\", hTenmaL, hTenmaH, EV_CHARA_POS_RIGHT, [0, 0, 0], \"\", hAkaneL, hAkaneH, EV_CHARA_POS_LEFT, [0, 0, 0], \"evc0002\");"
+  }
+}

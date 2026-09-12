@@ -1,0 +1,34 @@
+{
+  "name": "CMND_WHITE_FADE_IN",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Fades a screen in from white over a number of frames, the counterpart to CMND_WHITE_FADE_OUT."
+  },
+  "params": [
+    {
+      "name": "screen",
+      "type": "integer",
+      "description": {
+        "en": "Which screen to fade, e.g. SCREEN_A."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "integer",
+      "description": {
+        "en": "Fade duration in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Fade a screen back in from white\nCMND_WHITE_FADE_IN(_screen, _frame);\nwhile (CMND_IS_WHITE_FADE(_screen))\n{\n\tsuspend();\n}"
+  }
+}

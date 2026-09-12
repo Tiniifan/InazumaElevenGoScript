@@ -1,0 +1,27 @@
+{
+  "name": "CMND_GET_CAMERA_ENV",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Returns environment settings (e.g. fog/depth parameters) associated with a camera handle. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Camera handle to query."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "The camera's environment settings."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Read a camera's environment settings\nlocal camEnv = CMND_GET_CAMERA_ENV(hCamera);"
+  }
+}

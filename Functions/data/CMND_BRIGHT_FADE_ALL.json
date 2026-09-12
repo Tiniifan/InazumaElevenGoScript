@@ -1,0 +1,34 @@
+{
+  "name": "CMND_BRIGHT_FADE_ALL",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Fades the brightness of both screens together to a target level over a number of frames (see CMND_BRIGHT_FADE for a single screen)."
+  },
+  "params": [
+    {
+      "name": "targetBrightness",
+      "type": "float",
+      "description": {
+        "en": "Target brightness level."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "integer",
+      "description": {
+        "en": "Fade duration in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Fade both screens' brightness together\nCMND_BRIGHT_FADE_ALL(_bright, _frame);\nwhile (CMND_IS_BRIGHT_FADE_ALL())\n{\n\tsuspend();\n}"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "CMND_MAP_BGM_OFF",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Stops the map's currently playing background music."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Stop the map's background music\nCMND_MAP_BGM_OFF();"
+  }
+}

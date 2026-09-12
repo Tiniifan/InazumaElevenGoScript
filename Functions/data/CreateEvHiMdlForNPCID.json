@@ -1,0 +1,23 @@
+{
+  "name": "CreateEvHiMdlForNPCID",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a high-detail dialogue model for an NPC looked up by its NPC ID string, optionally set up for talking."
+  },
+  "params": [
+    { "name": "_charaName", "type": "string", "description": { "en": "Name to assign the created model." } },
+    { "name": "_npc_id", "type": "string", "description": { "en": "NPC ID string identifying the character to create." } },
+    { "name": "_talk", "type": "boolean", "description": { "en": "Optional; whether to create it in \"Talk\" mode for dialogue (defaults to true)." } },
+    { "name": "_no_base", "type": "boolean", "description": { "en": "Optional flag passed through to CMND_CREATE_CHARA (defaults to false)." } },
+    { "name": "_mem", "type": "integer", "description": { "en": "Optional memory pool to allocate the model from (defaults to DEV_MEM_NAME_EVENT)." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created character model." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create dialogue models for the player and an NPC by ID\nlocal hTenmaH = CreateEvHiMdlForManipChara(\"tenmaH\");\nlocal hSakisakaH = CreateEvHiMdlForNPCID(\"sakisakaH\", \"evc0009\");"
+  }
+}

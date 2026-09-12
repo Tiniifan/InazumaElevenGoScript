@@ -1,0 +1,27 @@
+{
+  "name": "CMND_IS_DEPTHRANGE_FADE",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Checks whether a camera's DepthRange animation started with CMND_DEPTHRANGE_FADE is still in progress. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation and its similarity to the other IS_*_FADE commands."
+  },
+  "params": [
+    {
+      "name": "cameraHandle",
+      "type": "handle",
+      "description": {
+        "en": "Camera handle to check."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the DepthRange animation is still in progress."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Wait for the camera's depth-of-field range animation to finish\nwhile (CMND_IS_DEPTHRANGE_FADE(hCam))\n{\n\tsuspend();\n}"
+  }
+}

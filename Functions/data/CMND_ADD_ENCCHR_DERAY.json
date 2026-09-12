@@ -1,0 +1,27 @@
+{
+  "name": "CMND_ADD_ENCCHR_DERAY",
+  "kind": "native",
+  "category": "encounter",
+  "description": {
+    "en": "Adds a re-trigger delay to an NPC encounter, so the same encounter can't immediately be triggered again right after finishing (e.g. right after winning/losing its challenge)."
+  },
+  "params": [
+    {
+      "name": "encounterIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the encounter, from CMND_GET_ENCCHR_INDEX."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Prevent this encounter from immediately re-triggering\nCMND_ADD_ENCCHR_DERAY(encIndex);"
+  }
+}

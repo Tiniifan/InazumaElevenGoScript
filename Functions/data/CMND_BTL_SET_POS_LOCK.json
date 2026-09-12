@@ -1,0 +1,24 @@
+{
+  "name": "CMND_BTL_SET_POS_LOCK",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Locks (or unlocks) a match member to a given field-position role, preventing the match AI from repositioning them freely."
+  },
+  "params": [
+    { "name": "enable", "type": "boolean", "description": { "en": "True to lock the member's position role, false to unlock it." } },
+    { "name": "charaId", "type": "string", "description": { "en": "Character ID string identifying the member to lock." } },
+    { "name": "lockType", "type": "integer", "description": { "en": "Position-role lock type (e.g. LOCK_TYPE_FIELDER, LOCK_TYPE_KEEPER)." } },
+    { "name": "mode", "type": "integer", "description": { "en": "Optional lock mode (defaults to 2 if omitted)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if fewer than 3 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Lock three match members into a fielder position role for a scripted sequence\nCMND_BTL_SET_POS_LOCK(true, \"para_cp0149\", LOCK_TYPE_FIELDER);\nCMND_BTL_SET_POS_LOCK(true, \"para_cp0146\", LOCK_TYPE_FIELDER);\nCMND_BTL_SET_POS_LOCK(true, \"para_cp0150\", LOCK_TYPE_FIELDER);"
+  }
+}

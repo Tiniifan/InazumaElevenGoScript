@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_SET_FORBIT_GOAL_VIEW",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Forbids (or re-allows) the automatic goal-celebration camera/cutscene from playing for a given team when it scores, letting a scripted sequence show its own custom goal reaction instead."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side to forbid the goal view for." } },
+    { "name": "forbid", "type": "boolean", "description": { "en": "True to forbid the automatic goal view, false to re-allow it." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the flag has been set; null if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Forbid the automatic goal-celebration view for both teams ahead of a scripted goal\nCMND_BTL_SET_FORBIT_GOAL_VIEW(1, true);\nCMND_BTL_SET_FORBIT_GOAL_VIEW(0, true);"
+  }
+}

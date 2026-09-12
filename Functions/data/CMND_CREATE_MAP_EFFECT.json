@@ -1,0 +1,27 @@
+{
+  "name": "CMND_CREATE_MAP_EFFECT",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Creates a map-attached visual effect (e.g. an ambient/weather overlay) by name, returning its handle. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "effectName",
+      "type": "string",
+      "description": {
+        "en": "Name of the map effect to create."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the created map effect."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Create an ambient map effect by name\nlocal hMapEffect = CMND_CREATE_MAP_EFFECT(\"fog01\");"
+  }
+}

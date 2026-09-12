@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_SET_MATCHPHASE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets the current match phase value read back by CMND_BTL_GET_MATCHPHASE — a general-purpose script-controlled phase counter distinct from CMND_BTL_SET_MATCH_PHASE's half/duration setting."
+  },
+  "params": [
+    { "name": "phase", "type": "integer", "description": { "en": "Numeric phase value to set." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the phase value has been set; null if no phase argument was given."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Advance the scripted match phase counter to 100\nCMND_BTL_SET_MATCHPHASE(100);"
+  }
+}

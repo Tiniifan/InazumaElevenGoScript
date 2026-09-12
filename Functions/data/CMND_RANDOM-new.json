@@ -1,0 +1,31 @@
+{
+  "name": "CMND_RANDOM",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Returns a random integer in [0, max). Internally checks a QA/debug override table (keyed \"SP_NUMBER\") that can force a specific result during testing; in normal play it returns a real random value."
+  },
+  "params": [
+    {
+      "name": "max",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Exclusive upper bound."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The random value."
+    }
+  },
+  "examples": [
+    {
+      "case": "Picking one of several animation variants at random",
+      "source": "real",
+      "code": "// Excerpt from a Special Move script's SkillFunc(_success): pick one of 3\n// animation variants at random to vary the technique's presentation.\nlocal variantIndex = CMND_RANDOM(3);\nif (variantIndex == 0)\n{\n\tSetupNum(1, 0, 0, 1, 2);\n\tSetupEnable(1, \"gol\", 0);\n}\nelse if (variantIndex == 1)\n{\n\tSetupNum(1, 0, 0, 1, 2);\n\tSetupMotion(1, \"01a\");\n\tSetupEnable(1, \"gol\", 0);\n}\nelse\n{\n\tSetupNum(1, 0, 0, 1, 2);\n\tSetupMotion(1, \"01b\");\n}"
+    }
+  ]
+}

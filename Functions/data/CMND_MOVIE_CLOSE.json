@@ -1,0 +1,27 @@
+{
+  "name": "CMND_MOVIE_CLOSE",
+  "kind": "native",
+  "category": "movie",
+  "description": {
+    "en": "Closes/frees a movie handle opened with CMND_MOVIE_OPEN. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Movie handle to close."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Free a movie handle once it's done playing\nCMND_MOVIE_CLOSE(hMovie);"
+  }
+}

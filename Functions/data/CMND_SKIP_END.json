@@ -1,0 +1,19 @@
+{
+  "name": "CMND_SKIP_END",
+  "kind": "message-tag",
+  "category": "talk",
+  "description": {
+    "en": "An internal message/dialogue control-code identifier, not a callable Squirrel function. Found only as a debug-symbol string in the game's ELF binary, named `lxpCMessage::DATA::CMND_SKIP_END` — an enum value of a `DATA` enum nested in a `lxpCMessage` class, the engine's message/dialogue text parser. It appears nowhere in `script_clean/` or the IDA/Ghidra decompiles as a registered function, so it can't be called from a `.nut` script. This closes a skippable region started with CMND_SKIP_START."
+  },
+  "params": [],
+  "returns": {
+    "type": "not confirmed",
+    "description": {
+      "en": "Not a callable function — this is a message-parser tag identifier, not confirmed to have any script-visible behavior."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// CMND_SKIP_END is not a callable function; it's a message parser tag marking the end of a skippable region.\n// It cannot be used from a .nut script."
+  }
+}

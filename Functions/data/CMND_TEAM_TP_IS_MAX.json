@@ -1,0 +1,19 @@
+{
+  "name": "CMND_TEAM_TP_IS_MAX",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Intended to check whether the whole team's TP gauges are maxed out — the TP counterpart to CMND_TEAM_GP_IS_MAX, with the same caveat about the per-member comparison not visibly affecting the returned value."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on any valid call (the internal per-member comparison doesn't visibly affect the returned value in the decompiled code); null if the call was invalid or the roster data isn't ready."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Check whether the whole team's TP gauges are maxed out\nlocal teamTpMaxed = CMND_TEAM_TP_IS_MAX();"
+  }
+}

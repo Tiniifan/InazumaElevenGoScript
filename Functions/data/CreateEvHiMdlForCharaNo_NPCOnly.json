@@ -1,0 +1,23 @@
+{
+  "name": "CreateEvHiMdlForCharaNo_NPCOnly",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a high-detail dialogue model for a predefined NPC, looked up by its NPC number, optionally set up for talking."
+  },
+  "params": [
+    { "name": "_charaName", "type": "string", "description": { "en": "Name to assign the created model." } },
+    { "name": "_npc_no", "type": "integer", "description": { "en": "NPC number identifying the predefined character to create." } },
+    { "name": "_talk", "type": "boolean", "description": { "en": "Optional; whether to create it in \"Talk\" mode for dialogue (defaults to true)." } },
+    { "name": "_no_base", "type": "boolean", "description": { "en": "Optional flag passed through to CMND_CREATE_CHARA (defaults to false)." } },
+    { "name": "_mem", "type": "integer", "description": { "en": "Optional memory pool to allocate the model from (defaults to DEV_MEM_NAME_EVENT)." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created character model." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create high-detail dialogue models for predefined NPCs\nlocal hKudouH = CreateEvHiMdlForCharaNo_NPCOnly(\"kudouH\", 12);\nlocal hKinzanH = CreateEvHiMdlForCharaNo_NPCOnly(\"kinzanH\", 13);"
+  }
+}

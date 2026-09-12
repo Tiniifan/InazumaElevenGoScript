@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SET_TALK_LOCK_STATE",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Enables or disables the \"talk lock\" system, which prevents the player from talking to (interacting with) map characters — used while a scripted sequence takes control."
+  },
+  "params": [
+    {
+      "name": "locked",
+      "type": "boolean",
+      "description": {
+        "en": "True to lock talk interactions, false to allow them again."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Re-enable talking to map characters after a scripted sequence\nCMND_SET_TALK_LOCK_STATE(false);"
+  }
+}

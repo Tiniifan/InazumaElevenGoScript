@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_PARAM",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Could not be confirmed to exist. Unlike every other entry in this reference, `CMND_GET_PARAM` has no `register_global_func` registration anywhere in the IDA or Ghidra decompiles, no call site anywhere in `script_clean/`, and no trace in the game ELF's debug-symbol strings (which is where the message-tag entries in this reference were found, despite also missing from the decompiles/scripts). It most likely a stray or duplicate `allfunctions.md` list entry — possibly intended to reference CMND_GET_PARAM_ID_RANDOM or DBGCMND_GET_PARAM, both of which sit right next to it in the function list and are documented separately. This entry is kept here only to record that it was investigated and not simply skipped."
+  },
+  "params": [],
+  "returns": {
+    "type": "not confirmed",
+    "description": {
+      "en": "No implementation could be found to trace, so the return behavior is not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// No confirmed implementation exists for CMND_GET_PARAM in this build — do not rely on this name."
+  }
+}

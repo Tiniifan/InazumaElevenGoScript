@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_CHARA_SCALE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Sets a character's uniform model scale."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to scale."
+      }
+    },
+    {
+      "name": "scale",
+      "type": "float",
+      "description": {
+        "en": "Uniform scale factor (1.0 is normal size)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Get the player-controlled character's handle, then shrink it to 90% of its normal size\nlocal hdl = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC, true);\nCMND_SET_CHARA_SCALE(hdl, 0.89999998);"
+  }
+}

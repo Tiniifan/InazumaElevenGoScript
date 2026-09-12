@@ -1,0 +1,21 @@
+{
+  "name": "StopWarpEventRun",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Similar to StopEventRun, but instead of panning to a position, warps the player character to a new position/rotation with a screen fade, while a speech bubble is shown."
+  },
+  "params": [
+    { "name": "_txt_id", "type": "string", "description": { "en": "Message ID to show in the speech bubble via CreateSpeech." } },
+    { "name": "_pos", "type": "array", "description": { "en": "Optional 3-element target position [x, y, z] to warp to (defaults to [0, 0, 0])." } },
+    { "name": "_roty", "type": "float", "description": { "en": "Optional Y-axis rotation to face after warping (defaults to 0)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Warp the player to a new position while showing a message\nStopWarpEventRun(\"msg_id\", [0.0, 0.0, 100.0], 90);"
+  }
+}

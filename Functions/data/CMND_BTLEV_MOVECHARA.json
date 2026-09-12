@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTLEV_MOVECHARA",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Moves a match member's model to a given position during a scripted match event, by character handle."
+  },
+  "params": [
+    { "name": "handle", "type": "handle", "description": { "en": "Handle of the character model to move." } },
+    { "name": "position", "type": "array", "description": { "en": "3-element array [x, y, z] with the target position." } },
+    { "name": "mode", "type": "integer", "description": { "en": "Movement mode/duration parameter." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the move has been set up; null if fewer than 3 arguments were given."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Move a match member's model to a specific position during a scripted event\nlocal targetPos = [0.0, 0.0, 0.0];\nCMND_BTLEV_MOVECHARA(hMember, targetPos, 0);"
+  }
+}

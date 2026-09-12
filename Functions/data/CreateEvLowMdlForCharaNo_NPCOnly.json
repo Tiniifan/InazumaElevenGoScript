@@ -1,0 +1,21 @@
+{
+  "name": "CreateEvLowMdlForCharaNo_NPCOnly",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a low-detail cutscene model for a predefined NPC, looked up by its NPC number rather than raw face/body IDs, and — unless suppressed — also creates its matching bustup portrait."
+  },
+  "params": [
+    { "name": "_charaName", "type": "string", "description": { "en": "Name to assign the created model." } },
+    { "name": "_npc_no", "type": "integer", "description": { "en": "NPC number identifying the predefined character to create." } },
+    { "name": "_no_bustup", "type": "boolean", "description": { "en": "Optional; when true, skips creating the matching bustup portrait (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created character model." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create a low-detail cutscene model for a predefined NPC\nlocal hKudouL = CreateEvLowMdlForCharaNo_NPCOnly(\"kudouL\", 12);"
+  }
+}

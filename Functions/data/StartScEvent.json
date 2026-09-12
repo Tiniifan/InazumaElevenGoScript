@@ -1,0 +1,21 @@
+{
+  "name": "StartScEvent",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Starts a match-side cutscene (\"soccer event\") if a match is currently active: marks the active-event state, and for the upper display side also swaps the normal match map for the technique map and creates a temporary goal-post model, storing the swapped handles into the given output array."
+  },
+  "params": [
+    { "name": "_is_upper", "type": "boolean", "description": { "en": "Whether the cutscene runs on the \"upper\" display side." } },
+    { "name": "aHdl", "type": "array", "description": { "en": "Output array; filled with [normalMapHandle, wazaMapHandle, goalModelHandle] when _is_upper is set." } },
+    { "name": "_shadow", "type": "boolean", "description": { "en": "Optional; whether the temporary goal model casts a shadow (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement (an early `return;` with no value when no match is active) — implicitly null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Start a match-side cutscene, then end it once done\nlocal scEvHdl = [0, 0, 0];\nStartScEvent(isEvUpperDisp, scEvHdl);\n// ... cutscene plays out ...\nEndScEvent(isEvUpperDisp, scEvHdl);"
+  }
+}

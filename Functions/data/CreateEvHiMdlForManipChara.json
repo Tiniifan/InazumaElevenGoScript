@@ -1,0 +1,19 @@
+{
+  "name": "CreateEvHiMdlForManipChara",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a high-detail dialogue model for the currently manipulated (player-controlled) character, set up for talking."
+  },
+  "params": [
+    { "name": "_charaName", "type": "string", "description": { "en": "Name to assign the created model." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created character model." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create a high-detail dialogue model for the player character\nlocal hTenmaH = CreateEvHiMdlForManipChara(\"tenmaH\");"
+  }
+}

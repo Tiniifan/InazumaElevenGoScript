@@ -1,0 +1,22 @@
+{
+  "name": "CMND_CHARA_RESET_ACT",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Resets a character's current action/animation state back to idle, by team slot and character ID."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side the character belongs to." } },
+    { "name": "charaId", "type": "string", "description": { "en": "Character ID string identifying the member to reset." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the character's action state has been reset; null if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Reset a character's action state, guarding against builds where this command doesn't exist\nif (\"CMND_CHARA_RESET_ACT\" in getroottable())\n{\n\tCMND_CHARA_RESET_ACT(1, \"para_cp0131\");\n}"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_GLOBAL_BIT_FLAG",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Sets a persistent, save-file-wide bit flag (used to track story/quest/item progress), identified by a numeric bit index."
+  },
+  "params": [
+    {
+      "name": "bitIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the global bit flag to set."
+      }
+    },
+    {
+      "name": "value",
+      "type": "boolean",
+      "description": {
+        "en": "Optional value to set (defaults to true when omitted)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Mark a story flag as reached, then later clear it\nCMND_SET_GLOBAL_BIT_FLAG(1403);\nCMND_SET_GLOBAL_BIT_FLAG(1403, false);"
+  }
+}

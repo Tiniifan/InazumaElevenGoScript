@@ -1,0 +1,19 @@
+{
+  "name": "StartUseGoalModel",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates and enables a standalone goal-post model for a scripted sequence, waiting for it to finish loading first."
+  },
+  "params": [
+    { "name": "_shadow", "type": "boolean", "description": { "en": "Optional; whether to create the shadow-casting variant of the goal model (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created goal model." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create a goal model for a scripted sequence, then remove it once done\nlocal goal_hdl = StartUseGoalModel();\n// ... scripted sequence plays out ...\nEndUseGoalModel(goal_hdl);"
+  }
+}

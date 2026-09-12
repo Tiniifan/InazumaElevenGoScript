@@ -1,0 +1,21 @@
+{
+  "name": "CMND_ADD_SET_UNIFORM",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Unlocks a uniform set for the team, by uniform set ID."
+  },
+  "params": [
+    { "name": "uniformId", "type": "string", "description": { "en": "ID of the uniform set to unlock, e.g. \"iiu0001\"." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect (including as a no-op if the uniform system isn't ready yet); null if the call was invalid (no ID given)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Unlock the starting uniform set at the beginning of the game\nCMND_ADD_SET_UNIFORM(\"iiu0001\");"
+  }
+}

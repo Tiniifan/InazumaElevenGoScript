@@ -1,0 +1,62 @@
+{
+  "name": "CMND_CREATE_CHARA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Creates a generic scripted model instance (a prop, effect, or ball — not a roster character) from a model/motion file and attaches it under a named bone/dummy, returning a handle used with the other CMND_* character functions (CMND_SET_POSRY, CMND_DELETE_CHARA, ...)."
+  },
+  "params": [
+    {
+      "name": "category",
+      "type": "integer",
+      "description": {
+        "en": "Object category/pool index (3 is used for event props/effects in script_clean)."
+      }
+    },
+    {
+      "name": "displayName",
+      "type": "string",
+      "description": {
+        "en": "Internal display name for the instance (often Shift-JIS text)."
+      }
+    },
+    {
+      "name": "modelPath",
+      "type": "string",
+      "description": {
+        "en": "Path to the model/motion-pack file to load, e.g. \"data/chr/option/bal00.xc\"."
+      }
+    },
+    {
+      "name": "attachPoint",
+      "type": "string",
+      "description": {
+        "en": "Name of the bone/dummy/tag to attach the instance to, e.g. \"dmy\", \"File\", \"Effect\"."
+      }
+    },
+    {
+      "name": "flag1",
+      "type": "boolean|integer",
+      "description": {
+        "en": "Optional flag (meaning varies by object type, e.g. whether to keep the model loaded)."
+      }
+    },
+    {
+      "name": "flag2",
+      "type": "boolean",
+      "description": {
+        "en": "Optional second flag."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the created instance."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Spawn a ball prop attached to the \"File\" dummy\nlocal hBall = CMND_CREATE_CHARA(3, \"\\x0083{\\x0081[\\x0083\\x008b\", \"data/chr/option/bal00.xc\", \"File\", 2, true);"
+  }
+}

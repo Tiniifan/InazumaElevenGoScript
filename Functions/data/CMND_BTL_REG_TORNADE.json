@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_REG_TORNADE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Registers a new tornado hazard slot on the match field (used by pinball-style match stages), returning a handle later used with CMND_BTL_ACTIVE_TORNADE and CMND_BTL_IS_ACTIVE_TORNADE."
+  },
+  "params": [],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "Handle of the newly registered tornado slot; null if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Register three tornado hazard slots for a pinball-style stage\nlocal hTornade = [];\nhTornade.append(CMND_BTL_REG_TORNADE());\nhTornade.append(CMND_BTL_REG_TORNADE());\nhTornade.append(CMND_BTL_REG_TORNADE());"
+  }
+}

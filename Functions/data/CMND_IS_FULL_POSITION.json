@@ -1,0 +1,21 @@
+{
+  "name": "CMND_IS_FULL_POSITION",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Intended to check whether a formation position slot (or all of them, if no index is given) is already filled by a roster character. Never called from any shipped script in script_clean/. Its native implementation does compute a filled-slot count internally, but that count doesn't appear to feed into the traced return value below — treat the exact success semantics with caution."
+  },
+  "params": [
+    { "name": "positionIndex", "type": "integer", "description": { "en": "Optional position index to check; when omitted, all 16 slots are scanned internally." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on any valid call (the internal filled-slot count doesn't visibly affect the returned value in the decompiled code); null only if the call is made before the engine/script state is ready."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Check a specific formation position slot\nlocal isFull = CMND_IS_FULL_POSITION(3);"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "SPrint",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Debug-print helper: prints the given string prefixed with \"--- \" and followed by a newline, using Squirrel's built-in print(). Used throughout scripts to trace execution (map/event init, thread start, etc.)."
+  },
+  "params": [
+    { "name": "_str", "type": "string", "description": { "en": "Text to print." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Trace a map script's init phase\nSPrint(\"MapScript\");\nSPrint(\"InitMap\");"
+  }
+}

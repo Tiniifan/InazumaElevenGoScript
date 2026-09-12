@@ -1,0 +1,22 @@
+{
+  "name": "MoveTalkChara",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Interpolates a character's position and Y rotation from a start to an end transform over a number of frames, applying it directly frame by frame via CMND_SET_POSRY (rather than delegating to a native movement command). Note: in this build the rotation clamp branches have a copy-paste bug — they write into the Z-position accumulator instead of the rotation accumulator, so the rotation can overshoot past its clamped end value on the final frames."
+  },
+  "params": [
+    { "name": "_hdl", "type": "handle", "description": { "en": "Handle of the character to move." } },
+    { "name": "_start", "type": "array", "description": { "en": "4-element starting transform [x, y, z, rotY]." } },
+    { "name": "_end", "type": "array", "description": { "en": "4-element target transform [x, y, z, rotY]." } },
+    { "name": "_frame", "type": "integer", "description": { "en": "Number of frames to interpolate over." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Interpolate a character's position and rotation over 30 frames\nMoveTalkChara(hChara, [0.0, 0.0, 0.0, 0], [10.0, 0.0, 20.0, 90], 30);"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "CMND_LOAD_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Loads a camera motion file (a scripted camera path/animation, .xv) and returns its handle."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": {
+        "en": "Internal name for the camera instance."
+      }
+    },
+    {
+      "name": "path",
+      "type": "string",
+      "description": {
+        "en": "Path to the camera file, e.g. \"data/chr/motion/waza/hqev010100.pck|hqev010100_cam.xv\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the loaded camera."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Load a scripted camera path for a technique cutscene\nlocal hCamera = CMND_LOAD_CAMERA(\"\\x0083J\\x0083\\x0081\\x0083\\x0089\", \"data/chr/motion/waza/hqev010100.pck|hqev010100_cam.xv\");"
+  }
+}

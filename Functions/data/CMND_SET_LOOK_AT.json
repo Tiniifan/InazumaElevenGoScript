@@ -1,0 +1,55 @@
+{
+  "name": "CMND_SET_LOOK_AT",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Makes a character's head/eyes track a target. With just a mode (e.g. 0) it uses a default look-at target; passing mode 2 plus an (x, y, z) position makes the character look at that explicit world position."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to configure."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer",
+      "description": {
+        "en": "Look-at mode (0 for a default target, 2 to look at an explicit position)."
+      }
+    },
+    {
+      "name": "x",
+      "type": "float",
+      "description": {
+        "en": "Target X position (only when mode uses an explicit position)."
+      }
+    },
+    {
+      "name": "y",
+      "type": "float",
+      "description": {
+        "en": "Target Y position (only when mode uses an explicit position)."
+      }
+    },
+    {
+      "name": "z",
+      "type": "float",
+      "description": {
+        "en": "Target Z position (only when mode uses an explicit position)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True if the handle doesn't resolve to an existing character (the call is a no-op); null if the character was found and its look-at was configured, or if the call itself was invalid (fewer than 2 arguments, or mode 2 given without enough position arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// ev_main helper: make _hdl look at _tHdl's head position\nEvLowMdlSetLookAtChara_Head <- function (_hdl, _tHdl)\n{\n\tlocal pos = [0, 0, 0, 0];\n\tCMND_GET_POSRY(_tHdl, pos);\n\tCMND_SET_LOOK_AT(_hdl, 2, pos[0], pos[1], pos[2]);\n};"
+  }
+}

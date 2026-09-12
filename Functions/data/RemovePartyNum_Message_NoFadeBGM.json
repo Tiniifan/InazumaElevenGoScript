@@ -1,0 +1,22 @@
+{
+  "name": "RemovePartyNum_Message_NoFadeBGM",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Same as RemovePartyNum_Message, but without fading/stopping the current BGM (passes 0 for both the fade and wait durations)."
+  },
+  "params": [
+    { "name": "_rmv_num", "type": "integer", "description": { "en": "Number of members to remove." } },
+    { "name": "_aParamID", "type": "array", "description": { "en": "Array of param IDs, one per member to remove." } },
+    { "name": "_aStReset", "type": "array", "description": { "en": "Array of status-reset flags, one per member." } },
+    { "name": "_not_pt_lock", "type": "boolean", "description": { "en": "Optional; when true, removes members without locking their slot (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Remove several party members in sequence without fading the BGM\nRemovePartyNum_Message_NoFadeBGM(_rmv_num, _aParamID, _aStReset, _not_pt_lock);"
+  }
+}

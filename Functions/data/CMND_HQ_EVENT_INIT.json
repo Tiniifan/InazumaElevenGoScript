@@ -1,0 +1,19 @@
+{
+  "name": "CMND_HQ_EVENT_INIT",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Initializes the \"HQ event\" system for a high-quality scripted cutscene, before registering the handles and lighting/visibility steps it will drive with CMND_REG_HDL_HQ_EVENT, CMND_REG_MAP_LIGHT_HQ_EVENT and CMND_REG_VISIBLE_HQ_EVENT."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Start setting up a high-quality scripted cutscene\nCMND_HQ_EVENT_INIT();"
+  }
+}

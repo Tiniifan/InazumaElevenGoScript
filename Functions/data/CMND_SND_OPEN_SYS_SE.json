@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SND_OPEN_SYS_SE",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Opens a built-in system sound effect by numeric ID (e.g. UI/pickup sounds), returning a handle to play with CMND_SND_PLAY."
+  },
+  "params": [
+    {
+      "name": "seId",
+      "type": "integer",
+      "description": {
+        "en": "ID of the system sound effect to open."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the opened sound effect."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Open a system pickup sound effect\nlocal popSE = CMND_SND_OPEN_SYS_SE(26);"
+  }
+}

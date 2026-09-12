@@ -1,0 +1,20 @@
+{
+  "name": "PlayTrailer",
+  "kind": "ev_main",
+  "category": "movie",
+  "description": {
+    "en": "Plays a \"next episode\" trailer/preview panel: stops the map BGM and fades to black, loads and shows a background image plus an episode-specific preview image and voice-over, animates the preview in, waits for the voice-over to finish, then cleans everything up."
+  },
+  "params": [
+    { "name": "_evt_id", "type": "integer", "description": { "en": "Episode ID, used to build the preview image and sound file paths." } },
+    { "name": "_img_num", "type": "integer", "description": { "en": "Number of preview image variants available for this episode." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Play the next-episode trailer before saving\nPlayTrailer(2, 4);\nSaveRun(2, \"mr01b06\", [0.0, 0.0, 0.0, 0]);"
+  }
+}

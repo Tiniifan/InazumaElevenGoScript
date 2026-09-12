@@ -1,0 +1,41 @@
+{
+  "name": "CMND_BRIGHT_SWAP",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Instantly swaps a screen's brightness between two states (e.g. black and normal), rather than fading it over time like CMND_BRIGHT_FADE."
+  },
+  "params": [
+    {
+      "name": "screen",
+      "type": "integer",
+      "description": {
+        "en": "Which screen to update, e.g. SCREEN_A."
+      }
+    },
+    {
+      "name": "flag1",
+      "type": "boolean",
+      "description": {
+        "en": "First swap option."
+      }
+    },
+    {
+      "name": "flag2",
+      "type": "boolean",
+      "description": {
+        "en": "Optional second swap option."
+      }
+    }
+  ],
+  "returns": {
+    "type": "float|null",
+    "description": {
+      "en": "A floating-point value (likely the screen's resulting/previous brightness level) once applied; null if the call was invalid (fewer than 2 arguments). The exact source of the pushed float could not be fully resolved from the decompiled code."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Instantly swap the top screen's brightness state\nCMND_BRIGHT_SWAP(SCREEN_A, true, true);"
+  }
+}

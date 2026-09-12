@@ -1,0 +1,27 @@
+{
+  "name": "CMND_GET_ENABLE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Returns whether a handle is currently enabled, the counterpart to CMND_SET_ENABLE."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Handle to query."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True if the handle is currently enabled."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Remember whether the goal was enabled before this cutscene changes it\nlocal post_enable = CMND_GET_ENABLE(goal_hdl);"
+  }
+}

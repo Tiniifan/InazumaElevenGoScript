@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SND_OPEN_EVENT",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Opens an event-specific sound resource (a jingle or sound effect) by name, returning a handle to play with CMND_SND_PLAY."
+  },
+  "params": [
+    {
+      "name": "soundName",
+      "type": "string",
+      "description": {
+        "en": "Name of the event sound to open."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the opened sound."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Open an event jingle sound\nlocal hJingle = CMND_SND_OPEN_EVENT(_jingle);"
+  }
+}

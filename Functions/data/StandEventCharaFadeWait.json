@@ -1,0 +1,21 @@
+{
+  "name": "StandEventCharaFadeWait",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Fades an array of stand-event dialogue models in or out together, waiting for the fade to finish before returning (enabling them before fading in, disabling them after fading out)."
+  },
+  "params": [
+    { "name": "_hdl_ary", "type": "array", "description": { "en": "Array of dialogue model handles to fade together." } },
+    { "name": "_alpha", "type": "float", "description": { "en": "Target alpha; greater than 0 fades in, 0 or less fades out." } },
+    { "name": "_frm", "type": "integer", "description": { "en": "Optional fade duration in frames (defaults to 10)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Fade two dialogue models in together, then out again after the message\nStandEventCharaFadeWait([_main_hdl, _npc_hdl], 1.0);\nCreateSpeech(_talk_id);\nStandEventCharaFadeWait([_main_hdl, _npc_hdl], 0.0);"
+  }
+}

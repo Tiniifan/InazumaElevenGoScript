@@ -1,0 +1,21 @@
+{
+  "name": "ReserveMapJump",
+  "kind": "ev_main",
+  "category": "map",
+  "description": {
+    "en": "Thin wrapper around CMND_RESERVE_MAP_JUMP — reserves a map transition to happen once the current event/cutscene finishes."
+  },
+  "params": [
+    { "name": "mapID", "type": "string", "description": { "en": "ID of the map to jump to." } },
+    { "name": "pos", "type": "array", "description": { "en": "Target position/spawn point on the destination map." } },
+    { "name": "bgmOff", "type": "boolean", "description": { "en": "Optional; whether to suppress the destination map's BGM (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Reserve a map jump to a specific map and spawn position\nReserveMapJump(\"mr01i22\", [0.0, 0.0, 0.0]);"
+  }
+}

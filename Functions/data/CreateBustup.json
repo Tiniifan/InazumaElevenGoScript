@@ -1,0 +1,21 @@
+{
+  "name": "CreateBustup",
+  "kind": "ev_main",
+  "category": "image-ui",
+  "description": {
+    "en": "Creates a \"bustup\" portrait image (the close-up character art shown during dialogue) for a given model, and orients it to the left or right side of the screen."
+  },
+  "params": [
+    { "name": "_mdlHdl", "type": "handle", "description": { "en": "Handle of the character model to create the bustup image from." } },
+    { "name": "_name", "type": "string", "description": { "en": "Name to assign the bustup image." } },
+    { "name": "_right", "type": "boolean", "description": { "en": "Optional; true (default) places the bustup on the right side, false on the left." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created bustup image." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create a character's bustup portrait for a dialogue scene\nlocal hTenmaImg = CreateBustup(hTenmaL, \"\\x0082\\x00c4\\x0082\\x00f1\\x0082\\x00dc\\x008a\\x00e7\");"
+  }
+}

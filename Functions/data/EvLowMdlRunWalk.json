@@ -1,0 +1,21 @@
+{
+  "name": "EvLowMdlRunWalk",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Sets a character's motion to a walk/run animation and moves it towards a target position at the given speed, instead of a fixed-duration move like EvLowMdlMove."
+  },
+  "params": [
+    { "name": "_hdl", "type": "handle", "description": { "en": "Handle of the character model to move." } },
+    { "name": "_mvPos", "type": "array", "description": { "en": "3-element target position [x, y, z]." } },
+    { "name": "_speed", "type": "array", "description": { "en": "2-element array [speedValue, motionName] with the movement speed and the walk/run motion name to play (e.g. S_WALK_01)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Walk a character towards a position at a given speed\nEvLowMdlRunWalk(hTenmaL, pos, S_WALK_01);"
+  }
+}

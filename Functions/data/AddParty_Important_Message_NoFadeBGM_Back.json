@@ -1,0 +1,23 @@
+{
+  "name": "AddParty_Important_Message_NoFadeBGM_Back",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Same as AddParty_Important_Message_Back, but without fading/stopping the current BGM (passes -1 for both the fade and wait durations)."
+  },
+  "params": [
+    { "name": "_paramID", "type": "string", "description": { "en": "Param ID of the character to add back to the party." } },
+    { "name": "_ptLock", "type": "boolean", "description": { "en": "Whether to lock the member's position slot." } },
+    { "name": "_avatarEnable", "type": "boolean", "description": { "en": "Whether to enable the member's avatar." } },
+    { "name": "_avatarLock", "type": "boolean", "description": { "en": "Whether to lock the member's avatar." } },
+    { "name": "_lv", "type": "integer", "description": { "en": "Optional level to set for the member (defaults to -1, meaning don't change it)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Bring an important party member back with the \"J_07\" jingle presentation, without fading the BGM\nAddParty_Important_Message_NoFadeBGM_Back(\"para_cp0001\", true, false, false, 20);"
+  }
+}

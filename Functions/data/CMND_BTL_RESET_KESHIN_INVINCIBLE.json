@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_RESET_KESHIN_INVINCIBLE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Clears every keshin-invincibility entry previously set with CMND_BTL_SET_KESHIN_INVINCIBLE, for every team/player at once."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Make a member invincible while transformed, then clear it once the sequence ends\nCMND_BTL_SET_KESHIN_INVINCIBLE(true, \"para_cp0009\");\n// ... scripted sequence plays out ...\nCMND_BTL_RESET_KESHIN_INVINCIBLE();"
+  }
+}

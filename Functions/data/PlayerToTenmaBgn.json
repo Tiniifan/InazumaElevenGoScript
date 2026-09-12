@@ -1,0 +1,19 @@
+{
+  "name": "PlayerToTenmaBgn",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a low-detail cutscene model of the protagonist (Tenma) with a given body, for a sequence that temporarily shows Tenma separately from the player-controlled character. Pair with PlayerToTenmaEnd."
+  },
+  "params": [
+    { "name": "_body", "type": "integer", "description": { "en": "Body model ID for the Tenma cutscene model." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created Tenma cutscene model." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create a temporary Tenma cutscene model, then sync the player character back to it\nlocal hTenmaL = PlayerToTenmaBgn(902);\n// ... cutscene plays out ...\nPlayerToTenmaEnd(hTenmaL);"
+  }
+}

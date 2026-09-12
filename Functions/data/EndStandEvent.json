@@ -1,0 +1,19 @@
+{
+  "name": "EndStandEvent",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Leaves \"stand event\" dialogue mode started with StartStandEvent: restores the camera's depth-of-field, restores the previous pause bit state, and resets the talk-character registry. Does nothing (and logs a message) if no stand event is active."
+  },
+  "params": [
+    { "name": "_frm", "type": "integer", "description": { "en": "Optional number of frames for the depth-of-field transition back (defaults to 10)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement (an early `return;` with no value when not active) — implicitly null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Enter stand-event mode, show dialogue, then leave it\nStartStandEvent();\nCreateSpeech(\"tlk_id\");\nEndStandEvent();"
+  }
+}

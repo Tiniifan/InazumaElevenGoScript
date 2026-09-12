@@ -1,0 +1,17 @@
+{
+  "name": "GetRpgCameraPos",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Reads the current RPG (free-roam) camera's position and reference (look-at) point, computed relative to the player character."
+  },
+  "params": [],
+  "returns": {
+    "type": "array",
+    "description": { "en": "A 6-element array [posX, posY, posZ, refX, refY, refZ] with the camera's position and reference point." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Read the current RPG camera's position and reference point\nlocal camPosRef = GetRpgCameraPos();"
+  }
+}

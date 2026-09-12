@@ -1,0 +1,27 @@
+{
+  "name": "CMND_DELETE_IMAGE",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Frees an image resource previously loaded with CMND_LOAD_IMAGE."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Handle of the image to free."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "Always true."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Free a loaded image once it's no longer needed\nCMND_DELETE_IMAGE(hAnm);"
+  }
+}

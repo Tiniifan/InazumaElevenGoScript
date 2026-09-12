@@ -1,0 +1,69 @@
+{
+  "name": "CMND_MAKE_CHILD_MOVIE_SCENE",
+  "kind": "native",
+  "category": "movie",
+  "description": {
+    "en": "Plays a full-screen movie as a child scene, with configurable fade timings for the screen and BGM around the movie."
+  },
+  "params": [
+    {
+      "name": "movieName",
+      "type": "string",
+      "description": {
+        "en": "Name/path of the movie to play."
+      }
+    },
+    {
+      "name": "sound",
+      "type": "any",
+      "description": {
+        "en": "Sound configuration for the movie."
+      }
+    },
+    {
+      "name": "fadeInDuration",
+      "type": "integer",
+      "description": {
+        "en": "Screen fade-in duration."
+      }
+    },
+    {
+      "name": "fadeOutDuration",
+      "type": "integer",
+      "description": {
+        "en": "Screen fade-out duration."
+      }
+    },
+    {
+      "name": "bgmFade",
+      "type": "integer",
+      "description": {
+        "en": "BGM fade duration."
+      }
+    },
+    {
+      "name": "fadeStartFrame",
+      "type": "integer",
+      "description": {
+        "en": "Frame at which the fade begins."
+      }
+    },
+    {
+      "name": "fadeEndFrame",
+      "type": "integer",
+      "description": {
+        "en": "Frame at which the fade ends."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Likely true once the child movie scene was created; null if the call was invalid (fewer than 4 arguments). The success value is produced by an internal scene-creation helper that wasn't fully traceable from the decompiled code."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Play a full-screen movie with fade timings\nCMND_MAKE_CHILD_MOVIE_SCENE(_movie, snd, _scrA_fade, _scrB_fade, _bgm_fade, _frm_bgn_fade, _frm_end_fade);"
+  }
+}

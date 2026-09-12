@@ -1,0 +1,17 @@
+{
+  "name": "RunChildThread",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Drives every child coroutine registered with AddChildThread to completion, resuming each one and suspending the caller once per frame until all of them have finished."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Run three child threads (defined earlier as fadeinProc, TextProc, TenmaProc) concurrently\nInitChildThread(3);\nAddChildThread(fadeinProc);\nAddChildThread(TextProc);\nAddChildThread(TenmaProc);\nRunChildThread();"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_RESET_FORCE_TOUGH",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Clears every forced-toughness entry previously set with CMND_BTL_SET_FORCE_TOUGH or CMND_BTL_SET_FORCE_TOUGH_ONLY_TP, for every team/player at once."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Force toughness for a scripted sequence, then clear it afterwards\nCMND_BTL_SET_FORCE_TOUGH(true, \"para_cp0321\");\n// ... scripted sequence plays out ...\nCMND_BTL_RESET_FORCE_TOUGH();"
+  }
+}

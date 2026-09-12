@@ -1,0 +1,20 @@
+{
+  "name": "RunGetWadai",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Obtains a \"topic\" item with the standard \"J_08\" jingle and \"system-topic-get\" message presentation — a fixed-preset wrapper around RunGetItemEx."
+  },
+  "params": [
+    { "name": "_item", "type": "string", "description": { "en": "Topic item ID to obtain." } },
+    { "name": "_num", "type": "integer", "description": { "en": "Optional quantity to add (defaults to 1)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Obtain a topic item derived from a bit index\nRunGetWadai(format(\"int%04d\", itemBit % 1600));"
+  }
+}

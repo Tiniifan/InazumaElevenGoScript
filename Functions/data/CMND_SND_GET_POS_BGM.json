@@ -1,0 +1,19 @@
+{
+  "name": "CMND_SND_GET_POS_BGM",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Returns the current playback position of the currently playing BGM track, so it can be resumed later from the same position with CMND_SND_OPEN_BGM."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "Current playback position of the BGM track."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Remember the current BGM playback position to resume it later\nhistory_bgm_pos = CMND_SND_GET_POS_BGM();"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_SET_VISIBLE_PURPOSE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Shows or hides the purpose marker set with CMND_BTL_SET_PURPOSE, without clearing its configuration."
+  },
+  "params": [
+    { "name": "visible", "type": "boolean", "description": { "en": "True to show the current purpose marker, false to hide it." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Make the current purpose marker visible again\nCMND_BTL_SET_VISIBLE_PURPOSE(true);"
+  }
+}

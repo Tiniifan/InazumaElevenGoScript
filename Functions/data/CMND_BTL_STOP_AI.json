@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_STOP_AI",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Enables or disables the match AI controller for the whole opposing team (e.g. to freeze CPU behavior during a scripted sequence)."
+  },
+  "params": [
+    { "name": "stop", "type": "integer", "description": { "en": "Non-zero to stop/disable the AI, 0 to resume it." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the AI enable state has been updated; null if no stop argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Freeze the CPU AI during a scripted sequence, then resume it afterwards\nCMND_BTL_STOP_AI(0);\n// ... scripted sequence plays out ...\nCMND_BTL_STOP_AI(2);"
+  }
+}

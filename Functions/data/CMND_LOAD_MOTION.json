@@ -1,0 +1,48 @@
+{
+  "name": "CMND_LOAD_MOTION",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Loads a motion/animation file for a character handle, optionally into a specific animation pool slot and memory device."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to load the motion onto."
+      }
+    },
+    {
+      "name": "motionPath",
+      "type": "string",
+      "description": {
+        "en": "Path to the motion file (or a \"pack|file\" pair)."
+      }
+    },
+    {
+      "name": "poolId",
+      "type": "integer",
+      "description": {
+        "en": "Optional animation pool slot to load into."
+      }
+    },
+    {
+      "name": "devMemName",
+      "type": "string",
+      "description": {
+        "en": "Optional named memory device to load the motion into, e.g. DEV_MEM_NAME_EVENT."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "Always true."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Load an attacker's technique motion into pool 2, using the event memory device\nCMND_LOAD_MOTION(ahAtk[i], path, 2, DEV_MEM_NAME_EVENT);"
+  }
+}

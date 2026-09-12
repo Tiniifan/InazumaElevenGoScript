@@ -1,0 +1,27 @@
+{
+  "name": "CMND_CHR_REG_MOVE_MNGR",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Registers a character handle with the movement manager system (the controller behind CMND_CHR_POS_VAL_TRG/CMND_CHR_TURN_TRG-style scripted movement), returning a handle used to drive its movement. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to register."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the character's move-manager entry."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Register a character with the movement manager before scripting its path\nlocal hMove = CMND_CHR_REG_MOVE_MNGR(hChara);"
+  }
+}

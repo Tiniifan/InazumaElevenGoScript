@@ -1,0 +1,26 @@
+{
+  "name": "CMND_BTL_SET_PURPOSE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets the AI \"purpose\" marker shown on the pitch during a scripted match sequence — a highlighted target/arrow used to direct the player's attention (e.g. towards a teammate to pass to), with an optional world-space position offset."
+  },
+  "params": [
+    { "name": "purposeType", "type": "integer", "description": { "en": "Numeric purpose/marker type; 0 clears the current marker." } },
+    { "name": "targetId", "type": "integer", "description": { "en": "Optional target index the marker points at (e.g. -1 for none)." } },
+    { "name": "enable", "type": "boolean", "description": { "en": "Optional flag enabling/disabling the marker." } },
+    { "name": "unused", "type": "integer", "description": { "en": "Optional extra parameter, meaning not confirmed." } },
+    { "name": "offsetX", "type": "float", "description": { "en": "Optional X offset applied to the marker's position." } },
+    { "name": "offsetZ", "type": "float", "description": { "en": "Optional Z offset applied to the marker's position." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the purpose marker has been updated; null if no arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Show a purpose marker pointing at a nearby offset position, then clear it\nCMND_BTL_SET_PURPOSE(2, 8, true, 0, 0.0, -0.55000001);\n// ... scripted sequence plays out ...\nCMND_BTL_SET_PURPOSE(0, -1, false, 0);"
+  }
+}

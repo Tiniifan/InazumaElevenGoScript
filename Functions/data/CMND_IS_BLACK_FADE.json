@@ -1,0 +1,27 @@
+{
+  "name": "CMND_IS_BLACK_FADE",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Checks whether a screen is still performing a black fade started with CMND_BLACK_FADE_OUT/CMND_BLACK_FADE_IN."
+  },
+  "params": [
+    {
+      "name": "screen",
+      "type": "integer",
+      "description": {
+        "en": "Which screen to check, e.g. SCREEN_A."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the black fade is still in progress."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait for the black fade to finish\nwhile (CMND_IS_BLACK_FADE(_screen))\n{\n\tsuspend();\n}"
+  }
+}

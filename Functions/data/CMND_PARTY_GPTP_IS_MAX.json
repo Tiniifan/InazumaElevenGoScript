@@ -1,0 +1,19 @@
+{
+  "name": "CMND_PARTY_GPTP_IS_MAX",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Checks whether every party member's GP and TP gauges are already at their maximum value."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the check has run (whether or not every member's gauges are actually full — the native implementation validates the call and scans the roster, but the loop's early-exit condition is only used to stop scanning, not to change the pushed value); null if the call was invalid or the roster isn't ready."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Skip the GP/TP recovery step at a rest zone if the whole party is already full\nif (CMND_PARTY_GPTP_IS_MAX())\n{\n\treturn;\n}\nCMND_PARTY_GPTP_RECV_ALL();"
+  }
+}

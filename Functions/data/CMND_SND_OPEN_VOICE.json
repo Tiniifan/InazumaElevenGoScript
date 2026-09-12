@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SND_OPEN_VOICE",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Opens a voice-line sound resource by name, returning a handle to play with CMND_SND_PLAY. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation and its similarity to the other CMND_SND_OPEN_* commands."
+  },
+  "params": [
+    {
+      "name": "voiceName",
+      "type": "string",
+      "description": {
+        "en": "Name of the voice line to open."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the opened voice sound."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Open a character's voice line\nlocal hVoice = CMND_SND_OPEN_VOICE(\"vc_tenma_001\");"
+  }
+}

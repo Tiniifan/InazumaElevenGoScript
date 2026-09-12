@@ -1,0 +1,69 @@
+{
+  "name": "CMND_2DO_CREATE_TELOP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Creates a named 2D \"telop\" (an on-screen text/caption overlay, e.g. a technique-name banner), from a font size, base position and text."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": {
+        "en": "Internal name to register the telop under."
+      }
+    },
+    {
+      "name": "posX",
+      "type": "integer",
+      "description": {
+        "en": "Base X position."
+      }
+    },
+    {
+      "name": "fontSize",
+      "type": "integer",
+      "description": {
+        "en": "Font size."
+      }
+    },
+    {
+      "name": "posY",
+      "type": "integer",
+      "description": {
+        "en": "Base Y position."
+      }
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "description": {
+        "en": "Text to display."
+      }
+    },
+    {
+      "name": "width",
+      "type": "integer",
+      "description": {
+        "en": "Layout width."
+      }
+    },
+    {
+      "name": "color",
+      "type": "integer",
+      "description": {
+        "en": "Text color."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once it succeeded; false if the telop system isn't ready/found; null if the call itself was invalid (too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create a named telop caption for a technique name\nCMND_2DO_CREATE_TELOP(\"\\x008bZ\\x0090\\x00ea\\x0097p\\x0096\\x00bc\", 0, 12, 0, fn, wh, 6);"
+  }
+}

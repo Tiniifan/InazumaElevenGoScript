@@ -1,0 +1,21 @@
+{
+  "name": "GetCharaDistRotCameraPos",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Same as GetDistRotCameraPos, but orbits around a character's position (with an optional Y offset) instead of a raw reference point."
+  },
+  "params": [
+    { "name": "_hchara", "type": "handle", "description": { "en": "Handle of the character to orbit around." } },
+    { "name": "_dhv", "type": "array", "description": { "en": "3-element array [distance, horizontalAngleDeg, verticalAngleDeg] describing the orbit." } },
+    { "name": "_ofsy", "type": "float", "description": { "en": "Y offset applied to the character's position before orbiting." } }
+  ],
+  "returns": {
+    "type": "array",
+    "description": { "en": "A 6-element array [posX, posY, posZ, refX, refY, refZ] with the computed camera position and reference point." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Orbit the camera around a character, offset upward slightly\nlocal posref = GetCharaDistRotCameraPos(hChara, [200.0, 45.0, 10.0], 20.0);"
+  }
+}

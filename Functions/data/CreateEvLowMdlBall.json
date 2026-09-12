@@ -1,0 +1,20 @@
+{
+  "name": "CreateEvLowMdlBall",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a low-detail cutscene ball model."
+  },
+  "params": [
+    { "name": "_ballName", "type": "string", "description": { "en": "Name to assign the created ball model." } },
+    { "name": "_shadow", "type": "boolean", "description": { "en": "Optional; whether to create the shadow-casting variant (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created ball model." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create a cutscene ball model\nlocal hBall = CreateEvLowMdlBall(\"ball1\");"
+  }
+}

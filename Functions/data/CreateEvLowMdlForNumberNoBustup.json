@@ -1,0 +1,25 @@
+{
+  "name": "CreateEvLowMdlForNumberNoBustup",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Shorthand for CreateEvLowMdlForNumber with its _no_bustup argument forced to true — creates a low-detail cutscene character model without its bustup portrait."
+  },
+  "params": [
+    { "name": "_charaName", "type": "string", "description": { "en": "Name to assign the created model." } },
+    { "name": "_face", "type": "integer", "description": { "en": "Face model ID." } },
+    { "name": "_body", "type": "integer", "description": { "en": "Body model ID." } },
+    { "name": "_home", "type": "boolean", "description": { "en": "Optional; whether to use the home uniform variant (defaults to true)." } },
+    { "name": "_keeper", "type": "boolean", "description": { "en": "Optional; whether the character is a goalkeeper (defaults to false)." } },
+    { "name": "_ev", "type": "boolean", "description": { "en": "Optional event-specific flag passed through to CMND_CREATE_CHARA (defaults to false)." } },
+    { "name": "_mem", "type": "integer", "description": { "en": "Optional memory pool to allocate the model from (defaults to DEV_MEM_NAME_EVENT)." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created character model." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create a low-detail cutscene character model without a bustup portrait\nlocal hSangokuL = CreateEvLowMdlForNumberNoBustup(\"sangokuL\", 1, 902);"
+  }
+}

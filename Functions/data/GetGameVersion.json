@@ -1,0 +1,17 @@
+{
+  "name": "GetGameVersion",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Thin wrapper around CMND_GET_GAME_VERSION — returns which version/edition of the game is running (e.g. to branch content between the game's two paired versions)."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer",
+    "description": { "en": "The running game version/edition constant (e.g. GAME_VER_DR or GAME_VER_SH)." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Branch content depending on which paired game version is running\nif (GetGameVersion() == GAME_VER_DR)\n{\n\t// ... Dragon-version-only content ...\n}"
+  }
+}

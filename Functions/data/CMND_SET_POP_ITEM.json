@@ -1,0 +1,48 @@
+{
+  "name": "CMND_SET_POP_ITEM",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Configures the item and 3D position for the \"pop item\" effect created with CMND_CREATE_POP_ITEM (e.g. the item that pops out of an opened treasure chest)."
+  },
+  "params": [
+    {
+      "name": "itemId",
+      "type": "integer",
+      "description": {
+        "en": "ID of the item to show popping out."
+      }
+    },
+    {
+      "name": "x",
+      "type": "float",
+      "description": {
+        "en": "World X position."
+      }
+    },
+    {
+      "name": "y",
+      "type": "float",
+      "description": {
+        "en": "World Y position."
+      }
+    },
+    {
+      "name": "z",
+      "type": "float",
+      "description": {
+        "en": "World Z position."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Show the collected item popping out of the treasure chest\nCMND_SET_POP_ITEM(itemID, posX, posY, posZ);"
+  }
+}

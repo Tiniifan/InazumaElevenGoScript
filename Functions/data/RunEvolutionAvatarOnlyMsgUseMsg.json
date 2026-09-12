@@ -1,0 +1,22 @@
+{
+  "name": "RunEvolutionAvatarOnlyMsgUseMsg",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Same as RunEvolutionAvatarUseMsg, but only shows the message without actually evolving the avatar (passes _evol as false to RunEvolutionAvatarEx) — used when the evolution already happened elsewhere and only the announcement is needed."
+  },
+  "params": [
+    { "name": "_chr", "type": "string", "description": { "en": "Character ID substituted into the message." } },
+    { "name": "_avt", "type": "string", "description": { "en": "Target avatar ID substituted into the message." } },
+    { "name": "_msg", "type": "string", "description": { "en": "Message ID to show." } },
+    { "name": "_lock", "type": "boolean", "description": { "en": "Optional; accepted for signature compatibility but has no effect since no evolution happens (defaults to true)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Show an avatar-evolved message without actually evolving it\nRunEvolutionAvatarOnlyMsgUseMsg(\"para_cp0008\", \"ck0033\", \"sysmes-Avatar-00002\");"
+  }
+}

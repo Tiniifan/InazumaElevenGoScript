@@ -1,0 +1,23 @@
+{
+  "name": "CamCtrlSetPosRef",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Immediately sets the controlled camera's position and reference (look-at) point, and syncs the camera-control state to match (no interpolation)."
+  },
+  "params": [
+    { "name": "_hcam", "type": "handle", "required": true, "description": { "en": "Handle of the camera being controlled." } },
+    { "name": "_posref", "type": "array", "required": true, "description": { "en": "6-element array [posX, posY, posZ, refX, refY, refZ] with the new camera position and reference point." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "examples": [
+    {
+      "case": "Snapping the camera to a fixed position and reference point",
+      "source": "real",
+      "code": "// Snap the camera to a fixed position and reference point\nlocal hCam = CMND_GET_ACT_CAMERA();\nCamCtrlSetPosRef(hCam, [122.3, 29.9, 64.6, -19.0, 17.3, -35.7]);"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "CMND_BRIGHT_SWAP_ALL",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Instantly swaps the brightness state of both screens together (see CMND_BRIGHT_SWAP for a single screen). Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "flag1",
+      "type": "boolean",
+      "description": {
+        "en": "First swap option."
+      }
+    },
+    {
+      "name": "flag2",
+      "type": "boolean",
+      "description": {
+        "en": "Optional second swap option."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Instantly swap both screens' brightness state\nCMND_BRIGHT_SWAP_ALL(true, true);"
+  }
+}

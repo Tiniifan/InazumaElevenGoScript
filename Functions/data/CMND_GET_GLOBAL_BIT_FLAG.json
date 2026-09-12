@@ -1,0 +1,27 @@
+{
+  "name": "CMND_GET_GLOBAL_BIT_FLAG",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Reads a persistent, save-file-wide bit flag previously set with CMND_SET_GLOBAL_BIT_FLAG."
+  },
+  "params": [
+    {
+      "name": "bitIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the global bit flag to read."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The flag's current value (0 or 1)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Check whether a story flag has been reached\nif (CMND_GET_GLOBAL_BIT_FLAG(1403) == 1)\n{\n\t// ...\n}"
+  }
+}

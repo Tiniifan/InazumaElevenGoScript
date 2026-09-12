@@ -1,0 +1,19 @@
+{
+  "name": "CMND_TEAM_GP_RECV_ALL",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Fully restores (recovers) the GP (Guts Points) gauge of every party member at once."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the whole team's GP has been restored; null if the call was invalid or the roster data isn't ready."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Fully restore the whole team's GP and TP\nCMND_TEAM_GP_RECV_ALL();\nCMND_TEAM_TP_RECV_ALL();"
+  }
+}

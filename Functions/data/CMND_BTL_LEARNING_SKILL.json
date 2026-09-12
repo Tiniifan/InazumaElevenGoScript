@@ -1,0 +1,24 @@
+{
+  "name": "CMND_BTL_LEARNING_SKILL",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Makes a match member learn a technique/skill by ID, looked up by team slot and character ID. If notify is true (or omitted) and the member has a free skill slot, also records the new skill as \"just learned\" for the in-match learning popup."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side the character belongs to." } },
+    { "name": "charaId", "type": "string", "description": { "en": "Character ID string identifying which member learns the skill." } },
+    { "name": "skillId", "type": "string", "description": { "en": "Skill/technique ID string to learn." } },
+    { "name": "notify", "type": "integer", "description": { "en": "Optional flag (defaults to true/notify); pass 0 to skip flagging the skill for the learning popup." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if fewer than 3 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Teach a match member a new technique without triggering the learning popup\nCMND_BTL_LEARNING_SKILL(0, \"para_cp0010\", \"whs0035\", 0);"
+  }
+}

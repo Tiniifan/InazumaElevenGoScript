@@ -1,0 +1,20 @@
+{
+  "name": "RunGetTacticsUseMsg",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Obtains a tactic with the \"J_07\" jingle presentation and a caller-specified message — a fixed-preset wrapper around RunGetItemEx (reusing the item-get flow for tactics)."
+  },
+  "params": [
+    { "name": "_tcs", "type": "string", "description": { "en": "Tactic ID to obtain." } },
+    { "name": "_msg", "type": "string", "description": { "en": "Message ID to show." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Obtain a tactic with a specific message, as RunGetTactics does internally\nRunGetTacticsUseMsg(_tcs, \"sysmes-Tactics-00001\");"
+  }
+}

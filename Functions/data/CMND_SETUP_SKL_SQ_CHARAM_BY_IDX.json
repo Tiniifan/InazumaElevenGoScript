@@ -1,0 +1,48 @@
+{
+  "name": "CMND_SETUP_SKL_SQ_CHARAM_BY_IDX",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Registers a technique-cutscene participant (see CMND_INIT_SKILL_SCRIPT) from an existing team's roster, identified by its position index within the team rather than by a parameter ID (see CMND_SETUP_SKL_SQ_CHARAM)."
+  },
+  "params": [
+    {
+      "name": "side",
+      "type": "integer",
+      "description": {
+        "en": "Team side the character belongs to."
+      }
+    },
+    {
+      "name": "index",
+      "type": "integer",
+      "description": {
+        "en": "Slot index within that side."
+      }
+    },
+    {
+      "name": "team",
+      "type": "table",
+      "description": {
+        "en": "Team data the character is drawn from."
+      }
+    },
+    {
+      "name": "positionIndex",
+      "type": "integer",
+      "description": {
+        "en": "Position index within the team roster."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Likely true once the roster character participant was registered; null if the call was invalid (fewer than 3 arguments). The success value is produced by an internal setup helper (sub_236258) that wasn't fully traceable from the decompiled code."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Register a technique-cutscene participant by roster position index\nCMND_SETUP_SKL_SQ_CHARAM_BY_IDX(_side, _index, _team, _pos_idx);"
+  }
+}

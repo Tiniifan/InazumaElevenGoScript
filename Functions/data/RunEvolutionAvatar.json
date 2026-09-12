@@ -1,0 +1,21 @@
+{
+  "name": "RunEvolutionAvatar",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Evolves a character's avatar with the standard \"sysmes-Avatar-00002\" message — a fixed-preset wrapper around RunEvolutionAvatarUseMsg."
+  },
+  "params": [
+    { "name": "_chr", "type": "string", "description": { "en": "Character ID whose avatar evolves." } },
+    { "name": "_avt", "type": "string", "description": { "en": "Target avatar ID." } },
+    { "name": "_lock", "type": "boolean", "description": { "en": "Optional; whether to lock the avatar after evolving (defaults to true)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Evolve a character's avatar with the standard presentation\nRunEvolutionAvatar(\"para_cp0008\", \"ck0033\");"
+  }
+}

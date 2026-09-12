@@ -1,0 +1,22 @@
+{
+  "name": "SetChrPrmDetailForSkillScriptAtMatch",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Sets up a technique cutscene participant using an actual match roster member's appearance (by param ID), instead of the raw face/body/equipment IDs used by SetChrPrmDetailForSkillScript."
+  },
+  "params": [
+    { "name": "_side", "type": "string", "description": { "en": "Which side to configure: \"ATK\" or \"DEF\"." } },
+    { "name": "_index", "type": "integer", "description": { "en": "Slot index on that side (for multi-character techniques)." } },
+    { "name": "_paramID", "type": "string", "description": { "en": "Match roster member's param ID to pull appearance from." } },
+    { "name": "_team", "type": "integer", "description": { "en": "Optional team slot to look the member up in (defaults to 2)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Set up the attacking character for a technique cutscene using a match roster member's appearance\nSetChrPrmDetailForSkillScriptAtMatch(\"ATK\", 1, \"para_cp0009\");"
+  }
+}

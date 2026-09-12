@@ -1,0 +1,19 @@
+{
+  "name": "CMND_IS_KIZNAX_MAX",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Intended to check whether the \"Kiznax\" (bond) system is maxed out. Its native implementation always ends by pushing true on any valid call in the decompiled code — treat the exact check semantics with caution."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on any valid call; null only if the call is made before the engine/script state is ready."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Branch on whether the Kiznax system is maxed out\nif (CMND_IS_KIZNAX_MAX())\n{\n\t// ...\n}"
+  }
+}

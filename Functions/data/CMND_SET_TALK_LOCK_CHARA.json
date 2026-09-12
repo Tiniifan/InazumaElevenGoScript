@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SET_TALK_LOCK_CHARA",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Locks talk interaction for one or more specific character handles (a narrower version of CMND_SET_TALK_LOCK_STATE, which locks talking globally)."
+  },
+  "params": [
+    {
+      "name": "handles",
+      "type": "handle|array",
+      "description": {
+        "en": "A character handle, or an array of character handles, to lock talk interaction for."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Collect this function's extra (vararg) arguments into an array of character handles\nif (vargc > 0)\n{\n\tlocal lockedCharas = array(vargc);\n\tfor (local n = 0; n < vargc; ++n)\n\t{\n\t\tlockedCharas[n] = vargv[n];\n\t}\n\t// Lock talk interaction for all of them while this NPC is being talked to\n\tCMND_SET_TALK_LOCK_CHARA(lockedCharas);\n}"
+  }
+}

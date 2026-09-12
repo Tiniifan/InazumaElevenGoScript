@@ -1,0 +1,34 @@
+{
+  "name": "CMND_KEY_INPUT",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Checks the current state of a physical/touch input. The first argument selects the button (\"A\", \"B\", \"X\", \"Y\", \"L\", \"R\", \"DU\"/\"DD\"/\"DL\"/\"DR\" for the d-pad, \"SELECT\", \"START\" or \"TOUCH\" for the touch screen); the second selects the state to test (\"Down\" for just-pressed, \"On\" for held, or \"TouchS\" for a touch-screen press)."
+  },
+  "params": [
+    {
+      "name": "button",
+      "type": "string",
+      "description": {
+        "en": "Input to test: \"A\", \"B\", \"X\", \"Y\", \"L\", \"R\", \"DU\", \"DD\", \"DL\", \"DR\", \"SELECT\", \"START\" or \"TOUCH\"."
+      }
+    },
+    {
+      "name": "state",
+      "type": "string",
+      "description": {
+        "en": "State to test: \"Down\" (just pressed), \"On\" (held down) or \"TouchS\" (touch-screen press)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True if the input matches the requested state."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Advance a cutscene on A, B, or a screen tap\nif (CMND_KEY_INPUT(\"A\", \"Down\") || CMND_KEY_INPUT(\"B\", \"Down\") || CMND_KEY_INPUT(\"TOUCH\", \"TouchS\"))\n{\n\t// ...\n}"
+  }
+}

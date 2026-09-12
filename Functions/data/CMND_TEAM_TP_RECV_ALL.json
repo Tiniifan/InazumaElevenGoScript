@@ -1,0 +1,19 @@
+{
+  "name": "CMND_TEAM_TP_RECV_ALL",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Intended to fully restore the TP (Technique Points) gauge of every party member at once, mirroring CMND_TEAM_GP_RECV_ALL. In this build its native implementation only validates the call and returns — it doesn't actually touch any party member's TP, so calling it currently has no gameplay effect."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on any valid call (the function is otherwise a no-op); null if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Called alongside CMND_TEAM_GP_RECV_ALL to restore the team, though this one is currently a no-op\nCMND_TEAM_GP_RECV_ALL();\nCMND_TEAM_TP_RECV_ALL();"
+  }
+}

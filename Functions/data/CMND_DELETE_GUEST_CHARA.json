@@ -1,0 +1,19 @@
+{
+  "name": "CMND_DELETE_GUEST_CHARA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Removes the guest character(s) previously spawned with CMND_CREATE_GUEST_CHARA, freeing their slot. Takes no arguments — it clears whatever guest is currently registered."
+  },
+  "params": [],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Cleanup result, not used by scripts."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Clean up the temporary guest companion at the end of the scene\nCMND_DELETE_GUEST_CHARA();"
+  }
+}

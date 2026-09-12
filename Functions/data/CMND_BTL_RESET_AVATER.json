@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_RESET_AVATER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Clears a previously set decorative avatar/accessory (see CMND_BTL_SET_AVATER). Called with a single team-slot argument, it clears that team's highest-priority active avatar; called with 2 or more arguments, the second argument is read as an avatar/character ID string and the matching avatar entry is cleared wherever it is found (the team-slot argument is not used in that form)."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Team slot to clear the highest-priority avatar for, when called with a single argument." } },
+    { "name": "id", "type": "string", "description": { "en": "Optional avatar/character ID string; when given (2+ argument form), the specific matching avatar entry is cleared instead." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on every valid call, whether or not a matching avatar was actually found and cleared; null if no arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Clear team 0's avatar once too many are active, then reset one for a specific character\nif (CMND_BTL_GET_AVATER_NUM(0) >= 3 && !CMND_BTL_HAS_AVATER(\"para_cp0008\"))\n{\n\tCMND_BTL_RESET_AVATER(0);\n}\nCMND_BTL_RESET_AVATER(0, \"para_cp0009\");"
+  }
+}

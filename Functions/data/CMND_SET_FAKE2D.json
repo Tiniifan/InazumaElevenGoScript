@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_FAKE2D",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Toggles \"fake 2D\" rendering on a character/object handle, making a 3D model render like a flat billboard sprite facing the camera. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Handle to configure."
+      }
+    },
+    {
+      "name": "enabled",
+      "type": "boolean",
+      "description": {
+        "en": "True to render as a fake-2D billboard."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Render a model as a flat billboard sprite\nCMND_SET_FAKE2D(hChara, true);"
+  }
+}

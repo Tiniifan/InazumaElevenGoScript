@@ -1,0 +1,22 @@
+{
+  "name": "CMND_SEARCH_POS_PT_MEMBER",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Searches the party roster for a member currently assigned to a given field position/figure value. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    { "name": "figure", "type": "integer", "description": { "en": "Figure/build value to match against each party member." } },
+    { "name": "unused", "type": "integer", "description": { "en": "Second argument read by the native but not otherwise used in the traced logic." } }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "1 if a matching party member was found, 0 if not; null if the call was invalid (fewer than 2 arguments) or the roster/position data isn't ready."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Check whether any party member matches a given figure value\nlocal found = CMND_SEARCH_POS_PT_MEMBER(2, 0) == 1;"
+  }
+}

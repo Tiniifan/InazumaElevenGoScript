@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_GAME_SUB_PHASE",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Returns the engine's current \"game sub phase\" value, set with CMND_SET_GAME_SUB_PHASE. Scripts compare it against story-progress thresholds to decide which map state/dialogue to show."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The current game sub-phase value."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Branch map behavior based on story progress thresholds\nif (CMND_GET_GAME_SUB_PHASE() < 70050040)\n{\n\t// ...\n}"
+  }
+}

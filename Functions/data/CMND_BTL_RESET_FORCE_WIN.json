@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_RESET_FORCE_WIN",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Clears every forced-win entry previously set with CMND_BTL_SET_FORCE_WIN, for every team/player at once."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Clear all forced-win entries once the scripted sequence is done\nCMND_BTL_RESET_FORCE_WIN();"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "StartStandEvent",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Enters \"stand event\" dialogue mode: adjusts camera depth-of-field, pauses RPG character/map/camera updates, and remembers the previous pause state. Does nothing (and logs a message) if a stand event is already active. Pair with EndStandEvent."
+  },
+  "params": [
+    { "name": "_frame", "type": "integer", "description": { "en": "Optional number of frames for the depth-of-field transition (defaults to 10)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement (an early `return;` with no value when already active) — implicitly null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Enter stand-event mode, show dialogue, then leave it\nStartStandEvent();\nCreateSpeech(\"tlk_id\");\nEndStandEvent();"
+  }
+}

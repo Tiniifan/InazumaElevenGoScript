@@ -1,0 +1,31 @@
+{
+  "name": "AddParty",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Adds a party member silently (no message/jingle), setting up their position lock, Fighting Spirit enable/lock flags, and optionally their level, via CMND_ADD_PARTY and its follow-up CMND_SET_*_FLAG calls. Does nothing extra if CMND_ADD_PARTY fails (returns a non-positive handle)."
+  },
+  "params": [
+    { "name": "_paramID", "type": "string", "required": true, "description": { "en": "Param ID of the character to add to the party." } },
+    { "name": "_ptLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's position slot." } },
+    { "name": "_avatarEnable", "type": "boolean", "required": true, "description": { "en": "Whether to enable the member's Fighting Spirit." } },
+    { "name": "_avatarLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's Fighting Spirit." } },
+    { "name": "_lv", "type": "integer", "required": false, "default": "-1 (don't change the member's level)", "description": { "en": "Level to set for the new member." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "examples": [
+    {
+      "case": "Adding a party member without changing their level (real usage, from ev42010100.nut)",
+      "source": "real",
+      "code": "// Add a party member silently, without a message or jingle, keeping their current level\nAddParty(\"para_cp0008\", true, false, false);"
+    },
+    {
+      "case": "Adding a party member and setting their level (real usage, from ev42020900.nut)",
+      "source": "real",
+      "code": "// Add a party member silently and set their level to 6\nAddParty(\"para_cp0010\", true, false, false, 6);"
+    }
+  ]
+}

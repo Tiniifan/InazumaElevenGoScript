@@ -1,0 +1,20 @@
+{
+  "name": "StartWhiteFadeOut",
+  "kind": "ev_main",
+  "category": "screen-fx",
+  "description": {
+    "en": "Fades a screen out to white and waits for the fade to finish."
+  },
+  "params": [
+    { "name": "_screen", "type": "integer", "description": { "en": "Screen buffer to fade (e.g. SCREEN_A)." } },
+    { "name": "_frame", "type": "float", "description": { "en": "Duration of the fade, in frames." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Flash the screen white instantly for an effect\nStartWhiteFadeOut(SCREEN_A, 0.0);\nStartWhiteFadeIn(SCREEN_A, 0.0);"
+  }
+}

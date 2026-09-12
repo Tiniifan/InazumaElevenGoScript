@@ -1,0 +1,19 @@
+{
+  "name": "InitChildThread",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Prepares the current event context's child-thread slot array before spawning any child coroutines with AddChildThread — must be called once before the first AddChildThread call, with the maximum number of concurrent child threads to support."
+  },
+  "params": [
+    { "name": "_num", "type": "integer", "description": { "en": "Maximum number of concurrent child threads to allocate slots for." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Run three child threads (defined earlier as fadeinProc, TextProc, TenmaProc) concurrently\nInitChildThread(3);\nAddChildThread(fadeinProc);\nAddChildThread(TextProc);\nAddChildThread(TenmaProc);\nRunChildThread();"
+  }
+}

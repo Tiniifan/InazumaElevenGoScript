@@ -1,0 +1,27 @@
+{
+  "name": "CMND_CHR_MTN_IS_END",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Checks whether the motion currently playing on a character handle has finished, so a script can wait for an animation to complete before continuing."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to check."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True once the current motion has finished playing."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait for the current motion to finish playing\nwhile (!CMND_CHR_MTN_IS_END(hEffMdl))\n{\n\tsuspend();\n}"
+  }
+}

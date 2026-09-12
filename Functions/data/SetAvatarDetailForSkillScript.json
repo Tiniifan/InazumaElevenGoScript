@@ -1,0 +1,20 @@
+{
+  "name": "SetAvatarDetailForSkillScript",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Attaches a decorative avatar/accessory to a technique cutscene participant set up with SetChrPrmDetailForSkillScript or its AtMatch variants."
+  },
+  "params": [
+    { "name": "_side", "type": "string", "description": { "en": "Which side to configure: \"ATK\" or \"DEF\"." } },
+    { "name": "_avatarID", "type": "integer", "description": { "en": "Avatar/accessory ID to attach." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Attach avatars to both sides of a technique cutscene\nSetAvatarDetailForSkillScript(\"ATK\", 1);\nSetAvatarDetailForSkillScript(\"DEF\", 2);"
+  }
+}

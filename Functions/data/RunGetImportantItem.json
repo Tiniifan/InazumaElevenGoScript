@@ -1,0 +1,20 @@
+{
+  "name": "RunGetImportantItem",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Same as RunGetItem, but plays the \"J_07\" jingle instead of \"J_08\" — used for a more significant/important item pickup."
+  },
+  "params": [
+    { "name": "_item", "type": "string", "description": { "en": "Item ID to obtain." } },
+    { "name": "_num", "type": "integer", "description": { "en": "Optional quantity to add (defaults to 1)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Obtain an important item with the \"J_07\" jingle presentation\nRunGetImportantItem(\"iik0001\", 1);"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "CMND_ADD_SET_DIRECTOR",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Unlocks a director/manager, by director ID, optionally selecting them and/or marking them as newly unlocked."
+  },
+  "params": [
+    { "name": "directorId", "type": "string", "description": { "en": "ID of the director to unlock, e.g. \"iim0001\"." } },
+    { "name": "select", "type": "boolean", "description": { "en": "Optional; whether to set this director as active." } },
+    { "name": "isNew", "type": "boolean", "description": { "en": "Optional; whether to flag the director as newly unlocked." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect (including as a no-op if no ID was resolved); null if the call was invalid (no arguments at all)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Unlock the starting director, flagged as newly unlocked but not selected\nCMND_ADD_SET_DIRECTOR(\"iim0001\", false, true);"
+  }
+}

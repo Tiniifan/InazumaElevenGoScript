@@ -1,0 +1,23 @@
+{
+  "name": "SetHiMdlPosAndMotID",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Positions and sets the motion of a high-detail dialogue model (a \"hi model\"), waiting for it to load first. Its position/scale is picked from a lookup table keyed by the character's base model ID (or, for a few special-cased base IDs, hardcoded offsets), with a left/right mirror applied when _stdPos is EV_CHARA_POS_RIGHT. Also registers the model's display name for the talk system when a base ID is given."
+  },
+  "params": [
+    { "name": "_hdl", "type": "handle", "description": { "en": "Handle of the hi-model to position." } },
+    { "name": "_stdPos", "type": "integer", "description": { "en": "Standard dialogue position slot (e.g. EV_CHARA_POS_RIGHT) selecting which side of the screen to place the model." } },
+    { "name": "_motion", "type": "array", "description": { "en": "3-element array [motionId0, motionId1, motionId2] passed to CMND_SET_MOTION_ID." } },
+    { "name": "_baseID", "type": "string", "description": { "en": "Optional base model ID used to look up position/scale and register the talk display name (defaults to \"\")." } },
+    { "name": "_ubaseID", "type": "integer", "description": { "en": "Optional numeric base ID fallback used when _baseID is empty (defaults to 0)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Position and set the motion of two dialogue hi-models (main character and NPC)\nSetHiMdlPosAndMotID(_main_hdl, _main_pos, _main_mot, _main_base_id);\nSetHiMdlPosAndMotID(_npc_hdl, _npc_pos, _npc_mot, _npc_base_id);"
+  }
+}

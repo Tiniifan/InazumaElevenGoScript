@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SND_IS_PLAYING",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Checks whether a sound handle is currently playing."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Sound handle to check."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the sound is still playing."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait for a jingle to finish playing\nwhile (CMND_SND_IS_PLAYING(hJingle))\n{\n\tsuspend();\n}"
+  }
+}

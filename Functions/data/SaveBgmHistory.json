@@ -1,0 +1,17 @@
+{
+  "name": "SaveBgmHistory",
+  "kind": "ev_main",
+  "category": "sound",
+  "description": {
+    "en": "Remembers the currently playing BGM's ID and playback position into the global history_bgm_name/history_bgm_pos variables, for later restoration via OpenBgmHistory."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Remember the current BGM before overriding it, then resume it afterwards\nSaveBgmHistory();\n// ... play a different BGM for a cutscene ...\nOpenBgmHistory(true);"
+  }
+}

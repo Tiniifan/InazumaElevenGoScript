@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_CAMERA_REF",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Sets a camera's look-at reference (target) point."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Camera handle to aim."
+      }
+    },
+    {
+      "name": "reference",
+      "type": "array",
+      "description": {
+        "en": "[x, y, z] look-at target position."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Aim the active camera at a new target point\nCMND_SET_CAMERA_REF(hcam, ref);"
+  }
+}

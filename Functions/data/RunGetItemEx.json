@@ -1,0 +1,25 @@
+{
+  "name": "RunGetItemEx",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Runs the full \"item obtained\" presentation: fades out the BGM, plays a jingle, shows the item-get message (with the item substituted into it), adds the item to the inventory, then restores the BGM. The general engine behind RunGetItem/RunGetWadai/RunGetImportantItem."
+  },
+  "params": [
+    { "name": "_item", "type": "string", "description": { "en": "Item ID to obtain and substitute into the message." } },
+    { "name": "_num", "type": "integer", "description": { "en": "Quantity of the item to add." } },
+    { "name": "_fade", "type": "integer", "description": { "en": "BGM fade-out duration in frames before the sequence." } },
+    { "name": "_wait", "type": "integer", "description": { "en": "Number of frames to wait after the BGM fade before starting." } },
+    { "name": "_jingle", "type": "string", "description": { "en": "Jingle sound event ID to play." } },
+    { "name": "_index", "type": "integer", "description": { "en": "Message substitution slot index for the item." } },
+    { "name": "_event", "type": "string", "description": { "en": "Message ID shown via CreateSpeech." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Obtain an item with the standard presentation (as RunGetItem does internally)\nRunGetItemEx(\"irg0001\", 1, 30, 30, \"J_08\", 0, \"sysmes-item-get\");"
+  }
+}

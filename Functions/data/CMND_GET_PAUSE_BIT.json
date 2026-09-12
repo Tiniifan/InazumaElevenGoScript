@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_PAUSE_BIT",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Returns the current \"pause\" bitmask: a set of bit flags where each set bit pauses updates for a corresponding engine system (e.g. the RPG camera via OFF_RPG_CAMERA). Read together with CMND_GET_DRAW_OFF_BIT and written back with CMND_SET_PAUSE_BIT."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The current pause bitmask."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Temporarily disable the RPG camera update\nlocal stp_bit = CMND_GET_PAUSE_BIT();\nCMND_SET_PAUSE_BIT(stp_bit & ~OFF_RPG_CAMERA);"
+  }
+}

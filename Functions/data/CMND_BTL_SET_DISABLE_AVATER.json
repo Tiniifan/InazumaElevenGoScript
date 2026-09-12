@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_SET_DISABLE_AVATER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Enables or disables the decorative avatar/accessory currently attached to a character (see CMND_BTL_SET_AVATER), without removing it."
+  },
+  "params": [
+    { "name": "charaId", "type": "string", "description": { "en": "Character ID string identifying whose avatar to enable/disable." } },
+    { "name": "disable", "type": "boolean", "description": { "en": "True to hide/disable the avatar, false to show/enable it again." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has been processed (a no-op if the character has no matching avatar entry); null if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Hide a character's avatar for the duration of a scripted sequence, then show it again\nCMND_BTL_SET_DISABLE_AVATER(\"para_cp0350\", true);\n// ... scripted sequence plays out ...\nCMND_BTL_SET_DISABLE_AVATER(\"para_cp0350\", false);"
+  }
+}

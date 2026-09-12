@@ -1,0 +1,17 @@
+{
+  "name": "ScEventReturnBGMAtMatch",
+  "kind": "ev_main",
+  "category": "sound",
+  "description": {
+    "en": "Thin wrapper around CMND_BTL_RETURN_BGM — restores the match BGM after a temporary override during a match-side cutscene."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Restore the match BGM after a cutscene's temporary track override\nScEventContinuousBGMAtMatch(\"M_08\");\n// ... cutscene plays out ...\nScEventReturnBGMAtMatch();"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "CMND_LOAD_LIGHT",
+  "kind": "native",
+  "category": "lighting",
+  "description": {
+    "en": "Loads a lighting setup file (.xk) by name and returns its handle."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": {
+        "en": "Internal name for the light setup."
+      }
+    },
+    {
+      "name": "path",
+      "type": "string",
+      "description": {
+        "en": "Path to the light file, e.g. \"...lgt.xk\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the loaded light setup."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Load a technique cutscene's lighting setup\nhLight = CMND_LOAD_LIGHT(\"\\x008bZ\\x0083\\x0089\\x0083C\\x0083g\", sBasePack + \"lgt.xk\");"
+  }
+}

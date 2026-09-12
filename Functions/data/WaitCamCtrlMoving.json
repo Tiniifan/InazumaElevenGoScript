@@ -1,0 +1,19 @@
+{
+  "name": "WaitCamCtrlMoving",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Suspends the current coroutine until the current camera-control movement (started with CamCtrlMoveTo) has finished — a thin wrapper around IsCamCtrlMove."
+  },
+  "params": [
+    { "name": "_hcam", "type": "handle", "description": { "en": "Handle of the camera being controlled (read but not itself used in the wait check)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Move the camera, then wait for the movement to finish\nCamCtrlMoveTo(hCam, 40, cam_posref);\nWaitCamCtrlMoving(hCam);"
+  }
+}

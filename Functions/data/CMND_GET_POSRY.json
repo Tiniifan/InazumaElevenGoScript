@@ -1,0 +1,34 @@
+{
+  "name": "CMND_GET_POSRY",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Fills the given array with a handle's current position (and rotation), the counterpart to CMND_SET_POSRY."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Handle to query."
+      }
+    },
+    {
+      "name": "outPos",
+      "type": "array",
+      "description": {
+        "en": "Array that receives the position (and rotation); passed by reference and filled in place."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read a character's current position\nlocal chpos = [];\nCMND_GET_POSRY(_hchr, chpos);"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "CMND_SET_TALK_LOCK_SAID",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Sets, for a given event/dialogue key, whether it has already been \"said\" (shown) and whether talk should be locked based on that — used so a one-time line of dialogue isn't repeated."
+  },
+  "params": [
+    {
+      "name": "eventKey",
+      "type": "string",
+      "description": {
+        "en": "Key identifying the dialogue/event, e.g. \"evc0039\"."
+      }
+    },
+    {
+      "name": "locked",
+      "type": "boolean",
+      "description": {
+        "en": "Whether talk should be locked for this key."
+      }
+    },
+    {
+      "name": "said",
+      "type": "boolean",
+      "description": {
+        "en": "Whether this dialogue has already been said."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Mark a one-time dialogue as already said\nCMND_SET_TALK_LOCK_SAID(\"evc0039\", false, true);"
+  }
+}

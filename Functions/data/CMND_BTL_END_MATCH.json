@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_END_MATCH",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Flags the current match to end, letting the match loop wrap up and move on to the post-match result flow."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// End the match once the scripted sequence is done\nCMND_BTL_END_MATCH();"
+  }
+}

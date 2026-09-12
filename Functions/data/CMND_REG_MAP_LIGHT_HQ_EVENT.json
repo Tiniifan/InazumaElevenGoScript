@@ -1,0 +1,41 @@
+{
+  "name": "CMND_REG_MAP_LIGHT_HQ_EVENT",
+  "kind": "native",
+  "category": "lighting",
+  "description": {
+    "en": "Registers the enabled state of one map light slot for the HQ event system initialized by CMND_HQ_EVENT_INIT, so the cutscene's lighting is set up per map/light index."
+  },
+  "params": [
+    {
+      "name": "mapIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the map slot registered with CMND_REG_HDL_HQ_EVENT."
+      }
+    },
+    {
+      "name": "lightIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the light slot to configure."
+      }
+    },
+    {
+      "name": "enabled",
+      "type": "integer",
+      "description": {
+        "en": "1 to enable that light, 0 to disable it."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Configure which map lights are on for this HQ event\nCMND_REG_MAP_LIGHT_HQ_EVENT(0, 1, 1);\nCMND_REG_MAP_LIGHT_HQ_EVENT(0, 3, 0);"
+  }
+}

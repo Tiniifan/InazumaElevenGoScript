@@ -1,0 +1,25 @@
+{
+  "name": "SetGameSubPhase",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Advances the game's story sub-phase: fades the screen out (with an optional map-effect fade), replaces NPCs, sets the new sub-phase, updates and waits for the objective/purpose message to load, optionally plays the purpose jingle effect, runs the inatter (background-loading) check, waits for NPC replacement to finish, then fades the screen back in."
+  },
+  "params": [
+    { "name": "_subPhase", "type": "integer", "description": { "en": "New game sub-phase value to set." } },
+    { "name": "_ppsEffFlag", "type": "boolean", "description": { "en": "Whether to play the purpose-update jingle/flash effect for this transition." } },
+    { "name": "_fade_out", "type": "float", "description": { "en": "Optional fade-out duration in frames (defaults to 15.0)." } },
+    { "name": "_fade_in", "type": "float", "description": { "en": "Optional fade-in duration in frames; a negative value skips the fade-in, e.g. before a map jump (defaults to 15.0)." } },
+    { "name": "_scr", "type": "integer", "description": { "en": "Optional screen buffer to fade (defaults to SCREEN_AB)." } },
+    { "name": "_jng", "type": "string", "description": { "en": "Optional jingle sound event ID for the purpose effect (defaults to \"J_10\")." } },
+    { "name": "_bgm_fade_off", "type": "boolean", "description": { "en": "Optional; whether to suppress the BGM fade during the purpose jingle (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Advance to a new game sub-phase with the purpose effect and default fades\nSetGameSubPhase(10040020, true);"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "CMND_SET_CHARA_SIL_WIDTH",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Sets the outline (\"silhouette\") width and color drawn around a character or object, used for the highlight outline effect during techniques/training cutscenes."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character/object handle to configure."
+      }
+    },
+    {
+      "name": "width",
+      "type": "float",
+      "description": {
+        "en": "Outline width."
+      }
+    },
+    {
+      "name": "color",
+      "type": "integer",
+      "description": {
+        "en": "Outline color (packed color value)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Give the ball its silhouette outline for a technique cutscene\nCMND_SET_CHARA_SIL_WIDTH(ahBall[i], EV_BALL_SIL_WIDTH, EV_BALL_SIL_COLOR);"
+  }
+}

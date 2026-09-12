@@ -1,0 +1,19 @@
+{
+  "name": "WaitLoading",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Suspends the current coroutine until the given handle's asset (model, etc.) has finished loading."
+  },
+  "params": [
+    { "name": "_hdl", "type": "handle", "description": { "en": "Handle to wait on the loading state of." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create a match member model and wait for it to finish loading\nlocal hMemberL = CreateEvLowMdlForNumber(\"member\", npcFace, npcBody, true, npcKeeper);\nWaitLoading(hMemberL);"
+  }
+}

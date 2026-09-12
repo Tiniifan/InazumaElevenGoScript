@@ -1,0 +1,20 @@
+{
+  "name": "RunUnlockSkill",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Unlocks a skill for a character with the standard \"sysmes-Skill-00001\" message — a fixed-preset wrapper around RunUnlockSkillUseMsg."
+  },
+  "params": [
+    { "name": "_chr", "type": "string", "description": { "en": "Character ID whose skill is unlocked." } },
+    { "name": "_skill", "type": "string", "description": { "en": "Skill ID to unlock." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Unlock a skill for a character with the standard presentation\nRunUnlockSkill(\"para_cp0008\", \"who0011\");"
+  }
+}

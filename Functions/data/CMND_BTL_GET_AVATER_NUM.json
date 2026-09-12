@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_GET_AVATER_NUM",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Counts how many decorative avatars/accessories (see CMND_BTL_SET_AVATER) are currently active for a team."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side to count active avatars for." } }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The number of currently active avatars for that team; null if no teamSlot argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Avoid stacking too many avatars on the player's team\nif (CMND_BTL_GET_AVATER_NUM(0) >= 3 && !CMND_BTL_HAS_AVATER(\"para_cp0008\"))\n{\n\tCMND_BTL_RESET_AVATER(0);\n}"
+  }
+}

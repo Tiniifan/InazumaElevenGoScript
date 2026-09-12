@@ -1,0 +1,34 @@
+{
+  "name": "CMND_LOAD_SCRIPT",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Asynchronously loads a compiled sub-script (.nutb) by path into a named execution context, returning a handle to poll with CMND_WAIT_LDS."
+  },
+  "params": [
+    {
+      "name": "path",
+      "type": "string",
+      "description": {
+        "en": "Path to the compiled script file, e.g. \"data/script/event/ev43010000.nutb\"."
+      }
+    },
+    {
+      "name": "context",
+      "type": "string",
+      "description": {
+        "en": "Name of the execution context to run the script in, e.g. \"subev_ctx\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle representing the loading/running script."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Load a sub-event script asynchronously\nlocal script = CMND_LOAD_SCRIPT(\"data/script/event/ev43010000.nutb\", \"subev_ctx\");\nwhile (CMND_WAIT_LDS(script))\n{\n\tsuspend();\n}"
+  }
+}

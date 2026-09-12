@@ -1,0 +1,20 @@
+{
+  "name": "PurposeEffect",
+  "kind": "ev_main",
+  "category": "screen-fx",
+  "description": {
+    "en": "Plays the objective/purpose-update jingle and flashes the purpose UI on and off a few times while it plays, temporarily stopping the map BGM (and optionally not restoring it afterwards)."
+  },
+  "params": [
+    { "name": "_jng", "type": "string", "description": { "en": "Optional jingle sound event ID to play (defaults to \"J_10\")." } },
+    { "name": "_bgm_fade_off", "type": "boolean", "description": { "en": "Optional; when true, leaves the map BGM stopped instead of restoring it after the jingle (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Play the objective-update jingle and purpose flash effect\nPurposeEffect(\"J_10\", false);"
+  }
+}

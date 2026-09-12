@@ -1,0 +1,27 @@
+{
+  "name": "CMND_RESET_LOOK_AT",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Clears a look-at override previously set with CMND_SET_LOOK_AT, letting the character's head/eyes stop tracking the target."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to reset."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the look-at override was cleared; null if the call was invalid (no handle given) or the handle doesn't resolve to an existing character."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Stop a character from tracking its look-at target\nCMND_RESET_LOOK_AT(hAoiL);"
+  }
+}

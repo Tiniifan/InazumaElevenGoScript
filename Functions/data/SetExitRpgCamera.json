@@ -1,0 +1,17 @@
+{
+  "name": "SetExitRpgCamera",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Copies the current RPG (free-roam) camera's position/reference back onto the active camera and marks the exit-camera state as ready, typically called when leaving a cutscene back to free-roam control."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Restore the RPG camera when a cutscene ends\nSetExitRpgCamera();"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "BtnImageNext",
+  "kind": "ev_main",
+  "category": "image-ui",
+  "description": {
+    "en": "Waits, suspending frame by frame, until the player presses A, B or taps the touch screen, then returns true."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean",
+    "description": { "en": "Always true once the player provides the expected input." }
+  },
+  "examples": [
+    {
+      "case": "Waiting for the player to advance a tutorial image",
+      "source": "real",
+      "code": "// Wait for the player to advance a tutorial image\nwhile (!BtnImageNext())\n{\n\tsuspend();\n}"
+    }
+  ]
+}

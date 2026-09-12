@@ -1,0 +1,41 @@
+{
+  "name": "CMND_MAKE_CHILD_HQ_EVENT_SCENE",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Plays back the high-quality scripted cutscene set up with CMND_HQ_EVENT_INIT/CMND_REG_HDL_HQ_EVENT/etc. as a child scene, with a sound cue, cut number and an option to end on a white fade."
+  },
+  "params": [
+    {
+      "name": "sound",
+      "type": "any",
+      "description": {
+        "en": "Sound cue configuration for the cutscene."
+      }
+    },
+    {
+      "name": "cutNumber",
+      "type": "integer",
+      "description": {
+        "en": "Which cut/take of the cutscene to play."
+      }
+    },
+    {
+      "name": "endWhiteFade",
+      "type": "boolean",
+      "description": {
+        "en": "Whether the cutscene should end on a white fade."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Likely true once the child scene was created; null if the call was invalid (fewer than 2 arguments). The success value is produced by an internal scene-creation helper that wasn't fully traceable from the decompiled code."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Play back the prepared HQ event cutscene\nCMND_MAKE_CHILD_HQ_EVENT_SCENE(snd, _cutNum, _endWhiteFade);"
+  }
+}

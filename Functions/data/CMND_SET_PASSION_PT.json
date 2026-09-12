@@ -1,0 +1,22 @@
+{
+  "name": "CMND_SET_PASSION_PT",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets the team's \"Passion Points\" value, either as an absolute value or (when the second argument is truthy) as a delta subtracted from the current value."
+  },
+  "params": [
+    { "name": "value", "type": "integer", "description": { "en": "Value to set, or amount to subtract when useDelta is true." } },
+    { "name": "useDelta", "type": "boolean", "description": { "en": "Optional; when true, subtracts `value` from the current Passion Points instead of setting it directly." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (no value given, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Fully restore the team's Passion Points\nCMND_SET_PASSION_PT(100, true);"
+  }
+}

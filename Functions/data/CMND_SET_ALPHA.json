@@ -1,0 +1,48 @@
+{
+  "name": "CMND_SET_ALPHA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Sets a handle's opacity, either instantly (one value) or animated (a target alpha faded over a number of frames). The first argument can also be an array of handles to apply the same fade to all of them at once."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle|array",
+      "description": {
+        "en": "Handle to fade (character, image, bust-up, ...), or an array of handles to fade them all the same way."
+      }
+    },
+    {
+      "name": "alpha",
+      "type": "float",
+      "description": {
+        "en": "Alpha value to set instantly, or the starting alpha when animating."
+      }
+    },
+    {
+      "name": "targetAlpha",
+      "type": "float",
+      "description": {
+        "en": "Optional target alpha to fade to."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "integer",
+      "description": {
+        "en": "Optional fade duration in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the alpha (or fade) has been applied to the handle(s); null if the call was invalid (fewer than 2 arguments), or if a given handle doesn't resolve to an existing object."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// ev_main helper: fade a standing map character in over _frm frames\nStandEventCharaFade <- function (_hdl, _alpha, _frm = 10)\n{\n\tif (_alpha > 0.0)\n\t{\n\t\tCMND_SET_ALPHA(_hdl, 0.0);\n\t\tCMND_SET_ENABLE(_hdl, true);\n\t\tCMND_SET_ALPHA(_hdl, 0.0, _alpha, _frm);\n\t}\n};"
+  }
+}

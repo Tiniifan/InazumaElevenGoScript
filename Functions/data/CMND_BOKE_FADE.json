@@ -1,0 +1,34 @@
+{
+  "name": "CMND_BOKE_FADE",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Animates the intensity of an already-active out-of-focus blur (\"boke\") effect (see CMND_BOKE_CREATE) to a new value over a number of frames, without turning it fully on/off. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "intensity",
+      "type": "float",
+      "description": {
+        "en": "Target blur intensity."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "float",
+      "description": {
+        "en": "Animation duration in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Change the active blur effect's intensity\nCMND_BOKE_FADE(0.5, 15.0);"
+  }
+}

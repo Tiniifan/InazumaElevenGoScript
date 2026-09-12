@@ -1,0 +1,19 @@
+{
+  "name": "AddChildThread",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Spawns a new Squirrel coroutine (via newthread) from the given function, bound to the current stack's locals, and registers it as a child thread to be driven by RunChildThread. Must be called after InitChildThread."
+  },
+  "params": [
+    { "name": "_func", "type": "function", "description": { "en": "Function to run as a new child coroutine." } }
+  ],
+  "returns": {
+    "type": "integer",
+    "description": { "en": "The child thread's slot index (its id within the current event context's thread array)." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Run three child threads (defined earlier as fadeinProc, TextProc, TenmaProc) concurrently\nInitChildThread(3);\nAddChildThread(fadeinProc);\nAddChildThread(TextProc);\nAddChildThread(TenmaProc);\nRunChildThread();"
+  }
+}

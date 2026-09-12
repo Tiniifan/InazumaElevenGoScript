@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_SET_CHARA_POS",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Teleports a match member to a given field position and facing, by team slot and character ID or number."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side the character belongs to." } },
+    { "name": "chara", "type": "string|integer", "description": { "en": "Character ID string, or a numeric character index, identifying the member to move." } },
+    { "name": "posXZRotY", "type": "array", "description": { "en": "3-element array [x, z, rotY] with the target field position and Y-axis rotation." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if fewer than 3 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Move two match members to specific field positions and facings\nlocal posXZRotY = [0.0, 0.0, 0.0];\nCMND_BTL_SET_CHARA_POS(0, \"para_cp0008\", posXZRotY);\nCMND_BTL_SET_CHARA_POS(1, \"para_cp0010\", posXZRotY);"
+  }
+}

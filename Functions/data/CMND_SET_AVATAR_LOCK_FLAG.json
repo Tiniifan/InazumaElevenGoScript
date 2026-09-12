@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_AVATAR_LOCK_FLAG",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets whether a character's avatar (keshin/mascot) slot is locked, e.g. preventing it from being changed in team management."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to configure."
+      }
+    },
+    {
+      "name": "locked",
+      "type": "boolean",
+      "description": {
+        "en": "Whether the avatar slot should be locked."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Get a roster character's handle, then temporarily unlock their avatar slot to attach a new one\nlocal hdl = CMND_GET_PARTY_HANDLE(_chr);\nlocal wasLocked = CMND_GET_AVATAR_LOCK_FLAG(hdl);\nCMND_SET_AVATAR_ENABLE(hdl, true);\nCMND_SET_AVATAR_LOCK_FLAG(hdl, false);\nCMND_ATTACH_AVATAR(_chr, _avt);\nCMND_SET_AVATAR_LOCK_FLAG(hdl, wasLocked);"
+  }
+}

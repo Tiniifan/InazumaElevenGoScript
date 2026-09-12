@@ -1,0 +1,17 @@
+{
+  "name": "EndTalkLock",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Releases a talk lock started with StartTalkLock, clearing the global bit flag, the talk-lock state and its icon."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Release the talk lock once the restricted scene is done\nEndTalkLock();"
+  }
+}

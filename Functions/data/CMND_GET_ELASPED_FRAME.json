@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_ELASPED_FRAME",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Returns the number of frames elapsed since the engine last updated (the per-frame delta, normally 1.0 but can differ if the game is running slower/faster than expected). Used to build frame-rate-independent timers and countdowns in event scripts."
+  },
+  "params": [],
+  "returns": {
+    "type": "float",
+    "description": {
+      "en": "Elapsed frame count since the previous update."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Decrement a countdown by the real elapsed time instead of a fixed step\nwait_frm_now -= CMND_GET_ELASPED_FRAME();"
+  }
+}

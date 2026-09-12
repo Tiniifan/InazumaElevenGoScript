@@ -1,0 +1,21 @@
+{
+  "name": "EvLowMdlSetRotY",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Turns a low-detail cutscene character model to a given absolute Y-axis rotation over a number of frames."
+  },
+  "params": [
+    { "name": "_hdl", "type": "handle", "description": { "en": "Handle of the character model to turn." } },
+    { "name": "_rotY", "type": "float", "description": { "en": "Target Y-axis rotation, in degrees." } },
+    { "name": "_frame", "type": "integer", "description": { "en": "Number of frames the turn should take." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Turn a character to face a specific rotation over 30 frames\nEvLowMdlSetRotY(hTenmaL, -180, 30);"
+  }
+}

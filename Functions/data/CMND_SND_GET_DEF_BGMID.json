@@ -1,0 +1,19 @@
+{
+  "name": "CMND_SND_GET_DEF_BGMID",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Returns the default BGM ID configured for the current map, so a script can restore it after temporarily playing something else."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The map's default BGM ID."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Remember the map's default BGM to restore it later\nlocal defBgmID = CMND_SND_GET_DEF_BGMID();"
+  }
+}

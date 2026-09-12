@@ -1,0 +1,19 @@
+{
+  "name": "CMND_RESET_TALK_CHARA",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Clears all character-to-name-key registrations previously made with CMND_ADD_TALK_CHARA, resetting the dialogue system's talker list."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "Always true."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Clear registered talkers after a conversation ends\nCMND_RESET_TALK_CHARA();"
+  }
+}

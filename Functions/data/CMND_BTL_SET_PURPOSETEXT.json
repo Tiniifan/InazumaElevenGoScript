@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_SET_PURPOSETEXT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Shows (or hides) a text bubble alongside the purpose marker set with CMND_BTL_SET_PURPOSE, formatted from a message-table text ID and optionally substituting a character's name into it."
+  },
+  "params": [
+    { "name": "visible", "type": "boolean", "description": { "en": "True to show the purpose text, false to hide it." } },
+    { "name": "textId", "type": "string", "description": { "en": "Optional message-table text ID string (e.g. \"purpose_021\") to display." } },
+    { "name": "charaId", "type": "string", "description": { "en": "Optional character ID string whose name is substituted into the text." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the purpose text has been updated; null if no visible argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Show a purpose marker with accompanying text naming a specific character\nCMND_BTL_SET_PURPOSE(2, 8, true, 0, 0.0, -0.55000001);\nCMND_BTL_SET_PURPOSETEXT(true, \"purpose_021\", \"para_cp0008\");"
+  }
+}

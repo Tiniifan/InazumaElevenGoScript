@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_TEMP_MAP_BYTE_FLAG",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Sets a temporary, map-scoped byte-sized value (see CMND_SET_TEMP_MAP_BIT_FLAG for the bit version), identified by a numeric index. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "index",
+      "type": "integer",
+      "description": {
+        "en": "Index of the temporary map-scoped byte value to set."
+      }
+    },
+    {
+      "name": "value",
+      "type": "integer",
+      "description": {
+        "en": "Byte value to store."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Store a map-local counter value\nCMND_SET_TEMP_MAP_BYTE_FLAG(0, 2);"
+  }
+}

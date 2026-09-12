@@ -1,0 +1,19 @@
+{
+  "name": "CMND_IS_RUN_CHILD_SCENE",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Checks whether a child scene (a menu, movie, or HQ-event cutscene started with one of the CMND_MAKE_CHILD_*_SCENE commands) is still running, so the parent script can wait for it to finish."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the child scene is still running."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait for the child scene (menu/movie/cutscene) to finish\nwhile (CMND_IS_RUN_CHILD_SCENE())\n{\n\tsuspend();\n}"
+  }
+}

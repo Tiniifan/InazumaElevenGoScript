@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_TRIGGER_FLOOR_EV",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Triggers a floor-related match event (e.g. a quicksand or pitch-collapse effect) with a numeric event type and parameter."
+  },
+  "params": [
+    { "name": "eventType", "type": "integer", "description": { "en": "Floor event type constant (e.g. FLOOR_EVT_QUICKSAND)." } },
+    { "name": "param", "type": "integer", "description": { "en": "Extra parameter for the event, meaning depends on eventType." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the event has been triggered; null if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Trigger a quicksand floor event combining two zone states into one parameter\nCMND_BTL_ADD_FLOOR_ATTR(\"FL01\", upd);\nCMND_BTL_ADD_FLOOR_ATTR(\"FL02\", dwd);\nCMND_BTL_TRIGGER_FLOOR_EV(FLOOR_EVT_QUICKSAND, (dwd << 4) + upd);"
+  }
+}

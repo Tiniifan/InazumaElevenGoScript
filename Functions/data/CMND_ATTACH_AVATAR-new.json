@@ -1,0 +1,53 @@
+{
+  "name": "CMND_ATTACH_AVATAR",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Attaches a Fighting Spirit to a party member. Both the character and the Fighting Spirit are identified by name: the engine hashes each name with CRC32 to resolve the matching party record and the matching Fighting Spirit record. By default, any Fighting Spirit state previously stored on that character is reset before the new one is assigned; an optional third argument can skip that reset. The call also resolves which evolution/visual stage of the Fighting Spirit to display, based on the character's already-stored progress with it (the exact stage-selection formula was not traced in detail)."
+  },
+  "params": [
+    {
+      "name": "charaName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the party member to attach the Fighting Spirit to (matched by CRC32 hash against the currently loaded party)."
+      }
+    },
+    {
+      "name": "avatarName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the Fighting Spirit to attach (matched by CRC32 hash)."
+      }
+    },
+    {
+      "name": "resetPrevious",
+      "type": "integer",
+      "required": false,
+      "default": "true (implied) when omitted",
+      "description": {
+        "en": "When 0, skips resetting the character's previously stored Fighting Spirit state before attaching the new one. When omitted, or any non-zero value, the reset step runs."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Returns null if the Fighting Spirit system hasn't been initialized, if fewer than 2 arguments are given, or if the named character or Fighting Spirit can't be resolved. Otherwise returns true once the Fighting Spirit has been attached."
+    }
+  },
+  "examples": [
+    {
+      "case": "Attaching a Fighting Spirit after temporarily unlocking it (real usage, from ev_main's RunAttachAvatarEx)",
+      "source": "real",
+      "code": "// Excerpt from RunAttachAvatarEx(_chr, _avt, ...): enable the character's\n// Fighting Spirit slot, temporarily unlock it, attach the named Fighting Spirit,\n// then restore whatever lock state it had before.\nlocal partyHandle = CMND_GET_PARTY_HANDLE(_chr);\nlocal wasLocked = CMND_GET_AVATAR_LOCK_FLAG(partyHandle);\nCMND_SET_AVATAR_ENABLE(partyHandle, true);\nCMND_SET_AVATAR_LOCK_FLAG(partyHandle, false);\nCMND_ATTACH_AVATAR(_chr, _avt);\nCMND_SET_AVATAR_LOCK_FLAG(partyHandle, wasLocked);"
+    },
+    {
+      "case": "Attaching without resetting the character's previous Fighting Spirit progress",
+      "source": "invented",
+      "code": "// Custom helper: attach a Fighting Spirit but keep whatever evolution\n// progress was already stored for this character (skip the reset step\n// by passing 0 as the third argument).\nlocal ReattachAvatarKeepProgress = function (_chr, _avt)\n{\n\tlocal attached = CMND_ATTACH_AVATAR(_chr, _avt, 0);\n\tif (attached == null)\n\t{\n\t\t// Character or Fighting Spirit name could not be resolved.\n\t}\n\treturn attached;\n};"
+    }
+  ]
+}

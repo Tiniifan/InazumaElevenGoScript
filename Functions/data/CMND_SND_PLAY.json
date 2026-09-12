@@ -1,0 +1,41 @@
+{
+  "name": "CMND_SND_PLAY",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Plays a sound handle opened with one of the CMND_SND_OPEN_* commands, optionally at a given volume and with a fade-in."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Sound handle to play."
+      }
+    },
+    {
+      "name": "volume",
+      "type": "float",
+      "description": {
+        "en": "Optional playback volume."
+      }
+    },
+    {
+      "name": "fadeIn",
+      "type": "integer",
+      "description": {
+        "en": "Optional fade-in duration."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Play a BGM handle at full volume with a fade-in\nCMND_SND_PLAY(hBGM, 1.0, _fade);"
+  }
+}

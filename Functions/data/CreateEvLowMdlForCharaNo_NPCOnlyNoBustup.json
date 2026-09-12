@@ -1,0 +1,20 @@
+{
+  "name": "CreateEvLowMdlForCharaNo_NPCOnlyNoBustup",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Shorthand for CreateEvLowMdlForCharaNo_NPCOnly with its _no_bustup argument forced to true — creates a low-detail predefined-NPC cutscene model without its bustup portrait."
+  },
+  "params": [
+    { "name": "_charaName", "type": "string", "description": { "en": "Name to assign the created model." } },
+    { "name": "_npc_no", "type": "integer", "description": { "en": "NPC number identifying the predefined character to create." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created character model." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Create a low-detail predefined-NPC model without a bustup portrait\nlocal hNpcL = CreateEvLowMdlForCharaNo_NPCOnlyNoBustup(\"npcL\", 12);"
+  }
+}

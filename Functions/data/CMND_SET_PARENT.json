@@ -1,0 +1,41 @@
+{
+  "name": "CMND_SET_PARENT",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Attaches one character/object handle to a bone on another character, so it follows that bone's position and rotation (e.g. a hand prop following a character's hand bone)."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Handle of the object to attach."
+      }
+    },
+    {
+      "name": "parentHandle",
+      "type": "handle",
+      "description": {
+        "en": "Handle of the character to attach it to."
+      }
+    },
+    {
+      "name": "boneName",
+      "type": "string",
+      "description": {
+        "en": "Name of the bone on the parent to attach to, e.g. \"r_a4\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the child has been attached to the parent's bone; null if the call was invalid (fewer than 3 arguments) or if either handle doesn't resolve to an existing character."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Attach a phone prop to a character's right hand bone\nCMND_SET_PARENT(hKeitai, hTsurugiL, \"r_a4\");"
+  }
+}

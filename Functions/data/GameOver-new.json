@@ -1,0 +1,27 @@
+{
+  "name": "GameOver",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Plays the full game-over sequence: fades to black, shows the \"game over\" image, plays the game-over sound, fades screen A back in, waits, shows a final message, fades everything to black again, cleans up, and returns to the title screen."
+  },
+  "params": [
+    { "name": "_snd", "type": "string", "required": false, "default": "\"evt_006\"", "description": { "en": "Game-over BGM/sound ID to play." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "examples": [
+    {
+      "case": "Default game-over jingle (every real call site in script_clean/ uses this 0-arg form)",
+      "source": "real",
+      "code": "// A story event's dedicated \"game over\" step, e.g. ev42043100_30 in ev42043100.nut:\n// simply trigger the game-over sequence with the default jingle.\nev42043100_30 <- function ()\n{\n\tGameOver();\n};"
+    },
+    {
+      "case": "Overriding the game-over jingle",
+      "source": "invented",
+      "code": "// Custom event step, styled like the game's own numbered event-step functions:\n// trigger Game Over with a jingle other than the default \"evt_006\"\n// (jingle ID here is illustrative, not a verified in-game asset name).\nmyEvent_GameOverStep <- function ()\n{\n\tGameOver(\"evt_alt_defeat\");\n};"
+    }
+  ]
+}

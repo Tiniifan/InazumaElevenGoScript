@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SET_ENCOUNT_INFO",
+  "kind": "native",
+  "category": "encounter",
+  "description": {
+    "en": "Sets the currently-triggered NPC encounter's index, so the engine knows which encounter data (used to start its associated challenge) to use next."
+  },
+  "params": [
+    {
+      "name": "encounterIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the encounter to set as active."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Mark an encounter as the active one before starting its challenge\nCMND_SET_ENCOUNT_INFO(ecnIdx);"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_ALL_RESET_FLOOR",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Clears the attributes of every registered floor zone at once."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once every floor zone's attributes have been cleared; null if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Reset every registered floor zone back to its default (no attributes) state\nCMND_BTL_ALL_RESET_FLOOR();"
+  }
+}

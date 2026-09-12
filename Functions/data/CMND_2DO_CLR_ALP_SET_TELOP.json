@@ -1,0 +1,34 @@
+{
+  "name": "CMND_2DO_CLR_ALP_SET_TELOP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Sets the alpha (opacity) of a named telop caption created with CMND_2DO_CREATE_TELOP."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": {
+        "en": "Name of the telop to fade."
+      }
+    },
+    {
+      "name": "alpha",
+      "type": "float",
+      "description": {
+        "en": "New opacity value."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once it succeeded; false if the named telop isn't ready/found; null if the call itself was invalid (too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Update a telop caption's opacity\nCMND_2DO_CLR_ALP_SET_TELOP(_name, _pro_data[5]);"
+  }
+}

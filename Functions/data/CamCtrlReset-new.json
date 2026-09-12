@@ -1,0 +1,22 @@
+{
+  "name": "CamCtrlReset",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Resets the current camera-control state's movement queue and re-reads the camera's current position/reference as its starting point, without touching its follow target."
+  },
+  "params": [
+    { "name": "_hcam", "type": "handle", "required": true, "description": { "en": "Handle of the camera being controlled." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "examples": [
+    {
+      "case": "Resetting the movement queue before a new camera move (real usage, from ev42102900.nut)",
+      "source": "real",
+      "code": "// Reset the camera-control movement queue before starting a new movement\nlocal hCam = CMND_GET_ACT_CAMERA();\nCamCtrlReset(hCam);"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "AddParty_Important_Message",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Same as AddParty_Message, but plays the \"J_07\" jingle instead of \"J_08\" — used for a more significant/important party-member recruitment."
+  },
+  "params": [
+    { "name": "_paramID", "type": "string", "required": true, "description": { "en": "Param ID of the character to add to the party." } },
+    { "name": "_ptLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's position slot." } },
+    { "name": "_avatarEnable", "type": "boolean", "required": true, "description": { "en": "Whether to enable the member's Fighting Spirit." } },
+    { "name": "_avatarLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's Fighting Spirit." } },
+    { "name": "_lv", "type": "integer", "required": false, "default": "-1 (don't change the member's level)", "description": { "en": "Level to set for the new member." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "examples": [
+    {
+      "case": "Adding an important member and setting their level (not found in script_clean/; invented, following the AddParty_Message family's real usage pattern)",
+      "source": "invented",
+      "code": "// Add an important party member with the \"J_07\" jingle presentation and set their level to 20\nAddParty_Important_Message(\"para_cp0001\", true, false, false, 20);"
+    },
+    {
+      "case": "Adding an important member without changing their level",
+      "source": "invented",
+      "code": "// Add an important party member with the \"J_07\" jingle presentation, keeping their current level\nAddParty_Important_Message(\"para_cp0001\", true, false, false);"
+    }
+  ]
+}

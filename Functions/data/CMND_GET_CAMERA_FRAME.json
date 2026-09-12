@@ -1,0 +1,34 @@
+{
+  "name": "CMND_GET_CAMERA_FRAME",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Fills the given array with the current playback frame/state of a loaded camera motion."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Handle of the camera to query."
+      }
+    },
+    {
+      "name": "outFrame",
+      "type": "array",
+      "description": {
+        "en": "Array that receives the camera's current frame data; passed by reference and filled in place."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read the loaded camera's current playback frame\nCMND_GET_CAMERA_FRAME(hCamera, cmr_frm);"
+  }
+}

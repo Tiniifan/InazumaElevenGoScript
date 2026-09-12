@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_TEMP_BYTE_FLAG",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Sets a temporary, non-persistent byte-sized value (not just a single bit, unlike CMND_SET_TEMP_BIT_FLAG), identified by a numeric index. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "index",
+      "type": "integer",
+      "description": {
+        "en": "Index of the temporary byte value to set."
+      }
+    },
+    {
+      "name": "value",
+      "type": "integer",
+      "description": {
+        "en": "Byte value to store."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Store a small counter value that doesn't need to persist\nCMND_SET_TEMP_BYTE_FLAG(0, 3);"
+  }
+}

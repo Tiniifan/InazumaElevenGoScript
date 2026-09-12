@@ -1,0 +1,19 @@
+{
+  "name": "CMND_SND_OPEN_DEF_ENV",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Opens/restores the map's default ambient/environment sound, returning its handle."
+  },
+  "params": [],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the opened default environment sound."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Restore the map's default ambient sound\nlocal hEnvSnd = CMND_SND_OPEN_DEF_ENV();"
+  }
+}

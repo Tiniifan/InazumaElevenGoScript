@@ -1,0 +1,22 @@
+{
+  "name": "CMND_SET_LV",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets a roster character's level, by handle, recalculating their stats from the level/growth tables."
+  },
+  "params": [
+    { "name": "handle", "type": "handle", "description": { "en": "Party member handle to level up/down." } },
+    { "name": "level", "type": "integer", "description": { "en": "Level to set." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the level (and recalculated stats) has been applied; null if the call was invalid (fewer than 2 arguments) or the handle doesn't resolve to a party member."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Add a character to the party, then set their level (only if the function exists on this build)\nlocal hdl = CMND_ADD_PARTY(\"para_cp0008\");\nif (\"CMND_SET_LV\" in getroottable())\n{\n\tCMND_SET_LV(hdl, 20);\n}"
+  }
+}

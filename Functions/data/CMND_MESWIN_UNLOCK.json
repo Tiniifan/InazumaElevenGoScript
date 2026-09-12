@@ -1,0 +1,19 @@
+{
+  "name": "CMND_MESWIN_UNLOCK",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Unlocks the message window previously locked with CMND_MESWIN_LOCK."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Allow the player to dismiss the message window again\nCMND_MESWIN_UNLOCK();"
+  }
+}

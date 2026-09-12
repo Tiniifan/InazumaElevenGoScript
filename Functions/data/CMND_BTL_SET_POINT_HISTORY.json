@@ -1,0 +1,25 @@
+{
+  "name": "CMND_BTL_SET_POINT_HISTORY",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Records a scoring-play history entry for a match member (e.g. who scored/assisted a goal), by team slot, two small numeric codes and the character ID, used to drive post-match goal-scorer summaries."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side the entry belongs to." } },
+    { "name": "code1", "type": "integer", "description": { "en": "First numeric history code (meaning not confirmed, likely an event/role type)." } },
+    { "name": "code2", "type": "integer", "description": { "en": "Second numeric history code (meaning not confirmed)." } },
+    { "name": "charaId", "type": "string", "description": { "en": "Character ID string of the involved member." } },
+    { "name": "flag", "type": "boolean", "description": { "en": "Optional extra flag for the entry; only read when at least 5 arguments are given." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if fewer than 3 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Record a scoring-play history entry crediting a specific player\nCMND_BTL_SET_POINT_HISTORY(0, 1, 10, \"para_cp0008\");"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "CreateEvLowMdlForCharaNo_Animal_Shadow",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Shorthand for CreateEvLowMdlForCharaNo_Animal with its _shadow argument forced to true — creates a shadow-casting, low-detail animal-type NPC model."
+  },
+  "params": [
+    { "name": "_charaName", "type": "string", "description": { "en": "Name to assign the created model." } },
+    { "name": "_npc_no", "type": "integer", "description": { "en": "NPC number used to build the model's file path." } },
+    { "name": "_no_bustup", "type": "boolean", "description": { "en": "Optional; when true, skips creating the matching bustup portrait (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created character model." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Create a shadow-casting animal-type NPC model\nlocal hAnimalL = CreateEvLowMdlForCharaNo_Animal_Shadow(\"animalL\", 5);"
+  }
+}

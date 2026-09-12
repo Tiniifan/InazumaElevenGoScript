@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_GET_MATCH_TIME",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Reads back the current match clock value."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The current match time; null if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read the current match clock to decide whether to trigger a timed event\nlocal time = CMND_BTL_GET_MATCH_TIME();"
+  }
+}

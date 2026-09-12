@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_GAMECOIN",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the player's current in-game coin balance."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The current coin balance; null only if the call is made before the engine/script state is ready."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Spend coins on an upgrade if the player can afford it\nlocal haveCoin = CMND_GET_GAMECOIN();\nif (haveCoin >= USE_GAMECOIN)\n{\n\tCMND_USE_GAMECOIN(USE_GAMECOIN);\n\thaveCoin = CMND_GET_GAMECOIN();\n}"
+  }
+}

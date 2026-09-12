@@ -1,0 +1,19 @@
+{
+  "name": "CMND_SND_GET_ENV_SNDID",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Returns the sound handle of the currently playing map ambient/environment sound (see CMND_SET_MAP_ENV_SOUND)."
+  },
+  "params": [],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the currently playing environment sound."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Get the current map environment sound's handle\nlocal sid = CMND_SND_GET_ENV_SNDID();"
+  }
+}

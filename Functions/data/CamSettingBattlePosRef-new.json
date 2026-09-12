@@ -1,0 +1,28 @@
+{
+  "name": "CamSettingBattlePosRef",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Sets up the active camera at one of several predefined match-view position presets (e.g. CAMERA_CENTER, CAMERA_MY_GOAL, CAMERA_OTHER_GOAL), initializing camera control first. Each preset's coordinates can optionally be rescaled for technique cutscenes via ToScaleWazaMap."
+  },
+  "params": [
+    { "name": "_pos_id", "type": "integer", "required": true, "description": { "en": "Preset camera position constant to use (e.g. CAMERA_CENTER, CAMERA_MY_GOAL, CAMERA_OTHER_GOAL, CAMERA_MY_BENCH, CAMERA_OTHER_BENCH)." } },
+    { "name": "_waza_scale", "type": "boolean", "required": false, "default": "false", "description": { "en": "When true, rescales the preset's coordinates via ToScaleWazaMap for use on a technique map." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "examples": [
+    {
+      "case": "Setting the camera to a preset position (real usage, e.g. from ev44030030.nut)",
+      "source": "real",
+      "code": "// Set the camera to the \"my bench\" preset position\nCamSettingBattlePosRef(CAMERA_MY_BENCH);"
+    },
+    {
+      "case": "Setting the camera to a preset position rescaled for a technique map",
+      "source": "invented",
+      "code": "// Set the camera to the center-field preset position, rescaled for a technique cutscene\nCamSettingBattlePosRef(CAMERA_CENTER, true);"
+    }
+  ]
+}

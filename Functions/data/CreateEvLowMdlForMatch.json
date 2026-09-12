@@ -1,0 +1,23 @@
+{
+  "name": "CreateEvLowMdlForMatch",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a low-detail cutscene model for a match roster member, looked up by param ID, and — unless suppressed — also creates its matching bustup portrait."
+  },
+  "params": [
+    { "name": "_charaname", "type": "string", "description": { "en": "Name to assign the created model." } },
+    { "name": "_is_upper", "type": "boolean", "description": { "en": "Whether the character is displayed on the \"upper\" match side." } },
+    { "name": "_paramID", "type": "string", "description": { "en": "Param ID of the match roster member to create." } },
+    { "name": "_teamID", "type": "integer", "description": { "en": "Optional team slot the member belongs to (defaults to 2)." } },
+    { "name": "_no_bustup", "type": "boolean", "description": { "en": "Optional; when true, skips creating the matching bustup portrait (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created character model." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create a low-detail cutscene model for a match roster member\nlocal hTsurugiL = CreateEvLowMdlForMatch(\"tsurugiL\", isEvUpperDisp, \"para_cp0010\");"
+  }
+}

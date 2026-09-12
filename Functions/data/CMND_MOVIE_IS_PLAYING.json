@@ -1,0 +1,27 @@
+{
+  "name": "CMND_MOVIE_IS_PLAYING",
+  "kind": "native",
+  "category": "movie",
+  "description": {
+    "en": "Checks whether a movie handle is currently playing. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Movie handle to check."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the movie is still playing."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Wait for the movie to finish playing\nwhile (CMND_MOVIE_IS_PLAYING(hMovie))\n{\n\tsuspend();\n}"
+  }
+}

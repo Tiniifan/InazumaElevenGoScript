@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_SET_POINT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets both teams' match score to absolute values at once, given a 2-element array [team0Score, team1Score] — unlike CMND_BTL_ADD_POINT, which adds deltas instead of replacing the score."
+  },
+  "params": [
+    { "name": "scores", "type": "array", "description": { "en": "2-element array [team0Score, team1Score] with the new absolute score for each team." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if no scores argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Bump the player's own score by 1 while leaving the opponent's score computed elsewhere\nlocal my_point = CMND_BTL_GET_POINT(0);\nCMND_BTL_SET_POINT([\n\tmy_point,\n\tmy_point + 1\n]);"
+  }
+}

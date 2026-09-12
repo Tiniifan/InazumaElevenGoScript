@@ -1,0 +1,19 @@
+{
+  "name": "CMND_UPDATE_PURPOSE",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Refreshes the current objective/\"purpose\" message shown to the player (the on-screen quest goal text), returning a handle that can be polled with CMND_IS_LOADING while it updates."
+  },
+  "params": [],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the purpose message being updated."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Refresh the objective text and wait for it to finish loading\nlocal hdlPpsMes = CMND_UPDATE_PURPOSE();\nwhile (CMND_IS_LOADING(hdlPpsMes))\n{\n\tsuspend();\n}"
+  }
+}

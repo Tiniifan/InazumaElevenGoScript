@@ -1,0 +1,20 @@
+{
+  "name": "Power",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Computes an integer power via repeated multiplication (base raised to a non-negative exponent); returns 1 immediately for a zero or negative exponent."
+  },
+  "params": [
+    { "name": "_bas", "type": "integer", "description": { "en": "Base value." } },
+    { "name": "_pow", "type": "integer", "description": { "en": "Exponent; 0 or negative yields 1." } }
+  ],
+  "returns": {
+    "type": "integer",
+    "description": { "en": "_bas raised to the power _pow (1 if _pow is 0 or negative)." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Compute 10 to the power of 3\nlocal thousand = Power(10, 3);"
+  }
+}

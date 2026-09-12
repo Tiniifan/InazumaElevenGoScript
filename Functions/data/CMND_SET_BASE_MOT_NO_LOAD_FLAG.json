@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SET_BASE_MOT_NO_LOAD_FLAG",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Toggles an engine-wide flag that prevents characters' base motion (their default idle/standing animation set) from being (re)loaded. Used to avoid animation pop/reload while an event script is manually driving character motions."
+  },
+  "params": [
+    {
+      "name": "enabled",
+      "type": "boolean",
+      "description": {
+        "en": "True to block base-motion loading, false to restore normal loading."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Prevent base motions from reloading during a scripted sequence\nCMND_SET_BASE_MOT_NO_LOAD_FLAG(true);\n// ... scene plays ...\nCMND_SET_BASE_MOT_NO_LOAD_FLAG(false);"
+  }
+}

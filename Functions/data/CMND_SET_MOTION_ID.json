@@ -1,0 +1,62 @@
+{
+  "name": "CMND_SET_MOTION_ID",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Plays a motion on a character handle identified by numeric IDs instead of a motion name (see CMND_SET_MOTION), e.g. a [pack, group, index] triplet."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to animate."
+      }
+    },
+    {
+      "name": "motionPack",
+      "type": "integer",
+      "description": {
+        "en": "Motion pack ID."
+      }
+    },
+    {
+      "name": "motionGroup",
+      "type": "integer",
+      "description": {
+        "en": "Motion group ID within the pack."
+      }
+    },
+    {
+      "name": "motionIndex",
+      "type": "integer",
+      "description": {
+        "en": "Motion index within the group."
+      }
+    },
+    {
+      "name": "blend",
+      "type": "integer",
+      "description": {
+        "en": "Blend mode/frame count."
+      }
+    },
+    {
+      "name": "loop",
+      "type": "integer",
+      "description": {
+        "en": "Loop flag."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Get the player-controlled character's handle, then play a motion identified by a [pack, group, index] triplet\nlocal hdl = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC, true);\nCMND_SET_MOTION_ID(hdl, _motion[0], _motion[1], _motion[2], 0, 0);"
+  }
+}

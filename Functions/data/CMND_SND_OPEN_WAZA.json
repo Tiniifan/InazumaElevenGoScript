@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SND_OPEN_WAZA",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Opens the sound resource for a technique/skill by name and outcome variant (e.g. success/failure), returning a handle to play with CMND_SND_PLAY."
+  },
+  "params": [
+    {
+      "name": "skillName",
+      "type": "string",
+      "description": {
+        "en": "Name of the technique/skill sound to open."
+      }
+    },
+    {
+      "name": "variant",
+      "type": "integer",
+      "description": {
+        "en": "Outcome variant index (e.g. 0 for the base version)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the opened sound."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Open a technique's sound effect\nlocal hSound = CMND_SND_OPEN_WAZA(skill_name, 0);"
+  }
+}

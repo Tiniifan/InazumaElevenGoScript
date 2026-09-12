@@ -1,0 +1,26 @@
+{
+  "name": "CMND_BTL_REG_BUMPER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Registers a pinball-style bumper hazard on the match field, at a given position with a set of shape/behavior parameters."
+  },
+  "params": [
+    { "name": "position", "type": "array", "description": { "en": "3-element array [x, y, z] with the bumper's position." } },
+    { "name": "height", "type": "float", "description": { "en": "Bumper height parameter." } },
+    { "name": "width", "type": "float", "description": { "en": "Bumper width parameter." } },
+    { "name": "collision", "type": "float", "description": { "en": "Collision radius/shape parameter." } },
+    { "name": "min", "type": "float", "description": { "en": "Minimum bound parameter." } },
+    { "name": "max", "type": "float", "description": { "en": "Maximum bound parameter." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the bumper has been registered; null if fewer than 3 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Register a pinball-style bumper hazard on the field\nCMND_BTL_REG_BUMPER(v, h, w, c, min, max);"
+  }
+}

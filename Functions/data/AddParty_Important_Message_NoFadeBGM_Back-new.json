@@ -1,0 +1,31 @@
+{
+  "name": "AddParty_Important_Message_NoFadeBGM_Back",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Same as AddParty_Important_Message_Back, but without fading/stopping the current BGM (passes -1 for both the fade and wait durations)."
+  },
+  "params": [
+    { "name": "_paramID", "type": "string", "required": true, "description": { "en": "Param ID of the character to add back to the party." } },
+    { "name": "_ptLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's position slot." } },
+    { "name": "_avatarEnable", "type": "boolean", "required": true, "description": { "en": "Whether to enable the member's Fighting Spirit." } },
+    { "name": "_avatarLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's Fighting Spirit." } },
+    { "name": "_lv", "type": "integer", "required": false, "default": "-1 (don't change the member's level)", "description": { "en": "Level to set for the member." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "examples": [
+    {
+      "case": "Bringing an important member back and setting their level (not found in script_clean/; invented, following the AddParty_Message family's real usage pattern)",
+      "source": "invented",
+      "code": "// Bring an important party member back with the \"J_07\" jingle presentation, without fading the BGM, and set their level to 20\nAddParty_Important_Message_NoFadeBGM_Back(\"para_cp0001\", true, false, false, 20);"
+    },
+    {
+      "case": "Bringing an important member back without changing their level",
+      "source": "invented",
+      "code": "// Bring an important party member back with the \"J_07\" jingle presentation, without fading the BGM, keeping their current level\nAddParty_Important_Message_NoFadeBGM_Back(\"para_cp0001\", true, false, false);"
+    }
+  ]
+}

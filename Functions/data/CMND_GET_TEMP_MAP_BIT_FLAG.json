@@ -1,0 +1,27 @@
+{
+  "name": "CMND_GET_TEMP_MAP_BIT_FLAG",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Reads a temporary, map-scoped bit flag previously set with CMND_SET_TEMP_MAP_BIT_FLAG. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "bitIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the temporary map-scoped bit flag to read."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The flag's current value (0 or 1)."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Check a map-local temporary flag\nif (CMND_GET_TEMP_MAP_BIT_FLAG(3))\n{\n\t// ...\n}"
+  }
+}

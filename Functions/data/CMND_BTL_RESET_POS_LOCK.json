@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_RESET_POS_LOCK",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Clears every position-role lock previously set with CMND_BTL_SET_POS_LOCK, for every match member at once."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Clear every position lock once the scripted sequence is done\nCMND_BTL_RESET_POS_LOCK();"
+  }
+}

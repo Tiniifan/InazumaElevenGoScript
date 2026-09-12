@@ -1,0 +1,27 @@
+{
+  "name": "CMND_IS_LOADING",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Checks whether a resource (character model, image, map, ...) referenced by a handle is still loading, so a script can wait for it before using it."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Handle to check."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the resource is still loading."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait until a loaded image is ready before using it\nwhile (CMND_IS_LOADING(imgTTHdl))\n{\n\tsuspend();\n}"
+  }
+}

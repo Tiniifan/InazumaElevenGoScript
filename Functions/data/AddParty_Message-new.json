@@ -1,0 +1,31 @@
+{
+  "name": "AddParty_Message",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Adds a single party member with the standard \"new member joined\" presentation (BGM fades out for 30 frames, plays the \"J_08\" jingle, shows the \"sysmes-add_party\" message, then the BGM fades back in) — a fixed-preset wrapper around AddParty_MessageEx."
+  },
+  "params": [
+    { "name": "_paramID", "type": "string", "required": true, "description": { "en": "Param ID of the character to add to the party." } },
+    { "name": "_ptLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's position slot." } },
+    { "name": "_avatarEnable", "type": "boolean", "required": true, "description": { "en": "Whether to enable the member's Fighting Spirit." } },
+    { "name": "_avatarLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's Fighting Spirit." } },
+    { "name": "_lv", "type": "integer", "required": false, "default": "-1 (don't change the member's level)", "description": { "en": "Level to set for the new member." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "examples": [
+    {
+      "case": "Adding a member and setting their level (real usage, from ev42070500.nut)",
+      "source": "real",
+      "code": "// Add a party member with the standard recruitment presentation and set their level to 18\nAddParty_Message(\"para_cp0015\", true, false, false, 18);"
+    },
+    {
+      "case": "Adding a member without changing their level",
+      "source": "invented",
+      "code": "// Add a party member with the standard recruitment presentation, keeping their current level\nAddParty_Message(\"para_cp0015\", true, false, false);"
+    }
+  ]
+}

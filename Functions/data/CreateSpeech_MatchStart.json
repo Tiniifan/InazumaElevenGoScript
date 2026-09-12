@@ -1,0 +1,21 @@
+{
+  "name": "CreateSpeech_MatchStart",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Same as CreateSpeech, but opens the message on SCREEN_A with an extra flag passed to CMND_MESSAGE_OPEN — used for dialogue shown right as a match starts."
+  },
+  "params": [
+    { "name": "_id", "type": "string", "description": { "en": "Message ID to display." } },
+    { "name": "_chara", "type": "integer", "description": { "en": "Optional speaker slot for the speech bubble (defaults to 0)." } },
+    { "name": "_bRight", "type": "boolean", "description": { "en": "Optional; whether to show the bubble on the right side (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Show a speech-bubble message right as the match starts\nCreateSpeech_MatchStart(\"ev100\");"
+  }
+}

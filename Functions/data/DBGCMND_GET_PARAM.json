@@ -1,0 +1,21 @@
+{
+  "name": "DBGCMND_GET_PARAM",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "A debug-only parameter getter. In this build its implementation is a stub that ignores its argument and always reports 0, regardless of what parameter is requested."
+  },
+  "params": [
+    { "name": "paramId", "type": "integer", "description": { "en": "Read but not used — the stub ignores it and always returns 0." } }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "Always 0 on a valid call; null if no paramId argument was given."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Debug-only helper; always returns 0 in this build regardless of the parameter requested\nlocal debugValue = DBGCMND_GET_PARAM(0);"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "CMND_GET_PARAM_ID_RANDOM",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Picks a random technique/tactic ID from a character's or team's known set of the given kind, optionally excluding a list of already-picked IDs (useful for drawing several distinct random skills/tactics in a row without repeats)."
+  },
+  "params": [
+    { "name": "kind", "type": "integer", "description": { "en": "Selects whether to pick from techniques (per-character) or tactics (per-team), and which owner argument to use." } },
+    { "name": "byNumber", "type": "boolean", "description": { "en": "When true, look the owner up by numeric index instead of by ID string." } },
+    { "name": "owner", "type": "string|integer", "description": { "en": "Character or team ID (string or number, depending on byNumber) to draw from." } },
+    { "name": "...exclude", "type": "integer", "description": { "en": "Optional additional IDs (up to 9) to exclude from the random pick, typically previously drawn results." } }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "A randomly chosen ID not present in the exclude list (0 if no eligible candidate remains); null if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Draw two distinct random technique IDs for two different characters\nlocal waza_id_1 = CMND_GET_PARAM_ID_RANDOM(1, false, \"para_cp0146\");\nlocal waza_id_2 = CMND_GET_PARAM_ID_RANDOM(0, false, \"para_cp0008\");"
+  }
+}

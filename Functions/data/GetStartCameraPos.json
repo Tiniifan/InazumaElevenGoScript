@@ -1,0 +1,17 @@
+{
+  "name": "GetStartCameraPos",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Reads the map's default/starting camera position and reference (look-at) point."
+  },
+  "params": [],
+  "returns": {
+    "type": "array",
+    "description": { "en": "A 6-element array [posX, posY, posZ, refX, refY, refZ] with the starting camera's position and reference point." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Read the map's default starting camera position\nlocal startPosRef = GetStartCameraPos();"
+  }
+}

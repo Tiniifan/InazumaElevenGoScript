@@ -1,0 +1,21 @@
+{
+  "name": "CMND_TP_IS_MAX",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Intended to check whether a party member's TP (Technique Points) gauge is maxed out, by handle — the TP counterpart to CMND_GP_IS_MAX, with the same caveat about its return value not visibly reflecting the internal check in the decompiled code."
+  },
+  "params": [
+    { "name": "handle", "type": "handle", "description": { "en": "Party member handle to check." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the handle resolves to a party member (the internal TP-max comparison doesn't visibly affect the returned value in the decompiled code); null if the call was invalid or the handle doesn't resolve to a party member."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Check whether a party member's TP gauge is maxed out\nlocal hdl = CMND_GET_PARTY_HANDLE(\"para_cp0008\");\nlocal tpMaxed = CMND_TP_IS_MAX(hdl);"
+  }
+}

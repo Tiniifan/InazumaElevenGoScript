@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_DISABLE_RETURN_MENU",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Disables the in-match pause/return menu identified by the given menu ID string, preventing the player from opening it during a scripted sequence."
+  },
+  "params": [
+    { "name": "menuId", "type": "string", "description": { "en": "Menu ID string (e.g. \"KsnBtlMenu\") to disable." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if no menuId argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Disable the pause menu during a scripted match sequence\nCMND_BTL_DISABLE_RETURN_MENU(\"KsnBtlMenu\");"
+  }
+}

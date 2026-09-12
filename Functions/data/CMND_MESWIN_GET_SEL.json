@@ -1,0 +1,19 @@
+{
+  "name": "CMND_MESWIN_GET_SEL",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Returns the option the player selected in the last multiple-choice message window."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "Index of the selected option."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read the player's choice from the last message window\nlocal ret = CMND_MESWIN_GET_SEL();"
+  }
+}

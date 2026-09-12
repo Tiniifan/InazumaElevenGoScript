@@ -1,0 +1,22 @@
+{
+  "name": "CamCtrlMoveTo",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Queues a smooth camera movement to a given position/reference over a number of frames, resetting the camera-control state first. Check progress with IsCamCtrlMove."
+  },
+  "params": [
+    { "name": "_hcam", "type": "handle", "description": { "en": "Handle of the camera being controlled." } },
+    { "name": "_mv_frame", "type": "integer", "description": { "en": "Number of frames the movement should take." } },
+    { "name": "_posref", "type": "array", "description": { "en": "6-element array [posX, posY, posZ, refX, refY, refZ] with the target camera position and reference point." } },
+    { "name": "_mv_type", "type": "integer", "description": { "en": "Optional movement/interpolation type (defaults to 0); values below 0 queue the move without applying it immediately." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Smoothly move the camera to a new position/reference over 40 frames\nCamCtrlMoveTo(hCam, 40, [122.3, 29.9, 64.6, -19.0, 17.3, -35.7]);\nwhile (IsCamCtrlMove())\n{\n\tsuspend();\n}"
+  }
+}

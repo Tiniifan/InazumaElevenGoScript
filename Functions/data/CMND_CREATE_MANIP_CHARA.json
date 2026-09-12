@@ -1,0 +1,34 @@
+{
+  "name": "CMND_CREATE_MANIP_CHARA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Applies a body/costume model ID to a \"manip chara\" slot — the manipulable character variant used to change a character's appearance (e.g. outfit) for a cutscene without touching the real playable model."
+  },
+  "params": [
+    {
+      "name": "slot",
+      "type": "integer",
+      "description": {
+        "en": "Manip character slot index (0 for the main manipulated character)."
+      }
+    },
+    {
+      "name": "bodyId",
+      "type": "integer",
+      "description": {
+        "en": "Body/costume model ID to apply to that slot."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "Always true."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Swap the manipulated character's body/outfit to model 902\nCMND_CREATE_MANIP_CHARA(0, 902);"
+  }
+}

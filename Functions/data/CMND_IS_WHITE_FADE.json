@@ -1,0 +1,27 @@
+{
+  "name": "CMND_IS_WHITE_FADE",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Checks whether a screen is still performing a white fade started with CMND_WHITE_FADE_OUT/CMND_WHITE_FADE_IN."
+  },
+  "params": [
+    {
+      "name": "screen",
+      "type": "integer",
+      "description": {
+        "en": "Which screen to check, e.g. SCREEN_A."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the white fade is still in progress."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait for the white fade to finish\nwhile (CMND_IS_WHITE_FADE(_screen))\n{\n\tsuspend();\n}"
+  }
+}

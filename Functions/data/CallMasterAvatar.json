@@ -1,0 +1,20 @@
+{
+  "name": "CallMasterAvatar",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Loads and runs the fixed master-avatar event script (data/script/event/ev42132000.nutb), passing it the given event ID and NPC handle, then drives its Event coroutine to completion frame by frame. Used for NPCs of the \"master avatar\" event type."
+  },
+  "params": [
+    { "name": "_id", "type": "integer", "description": { "en": "Event ID passed through to the loaded script as subev_ctx.id." } },
+    { "name": "_hdl", "type": "handle", "description": { "en": "NPC handle passed through to the loaded script as subev_ctx.npc_hdl." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Dispatch to the right event runner depending on the NPC's event type\nif (evType == 4)\n{\n\tCallKiznaxEvent(evID, npcHdl);\n}\nelse if (evType == 5)\n{\n\tCallShopEvent(evID, npcHdl);\n}\nelse if (evType == 9)\n{\n\tCallMasterAvatar(evID, npcHdl);\n}\nelse\n{\n\tCallEvent(evID);\n}"
+  }
+}

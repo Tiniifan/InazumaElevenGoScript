@@ -1,0 +1,41 @@
+{
+  "name": "CMND_REG_VISIBLE_HQ_EVENT",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Registers the visibility of a handle at a given step/key of the HQ event system initialized by CMND_HQ_EVENT_INIT, so an actor can be shown or hidden at specific points of the scripted cutscene."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Handle registered with CMND_REG_HDL_HQ_EVENT."
+      }
+    },
+    {
+      "name": "step",
+      "type": "integer",
+      "description": {
+        "en": "Step/key index within the HQ event sequence."
+      }
+    },
+    {
+      "name": "visible",
+      "type": "integer",
+      "description": {
+        "en": "1 to show the handle at that step, 0 to hide it."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Hide an actor from step 2 onward in the HQ event\nCMND_REG_VISIBLE_HQ_EVENT(hScram1, 1, 1);\nCMND_REG_VISIBLE_HQ_EVENT(hScram1, 2, 0);"
+  }
+}

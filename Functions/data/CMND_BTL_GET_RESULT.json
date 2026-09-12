@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_GET_RESULT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Reads back the outcome of a match. Every real call site in the scripts invokes it with no arguments and treats the return value as a win/loss flag; the native implementation also accepts an optional array argument, whose first two elements are then overwritten with the two teams' recorded scores."
+  },
+  "params": [
+    { "name": "scoreArray", "type": "array", "description": { "en": "Optional array; if given, its first two elements (index 0 and 1) are overwritten with the two teams' scores from the match result." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on every valid call regardless of the actual match outcome (script matches are scripted to always report a win this way); null if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Unlock a reward if the just-finished scripted match reports a win\nScBtlResult <- function ()\n{\n\tlocal isWin = CMND_BTL_GET_RESULT();\n\tif (isWin)\n\t{\n\t\tCMND_SET_GLOBAL_BIT_FLAG(518, 1);\n\t\tCMND_SKILL_UNLOCK(\"para_cp0008\", \"whd0008\");\n\t}\n\telse\n\t{\n\t\tCMND_SET_GLOBAL_BIT_FLAG(518, 0);\n\t\tCMND_SET_GLOBAL_BIT_FLAG(516, 1);\n\t}\n};"
+  }
+}

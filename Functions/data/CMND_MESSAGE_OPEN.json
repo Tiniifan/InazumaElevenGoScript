@@ -1,0 +1,76 @@
+{
+  "name": "CMND_MESSAGE_OPEN",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Opens the dialogue/message window with a given message ID, with optional layout arguments (centering, which screen/window to draw on, and an optional speaking character + facing direction for a bust-up)."
+  },
+  "params": [
+    {
+      "name": "messageId",
+      "type": "integer",
+      "description": {
+        "en": "ID of the message text to display."
+      }
+    },
+    {
+      "name": "centerX",
+      "type": "boolean|integer",
+      "description": {
+        "en": "Horizontal centering/positioning option."
+      }
+    },
+    {
+      "name": "centerY",
+      "type": "boolean|integer",
+      "description": {
+        "en": "Vertical centering/positioning option."
+      }
+    },
+    {
+      "name": "window",
+      "type": "boolean",
+      "description": {
+        "en": "Whether to draw the message window frame."
+      }
+    },
+    {
+      "name": "chara",
+      "type": "handle|integer",
+      "description": {
+        "en": "Optional speaking character handle/index for a bust-up."
+      }
+    },
+    {
+      "name": "faceRight",
+      "type": "boolean",
+      "description": {
+        "en": "Optional; whether the speaking character's bust-up faces right."
+      }
+    },
+    {
+      "name": "screen",
+      "type": "integer",
+      "description": {
+        "en": "Optional target screen, e.g. SCREEN_A."
+      }
+    },
+    {
+      "name": "extra",
+      "type": "boolean",
+      "description": {
+        "en": "Optional extra display flag."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True once the message has finished being dismissed."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Open a dialogue message with a speaking character\nif (CMND_MESSAGE_OPEN(_id, false, false, true, _chara, _bRight))\n{\n\t// message dismissed\n}"
+  }
+}

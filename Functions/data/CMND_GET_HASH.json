@@ -1,0 +1,27 @@
+{
+  "name": "CMND_GET_HASH",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Computes the CRC32 hash of a string. Widely used to turn readable identifiers (character names, timer names, parameter IDs) into the integer IDs the engine's internal tables are keyed by, e.g. for CMND_MESSAGE_REPLACE_CHARA or comparing against a timer ID."
+  },
+  "params": [
+    {
+      "name": "text",
+      "type": "string",
+      "description": {
+        "en": "The string to hash."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The CRC32 hash of the string."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Compare a fired timer's id against a named timer's hash\nif (evCnt == 1 && timerID == CMND_GET_HASH(\"timer44100012\"))\n{\n\t// ...\n}"
+  }
+}

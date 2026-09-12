@@ -1,0 +1,20 @@
+{
+  "name": "ReserveEvent",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Thin wrapper around CMND_RESERVE_EVENT (with the fixed \"STD\" category) — reserves a story/quest event to run once the current one finishes."
+  },
+  "params": [
+    { "name": "eventID", "type": "integer", "description": { "en": "Numeric ID of the event to reserve." } },
+    { "name": "overwrite", "type": "boolean", "description": { "en": "Optional; whether to overwrite any already-reserved event (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Reserve the next event to run once this one finishes\nReserveEvent(42081400, true);"
+  }
+}

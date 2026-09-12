@@ -1,0 +1,27 @@
+{
+  "name": "CMND_WAIT_LDS",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Checks whether a script loaded with CMND_LOAD_SCRIPT is still loading, so the caller can wait for it before it starts running."
+  },
+  "params": [
+    {
+      "name": "scriptHandle",
+      "type": "handle",
+      "description": {
+        "en": "Handle returned by CMND_LOAD_SCRIPT."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the script is still loading."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait for a loaded sub-event script to finish loading\nwhile (CMND_WAIT_LDS(script))\n{\n\tsuspend();\n}"
+  }
+}

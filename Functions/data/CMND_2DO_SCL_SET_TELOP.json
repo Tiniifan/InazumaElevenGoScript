@@ -1,0 +1,41 @@
+{
+  "name": "CMND_2DO_SCL_SET_TELOP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Sets the scale of a named telop caption created with CMND_2DO_CREATE_TELOP."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": {
+        "en": "Name of the telop to scale."
+      }
+    },
+    {
+      "name": "scaleX",
+      "type": "float",
+      "description": {
+        "en": "Scale on X."
+      }
+    },
+    {
+      "name": "scaleY",
+      "type": "float",
+      "description": {
+        "en": "Scale on Y."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once it succeeded; false if the named telop isn't ready/found; null if the call itself was invalid (too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Scale a telop caption uniformly\nCMND_2DO_SCL_SET_TELOP(_name, scale, scale);"
+  }
+}

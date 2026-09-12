@@ -1,0 +1,22 @@
+{
+  "name": "CreateEvLowMdlForCharaNo_Animal",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a low-detail cutscene model for a predefined \"animal\"-type NPC (a non-humanoid model loaded from a fixed file-naming convention based on its NPC number), and — unless suppressed — also creates its matching bustup portrait."
+  },
+  "params": [
+    { "name": "_charaName", "type": "string", "description": { "en": "Name to assign the created model." } },
+    { "name": "_npc_no", "type": "integer", "description": { "en": "NPC number used to build the model's file path (data/chr/model/rpg/npc/ca<npc_no>m.xc)." } },
+    { "name": "_no_bustup", "type": "boolean", "description": { "en": "Optional; when true, skips creating the matching bustup portrait (defaults to false)." } },
+    { "name": "_shadow", "type": "boolean", "description": { "en": "Optional; whether to create the shadow-casting variant (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created character model." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Create a low-detail animal-type NPC model with its bustup portrait\nlocal hAnimalL = CreateEvLowMdlForCharaNo_Animal(\"animalL\", 5);"
+  }
+}

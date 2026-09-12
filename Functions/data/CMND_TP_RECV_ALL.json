@@ -1,0 +1,21 @@
+{
+  "name": "CMND_TP_RECV_ALL",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Fully restores (recovers) a single party member's TP (Technique Points) gauge, by handle — the TP counterpart to CMND_GP_RECV_ALL."
+  },
+  "params": [
+    { "name": "handle", "type": "handle", "description": { "en": "Party member handle to restore TP for." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once TP has been restored; null if the call was invalid or the handle doesn't resolve to a party member."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Fully restore one party member's TP\nlocal hdl = CMND_GET_PARTY_HANDLE(\"para_cp0008\");\nCMND_TP_RECV_ALL(hdl);"
+  }
+}

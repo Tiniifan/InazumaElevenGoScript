@@ -1,0 +1,27 @@
+{
+  "name": "CMND_COPY_EXIT_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Restores the gameplay camera from a saved \"exit\" camera slot, used when leaving a cutscene/sub-scene back into normal RPG gameplay."
+  },
+  "params": [
+    {
+      "name": "slot",
+      "type": "integer",
+      "description": {
+        "en": "Index of the exit-camera slot to restore from."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Restore the gameplay camera after a cutscene ends\nCMND_COPY_EXIT_CAMERA(1);"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "CMND_USE_GAMECOIN",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Spends a given amount of the player's in-game coins."
+  },
+  "params": [
+    { "name": "amount", "type": "integer", "description": { "en": "Number of coins to spend." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (no amount given)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Spend coins on an upgrade, then re-check the remaining balance\nCMND_USE_GAMECOIN(USE_GAMECOIN);\nlocal haveCoin = CMND_GET_GAMECOIN();"
+  }
+}

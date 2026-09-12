@@ -1,0 +1,19 @@
+{
+  "name": "WaitLoadingArray",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Calls WaitLoading on every handle in the given array, one after another — waits for all of them to finish loading."
+  },
+  "params": [
+    { "name": "_hdl_ary", "type": "array", "description": { "en": "Array of handles to wait on the loading state of." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Wait for every model in an array to finish loading\nWaitLoadingArray([hCharaL, hCharaR, hBallL]);"
+  }
+}

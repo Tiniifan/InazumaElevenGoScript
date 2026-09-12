@@ -1,0 +1,34 @@
+{
+  "name": "CMND_GET_ENCCHR_TALK_ID",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Returns the dialogue message ID to show for an NPC encounter, given the outcome of the challenge (e.g. win/lose/not-yet-played)."
+  },
+  "params": [
+    {
+      "name": "encounterIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the encounter, from CMND_GET_ENCCHR_INDEX."
+      }
+    },
+    {
+      "name": "outcome",
+      "type": "integer",
+      "description": {
+        "en": "Which dialogue variant to fetch (e.g. a win/lose/default outcome code)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "Message ID for the dialogue to show."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Get the dialogue to show after losing the encounter's challenge\nlocal mesID = CMND_GET_ENCCHR_TALK_ID(encIndex, lose);"
+  }
+}

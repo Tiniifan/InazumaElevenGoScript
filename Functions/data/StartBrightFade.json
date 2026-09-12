@@ -1,0 +1,21 @@
+{
+  "name": "StartBrightFade",
+  "kind": "ev_main",
+  "category": "screen-fx",
+  "description": {
+    "en": "Fades a screen's brightness to a target level and waits for the fade to finish. Passing SCREEN_AB fades both screens together (via CMND_BRIGHT_FADE_ALL); any other screen value fades just that one screen."
+  },
+  "params": [
+    { "name": "_screen", "type": "integer", "description": { "en": "Screen buffer to fade (e.g. SCREEN_A, SCREEN_B, or SCREEN_AB for both)." } },
+    { "name": "_bright", "type": "float", "description": { "en": "Target brightness level (e.g. -1.0 for black, 0.0 for normal)." } },
+    { "name": "_frame", "type": "float", "description": { "en": "Duration of the fade, in frames." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Fade both screens to black, then back to normal\nStartBrightFade(SCREEN_AB, -1.0, 45.0);\nStartBrightFade(SCREEN_AB, 0.0, 45.0);"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "CMND_GET_BASE_POSITION",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the base (formation-default) field position value for a given position slot index."
+  },
+  "params": [
+    { "name": "positionIndex", "type": "integer", "description": { "en": "Position slot index to look up." } }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The base position value for that slot; null if the call was invalid (no index given) or the position/formation data isn't ready."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read the base field positions for the first five formation slots\nlocal pos_0 = CMND_GET_BASE_POSITION(0);\nlocal pos_1 = CMND_GET_BASE_POSITION(1);\nlocal pos_2 = CMND_GET_BASE_POSITION(2);"
+  }
+}

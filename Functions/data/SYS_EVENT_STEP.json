@@ -1,0 +1,19 @@
+{
+  "name": "SYS_EVENT_STEP",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Advances the internal event-system step counter used to drive the engine's scripted-event scheduler."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Advance the engine's internal event-system step counter\nSYS_EVENT_STEP();"
+  }
+}

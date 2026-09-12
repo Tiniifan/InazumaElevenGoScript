@@ -1,0 +1,55 @@
+{
+  "name": "CMND_SKILL_SETUP_CHARA",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Sets up the attacker/defender character data for a skill/technique execution, given the attacker and defender counts, a shared data-set table, and the two characters involved."
+  },
+  "params": [
+    {
+      "name": "attackerCount",
+      "type": "integer",
+      "description": {
+        "en": "Number of attacking characters involved."
+      }
+    },
+    {
+      "name": "defenderCount",
+      "type": "integer",
+      "description": {
+        "en": "Number of defending characters involved."
+      }
+    },
+    {
+      "name": "dataSet",
+      "type": "table",
+      "description": {
+        "en": "Shared setup data for the technique."
+      }
+    },
+    {
+      "name": "attacker",
+      "type": "handle",
+      "description": {
+        "en": "Attacking character handle/copy."
+      }
+    },
+    {
+      "name": "defender",
+      "type": "handle",
+      "description": {
+        "en": "Defending character handle/copy."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Set up the attacker/defender data for a technique execution\nCMND_SKILL_SETUP_CHARA(g_data.iAtkNum, g_data.iDefNum, data_set, g_data.chara_copy[0], g_data.chara_copy[1]);"
+  }
+}

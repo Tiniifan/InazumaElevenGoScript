@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_GET_RAND",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Returns a random integer in the given [min, max) range, using the match's own dedicated RNG (used by match logic such as clash-power rolls and foul checks, kept separate from the general-purpose CMND_RANDOM)."
+  },
+  "params": [
+    { "name": "min", "type": "integer", "description": { "en": "Inclusive lower bound." } },
+    { "name": "max", "type": "integer", "description": { "en": "Exclusive upper bound." } }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The random value in [min, max); null if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Roll a percentage chance using the match RNG to decide a foul\nlocal faul_rand = CMND_BTL_GET_RAND(0, 101);"
+  }
+}

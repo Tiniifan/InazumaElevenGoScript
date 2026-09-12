@@ -1,0 +1,21 @@
+{
+  "name": "OutlineEffect",
+  "kind": "ev_main",
+  "category": "screen-fx",
+  "description": {
+    "en": "Plays the \"story outline\" chapter-progress transition: fades to black if not already faded, advances the game sub-phase, shows the story chart, swaps the screen buffer, and plays the purpose (objective-update) jingle effect — optionally fading back in afterwards if not jumping to a new map."
+  },
+  "params": [
+    { "name": "_subPhase", "type": "integer", "description": { "en": "New game sub-phase value to set." } },
+    { "name": "_isMapJump", "type": "boolean", "description": { "en": "Optional; when false, fades the screen back in after the effect instead of leaving it black for an upcoming map jump (defaults to true)." } },
+    { "name": "_bgm_fade_off", "type": "boolean", "description": { "en": "Optional; whether to suppress the BGM fade during the purpose jingle (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Advance the story sub-phase and play the outline transition before a map jump\nOutlineEffect(10030010, true);"
+  }
+}

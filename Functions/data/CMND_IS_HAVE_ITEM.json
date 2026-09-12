@@ -1,0 +1,21 @@
+{
+  "name": "CMND_IS_HAVE_ITEM",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Checks whether the player's inventory contains a given item, by its hashed item ID (see CMND_GET_HASH)."
+  },
+  "params": [
+    { "name": "itemIdHash", "type": "integer", "description": { "en": "CRC32 hash of the item ID to check, from CMND_GET_HASH." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on any valid call (this always ends by pushing true in the decompiled code, regardless of whether the item is actually present — treat the exact match semantics with caution); null only if the call itself was invalid (no argument given)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Check whether the player has a specific key item\nif (!CMND_IS_HAVE_ITEM(CMND_GET_HASH(\"iii0007\")))\n{\n\t// ...\n}"
+  }
+}

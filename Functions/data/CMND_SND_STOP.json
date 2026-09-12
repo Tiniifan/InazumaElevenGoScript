@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SND_STOP",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Stops a currently playing sound handle, optionally fading it out over a duration."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Sound handle to stop."
+      }
+    },
+    {
+      "name": "fadeOut",
+      "type": "integer",
+      "description": {
+        "en": "Optional fade-out duration."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Stop the current BGM with a fade-out\nCMND_SND_STOP(hBGM, _fade);"
+  }
+}

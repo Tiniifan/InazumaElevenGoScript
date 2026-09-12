@@ -1,0 +1,24 @@
+{
+  "name": "CMND_BTL_ADD_MEMBER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Adds a player to a match-side roster by character ID string, assigning their field position and role. Looks up the character's data by CRC32 of the ID string; if found, registers it into the given team slot with the given position and role."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side to add the member to (e.g. 0 for the player's team)." } },
+    { "name": "charaId", "type": "string", "description": { "en": "Character ID string (e.g. \"para_cp0032\") used to look up the player's data." } },
+    { "name": "position", "type": "integer", "description": { "en": "Field position slot to place the member at." } },
+    { "name": "role", "type": "integer", "description": { "en": "Role assigned to the member (e.g. goalkeeper, forward)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has been processed (the member is only actually registered if charaId resolves to known character data; otherwise this is a silent no-op); null if fewer than 4 arguments were given or the call was otherwise invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Register a player onto team 0's roster at position 1 with role 2\nCMND_BTL_ADD_MEMBER(0, \"para_cp0032\", 1, 2);"
+  }
+}

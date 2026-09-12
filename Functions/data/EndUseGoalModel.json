@@ -1,0 +1,19 @@
+{
+  "name": "EndUseGoalModel",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Destroys a goal-post model previously created with StartUseGoalModel/StartUseGoalModel_Shadow."
+  },
+  "params": [
+    { "name": "_goal_hdl", "type": "handle", "description": { "en": "Handle of the goal model to destroy, from StartUseGoalModel." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create a goal model for a scripted sequence, then remove it once done\nlocal goal_hdl = StartUseGoalModel();\n// ... scripted sequence plays out ...\nEndUseGoalModel(goal_hdl);"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "RemoveParty_MessageEx",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Removes one or more party members with a full \"member left\" presentation: optionally fades out/stops the current BGM, waits, then for each member plays a system SE jingle, shows the departure message, and removes the member (via RemovePartyCmnd when _not_pt_lock is true, RemoveParty otherwise), before restoring the BGM. The general engine behind RemoveParty_Message/RemovePartyNum_Message."
+  },
+  "params": [
+    { "name": "_rmv_num", "type": "integer", "description": { "en": "Number of members to remove (length of the following array arguments)." } },
+    { "name": "_aParamID", "type": "array", "description": { "en": "Array of param IDs, one per member to remove." } },
+    { "name": "_aStReset", "type": "array", "description": { "en": "Array of status-reset flags, one per member." } },
+    { "name": "_fade", "type": "integer", "description": { "en": "BGM fade-out duration in frames before the sequence; a negative value skips fading/stopping the BGM entirely." } },
+    { "name": "_wait", "type": "integer", "description": { "en": "Number of frames to wait after the BGM fade before starting." } },
+    { "name": "_jingle", "type": "integer", "description": { "en": "System SE ID to play for each removed member." } },
+    { "name": "_index", "type": "integer", "description": { "en": "Unused by this implementation (kept for signature compatibility)." } },
+    { "name": "_event", "type": "string", "description": { "en": "Message ID shown via CreateSpeech for each removed member." } },
+    { "name": "_not_pt_lock", "type": "boolean", "description": { "en": "Optional; when true, removes members via RemovePartyCmnd without locking their slot instead of via RemoveParty (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Remove several party members with a jingle and departure message (as RemovePartyNum_Message does)\nRemoveParty_MessageEx(_rmv_num, _aParamID, _aStReset, 30, 45, 21, 0, \"sysmes-remove_party\", _not_pt_lock);"
+  }
+}

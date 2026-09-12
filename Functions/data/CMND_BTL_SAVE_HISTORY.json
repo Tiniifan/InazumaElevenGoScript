@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_SAVE_HISTORY",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Saves a snapshot of the current match action-history log so it can be restored later with CMND_BTL_LOAD_HISTORY."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the history snapshot has been saved; null if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Save the match history snapshot at a specific scripted point\nCMND_BTL_SAVE_HISTORY();"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "CMND_BTL_GET_SKILL_EFFECTIVE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Checks how many of a player's equipped skills/tactics match a given skill-effect type (e.g. counting stacked GP/TP-boosting skills), writing the count back into the 5th argument passed by the caller."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side the player belongs to." } },
+    { "name": "playerNum", "type": "integer", "description": { "en": "Field position/number of the player to check." } },
+    { "name": "effectType", "type": "integer", "description": { "en": "Skill-effect type constant to count (e.g. SKILL_EFF_CONS_GP)." } },
+    { "name": "unused", "type": "integer", "description": { "en": "Read but not used by the check." } },
+    { "name": "outCount", "type": "array", "description": { "en": "Output array; its first element is overwritten with the matching-skill count." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the result is returned by writing into outCount, not via the function's own return value; null is also returned if fewer than 5 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Count how many of a player's skills boost GP consumption\nlocal num = [0];\nCMND_BTL_GET_SKILL_EFFECTIVE(_TeamId, _PlayerId, SKILL_EFF_CONS_GP, 0, num);"
+  }
+}

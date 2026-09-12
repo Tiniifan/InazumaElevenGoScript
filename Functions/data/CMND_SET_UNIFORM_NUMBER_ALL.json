@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SET_UNIFORM_NUMBER_ALL",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets uniform numbers for the whole team at once, from an array of numbers (see CMND_SET_UNIFORM_NUMBER for a single character)."
+  },
+  "params": [
+    {
+      "name": "numbers",
+      "type": "array",
+      "description": {
+        "en": "Array of uniform numbers, one per roster slot."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Set the whole team's uniform numbers at once\nCMND_SET_UNIFORM_NUMBER_ALL([\n\t8,\n\t3,\n\t4\n]);"
+  }
+}

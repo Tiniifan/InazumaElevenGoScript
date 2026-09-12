@@ -1,0 +1,21 @@
+{
+  "name": "EvLowMdlSetLookAtPos",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Turns a low-detail cutscene character model to face a given world position, over a number of frames — combines GetRyLookAtPos with CMND_CHR_TURN_TRG."
+  },
+  "params": [
+    { "name": "_hdl", "type": "handle", "description": { "en": "Handle of the character model to turn." } },
+    { "name": "_pos", "type": "array", "description": { "en": "3-element target position [x, y, z] to face." } },
+    { "name": "_frame", "type": "integer", "description": { "en": "Number of frames the turn should take." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Turn a character to face a target position over 20 frames\nEvLowMdlSetLookAtPos(hTenmaL, _pos, 20);"
+  }
+}

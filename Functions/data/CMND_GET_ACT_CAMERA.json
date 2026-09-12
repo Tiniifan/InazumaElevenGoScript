@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_ACT_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Returns the handle of the currently active (rendered) camera."
+  },
+  "params": [],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the active camera."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Get the currently active camera's handle\nlocal hCam = CMND_GET_ACT_CAMERA();"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "CMND_MESSAGE_REPLACE_ITEM",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Registers an item name substitution for the given placeholder index, so the next opened message can embed an item's name at that placeholder."
+  },
+  "params": [
+    {
+      "name": "placeholderIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the placeholder within the message text to substitute."
+      }
+    },
+    {
+      "name": "itemId",
+      "type": "integer",
+      "description": {
+        "en": "ID of the item whose name to insert."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Substitute an item's name into the next message's placeholder 0\nCMND_MESSAGE_REPLACE_ITEM(0, itemID);"
+  }
+}

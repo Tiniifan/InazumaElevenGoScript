@@ -1,0 +1,34 @@
+{
+  "name": "CMND_GET_MOVE_INFO_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Fills the given array with the camera's current animated-move position/reference data, started with CMND_SET_MOVE_INFO_CAMERA."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Camera handle to query."
+      }
+    },
+    {
+      "name": "outPosRef",
+      "type": "array",
+      "description": {
+        "en": "Array that receives the current move position/reference data; passed by reference and filled in place."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read the camera's current move position/reference\nCMND_GET_MOVE_INFO_CAMERA(cam_ctrl.hcam, posref);"
+  }
+}

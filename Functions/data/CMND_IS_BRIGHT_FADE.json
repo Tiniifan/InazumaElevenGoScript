@@ -1,0 +1,27 @@
+{
+  "name": "CMND_IS_BRIGHT_FADE",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Checks whether a screen is still fading brightness, started with CMND_BRIGHT_FADE."
+  },
+  "params": [
+    {
+      "name": "screen",
+      "type": "integer",
+      "description": {
+        "en": "Which screen to check, e.g. SCREEN_A (0)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the brightness fade is still in progress."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait for the brightness fade to finish\nwhile (CMND_IS_BRIGHT_FADE(0))\n{\n\tsuspend();\n}"
+  }
+}

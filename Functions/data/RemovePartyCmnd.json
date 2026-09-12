@@ -1,0 +1,21 @@
+{
+  "name": "RemovePartyCmnd",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Thin wrapper around CMND_REMOVE_PARTY — removes a party member, with explicit control over both the status-reset and position-lock flags (RemoveParty derives the lock flag automatically instead)."
+  },
+  "params": [
+    { "name": "_paramID", "type": "string", "description": { "en": "Param ID of the character to remove from the party." } },
+    { "name": "_flg_st_reset", "type": "boolean", "description": { "en": "Whether to reset the member's status." } },
+    { "name": "_flg_pt_lock", "type": "boolean", "description": { "en": "Whether to lock the member's now-vacated position slot." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Remove a party member without resetting status or locking their slot\nRemovePartyCmnd(\"para_cp0001\", false, false);"
+  }
+}

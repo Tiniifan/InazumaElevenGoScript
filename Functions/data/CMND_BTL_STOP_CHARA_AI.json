@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_STOP_CHARA_AI",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Enables or disables the match AI for a single character, looked up by team slot and character ID or number — the per-character counterpart to CMND_BTL_STOP_AI."
+  },
+  "params": [
+    { "name": "stop", "type": "boolean", "description": { "en": "True to stop/disable the character's AI, false to resume it." } },
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side the character belongs to." } },
+    { "name": "charaId", "type": "string", "description": { "en": "Optional character ID string (hashed via CRC32) identifying which member to affect; only read when at least 3 arguments are given." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Freeze one character's AI for a scripted sequence, then resume it afterwards\nCMND_BTL_STOP_CHARA_AI(true, 1, \"para_cp0010\");\n// ... scripted sequence plays out ...\nCMND_BTL_STOP_CHARA_AI(false, 1, \"para_cp0010\");"
+  }
+}

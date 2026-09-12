@@ -1,0 +1,21 @@
+{
+  "name": "ShowTutorialEx",
+  "kind": "ev_main",
+  "category": "image-ui",
+  "description": {
+    "en": "Shows a full tutorial image panel: slides it in from off-screen while playing a voice-over sound, shows a \"next\" prompt animation, waits for the player to advance it (via BtnImageNext), optionally plays a decide SE, then slides the panel back out and deletes it."
+  },
+  "params": [
+    { "name": "_imgFileName", "type": "string", "description": { "en": "Tutorial image file name (without extension/suffix), loaded from data/tutorial/<name>_<LG>.xa." } },
+    { "name": "_strm", "type": "string", "description": { "en": "Voice-over sound event ID to play alongside the image." } },
+    { "name": "_decide", "type": "boolean", "description": { "en": "Whether to play the \"decide\" confirmation SE once the player advances past the image." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Show a tutorial image with its voice-over, as ShowTutorial2 does internally\nShowTutorialEx(_imgFileName, \"str_005\", true);"
+  }
+}

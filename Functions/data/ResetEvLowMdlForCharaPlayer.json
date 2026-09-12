@@ -1,0 +1,19 @@
+{
+  "name": "ResetEvLowMdlForCharaPlayer",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Replaces the player-controlled character's current model with a new one for the given body ID: destroys the existing player-controlled model, creates a new manipulated-character model, then re-fetches and returns the player-controlled handle."
+  },
+  "params": [
+    { "name": "_body", "type": "integer", "description": { "en": "Body model ID for the new player character model." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly (re)created player-controlled character model." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Swap the player character's model to a different body\nlocal hTenmaL = ResetEvLowMdlForCharaPlayer(902);"
+  }
+}

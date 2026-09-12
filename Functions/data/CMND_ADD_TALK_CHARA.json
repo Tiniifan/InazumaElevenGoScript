@@ -1,0 +1,34 @@
+{
+  "name": "CMND_ADD_TALK_CHARA",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Registers a character handle as a \"talker\" bound to a message-text key (typically a \"pname_<baseID>\" name-placeholder key), so subsequent CMND_MESSAGE_OPEN dialogue can resolve that key to the character (for portrait/name-plate display, name substitution, etc.)."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to register as a talker."
+      }
+    },
+    {
+      "name": "nameKey",
+      "type": "string",
+      "description": {
+        "en": "Message-text key associated with this character, e.g. \"pname_0035\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// _hdl is the low-poly map model of the character being talked to, _baseID its base character ID\nWaitLoading(_hdl);\nif (_baseID != \"\")\n{\n\t// Bind that handle to its \"pname_<baseID>\" key before opening dialogue\n\tCMND_ADD_TALK_CHARA(_hdl, format(\"pname_%s\", _baseID));\n}"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "CMND_LOAD_IMAGE",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Loads a 2D image/texture resource (e.g. a tutorial illustration or title-screen background) and returns a handle usable with the other 2D display commands (CMND_SET_POSRY, CMND_SET_ALPHA, CMND_DELETE_IMAGE, ...)."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": {
+        "en": "Internal name to register the image under."
+      }
+    },
+    {
+      "name": "path",
+      "type": "string",
+      "description": {
+        "en": "Path to the image file, e.g. \"data/ep_bg.xa\"."
+      }
+    },
+    {
+      "name": "poolId",
+      "type": "integer",
+      "description": {
+        "en": "Resource pool slot to load into."
+      }
+    },
+    {
+      "name": "animName",
+      "type": "string",
+      "description": {
+        "en": "Name of the animation/variant within the image resource to use."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the loaded image."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Load a full-screen background image\nlocal imgHdl = CMND_LOAD_IMAGE(\"\\x0083^\\x0083C\\x0083g\\x0083\\x008bBG\", \"data/ep_bg.xa\", 1, \"ep_bg\");"
+  }
+}

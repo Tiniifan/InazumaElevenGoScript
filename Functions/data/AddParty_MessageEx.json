@@ -1,0 +1,29 @@
+{
+  "name": "AddParty_MessageEx",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Adds one or more party members with a full \"new member joined\" presentation: optionally fades out/stops the current BGM, waits, then for each member plays a jingle, shows the recruitment message, calls AddParty, and waits for the jingle to finish, before restoring the BGM. This is the general engine behind all the AddParty_Message/AddPartyNum_Message convenience wrappers."
+  },
+  "params": [
+    { "name": "_add_num", "type": "integer", "description": { "en": "Number of members to add (length of the following array arguments)." } },
+    { "name": "_aParamID", "type": "array", "description": { "en": "Array of param IDs, one per member to add." } },
+    { "name": "_aPtLock", "type": "array", "description": { "en": "Array of position-lock flags, one per member." } },
+    { "name": "_aAvatarEnable", "type": "array", "description": { "en": "Array of avatar-enable flags, one per member." } },
+    { "name": "_aAvatarLock", "type": "array", "description": { "en": "Array of avatar-lock flags, one per member." } },
+    { "name": "_aLv", "type": "array", "description": { "en": "Array of levels to set, one per member (-1 to leave unchanged)." } },
+    { "name": "_fade", "type": "integer", "description": { "en": "BGM fade-out duration in frames before the sequence; a negative value skips fading/stopping the BGM entirely." } },
+    { "name": "_wait", "type": "integer", "description": { "en": "Number of frames to wait after the BGM fade before starting." } },
+    { "name": "_jingle", "type": "string", "description": { "en": "Jingle sound event ID to play for each added member." } },
+    { "name": "_index", "type": "integer", "description": { "en": "Unused by this implementation (kept for signature compatibility)." } },
+    { "name": "_event", "type": "string", "description": { "en": "Message ID shown via CreateSpeech for each added member." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Add one party member with a jingle and recruitment message (as AddParty_Message does)\nAddParty_MessageEx(1, [\"para_cp0015\"], [true], [false], [false], [18], 30, 30, \"J_08\", 0, \"sysmes-add_party\");"
+  }
+}

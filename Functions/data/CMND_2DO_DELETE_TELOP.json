@@ -1,0 +1,27 @@
+{
+  "name": "CMND_2DO_DELETE_TELOP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Removes a telop caption previously created with CMND_2DO_CREATE_TELOP, by name."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": {
+        "en": "Name of the telop to remove."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Likely true if a telop with that name was found and removed, false if the telop system isn't ready; null if the call was invalid (no name given)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Remove a named telop caption\nCMND_2DO_DELETE_TELOP(\"\\x008bZ\\x0090\\x00ea\\x0097p\\x0096\\x00bc\");"
+  }
+}

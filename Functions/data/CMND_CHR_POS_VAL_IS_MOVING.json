@@ -1,0 +1,27 @@
+{
+  "name": "CMND_CHR_POS_VAL_IS_MOVING",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Checks whether a character handle is still moving toward the target set with CMND_CHR_POS_VAL_TRG."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to check."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the character is still moving."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait for the character to finish moving\nwhile (CMND_CHR_POS_VAL_IS_MOVING(_hdl))\n{\n\tsuspend();\n}"
+  }
+}

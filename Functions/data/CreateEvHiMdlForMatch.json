@@ -1,0 +1,22 @@
+{
+  "name": "CreateEvHiMdlForMatch",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a high-detail dialogue model for a match roster member, looked up by param ID."
+  },
+  "params": [
+    { "name": "_charaname", "type": "string", "description": { "en": "Name to assign the created model." } },
+    { "name": "_is_upper", "type": "boolean", "description": { "en": "Whether the character is displayed on the \"upper\" match side." } },
+    { "name": "_id", "type": "string", "description": { "en": "Param ID of the match roster member to create." } },
+    { "name": "_teamID", "type": "integer", "description": { "en": "Optional team slot the member belongs to (defaults to 2)." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created character model." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create high-detail dialogue models for match roster members\nlocal hTenmaH = CreateEvHiMdlForMatch(\"tenmaH\", isEvUpperDisp, \"para_cp0008\");\nlocal hSindoH = CreateEvHiMdlForMatch(\"sindoH\", isEvUpperDisp, \"para_cp0009\");"
+  }
+}

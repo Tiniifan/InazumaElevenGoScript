@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SET_PAUSE_BIT",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Writes the \"pause\" bitmask (see CMND_GET_PAUSE_BIT), each set bit pausing updates for a corresponding engine system (e.g. OFF_RPG_CAMERA)."
+  },
+  "params": [
+    {
+      "name": "bits",
+      "type": "integer",
+      "description": {
+        "en": "New pause bitmask."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Pause the RPG camera update, then restore the previous state later\nlocal stp_bit = CMND_GET_PAUSE_BIT();\nCMND_SET_PAUSE_BIT(stp_bit & ~OFF_RPG_CAMERA);\n// ... scene plays ...\nCMND_SET_PAUSE_BIT(stp_bit);"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "CMND_GET_CHARA_HANDLE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Returns the handle of a character identified by a GET_HANDLE_TYPE_* constant (e.g. GET_HANDLE_TYPE_CTRL_PC for the player-controlled character)."
+  },
+  "params": [
+    {
+      "name": "handleType",
+      "type": "integer",
+      "description": {
+        "en": "A GET_HANDLE_TYPE_* constant identifying which character to fetch."
+      }
+    },
+    {
+      "name": "waitReady",
+      "type": "boolean",
+      "description": {
+        "en": "Optional; when true, waits for the character to be ready/loaded before returning its handle."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the requested character."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Get the player-controlled character's handle, waiting until it's ready\nlocal hTenmaL = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC, true);"
+  }
+}

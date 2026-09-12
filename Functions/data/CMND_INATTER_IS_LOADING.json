@@ -1,0 +1,19 @@
+{
+  "name": "CMND_INATTER_IS_LOADING",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Checks whether the background load started by CMND_INATTER_BGLOADING is still in progress."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the Inatter background load is still in progress."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait for the Inatter background load to finish\nwhile (CMND_INATTER_IS_LOADING())\n{\n\tsuspend();\n}"
+  }
+}

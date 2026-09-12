@@ -1,0 +1,34 @@
+{
+  "name": "CMND_BLACK_FADE_IN",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Fades a screen in from black over a number of frames, the counterpart to CMND_BLACK_FADE_OUT."
+  },
+  "params": [
+    {
+      "name": "screen",
+      "type": "integer",
+      "description": {
+        "en": "Which screen to fade, e.g. SCREEN_A."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "integer",
+      "description": {
+        "en": "Fade duration in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Fade a screen back in from black\nCMND_BLACK_FADE_IN(_screen, _frame);\nwhile (CMND_IS_BLACK_FADE(_screen))\n{\n\tsuspend();\n}"
+  }
+}

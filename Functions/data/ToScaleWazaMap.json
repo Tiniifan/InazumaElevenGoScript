@@ -1,0 +1,20 @@
+{
+  "name": "ToScaleWazaMap",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Multiplies a coordinate value by the technique-map scale factor, matching the scale applied by ScEventWazaMapScale — used to convert normal-map coordinates into technique-map-scaled coordinates."
+  },
+  "params": [
+    { "name": "_val", "type": "float", "description": { "en": "Coordinate value to scale." } },
+    { "name": "_scale", "type": "float", "description": { "en": "Optional scale factor to apply (defaults to 0.45, matching ScEventWazaMapScale's default)." } }
+  ],
+  "returns": {
+    "type": "float",
+    "description": { "en": "The scaled coordinate value." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Scale a camera position coordinate for use on the technique map\nlocal scaledX = ToScaleWazaMap(122.3);"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_GET_CALC_PARAM",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Reads a batch of internal match-calculation parameters (used by the clash/shot power formulas — team/player IDs, command parameters, element affinities, GP costs, keshin power, goalkeeper info, etc.) selected by a numeric paramType code, writing the results back into the extra arguments passed after it. Scripts pass local arrays (or plain locals) as those trailing arguments and read the results back out of them after the call, e.g. CMND_BTL_GET_CALC_PARAM(1, AtkTeamId, AtkNum, AtkParamId, DefNum, DefParamId). Which output arguments are filled, and with what, depends entirely on paramType — this reference does not enumerate every paramType case."
+  },
+  "params": [
+    { "name": "paramType", "type": "integer", "description": { "en": "Selects which group of calculation parameters to fetch (observed values in script_clean include 1, 2, 3, 4, 6, 8, 9, 11)." } },
+    { "name": "...outParams", "type": "array|integer", "description": { "en": "One or more extra arguments (often arrays) that get filled with the requested parameters; their number and meaning depend on paramType." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null in every case (including an unrecognized paramType) — results are returned by writing into the passed-in output arguments, not via the function's own return value; null is also returned if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Fetch the attacking and defending team/player/parameter IDs for a clash calculation\nlocal AtkTeamId = [0];\nlocal AtkNum = [0];\nlocal AtkParamId = [0, 0, 0];\nlocal DefNum = [0];\nlocal DefParamId = [0, 0, 0];\nCMND_BTL_GET_CALC_PARAM(1, AtkTeamId, AtkNum, AtkParamId, DefNum, DefParamId);"
+  }
+}

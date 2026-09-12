@@ -1,0 +1,48 @@
+{
+  "name": "CMND_SET_SHADOW_BONE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Anchors a character's/object's drop shadow projection to a specific bone, with a given radius, instead of the default root-based projection. Commonly used on props like the ball so its shadow follows the correct bone as it moves."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character/object handle to configure."
+      }
+    },
+    {
+      "name": "boneName",
+      "type": "string",
+      "description": {
+        "en": "Name of the bone to anchor the shadow to, e.g. \"rot\"."
+      }
+    },
+    {
+      "name": "enabled",
+      "type": "boolean",
+      "description": {
+        "en": "Whether bone-anchored shadow projection is enabled."
+      }
+    },
+    {
+      "name": "radius",
+      "type": "float",
+      "description": {
+        "en": "Shadow projection radius."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Anchor the ball's shadow to its \"rot\" bone\nCMND_SET_SHADOW_BONE(ahBall[i], \"rot\", true, 0.0099999998);"
+  }
+}

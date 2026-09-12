@@ -1,0 +1,22 @@
+{
+  "name": "ChapterTitleCall",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Plays the chapter-title screen for a given episode ID: fades to black, loads and shows the title background and text images plus a voice-over, fades back in, plays the voice-over while fading the title text in, waits for it to finish, fades to black again, then cleans up the images/sound."
+  },
+  "params": [
+    { "name": "_chapID", "type": "string", "required": true, "description": { "en": "Episode/chapter ID used to build the title image and sound file paths (data/img/ep<chapID>_<LG>.xi, ep<chapID>_<LG> sound event)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "examples": [
+    {
+      "case": "Showing a chapter's title screen",
+      "source": "real",
+      "code": "// Show chapter 2's title screen\nChapterTitleCall(\"02\");"
+    }
+  ]
+}

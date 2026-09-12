@@ -1,0 +1,41 @@
+{
+  "name": "CMND_CREATE_GUEST_CHARA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Creates a temporary \"guest\" character (a one-off NPC companion for a specific cutscene, internally tagged SERVANT/Union and given the default RPGMain motion set) and returns its handle. Used for characters that accompany the player during a single event without being permanent party members."
+  },
+  "params": [
+    {
+      "name": "guestType",
+      "type": "integer",
+      "description": {
+        "en": "Which guest slot/preset to spawn."
+      }
+    },
+    {
+      "name": "charaId",
+      "type": "integer",
+      "description": {
+        "en": "Character base ID to spawn as the guest."
+      }
+    },
+    {
+      "name": "bodyId",
+      "type": "integer",
+      "description": {
+        "en": "Optional body/costume model ID override for the guest."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the created guest character."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Spawn a temporary guest companion for this scene\nlocal hShinsukeL = CMND_CREATE_GUEST_CHARA(0, 5, 902);"
+  }
+}

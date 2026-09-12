@@ -1,0 +1,24 @@
+{
+  "name": "CMND_BTL_SET_FORCE_TOUGH",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Forces a match member to always resist being knocked down/dispossessed in clashes (a full \"tough\" effect, covering both GP and TP), or clears that. Accepts the same flexible 2-4 argument forms as CMND_BTL_SET_FORCE_WIN."
+  },
+  "params": [
+    { "name": "enable", "type": "boolean", "description": { "en": "True to force toughness, false to stop forcing it." } },
+    { "name": "teamOrCharaId", "type": "integer|string", "description": { "en": "Team ID (when called with 3-4 arguments) or a character ID string (when called with exactly 2 arguments)." } },
+    { "name": "playerNum", "type": "integer", "description": { "en": "Optional player number within the team; only used in the 3-4 argument forms." } },
+    { "name": "mode", "type": "integer", "description": { "en": "Optional extra mode parameter; only used in the 4-argument form." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null in every case, including an invalid call — this wrapper discards the result of its shared internal helper and never pushes a value of its own."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Force a match member to always resist being knocked down for this scripted sequence\nCMND_BTL_SET_FORCE_TOUGH(true, \"para_cp0321\");"
+  }
+}

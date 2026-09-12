@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_ENABLE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Enables or disables a handle (character, prop, image, ...), controlling whether it's active/visible/updated. The first argument can also be an array of handles to enable/disable them all at once."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle|array",
+      "description": {
+        "en": "Handle to enable or disable, or an array of handles."
+      }
+    },
+    {
+      "name": "enabled",
+      "type": "boolean",
+      "description": {
+        "en": "True to enable, false to disable."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds, a handle doesn't resolve, or the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Hide the event-only goal collision until it's needed\nCMND_SET_ENABLE(eventGoalMouseHdl, false);"
+  }
+}

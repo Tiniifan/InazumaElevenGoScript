@@ -1,0 +1,41 @@
+{
+  "name": "CMND_RESERVE_EVENT",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Reserves an event of a given type/ID to run next (e.g. after the current map/dialogue finishes), optionally overwriting any already-reserved event."
+  },
+  "params": [
+    {
+      "name": "eventType",
+      "type": "string",
+      "description": {
+        "en": "Category of event to reserve, e.g. \"STD\"."
+      }
+    },
+    {
+      "name": "eventId",
+      "type": "integer",
+      "description": {
+        "en": "ID of the event to reserve."
+      }
+    },
+    {
+      "name": "overwrite",
+      "type": "boolean",
+      "description": {
+        "en": "Whether to overwrite an already-reserved event."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Likely true once the event was reserved; null if the call was invalid (fewer than 2 arguments). The success value is produced by an internal reservation helper that wasn't fully traceable from the decompiled code."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Reserve a standard event to run next\nCMND_RESERVE_EVENT(\"STD\", eventID, overwrite);"
+  }
+}

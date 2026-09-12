@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SOCCER_BATTLE_NRM",
+  "kind": "native",
+  "category": "encounter",
+  "description": {
+    "en": "A variant of CMND_SOCCER_BATTLE for starting a standard (\"normal\") soccer match, outside the scripted-challenge flow. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation, which mirrors CMND_SOCCER_BATTLE's setup."
+  },
+  "params": [
+    {
+      "name": "mapId",
+      "type": "string",
+      "description": {
+        "en": "ID of the match map."
+      }
+    },
+    {
+      "name": "battleId",
+      "type": "string",
+      "description": {
+        "en": "ID of the battle script to run."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Start a standard (non-scripted-challenge) soccer match\nCMND_SOCCER_BATTLE_NRM(\"mf01b01\", \"btl0001\");"
+  }
+}

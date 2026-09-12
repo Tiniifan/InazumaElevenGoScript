@@ -1,0 +1,22 @@
+{
+  "name": "AddChildThread",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Spawns a new Squirrel coroutine (via newthread) from the given function, bound to the current stack's locals, and registers it as a child thread to be driven by RunChildThread. Must be called after InitChildThread."
+  },
+  "params": [
+    { "name": "_func", "type": "function", "required": true, "description": { "en": "Function to run as a new child coroutine." } }
+  ],
+  "returns": {
+    "type": "integer",
+    "description": { "en": "The child thread's slot index (its id within the current event context's thread array)." }
+  },
+  "examples": [
+    {
+      "case": "Running several coroutines concurrently (real usage, from ev_main's StopEventRun)",
+      "source": "real",
+      "code": "// Excerpt from StopEventRun(_txt_id, _pos): run three coroutines concurrently\n// (moving the player, panning the camera, and showing a message) until all finish.\nlocal hTenmaL = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC, true);\nlocal hCam = CMND_GET_ACT_CAMERA();\nlocal TenmaProc = function () : (hTenmaL, _pos)\n{\n\tWaitFrame(1);\n\tEvLowMdlSetLookAtPos(hTenmaL, _pos, 20);\n};\nlocal CameraProc = function () : (hCam, _pos)\n{\n\tWaitCamCtrlMoving(hCam);\n};\nlocal TextProc = function () : (_txt_id)\n{\n\tCreateSpeech(_txt_id);\n};\nInitChildThread(3);\nAddChildThread(TenmaProc);\nAddChildThread(CameraProc);\nAddChildThread(TextProc);\nRunChildThread();"
+    }
+  ]
+}

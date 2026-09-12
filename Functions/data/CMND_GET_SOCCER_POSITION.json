@@ -1,0 +1,34 @@
+{
+  "name": "CMND_GET_SOCCER_POSITION",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns a character's soccer field position, the counterpart to CMND_SET_SOCCER_POSITION, with an option to resolve it against the current formation."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to query."
+      }
+    },
+    {
+      "name": "useFormation",
+      "type": "boolean",
+      "description": {
+        "en": "Whether to resolve the position against the current formation."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The character's field position index."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Get a roster character's handle, then check whether they're playing goalkeeper (position 1)\nlocal hdl = CMND_GET_PARTY_HANDLE(\"para_cp0001\");\nlocal isSangokuKeeper = CMND_GET_SOCCER_POSITION(hdl, true) == 1;"
+  }
+}

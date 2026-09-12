@@ -1,0 +1,19 @@
+{
+  "name": "sysCamCtrlStep",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Internal per-frame driver for the camera-control system: advances the current queued camera movement (linear position/reference interpolation, or an orbit-based distance/angle interpolation), or if no movement is queued, keeps the camera locked onto its follow target. Called automatically once per frame by CallEvent and its siblings (CallKiznaxEvent, CallShopEvent, CallMasterAvatar) — scripts don't normally call it directly."
+  },
+  "params": [
+    { "name": "cam_ctrl", "type": "table", "description": { "en": "The event context's camera-control state table (subev_ctx.cam_ctrl), as set up by CamCtrlInit." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement (an early `return;` with no value on some paths) — implicitly null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Drive the camera-control system once per frame inside an event's main loop (as CallEvent does internally)\nsysCamCtrlStep(subev_ctx.cam_ctrl);"
+  }
+}

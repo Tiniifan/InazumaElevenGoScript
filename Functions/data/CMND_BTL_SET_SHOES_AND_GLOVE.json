@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_SET_SHOES_AND_GLOVE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets the shoes and (goalkeeper) glove equipment IDs to use for a match member's model, looked up by character ID or number."
+  },
+  "params": [
+    { "name": "chara", "type": "string|integer", "description": { "en": "Character ID string, or a numeric character index, identifying the member to equip." } },
+    { "name": "shoesId", "type": "string|integer", "description": { "en": "Shoes item ID (string, hashed via CRC32) or numeric ID to equip." } },
+    { "name": "gloveId", "type": "string|integer", "description": { "en": "Glove item ID (string, hashed via CRC32) or numeric ID to equip." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has been processed (the equipment is only actually stored if the member is found; otherwise this is a silent no-op); null if fewer than 2 arguments were given or the call was otherwise invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Equip a match member with a specific pair of shoes and gloves\nCMND_BTL_SET_SHOES_AND_GLOVE(0, \"ssa0023\", \"sga0023\");"
+  }
+}

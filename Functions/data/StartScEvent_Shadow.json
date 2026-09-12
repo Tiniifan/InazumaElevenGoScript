@@ -1,0 +1,20 @@
+{
+  "name": "StartScEvent_Shadow",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Shorthand for StartScEvent with its _shadow argument forced to true — starts a match-side cutscene whose temporary goal model casts a shadow."
+  },
+  "params": [
+    { "name": "_is_upper", "type": "boolean", "description": { "en": "Whether the cutscene runs on the \"upper\" display side." } },
+    { "name": "aHdl", "type": "array", "description": { "en": "Output array; filled with [normalMapHandle, wazaMapHandle, goalModelHandle] when _is_upper is set." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement (an early `return;` with no value when no match is active) — implicitly null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Start a match-side cutscene with a shadow-casting goal model\nlocal scEvHdl = [0, 0, 0];\nStartScEvent_Shadow(isEvUpperDisp, scEvHdl);"
+  }
+}

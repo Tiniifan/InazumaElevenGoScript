@@ -1,0 +1,25 @@
+{
+  "name": "PlayMovie",
+  "kind": "ev_main",
+  "category": "movie",
+  "description": {
+    "en": "Plays a full-screen movie file with an accompanying sound track, fading the given screens and BGM as configured, and waits for it to finish."
+  },
+  "params": [
+    { "name": "_movie", "type": "string", "description": { "en": "Movie file ID to play." } },
+    { "name": "_sound", "type": "string", "description": { "en": "Base sound ID; \"_<LG>\" is appended to form the actual audio track name." } },
+    { "name": "_scrA_fade", "type": "boolean", "description": { "en": "Whether to fade screen A for the movie." } },
+    { "name": "_scrB_fade", "type": "boolean", "description": { "en": "Whether to fade screen B for the movie." } },
+    { "name": "_bgm_fade", "type": "boolean", "description": { "en": "Whether to fade the BGM for the movie." } },
+    { "name": "_frm_bgn_fade", "type": "float", "description": { "en": "Optional fade-in duration in frames (defaults to 15.0)." } },
+    { "name": "_frm_end_fade", "type": "float", "description": { "en": "Optional fade-out duration in frames (defaults to 15.0)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Play a cutscene movie with its accompanying audio track\nPlayMovie(\"scene01\", \"a4m01a\", false, false, false, EV_MOVIE_FADE_IN);"
+  }
+}

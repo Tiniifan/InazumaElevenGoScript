@@ -1,0 +1,19 @@
+{
+  "name": "CMND_PARTY_GPTP_RECV_ALL",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Fully restores both the GP and TP gauges of every party member at once, storing each member's max GP/TP back onto their current GP/TP."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once every party member's GP and TP have been restored; null if the call was invalid or the roster isn't ready."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// At a rest zone, top up the whole party's GP and TP if it isn't already full\nif (!CMND_PARTY_GPTP_IS_MAX())\n{\n\tCMND_PARTY_GPTP_RECV_ALL();\n}"
+  }
+}

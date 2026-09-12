@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SND_IS_LOADING",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Checks whether a sound handle opened with one of the CMND_SND_OPEN_* commands is still loading."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Sound handle to check."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the sound is still loading."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait for a sound effect to finish loading before playing it\nwhile (CMND_SND_IS_LOADING(hEvSe))\n{\n\tsuspend();\n}"
+  }
+}

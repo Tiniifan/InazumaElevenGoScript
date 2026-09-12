@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_SET_BALL_HAVE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Gives ball possession to a match member, looked up by team slot and character ID or number."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side the member belongs to." } },
+    { "name": "chara", "type": "string|integer", "description": { "en": "Character ID string, or a numeric character index, identifying the member to give the ball to." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once possession has been assigned; null if no teamSlot argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Give ball possession to a specific match member during a scripted sequence\nCMND_BTL_SET_BALL_HAVE(1, \"para_cp0149\");"
+  }
+}

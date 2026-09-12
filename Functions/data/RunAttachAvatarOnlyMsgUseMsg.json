@@ -1,0 +1,22 @@
+{
+  "name": "RunAttachAvatarOnlyMsgUseMsg",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Same as RunAttachAvatarUseMsg, but only shows the message without actually attaching the avatar (passes _atch as false to RunAttachAvatarEx) — used when the avatar was already attached elsewhere and only the announcement is needed."
+  },
+  "params": [
+    { "name": "_chr", "type": "string", "description": { "en": "Character ID substituted into the message." } },
+    { "name": "_avt", "type": "string", "description": { "en": "Avatar ID substituted into the message." } },
+    { "name": "_msg", "type": "string", "description": { "en": "Message ID to show." } },
+    { "name": "_lock", "type": "boolean", "description": { "en": "Optional; accepted for signature compatibility but has no effect since no attachment happens (defaults to true)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Show an avatar-attached message without actually attaching it\nRunAttachAvatarOnlyMsgUseMsg(\"para_cp0009\", \"ck0003\", \"sysmes-Avatar-00001\");"
+  }
+}

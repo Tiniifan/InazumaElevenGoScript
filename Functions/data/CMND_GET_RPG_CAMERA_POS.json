@@ -1,0 +1,41 @@
+{
+  "name": "CMND_GET_RPG_CAMERA_POS",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Fills the given arrays with the default gameplay (RPG-mode) camera position and reference point for a character, e.g. to restore the normal follow-camera after a cutscene."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle the RPG camera follows."
+      }
+    },
+    {
+      "name": "outPos",
+      "type": "array",
+      "description": {
+        "en": "Array that receives the [x, y, z] camera position; passed by reference and filled in place."
+      }
+    },
+    {
+      "name": "outRef",
+      "type": "array",
+      "description": {
+        "en": "Array that receives the [x, y, z] look-at reference; passed by reference and filled in place."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read the default gameplay camera position/reference for a character\nCMND_GET_RPG_CAMERA_POS(hchr, pos, ref);"
+  }
+}

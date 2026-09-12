@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_REG_FLIPPER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Registers a new pinball-style flipper hazard slot on the match field, returning a handle later used with CMND_BTL_ACTIVE_FLIPPER."
+  },
+  "params": [],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "Handle of the newly registered flipper slot; null if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Register four flipper hazard slots for a pinball-style stage\nlocal hFlipper = [];\nhFlipper.append(CMND_BTL_REG_FLIPPER());\nhFlipper.append(CMND_BTL_REG_FLIPPER());\nhFlipper.append(CMND_BTL_REG_FLIPPER());\nhFlipper.append(CMND_BTL_REG_FLIPPER());"
+  }
+}

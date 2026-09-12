@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_ENCCHR_INDEX",
+  "kind": "native",
+  "category": "encounter",
+  "description": {
+    "en": "Returns the index of the NPC encounter character that triggered the current challenge/talk (see ie4_ev_sub_enc.nut, the script for NPCs that trigger a challenge when talked to)."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "Index of the triggering encounter character."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Get the index of the encounter NPC that was talked to\nlocal encIndex = CMND_GET_ENCCHR_INDEX();"
+  }
+}

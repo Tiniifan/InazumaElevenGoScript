@@ -1,0 +1,17 @@
+{
+  "name": "Inatter_Check",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Triggers a background-loading check for the \"inatter\" system (likely a notification/reward inbox), waiting for its background loading to finish before adding any pending checks."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Run the inatter background-loading check, as SetGameSubPhase does internally\nInatter_Check();"
+  }
+}

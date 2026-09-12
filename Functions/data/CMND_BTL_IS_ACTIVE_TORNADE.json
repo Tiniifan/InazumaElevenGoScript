@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_IS_ACTIVE_TORNADE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Deactivates the tornado hazard identified by handle and reports whether it had been active."
+  },
+  "params": [
+    { "name": "handle", "type": "handle", "description": { "en": "Handle of the tornado slot, from CMND_BTL_REG_TORNADE." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has been processed; null if no handle argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Check and clear a tornado hazard's active state\nif (CMND_BTL_IS_ACTIVE_TORNADE(hTornade[0]))\n{\n\t// ... hazard was active ...\n}"
+  }
+}

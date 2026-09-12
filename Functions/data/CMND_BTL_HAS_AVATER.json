@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_HAS_AVATER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Intended to check whether a given avatar/character ID currently has an active decorative avatar attached (see CMND_BTL_SET_AVATER). The native implementation does scan the active avatar list internally, but its result never changes the value pushed back to the script."
+  },
+  "params": [
+    { "name": "id", "type": "string", "description": { "en": "Avatar/character ID string to look up." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on every valid call regardless of whether id actually has an active avatar (the internal lookup result is discarded); null if no id argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Intended to skip resetting the avatar if this character already has one active\nif (CMND_BTL_GET_AVATER_NUM(0) >= 3 && !CMND_BTL_HAS_AVATER(\"para_cp0008\"))\n{\n\tCMND_BTL_RESET_AVATER(0);\n}"
+  }
+}

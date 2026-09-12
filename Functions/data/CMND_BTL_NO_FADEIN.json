@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_NO_FADEIN",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Skips the usual fade-in transition when entering the match view."
+  },
+  "params": [
+    { "name": "disable", "type": "boolean", "description": { "en": "Optional flag (defaults to true); false re-enables the fade-in transition." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Skip the fade-in transition before this scripted match sequence\nCMND_BTL_NO_FADEIN();"
+  }
+}

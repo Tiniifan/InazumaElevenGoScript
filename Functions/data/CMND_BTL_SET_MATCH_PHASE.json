@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_SET_MATCH_PHASE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets the current match phase/half and the remaining duration for it (e.g. switching to the second half with a given number of seconds left)."
+  },
+  "params": [
+    { "name": "phase", "type": "integer", "description": { "en": "Numeric match phase/half to switch to." } },
+    { "name": "duration", "type": "integer", "description": { "en": "Duration (in seconds) to set for that phase." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Switch to match phase 1 with 300 seconds remaining\nCMND_BTL_SET_MATCH_PHASE(1, 300);"
+  }
+}

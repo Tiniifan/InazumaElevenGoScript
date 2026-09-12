@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_SET_NOT_FORCE_FAUL_FLAG",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets a match-wide flag that prevents clashes from being forced into a foul outcome."
+  },
+  "params": [
+    { "name": "flag", "type": "boolean", "description": { "en": "True to prevent forced fouls, false to allow them again." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if no flag argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Temporarily prevent forced fouls during a scripted sequence, then restore normal behavior\nCMND_BTL_SET_NOT_FORCE_FAUL_FLAG(true);\n// ... scripted sequence plays out ...\nCMND_BTL_SET_NOT_FORCE_FAUL_FLAG(false);"
+  }
+}

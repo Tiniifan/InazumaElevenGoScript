@@ -1,0 +1,25 @@
+{
+  "name": "RunUnlockSkillEx",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Runs the full \"skill unlocked\" presentation: fades out the BGM, plays a jingle, shows the skill-unlock message (with the character and skill substituted into it), unlocks the skill, then restores the BGM. The general engine behind RunUnlockSkill."
+  },
+  "params": [
+    { "name": "_chr", "type": "string", "description": { "en": "Character ID whose skill is unlocked, substituted into the message." } },
+    { "name": "_skill", "type": "string", "description": { "en": "Skill ID to unlock, substituted into the message." } },
+    { "name": "_fade", "type": "integer", "description": { "en": "BGM fade-out duration in frames before the sequence." } },
+    { "name": "_wait", "type": "integer", "description": { "en": "Number of frames to wait after the BGM fade before starting." } },
+    { "name": "_jingle", "type": "string", "description": { "en": "Jingle sound event ID to play." } },
+    { "name": "_index", "type": "integer", "description": { "en": "Message substitution slot index for the character/skill." } },
+    { "name": "_event", "type": "string", "description": { "en": "Message ID shown via CreateSpeech." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Unlock a skill with the standard presentation (as RunUnlockSkill does internally)\nRunUnlockSkillEx(\"para_cp0008\", \"who0011\", 30, 30, \"J_08\", 0, \"sysmes-Skill-00001\");"
+  }
+}

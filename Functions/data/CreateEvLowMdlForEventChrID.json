@@ -1,0 +1,22 @@
+{
+  "name": "CreateEvLowMdlForEventChrID",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a low-detail cutscene model looked up by a specific event-character ID (a model variant reserved for a particular event), rather than by generic face/body numbers or NPC number."
+  },
+  "params": [
+    { "name": "_charaName", "type": "string", "description": { "en": "Name to assign the created model." } },
+    { "name": "_id", "type": "string", "description": { "en": "Event-character ID identifying which model to create." } },
+    { "name": "_base", "type": "boolean", "description": { "en": "Optional flag passed through to CMND_CREATE_CHARA (defaults to false)." } },
+    { "name": "_mem", "type": "integer", "description": { "en": "Optional memory pool to allocate the model from (defaults to DEV_MEM_NAME_EVENT)." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created character model." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Create a low-detail model for a specific event-character ID\nlocal hEvChr = CreateEvLowMdlForEventChrID(\"evChrL\", \"evc0001\");"
+  }
+}

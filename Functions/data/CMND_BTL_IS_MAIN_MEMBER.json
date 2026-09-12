@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_IS_MAIN_MEMBER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Intended to check whether a given character (by CRC32-hashed ID string) is among the first 5 registered match members (the \"main\" lineup). Like CMND_BTL_IS_MATCH_MEMBER, the internal lookup result never changes the value pushed back to the script."
+  },
+  "params": [
+    { "name": "unused", "type": "integer", "description": { "en": "Read but not meaningfully used by the check itself." } },
+    { "name": "charaId", "type": "string", "description": { "en": "Character ID string to look up among the first 5 match members." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on every valid call regardless of whether charaId is actually among the first 5 match members (the internal lookup result is discarded); null if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Check whether a given character is part of the main lineup for this match\nlocal isMainMember = CMND_BTL_IS_MAIN_MEMBER(0, \"para_cp0008\");"
+  }
+}

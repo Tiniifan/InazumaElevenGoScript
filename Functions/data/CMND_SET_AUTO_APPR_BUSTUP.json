@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_AUTO_APPR_BUSTUP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Toggles whether a character's bust-up portrait (see CMND_CREATE_BUSTUP) automatically appears/disappears as they talk."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character or bust-up handle to configure."
+      }
+    },
+    {
+      "name": "autoAppear",
+      "type": "boolean",
+      "description": {
+        "en": "False to stop the bust-up from auto-appearing (e.g. to control its visibility manually)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Stop these characters' bust-ups from auto-appearing\nCMND_SET_AUTO_APPR_BUSTUP(hTenmaL, false);"
+  }
+}

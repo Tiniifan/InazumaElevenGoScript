@@ -1,0 +1,22 @@
+{
+  "name": "SetChrPrmDetailForSkillScriptAtMatchByIdx",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Same as SetChrPrmDetailForSkillScriptAtMatch, but looks up the match roster member by team slot and field-position index instead of by param ID."
+  },
+  "params": [
+    { "name": "_side", "type": "string", "description": { "en": "Which side to configure: \"ATK\" or \"DEF\"." } },
+    { "name": "_index", "type": "integer", "description": { "en": "Slot index on that side (for multi-character techniques)." } },
+    { "name": "_team", "type": "integer", "description": { "en": "Team slot to look the member up in." } },
+    { "name": "_pos_idx", "type": "integer", "description": { "en": "Field-position index of the member within that team." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Set up the defending character for a technique cutscene using a match roster slot\nSetChrPrmDetailForSkillScriptAtMatchByIdx(\"DEF\", 1, 0, 0);"
+  }
+}

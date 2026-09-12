@@ -1,0 +1,27 @@
+{
+  "name": "CMND_GET_TEMP_MAP_BYTE_FLAG",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Reads a temporary, map-scoped byte value previously set with CMND_SET_TEMP_MAP_BYTE_FLAG. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "index",
+      "type": "integer",
+      "description": {
+        "en": "Index of the temporary map-scoped byte value to read."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The stored byte value."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Read back a stored map-local counter value\nlocal count = CMND_GET_TEMP_MAP_BYTE_FLAG(0);"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "CamCtrlInit",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Initializes the current event context's camera-control state (subev_ctx.cam_ctrl) for the given camera handle, resetting it and clearing any character-follow target."
+  },
+  "params": [
+    { "name": "_hcam", "type": "handle", "description": { "en": "Handle of the camera to control." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Initialize camera control for the active camera at the start of a scripted sequence\nlocal hCam = CMND_GET_ACT_CAMERA();\nCamCtrlInit(hCam);"
+  }
+}

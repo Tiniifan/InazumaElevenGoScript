@@ -1,0 +1,27 @@
+{
+  "name": "CMND_MOVIE_IS_LOADING",
+  "kind": "native",
+  "category": "movie",
+  "description": {
+    "en": "Checks whether a movie handle opened with CMND_MOVIE_OPEN is still loading. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Movie handle to check."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the movie is still loading."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Wait for the movie to finish loading before playing it\nwhile (CMND_MOVIE_IS_LOADING(hMovie))\n{\n\tsuspend();\n}"
+  }
+}

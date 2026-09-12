@@ -1,0 +1,23 @@
+{
+  "name": "CMND_ADD_SET_FORMATION",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Unlocks a tactical formation, by formation ID, optionally selecting it and/or marking it as new."
+  },
+  "params": [
+    { "name": "formationId", "type": "string", "description": { "en": "ID of the formation to unlock, e.g. \"ifa0001\"." } },
+    { "name": "select", "type": "boolean", "description": { "en": "Optional; whether to select this formation as active." } },
+    { "name": "isNew", "type": "boolean", "description": { "en": "Optional; whether to flag the formation as newly unlocked." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect (including as a no-op if the formation system isn't ready yet); null if the call was invalid (no ID given)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Unlock the starting formation (flagged new), then a second one without selecting it\nCMND_ADD_SET_FORMATION(\"ifa0001\", false, true);\nCMND_ADD_SET_FORMATION(\"ifb0111\", true);"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "CMND_MESSAGE_REPLACE_VAL",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Registers a numeric value substitution for the given placeholder index, so the next opened message can embed a computed number (e.g. an amount gained) at that placeholder."
+  },
+  "params": [
+    {
+      "name": "placeholderIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the placeholder within the message text to substitute."
+      }
+    },
+    {
+      "name": "value",
+      "type": "integer",
+      "description": {
+        "en": "Numeric value to insert."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Substitute a numeric value into the next message's placeholder 1\nCMND_MESSAGE_REPLACE_VAL(1, lost_pt);"
+  }
+}

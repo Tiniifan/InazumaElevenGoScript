@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SND_CLOSE",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Closes/frees a sound handle opened with one of the CMND_SND_OPEN_* commands, optionally fading it out first."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Sound handle to close."
+      }
+    },
+    {
+      "name": "fadeOut",
+      "type": "integer",
+      "description": {
+        "en": "Optional fade-out duration before closing."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Close a sound handle with a fade-out\nCMND_SND_CLOSE(hMapsnd, 30);"
+  }
+}

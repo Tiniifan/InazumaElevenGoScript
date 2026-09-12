@@ -1,0 +1,19 @@
+{
+  "name": "CMND_START_SOCCER_VIEW",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Switches the game's rendering into the soccer/match view mode used during a challenge, enabling the pitch camera and match HUD."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the soccer view has been enabled; null if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Enter the pitch view before running the technique cutscene, then leave it once done\nCMND_START_SOCCER_VIEW();\nCMND_GET_WAZA_MAP_HANDLE();\nCMND_END_SOCCER_VIEW();"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "CMND_SETUP_RUN_TAC",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Sets up and plays a tactic (\"tac\") cutscene given a tactic ID and the attacking/defending team rosters, on a given map."
+  },
+  "params": [
+    {
+      "name": "tacId",
+      "type": "integer",
+      "description": {
+        "en": "ID of the tactic to play."
+      }
+    },
+    {
+      "name": "attackingTeam",
+      "type": "array",
+      "description": {
+        "en": "Attacking side's participant characters."
+      }
+    },
+    {
+      "name": "defendingTeam",
+      "type": "array",
+      "description": {
+        "en": "Defending side's participant characters."
+      }
+    },
+    {
+      "name": "flag",
+      "type": "integer",
+      "description": {
+        "en": "Additional playback flag."
+      }
+    },
+    {
+      "name": "mapId",
+      "type": "string",
+      "description": {
+        "en": "ID of the map to play the tactic on."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Set up and play a tactic cutscene\nCMND_SETUP_RUN_TAC(_tacID, _aAtk, _aDef, 0, _mapID);"
+  }
+}

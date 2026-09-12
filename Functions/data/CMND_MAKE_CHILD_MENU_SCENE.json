@@ -1,0 +1,34 @@
+{
+  "name": "CMND_MAKE_CHILD_MENU_SCENE",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Opens a built-in menu scene (e.g. the save menu, shop menu, team-organize menu) by name as a child scene layered over the current one, optionally passing extra menu-specific arguments."
+  },
+  "params": [
+    {
+      "name": "menuName",
+      "type": "string",
+      "description": {
+        "en": "Name of the menu scene to open, e.g. \"SaveMenu\", \"ShopMenu\", \"PlotMenu\"."
+      }
+    },
+    {
+      "name": "args",
+      "type": "any",
+      "description": {
+        "en": "Additional menu-specific arguments (vary per menu)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Likely true once the child menu scene was created; null if the call was invalid (no menu name given). The success value is produced by an internal scene-creation helper that wasn't fully traceable from the decompiled code."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Open the plot/story menu as a child scene\nCMND_MAKE_CHILD_MENU_SCENE(\"PlotMenu\");"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "CMND_SET_MAP_MESH_VISIBLE",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Shows or hides a named mesh part of a map (e.g. swapping seasonal decoration meshes on and off)."
+  },
+  "params": [
+    {
+      "name": "mapHandle",
+      "type": "handle",
+      "description": {
+        "en": "Handle of the map, from CMND_GET_MAP_HANDLE."
+      }
+    },
+    {
+      "name": "meshName",
+      "type": "string",
+      "description": {
+        "en": "Name of the mesh part to show/hide, e.g. \"mr01b05.sakura\"."
+      }
+    },
+    {
+      "name": "visible",
+      "type": "integer",
+      "description": {
+        "en": "1 to show the mesh, 0 to hide it."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Swap sakura decoration on and grass decoration off\nCMND_SET_MAP_MESH_VISIBLE(hMap, \"mr01b05.sakura\", 1);\nCMND_SET_MAP_MESH_VISIBLE(hMap, \"mr01b05.midori\", 0);"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "CMND_BRIGHT_FADE",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Fades a screen's overall brightness to a target level over a number of frames."
+  },
+  "params": [
+    {
+      "name": "screen",
+      "type": "integer",
+      "description": {
+        "en": "Which screen to fade, e.g. SCREEN_A (0)."
+      }
+    },
+    {
+      "name": "targetBrightness",
+      "type": "float",
+      "description": {
+        "en": "Target brightness level (e.g. -1.0 for black, 0.0 for normal)."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "float",
+      "description": {
+        "en": "Fade duration in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Fade a screen to black over 30 frames\nCMND_BRIGHT_FADE(0, -1.0, 30.0);\nwhile (CMND_IS_BRIGHT_FADE(0))\n{\n\tsuspend();\n}"
+  }
+}

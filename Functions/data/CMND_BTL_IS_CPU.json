@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_IS_CPU",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Intended to check whether a given team slot is CPU-controlled. The native implementation does perform some related internal bookkeeping, but always reports the same result regardless of which team slot is queried."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side to check." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on every valid call regardless of teamSlot; null if no teamSlot argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Branch scripted behavior depending on whether team 1 is CPU-controlled\nif (CMND_BTL_IS_CPU(1))\n{\n\t// ... CPU-specific setup ...\n}"
+  }
+}

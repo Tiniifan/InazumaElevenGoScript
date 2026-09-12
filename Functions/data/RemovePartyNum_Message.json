@@ -1,0 +1,22 @@
+{
+  "name": "RemovePartyNum_Message",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Multi-member version of RemoveParty_Message: removes several party members in sequence, each with the standard SE-21 jingle and \"sysmes-remove_party\" message presentation and a BGM fade — a fixed-preset wrapper around RemoveParty_MessageEx."
+  },
+  "params": [
+    { "name": "_rmv_num", "type": "integer", "description": { "en": "Number of members to remove." } },
+    { "name": "_aParamID", "type": "array", "description": { "en": "Array of param IDs, one per member to remove." } },
+    { "name": "_aStReset", "type": "array", "description": { "en": "Array of status-reset flags, one per member." } },
+    { "name": "_not_pt_lock", "type": "boolean", "description": { "en": "Optional; when true, removes members without locking their slot (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Remove several party members in sequence with the standard departure presentation\nRemovePartyNum_Message(_rmv_num, _aParamID, _aStReset, _not_pt_lock);"
+  }
+}

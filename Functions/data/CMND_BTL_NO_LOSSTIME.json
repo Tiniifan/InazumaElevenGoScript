@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_NO_LOSSTIME",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Enables or disables added stoppage/loss time at the end of a match half."
+  },
+  "params": [
+    { "name": "disable", "type": "boolean", "description": { "en": "True to disable loss time, false to allow it." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if no disable argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Disable stoppage time for this scripted match\nCMND_BTL_NO_LOSSTIME(true);"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "CMND_BRIGHT_GET",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Returns a screen's current brightness level."
+  },
+  "params": [
+    {
+      "name": "screen",
+      "type": "integer",
+      "description": {
+        "en": "Which screen to query, e.g. SCREEN_A."
+      }
+    }
+  ],
+  "returns": {
+    "type": "float",
+    "description": {
+      "en": "The screen's current brightness level."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Read the top screen's current brightness\nlocal bright = CMND_BRIGHT_GET(SCREEN_A);"
+  }
+}

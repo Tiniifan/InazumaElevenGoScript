@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_SET_MATCH_EFFECT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Enables or disables a numbered match visual effect flag (a bit in the current match state's effect bitmask). Effect 0 additionally flips a dedicated flag on the match result data."
+  },
+  "params": [
+    { "name": "enable", "type": "integer", "description": { "en": "Non-zero to enable the effect, 0 to disable it." } },
+    { "name": "effectIndex", "type": "integer", "description": { "en": "Index of the effect bit to toggle (bit 0 also updates the match result's own flag)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the effect flag has been updated; null if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Enable match effect 0 for the kickoff cutscene, then disable it once play resumes\nCMND_BTL_SET_MATCH_EFFECT(1, 0);\n// ... kickoff cutscene plays out ...\nCMND_BTL_SET_MATCH_EFFECT(0, 0);"
+  }
+}

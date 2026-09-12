@@ -1,0 +1,27 @@
+{
+  "name": "CMND_DELETE_MAP_EFFECT",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Removes a map effect previously created with CMND_CREATE_MAP_EFFECT. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Handle of the map effect to remove."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "Always true."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Remove a previously created map effect\nCMND_DELETE_MAP_EFFECT(hMapEffect);"
+  }
+}

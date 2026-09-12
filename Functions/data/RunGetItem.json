@@ -1,0 +1,20 @@
+{
+  "name": "RunGetItem",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Obtains a regular item with the standard \"J_08\" jingle and \"sysmes-item-get\" message presentation — a fixed-preset wrapper around RunGetItemEx."
+  },
+  "params": [
+    { "name": "_item", "type": "string", "description": { "en": "Item ID to obtain." } },
+    { "name": "_num", "type": "integer", "description": { "en": "Optional quantity to add (defaults to 1)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Obtain a regular item with the standard presentation\nRunGetItem(\"irg0001\");"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SET_PURPOSE_STATE",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Shows or hides the on-screen objective/\"purpose\" indicator."
+  },
+  "params": [
+    {
+      "name": "visible",
+      "type": "boolean",
+      "description": {
+        "en": "True to show the purpose indicator, false to hide it."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Hide the objective indicator during a cutscene, then restore it\nCMND_SET_PURPOSE_STATE(false);\n// ... scene plays ...\nCMND_SET_PURPOSE_STATE(true);"
+  }
+}

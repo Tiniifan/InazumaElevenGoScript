@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_SET_TIMER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Starts a named in-match countdown timer running for the given duration (e.g. used to time a temporary floor hazard)."
+  },
+  "params": [
+    { "name": "name", "type": "string", "description": { "en": "Name to identify the timer." } },
+    { "name": "duration", "type": "integer", "description": { "en": "Duration (in frames or seconds) for the timer to run." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the timer has been started; null if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Start a named timer for a temporary match hazard\nCMND_BTL_SET_TIMER(\"timer\", 300);"
+  }
+}

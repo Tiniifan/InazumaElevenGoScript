@@ -1,0 +1,55 @@
+{
+  "name": "CMND_CHR_TURN_NORMAL_TALK",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Turns a character to face another character for a normal talk interaction, within an angle range, optionally applying the turn instantly."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to turn."
+      }
+    },
+    {
+      "name": "targetHandle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to face."
+      }
+    },
+    {
+      "name": "minAngle",
+      "type": "float",
+      "description": {
+        "en": "Minimum angle threshold."
+      }
+    },
+    {
+      "name": "maxAngle",
+      "type": "float",
+      "description": {
+        "en": "Maximum angle threshold."
+      }
+    },
+    {
+      "name": "instant",
+      "type": "boolean",
+      "description": {
+        "en": "Whether to snap to the facing angle instantly."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The character's move-manager entry as an integer (0 if the handle doesn't resolve to a registered character); null only if the call itself was invalid (missing required arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Turn the player and NPC to face each other for a talk\nCMND_CHR_TURN_NORMAL_TALK(_main_hdl, _npc_hdl, 0.0, 15.0, true);\nCMND_CHR_TURN_NORMAL_TALK(_npc_hdl, _main_hdl, 0.0, 15.0, true);"
+  }
+}

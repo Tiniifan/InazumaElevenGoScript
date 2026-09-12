@@ -1,0 +1,25 @@
+{
+  "name": "CMND_BTL_SET_RESULT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Records the outcome of a single match action (shot, tackle, clash, etc.) into the match log — whether it succeeded, the attack/defense power involved, and whether it was a foul or a miss."
+  },
+  "params": [
+    { "name": "success", "type": "boolean", "description": { "en": "Whether the action succeeded (e.g. the attacker won the clash)." } },
+    { "name": "attackPower", "type": "integer", "description": { "en": "Optional attack power value involved in the action; only read together with defensePower when at least 3 arguments are given." } },
+    { "name": "defensePower", "type": "integer", "description": { "en": "Optional defense power value involved in the action; only read when at least 3 arguments are given." } },
+    { "name": "isFoul", "type": "boolean", "description": { "en": "Optional flag marking the action as a foul; only read when at least 4 arguments are given." } },
+    { "name": "isMiss", "type": "boolean", "description": { "en": "Optional flag marking the action as a miss; only read when at least 5 arguments are given." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if no success argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Log a clash outcome with its attack/defense power values\nlocal is_win = true;\nlocal atk_power = 120;\nlocal def_power = 95;\nlocal is_faul = false;\nCMND_BTL_SET_RESULT(is_win, atk_power, def_power, is_faul);"
+  }
+}

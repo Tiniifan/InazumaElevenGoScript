@@ -1,0 +1,22 @@
+{
+  "name": "SaveRun",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Opens the in-game save menu as a child scene: records the resume phase/map/position (if the CMND_SET_SAVE_INFO command is available in this build) into the save data, fades to black, runs the save menu, and fades back in once the player finishes."
+  },
+  "params": [
+    { "name": "_phase_no", "type": "integer", "description": { "en": "Story phase number to resume at when this save is loaded." } },
+    { "name": "_map_id", "type": "string", "description": { "en": "Map ID to resume on when this save is loaded." } },
+    { "name": "_pos", "type": "array", "description": { "en": "Position to resume at when this save is loaded." } },
+    { "name": "_cation", "type": "boolean", "description": { "en": "Optional; whether to show a caution/warning notice in the save menu (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Prompt the player to save, resuming at a specific phase/map/position\nSaveRun(2, \"mr01b06\", [0.0, 0.0, 0.0, 0]);"
+  }
+}

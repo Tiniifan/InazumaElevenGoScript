@@ -1,0 +1,27 @@
+{
+  "name": "CMND_MOVIE_STOP",
+  "kind": "native",
+  "category": "movie",
+  "description": {
+    "en": "Stops a currently playing movie handle. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Movie handle to stop."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Stop a playing movie (e.g. if the player skips it)\nCMND_MOVIE_STOP(hMovie);"
+  }
+}

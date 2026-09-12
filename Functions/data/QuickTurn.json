@@ -1,0 +1,23 @@
+{
+  "name": "QuickTurn",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Turns two characters to face each other for a dialogue exchange (the player and an NPC, typically), waiting for both turns to finish before restoring their idle/original motion."
+  },
+  "params": [
+    { "name": "_main_hdl", "type": "handle", "description": { "en": "Handle of the first character to turn." } },
+    { "name": "_npc_hdl", "type": "handle", "description": { "en": "Handle of the second character to turn." } },
+    { "name": "_main_rot_flg", "type": "boolean", "description": { "en": "Optional; whether to actually turn _main_hdl (defaults to true)." } },
+    { "name": "_npc_rot_flg", "type": "boolean", "description": { "en": "Optional; whether to actually turn _npc_hdl (defaults to true)." } },
+    { "name": "_ev_step", "type": "boolean", "description": { "en": "Optional; whether to call SYS_EVENT_STEP() while waiting (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Turn the player and an NPC to face each other before a conversation\nQuickTurn(hTenmaL, hTsurugiL, true, true);"
+  }
+}

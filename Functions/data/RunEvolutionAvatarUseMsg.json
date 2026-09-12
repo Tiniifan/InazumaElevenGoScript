@@ -1,0 +1,22 @@
+{
+  "name": "RunEvolutionAvatarUseMsg",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Evolves a character's avatar with the standard \"J_07\" jingle presentation and a caller-specified message — a fixed-preset wrapper around RunEvolutionAvatarEx (with actual evolution enabled)."
+  },
+  "params": [
+    { "name": "_chr", "type": "string", "description": { "en": "Character ID whose avatar evolves." } },
+    { "name": "_avt", "type": "string", "description": { "en": "Target avatar ID." } },
+    { "name": "_msg", "type": "string", "description": { "en": "Message ID to show." } },
+    { "name": "_lock", "type": "boolean", "description": { "en": "Optional; whether to lock the avatar after evolving (defaults to true)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Evolve an avatar with a specific message, as RunEvolutionAvatar does internally\nRunEvolutionAvatarUseMsg(\"para_cp0008\", \"ck0033\", \"sysmes-Avatar-00002\", true);"
+  }
+}

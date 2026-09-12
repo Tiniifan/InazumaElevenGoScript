@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_MAP_HANDLE",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Returns the handle of the currently loaded/active map."
+  },
+  "params": [],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the current map."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Get the handle of the map that's currently loaded\nlocal hMap = CMND_GET_MAP_HANDLE();"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "name": "CMND_SETUP_SKL_SQ_CHARA",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Registers a technique-cutscene participant (see CMND_INIT_SKILL_SCRIPT) by explicit appearance parameters, rather than by an existing roster character."
+  },
+  "params": [
+    {
+      "name": "side",
+      "type": "integer",
+      "description": {
+        "en": "Team side the character belongs to."
+      }
+    },
+    {
+      "name": "index",
+      "type": "integer",
+      "description": {
+        "en": "Slot index within that side."
+      }
+    },
+    {
+      "name": "isPlayer",
+      "type": "integer",
+      "description": {
+        "en": "Whether this participant is the controlled player."
+      }
+    },
+    {
+      "name": "faceId",
+      "type": "integer",
+      "description": {
+        "en": "Face model ID."
+      }
+    },
+    {
+      "name": "bodyId",
+      "type": "integer",
+      "description": {
+        "en": "Body model ID."
+      }
+    },
+    {
+      "name": "homeTeam",
+      "type": "integer",
+      "description": {
+        "en": "Home team/uniform ID."
+      }
+    },
+    {
+      "name": "keeper",
+      "type": "integer",
+      "description": {
+        "en": "Whether the character is set up as a goalkeeper."
+      }
+    },
+    {
+      "name": "shoesId",
+      "type": "integer",
+      "description": {
+        "en": "Shoes item ID."
+      }
+    },
+    {
+      "name": "gloveId",
+      "type": "integer",
+      "description": {
+        "en": "Glove item ID."
+      }
+    },
+    {
+      "name": "number",
+      "type": "integer",
+      "description": {
+        "en": "Uniform number."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the character participant was registered, or null if the call was invalid or the side/index don't resolve."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Register a technique-cutscene participant by explicit appearance\nCMND_SETUP_SKL_SQ_CHARA(_side, _index, 1, _face, _body, _home, _keeper, _shoes_no, _glove_no, _number);"
+  }
+}

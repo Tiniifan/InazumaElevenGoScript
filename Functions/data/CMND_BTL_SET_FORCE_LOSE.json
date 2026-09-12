@@ -1,0 +1,24 @@
+{
+  "name": "CMND_BTL_SET_FORCE_LOSE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Forces the outcome of clashes involving a given team/player to always fail (or, when disabled, stops forcing it) — the losing counterpart to CMND_BTL_SET_FORCE_WIN."
+  },
+  "params": [
+    { "name": "enable", "type": "boolean", "description": { "en": "True to force losses, false to stop forcing them." } },
+    { "name": "teamOrCharaId", "type": "integer|string", "description": { "en": "Team ID (when called with 3-4 arguments) or a character ID string (when called with exactly 2 arguments)." } },
+    { "name": "playerNum", "type": "integer", "description": { "en": "Optional player number within the team; only used in the 3-4 argument forms." } },
+    { "name": "mode", "type": "integer", "description": { "en": "Optional extra mode parameter; only used in the 4-argument form." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Force team 1's player 0 to always lose their clashes for this scripted match\nCMND_BTL_SET_FORCE_LOSE(true, 1, 0, true);"
+  }
+}

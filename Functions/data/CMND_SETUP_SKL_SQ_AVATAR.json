@@ -1,0 +1,41 @@
+{
+  "name": "CMND_SETUP_SKL_SQ_AVATAR",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Registers an avatar (keshin/mascot-type participant) for the technique cutscene set up with CMND_INIT_SKILL_SCRIPT, by avatar ID."
+  },
+  "params": [
+    {
+      "name": "side",
+      "type": "integer",
+      "description": {
+        "en": "Team side the avatar belongs to."
+      }
+    },
+    {
+      "name": "index",
+      "type": "integer",
+      "description": {
+        "en": "Slot index within that side."
+      }
+    },
+    {
+      "name": "avatarId",
+      "type": "integer",
+      "description": {
+        "en": "ID of the avatar to use."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Likely true once the avatar participant was registered; null if the call was invalid or the side/index don't resolve. The success value is produced by an internal setup helper that wasn't fully traceable from the decompiled code."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Register an avatar participant for the technique cutscene\nCMND_SETUP_SKL_SQ_AVATAR(_side, 1, _avatarID);"
+  }
+}

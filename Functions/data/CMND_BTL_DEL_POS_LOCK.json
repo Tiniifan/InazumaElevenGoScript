@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_DEL_POS_LOCK",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Removes a position-role lock previously set with CMND_BTL_SET_POS_LOCK for a single character."
+  },
+  "params": [
+    { "name": "charaId", "type": "string", "description": { "en": "Character ID string identifying the member to unlock." } },
+    { "name": "mode", "type": "integer", "description": { "en": "Optional lock mode to match (defaults to 2 if omitted)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if no charaId argument was given."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Lock a member's position role, then remove the lock afterwards\nCMND_BTL_SET_POS_LOCK(true, \"para_cp0149\", LOCK_TYPE_FIELDER);\nCMND_BTL_DEL_POS_LOCK(\"para_cp0149\");"
+  }
+}

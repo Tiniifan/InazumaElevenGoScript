@@ -1,0 +1,19 @@
+{
+  "name": "CMND_IS_BRIGHT_FADE_ALL",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Checks whether the both-screens brightness fade started with CMND_BRIGHT_FADE_ALL is still in progress."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True while the brightness fade is still in progress."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Wait for the both-screens brightness fade to finish\nwhile (CMND_IS_BRIGHT_FADE_ALL())\n{\n\tsuspend();\n}"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "CreateEvLowMdlForMatchNoBustup",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Shorthand for CreateEvLowMdlForMatch with its _no_bustup argument forced to true — creates a low-detail match roster model without its bustup portrait."
+  },
+  "params": [
+    { "name": "_charaname", "type": "string", "description": { "en": "Name to assign the created model." } },
+    { "name": "_is_upper", "type": "boolean", "description": { "en": "Whether the character is displayed on the \"upper\" match side." } },
+    { "name": "_paramID", "type": "string", "description": { "en": "Param ID of the match roster member to create." } },
+    { "name": "_teamID", "type": "integer", "description": { "en": "Optional team slot the member belongs to (defaults to 2)." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created character model." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Create a low-detail match roster model without a bustup portrait\nlocal hMemberL = CreateEvLowMdlForMatchNoBustup(\"memberL\", true, \"para_cp0010\");"
+  }
+}

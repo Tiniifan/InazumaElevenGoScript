@@ -1,0 +1,26 @@
+{
+  "name": "EvLowMdlSetPath5",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Moves a low-detail cutscene character model along a 5-point path, by delegating straight to CMND_CHR_PATH_SETUP. One of a family (EvLowMdlSetPath3..EvLowMdlSetPath8) differing only by how many path points they accept."
+  },
+  "params": [
+    { "name": "_hdl", "type": "handle", "description": { "en": "Handle of the character model to move." } },
+    { "name": "_spd", "type": "float", "description": { "en": "Movement speed along the path." } },
+    { "name": "_trg", "type": "integer", "description": { "en": "Turn/facing behavior while following the path." } },
+    { "name": "_pnt1", "type": "array", "description": { "en": "First path point [x, y, z]." } },
+    { "name": "_pnt2", "type": "array", "description": { "en": "Second path point [x, y, z]." } },
+    { "name": "_pnt3", "type": "array", "description": { "en": "Third path point [x, y, z]." } },
+    { "name": "_pnt4", "type": "array", "description": { "en": "Fourth path point [x, y, z]." } },
+    { "name": "_pnt5", "type": "array", "description": { "en": "Fifth path point [x, y, z]." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Move a character along a 5-point path\nEvLowMdlSetPath5(hCharaL, 5.0, 1, [0, 0, 0], [50, 0, 0], [50, 0, 50], [0, 0, 50], [0, 0, 0]);"
+  }
+}

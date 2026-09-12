@@ -1,0 +1,20 @@
+{
+  "name": "SetDrawAndPause",
+  "kind": "ev_main",
+  "category": "screen-fx",
+  "description": {
+    "en": "Toggles a set of draw/pause bits on or off together (e.g. RPG character and camera rendering/updates), then suspends for one frame so the change takes effect."
+  },
+  "params": [
+    { "name": "_flg", "type": "boolean", "description": { "en": "True to clear (enable) the given bits, false to set (disable) them." } },
+    { "name": "_offBit", "type": "integer", "description": { "en": "Optional bitmask of draw/pause bits to toggle (defaults to OFF_RPG_CHARA | OFF_RPG_CAMERA)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Disable RPG character/camera drawing and updates for a cutscene, then restore them\nSetDrawAndPause(false);\n// ... cutscene plays out ...\nSetDrawAndPause(true);"
+  }
+}

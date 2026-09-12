@@ -1,0 +1,21 @@
+{
+  "name": "CMND_BTL_SET_NEXT_STATE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Forces the match's internal state machine to transition to a given numeric state on its next update."
+  },
+  "params": [
+    { "name": "stateId", "type": "integer", "description": { "en": "Numeric match state to transition to." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the next state has been set; null if no stateId argument was given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Force the match state machine into a specific state\nCMND_BTL_SET_NEXT_STATE(22);"
+  }
+}

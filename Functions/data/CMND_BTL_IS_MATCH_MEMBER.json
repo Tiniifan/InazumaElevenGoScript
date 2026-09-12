@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_IS_MATCH_MEMBER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Intended to check whether a given character (by CRC32-hashed ID string) is currently one of the registered match members. The native implementation does scan the active member list internally, but its result never changes the value pushed back to the script."
+  },
+  "params": [
+    { "name": "unused", "type": "integer", "description": { "en": "Read but not meaningfully used by the check itself." } },
+    { "name": "charaId", "type": "string", "description": { "en": "Character ID string to look up among the match members." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on every valid call regardless of whether charaId is actually found among the match members (the internal lookup result is discarded); null if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Used to branch dialogue depending on which characters are playing in this match\nlocal tenma_check = CMND_BTL_IS_MATCH_MEMBER(0, \"para_cp0008\");\nlocal shindo_check = CMND_BTL_IS_MATCH_MEMBER(0, \"para_cp0009\");"
+  }
+}

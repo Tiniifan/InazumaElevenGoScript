@@ -1,0 +1,21 @@
+{
+  "name": "EvLowMdlMove",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Moves a low-detail cutscene character model to a target position over a number of frames."
+  },
+  "params": [
+    { "name": "_hdl", "type": "handle", "description": { "en": "Handle of the character model to move." } },
+    { "name": "_mvPos", "type": "array", "description": { "en": "3-element target position [x, y, z]." } },
+    { "name": "_frame", "type": "integer", "description": { "en": "Number of frames the movement should take." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Move a character to a new position and wait for it to arrive\nEvLowMdlMove(hTenmaL, _pos, 30);\nWaitEvLowMdlMoving(hTenmaL);"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "OpenBgmHistory",
+  "kind": "ev_main",
+  "category": "sound",
+  "description": {
+    "en": "Restores the BGM previously remembered with SaveBgmHistory, optionally resuming it from the exact position it was saved at instead of restarting it. Does nothing if no BGM has been saved yet."
+  },
+  "params": [
+    { "name": "_resume", "type": "boolean", "description": { "en": "Optional; when true, resumes the BGM from its saved playback position instead of restarting it (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Remember the current BGM before overriding it, then resume it afterwards\nSaveBgmHistory();\n// ... play a different BGM for a cutscene ...\nOpenBgmHistory(true);"
+  }
+}

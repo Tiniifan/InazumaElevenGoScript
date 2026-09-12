@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_LEARNING_TACTICS",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Makes a match team learn a tactic by ID, looked up by team slot, and flags the newly learned tactic for the in-match learning popup (if the team has fewer than 32 known tactics)."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side to teach the tactic to." } },
+    { "name": "tacticId", "type": "string", "description": { "en": "Tactic ID string to learn." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if fewer than 2 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Teach team 0 a new tactic during a scripted match sequence\nCMND_BTL_LEARNING_TACTICS(0, \"wht0004\");"
+  }
+}

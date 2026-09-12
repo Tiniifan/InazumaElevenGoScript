@@ -1,0 +1,20 @@
+{
+  "name": "IsCamCtrlMove",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Reports whether the current camera-control movement (started with CamCtrlMoveTo) is still in progress."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean",
+    "description": { "en": "True while the camera is still moving; false once the movement has ended." }
+  },
+  "examples": [
+    {
+      "case": "Waiting for a queued camera movement to finish",
+      "source": "real",
+      "code": "// Wait for the current camera movement to finish\nwhile (IsCamCtrlMove())\n{\n\tsuspend();\n}"
+    }
+  ]
+}

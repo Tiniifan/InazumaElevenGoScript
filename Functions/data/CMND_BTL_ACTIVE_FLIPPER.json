@@ -1,0 +1,25 @@
+{
+  "name": "CMND_BTL_ACTIVE_FLIPPER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Activates (or repositions) a flipper hazard registered with CMND_BTL_REG_FLIPPER, setting its position, rotation and optionally an extra direction vector."
+  },
+  "params": [
+    { "name": "handle", "type": "handle", "description": { "en": "Handle of the flipper slot, from CMND_BTL_REG_FLIPPER." } },
+    { "name": "x", "type": "float", "description": { "en": "X position for the flipper." } },
+    { "name": "z", "type": "float", "description": { "en": "Z position for the flipper." } },
+    { "name": "rotY", "type": "float", "description": { "en": "Y-axis rotation for the flipper." } },
+    { "name": "vec", "type": "array", "description": { "en": "Optional 2-element extra direction/behavior vector." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the flipper has been activated/repositioned; null if fewer than 3 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Activate a registered flipper hazard at a specific position and rotation\nCMND_BTL_ACTIVE_FLIPPER(hFlipper[0], 93, 200, -50.0, vec);"
+  }
+}

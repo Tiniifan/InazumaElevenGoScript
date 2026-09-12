@@ -1,0 +1,21 @@
+{
+  "name": "StandEventCharaFade",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Fades a single stand-event dialogue model in or out (enabling it before fading in, disabling it after fading out), without waiting for the fade to finish. See StandEventCharaFadeWait for the array/wait variant."
+  },
+  "params": [
+    { "name": "_hdl", "type": "handle", "description": { "en": "Handle of the dialogue model to fade." } },
+    { "name": "_alpha", "type": "float", "description": { "en": "Target alpha; greater than 0 fades in, 0 or less fades out." } },
+    { "name": "_frm", "type": "integer", "description": { "en": "Optional fade duration in frames (defaults to 10)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Fade a single dialogue model in\nStandEventCharaFade(hTenmaH, 1.0, 10);"
+  }
+}

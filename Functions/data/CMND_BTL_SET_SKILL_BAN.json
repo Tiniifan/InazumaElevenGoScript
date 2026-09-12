@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_SET_SKILL_BAN",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Bans (or un-bans) a specific technique/skill from being used by a given character for the rest of the match."
+  },
+  "params": [
+    { "name": "ban", "type": "boolean", "description": { "en": "True to ban the skill, false to lift the ban." } },
+    { "name": "charaId", "type": "string", "description": { "en": "Character ID string identifying whose skill to ban." } },
+    { "name": "skillId", "type": "string", "description": { "en": "Skill/technique ID string to ban." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if fewer than 3 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Ban a character's technique for a scripted sequence, then lift the ban afterwards\nCMND_BTL_SET_SKILL_BAN(true, \"para_cp0249\", \"whs0017\");\n// ... scripted sequence plays out ...\nCMND_BTL_SET_SKILL_BAN(false, \"para_cp0249\", \"whs0017\");"
+  }
+}

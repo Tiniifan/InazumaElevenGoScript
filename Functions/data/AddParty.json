@@ -1,0 +1,23 @@
+{
+  "name": "AddParty",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Adds a party member silently (no message/jingle), setting up their position lock, avatar enable/lock flags, and optionally their level, via CMND_ADD_PARTY and its follow-up CMND_SET_*_FLAG calls. Does nothing extra if CMND_ADD_PARTY fails (returns a non-positive handle)."
+  },
+  "params": [
+    { "name": "_paramID", "type": "string", "description": { "en": "Param ID of the character to add to the party." } },
+    { "name": "_ptLock", "type": "boolean", "description": { "en": "Whether to lock the member's position slot." } },
+    { "name": "_avatarEnable", "type": "boolean", "description": { "en": "Whether to enable the member's avatar." } },
+    { "name": "_avatarLock", "type": "boolean", "description": { "en": "Whether to lock the member's avatar." } },
+    { "name": "_lv", "type": "integer", "description": { "en": "Optional level to set for the new member (defaults to -1, meaning don't change it)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Add a party member silently, without a message or jingle\nAddParty(\"para_cp0008\", true, false, false);"
+  }
+}

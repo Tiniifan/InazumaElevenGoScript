@@ -1,0 +1,17 @@
+{
+  "name": "IsTalkLock",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Reports whether a talk lock started with StartTalkLock is currently active."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean",
+    "description": { "en": "True if a talk lock is currently active, false otherwise." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Skip a dialogue trigger while a talk lock is active\nif (!IsTalkLock())\n{\n\t// ... allow talking to this NPC ...\n}"
+  }
+}

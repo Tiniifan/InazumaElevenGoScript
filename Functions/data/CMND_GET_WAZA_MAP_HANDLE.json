@@ -1,0 +1,19 @@
+{
+  "name": "CMND_GET_WAZA_MAP_HANDLE",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Retrieves the handle of the map/field model used for technique (waza) cutscenes, e.g. to play a shoot or save animation on it."
+  },
+  "params": [],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "Handle of the technique map model when one is set up; otherwise the call still pushes a value read from the map system's own state (not confirmed to always be 0) instead of going through the normal push helper. Null if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Grab the technique map's handle to play a move animation on it\nlocal hMapMV = CMND_GET_WAZA_MAP_HANDLE();\nCMND_SET_MOTION(hMapMV, \"01\", 3, 0);"
+  }
+}

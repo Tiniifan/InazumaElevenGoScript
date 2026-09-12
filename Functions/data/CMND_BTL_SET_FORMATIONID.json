@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_SET_FORMATIONID",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets the team formation to use for a match side, by team slot and formation ID string (or numeric ID)."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side to set the formation for." } },
+    { "name": "formationId", "type": "string|integer", "description": { "en": "Formation ID string (e.g. \"ifb0301\", hashed via CRC32) or numeric ID." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the formation ID has been stored for that team slot; null if fewer than 2 arguments were given or the call was otherwise invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Set team 0's formation before the match starts\nCMND_BTL_SET_FORMATIONID(0, \"ifb0301\");"
+  }
+}

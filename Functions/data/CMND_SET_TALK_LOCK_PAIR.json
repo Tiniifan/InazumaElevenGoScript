@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_TALK_LOCK_PAIR",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Locks talk interaction for a pair of character handles together (a two-handle variant of CMND_SET_TALK_LOCK_CHARA), e.g. two NPCs that should stop being talkable as a set. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation and its similarity to CMND_SET_TALK_LOCK_CHARA."
+  },
+  "params": [
+    {
+      "name": "handleA",
+      "type": "handle",
+      "description": {
+        "en": "First character handle."
+      }
+    },
+    {
+      "name": "handleB",
+      "type": "handle",
+      "description": {
+        "en": "Second character handle."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Lock talk interaction for a pair of NPCs together\nCMND_SET_TALK_LOCK_PAIR(hNpcA, hNpcB);"
+  }
+}

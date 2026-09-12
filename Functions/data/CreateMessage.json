@@ -1,0 +1,22 @@
+{
+  "name": "CreateMessage",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Opens a generic positioned message window and waits for it to finish, if CMND_MESSAGE_OPEN successfully starts it."
+  },
+  "params": [
+    { "name": "_id", "type": "string", "description": { "en": "Message ID to display." } },
+    { "name": "_center_x", "type": "boolean|float", "description": { "en": "Whether/how to center the message window horizontally." } },
+    { "name": "_center_y", "type": "boolean|float", "description": { "en": "Whether/how to center the message window vertically." } },
+    { "name": "_window", "type": "boolean", "description": { "en": "Whether to show the message window frame." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Show a generic message window\nCreateMessage(\"ev100\", false, false, true);"
+  }
+}

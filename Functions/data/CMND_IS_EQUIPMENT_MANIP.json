@@ -1,0 +1,27 @@
+{
+  "name": "CMND_IS_EQUIPMENT_MANIP",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Checks whether a given equipment slot index is flagged as 'manip' (i.e. tied to a manipulable/manip character model, see CMND_CREATE_MANIP_CHARA) for the currently controlled character. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "slotIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the equipment slot to check."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The manip-related value stored for that equipment slot (0/falsy if not applicable)."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Check whether equipment slot 0 is tied to a manip character\nlocal isManip = CMND_IS_EQUIPMENT_MANIP(0);"
+  }
+}

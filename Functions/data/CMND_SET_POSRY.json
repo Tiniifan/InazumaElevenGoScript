@@ -1,0 +1,55 @@
+{
+  "name": "CMND_SET_POSRY",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Sets the position (and, for 3D characters, Y rotation) of a handle. Accepts either a 3-element [x, y, z] array (used for 2D elements like images/bust-ups) or four separate x, y, z, rotation arguments (used for 3D characters)."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Handle to move (character, image, bust-up, ...)."
+      }
+    },
+    {
+      "name": "position",
+      "type": "array|float",
+      "description": {
+        "en": "Either a [x, y, z] array, or the X coordinate when passing x/y/z/rotation separately."
+      }
+    },
+    {
+      "name": "y",
+      "type": "float",
+      "description": {
+        "en": "Y coordinate (only in the 4-argument form)."
+      }
+    },
+    {
+      "name": "z",
+      "type": "float",
+      "description": {
+        "en": "Z coordinate (only in the 4-argument form)."
+      }
+    },
+    {
+      "name": "rotationY",
+      "type": "float",
+      "description": {
+        "en": "Y-axis rotation (only in the 4-argument form)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has taken effect; null if the call was invalid (e.g. too few arguments, or required engine/script state not ready)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// ev_main helper: position and orient a character from a [x, y, z, rotationY] array\nSetCharaPosAndMotName <- function (_hdl, _stdPos, _motion)\n{\n\tCMND_SET_POSRY(_hdl, _stdPos[0], _stdPos[1], _stdPos[2], _stdPos[3]);\n\t// ...\n};"
+  }
+}

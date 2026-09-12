@@ -1,0 +1,31 @@
+{
+  "name": "AddParty_Message_NoFadeBGM",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Same as AddParty_Message, but without fading/stopping the current BGM (passes -1 for both the fade and wait durations)."
+  },
+  "params": [
+    { "name": "_paramID", "type": "string", "required": true, "description": { "en": "Param ID of the character to add to the party." } },
+    { "name": "_ptLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's position slot." } },
+    { "name": "_avatarEnable", "type": "boolean", "required": true, "description": { "en": "Whether to enable the member's Fighting Spirit." } },
+    { "name": "_avatarLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's Fighting Spirit." } },
+    { "name": "_lv", "type": "integer", "required": false, "default": "-1 (don't change the member's level)", "description": { "en": "Level to set for the new member." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "examples": [
+    {
+      "case": "Adding a member without changing their level (real usage, from ev42012500.nut)",
+      "source": "real",
+      "code": "// Add a party member with the recruitment presentation, without fading the BGM, keeping their current level\nAddParty_Message_NoFadeBGM(\"para_cp0005\", true, false, false);"
+    },
+    {
+      "case": "Adding a member and setting their level (real usage, from ev42082500.nut)",
+      "source": "real",
+      "code": "// Add a party member with the recruitment presentation, without fading the BGM, and set their level to 25\nAddParty_Message_NoFadeBGM(\"para_cp0016\", true, false, false, 25);"
+    }
+  ]
+}

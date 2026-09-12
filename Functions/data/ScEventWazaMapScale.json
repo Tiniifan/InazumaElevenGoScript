@@ -1,0 +1,19 @@
+{
+  "name": "ScEventWazaMapScale",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Sets the technique (waza) map's model scale — used to shrink the technique map down to cutscene proportions after StartScEvent swaps it in."
+  },
+  "params": [
+    { "name": "_scale", "type": "float", "description": { "en": "Optional scale factor to apply (defaults to 0.45)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Scale the technique map down for a cutscene, then restore it to full size\nScEventWazaMapScale();\n// ... cutscene plays out ...\nScEventWazaMapScale(1.0);"
+  }
+}

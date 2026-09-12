@@ -1,0 +1,19 @@
+{
+  "name": "CMND_IS_SOCCER_ACTIVE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Intended to report whether a soccer match/challenge is currently active. The native implementation always reports the same result regardless of the actual match state."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True on every valid call, regardless of whether a match is actually active; null if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Intended to check whether a match is currently running\nlocal isActive = CMND_IS_SOCCER_ACTIVE();"
+  }
+}

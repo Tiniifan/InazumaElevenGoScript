@@ -1,0 +1,20 @@
+{
+  "name": "CalcPosRefToDistRot",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Computes the distance, horizontal angle and vertical angle from a reference point to a target position — the inverse of GetDistRotCameraPos. Returns a fixed fallback [100.0, 0.0, 0.0] when the two points are extremely close together (an underflow guard in the distance check)."
+  },
+  "params": [
+    { "name": "_pos", "type": "array", "description": { "en": "3-element array [x, y, z] with the target position." } },
+    { "name": "_ref", "type": "array", "description": { "en": "3-element array [x, y, z] with the reference point." } }
+  ],
+  "returns": {
+    "type": "array",
+    "description": { "en": "A 3-element array [distance, horizontalAngleDeg, verticalAngleDeg]; a fixed [100.0, 0.0, 0.0] fallback if the two points are effectively coincident." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Compute the current camera's distance/angle relative to its reference point\nparam.dhv_0 = CalcPosRefToDistRot(cam_ctrl.now_pos, cam_ctrl.now_ref);"
+  }
+}

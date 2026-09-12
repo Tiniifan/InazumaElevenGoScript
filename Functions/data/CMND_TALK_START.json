@@ -1,0 +1,27 @@
+{
+  "name": "CMND_TALK_START",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Starts a talk interaction with an NPC handle, turning them to face the player, and returns whether the NPC had to physically turn to do so."
+  },
+  "params": [
+    {
+      "name": "npcHandle",
+      "type": "handle",
+      "description": {
+        "en": "Handle of the NPC being talked to."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "True if the NPC turned to face the player to start the conversation."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Start talking to an NPC and check if they turned to face the player\nlocal body_turn = CMND_TALK_START(npcHdl);"
+  }
+}

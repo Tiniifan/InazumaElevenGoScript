@@ -1,0 +1,27 @@
+{
+  "name": "CMND_CHR_DEL_MOVE_MNGR",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Unregisters a character handle from the movement manager system, the counterpart to CMND_CHR_REG_MOVE_MNGR."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to unregister."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Unregister a character from the movement manager\nCMND_CHR_DEL_MOVE_MNGR(hTsurugiL2);"
+  }
+}

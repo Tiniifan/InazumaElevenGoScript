@@ -1,0 +1,19 @@
+{
+  "name": "PlayerToTenmaEnd",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Ends a PlayerToTenmaBgn sequence: reads the temporary Tenma model's current position/rotation and warps the real player-controlled character to match it."
+  },
+  "params": [
+    { "name": "_hdl", "type": "handle", "description": { "en": "Handle of the temporary Tenma cutscene model, from PlayerToTenmaBgn." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Create a temporary Tenma cutscene model, then sync the player character back to it\nlocal hTenmaL = PlayerToTenmaBgn(902);\n// ... cutscene plays out ...\nPlayerToTenmaEnd(hTenmaL);"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "GetRyLookAtChara",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Computes the Y-axis rotation (in degrees) a character would need to face another character — the character-to-character counterpart to GetRyLookAtPos."
+  },
+  "params": [
+    { "name": "_hchr", "type": "handle", "description": { "en": "Handle of the character to compute the rotation for." } },
+    { "name": "_hlook", "type": "handle", "description": { "en": "Handle of the character to face." } }
+  ],
+  "returns": {
+    "type": "float",
+    "description": { "en": "The Y-axis rotation, in degrees, needed for _hchr to face _hlook." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Turn a character to face another character\nlocal rotY = GetRyLookAtChara(hSpeaker, hListener);\nCMND_CHR_TURN_TRG(hSpeaker, 0, rotY, 0);"
+  }
+}

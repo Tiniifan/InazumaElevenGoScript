@@ -1,0 +1,19 @@
+{
+  "name": "CMND_MESWIN_LOCK",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Locks the message window, preventing the player from advancing/dismissing it (e.g. while other scripted action needs to finish first)."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Prevent the player from dismissing the message window\nCMND_MESWIN_LOCK();"
+  }
+}

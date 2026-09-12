@@ -1,0 +1,34 @@
+{
+  "name": "CMND_SET_TEMP_MAP_BIT_FLAG",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Sets a temporary bit flag scoped to the current map (reset when the map is left/reloaded, unlike CMND_SET_TEMP_BIT_FLAG's session-wide scope), identified by a numeric bit index. Never called from any shipped script in script_clean/; behavior reconstructed from the native implementation."
+  },
+  "params": [
+    {
+      "name": "bitIndex",
+      "type": "integer",
+      "description": {
+        "en": "Index of the temporary map-scoped bit flag to set."
+      }
+    },
+    {
+      "name": "value",
+      "type": "boolean",
+      "description": {
+        "en": "Optional value to set (defaults to true when omitted)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Mark a map-local flag for the duration of this map visit\nCMND_SET_TEMP_MAP_BIT_FLAG(3, true);"
+  }
+}

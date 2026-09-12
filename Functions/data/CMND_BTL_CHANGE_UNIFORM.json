@@ -1,0 +1,26 @@
+{
+  "name": "CMND_BTL_CHANGE_UNIFORM",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Changes the uniform/kit variant used by a match member's model — team color set, uniform number, and optionally sock/other detail IDs — looked up by team slot and character ID or number."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side the member belongs to." } },
+    { "name": "chara", "type": "string|integer", "description": { "en": "Character ID string, or a numeric character index, identifying the member to re-uniform." } },
+    { "name": "uniformSet", "type": "integer", "description": { "en": "Uniform/kit color set ID to apply." } },
+    { "name": "isAwayKit", "type": "integer", "description": { "en": "0 for the home kit variant, non-zero for the away kit variant." } },
+    { "name": "detail", "type": "integer", "description": { "en": "Optional extra uniform detail byte (defaults to 0 if omitted)." } },
+    { "name": "uniformNumber", "type": "integer", "description": { "en": "Optional shirt/uniform number (defaults to 0 if omitted)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "True once the call has been processed (the uniform is only actually updated if the member is found on that team slot; otherwise this is a silent no-op); null if fewer than 4 arguments were given or the call was otherwise invalid."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Re-uniform a CPU team's member into a specific kit and shirt number\nlocal cpu_team_id = 1;\nCMND_BTL_CHANGE_UNIFORM(cpu_team_id, \"para_cp0010\", 903, 0, 0, 903);"
+  }
+}

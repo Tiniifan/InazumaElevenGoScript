@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_GET_KSN_SKILL_EFFECTIVE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Checks whether a team currently has an active \"keshin\" (avatar transformation) skill effect of the given type, writing the result back into the 3rd argument passed by the caller."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "description": { "en": "Index of the team/side to check." } },
+    { "name": "effectType", "type": "integer", "description": { "en": "Keshin skill-effect type constant to check for." } },
+    { "name": "outFlag", "type": "array", "description": { "en": "Output array; its first element is overwritten with 1 if the effect is active, 0 otherwise." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the result is returned by writing into outFlag, not via the function's own return value; null is also returned if fewer than 3 arguments were given."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Check whether a team currently has a specific keshin skill effect active\nlocal skill_val = [0];\nCMND_BTL_GET_KSN_SKILL_EFFECTIVE(_TeamId, skill_val, num);"
+  }
+}

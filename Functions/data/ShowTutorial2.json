@@ -1,0 +1,20 @@
+{
+  "name": "ShowTutorial2",
+  "kind": "ev_main",
+  "category": "image-ui",
+  "description": {
+    "en": "Shorthand for ShowTutorialEx with the voice-over sound fixed to \"str_005\" and _decide fixed to true. Note: its own _strm argument is accepted but not actually used."
+  },
+  "params": [
+    { "name": "_imgFileName", "type": "string", "description": { "en": "Tutorial image file name (without extension/suffix)." } },
+    { "name": "_strm", "type": "string", "description": { "en": "Accepted but not used — the voice-over is always \"str_005\" regardless of this argument." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Show a tutorial image panel\nShowTutorial2(\"tt1072\", 1);"
+  }
+}

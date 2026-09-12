@@ -1,0 +1,41 @@
+{
+  "name": "CMND_REMOVE_PARTY",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Removes a character from the player's party/roster by base parameter ID, with options to reset their stats and to lock the party slot."
+  },
+  "params": [
+    {
+      "name": "paramId",
+      "type": "string",
+      "description": {
+        "en": "Base character parameter ID to remove."
+      }
+    },
+    {
+      "name": "resetStats",
+      "type": "boolean",
+      "description": {
+        "en": "Whether to reset the character's stats on removal."
+      }
+    },
+    {
+      "name": "lockSlot",
+      "type": "boolean",
+      "description": {
+        "en": "Whether to lock the party slot after removal."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Remove a character from the party\nCMND_REMOVE_PARTY(_paramID, _flg_st_reset, _flg_pt_lock);"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "CreateImageEx",
+  "kind": "ev_main",
+  "category": "image-ui",
+  "description": {
+    "en": "Same as CreateImage, but lets the caller specify a separate animation name instead of reusing the file name."
+  },
+  "params": [
+    { "name": "_imgName", "type": "string", "description": { "en": "Name to assign the created image." } },
+    { "name": "_fileName", "type": "string", "description": { "en": "Image file name (without extension), loaded from data/tutorial/<fileName>.xa." } },
+    { "name": "_anmName", "type": "string", "description": { "en": "Animation name to use within the loaded image file." } },
+    { "name": "_pos", "type": "array", "description": { "en": "Optional 4-element position/rotation array (defaults to [200, 120, 0, 0])." } }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": { "en": "Handle of the newly created image." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Load a game-over image with a distinct animation name\nlocal hImg = CreateImageEx(\"gameOverImg\", \"gameover_<LG>\", \"gameover\");"
+  }
+}

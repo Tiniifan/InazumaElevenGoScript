@@ -1,0 +1,27 @@
+{
+  "name": "CMND_GET_PARTY_HANDLE",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the handle of a party (roster) member by their base character parameter ID."
+  },
+  "params": [
+    {
+      "name": "paramId",
+      "type": "string",
+      "description": {
+        "en": "Base character parameter ID, e.g. \"para_cp0009\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the matching party member, or null if not in the party."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Get a specific party member's handle by base ID\nlocal shindo_handle = CMND_GET_PARTY_HANDLE(\"para_cp0009\");"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "RunHQEvent",
+  "kind": "ev_main",
+  "category": "movie",
+  "description": {
+    "en": "Plays a \"HQ\" high-quality cutscene, built from a sound ID (with a \"_<LG>\" suffix appended) and a cut number, and waits for it to finish playing."
+  },
+  "params": [
+    { "name": "_sndID", "type": "string", "description": { "en": "Base sound/cutscene ID; \"_<LG>\" is appended to form the actual scene name." } },
+    { "name": "_cutNum", "type": "integer", "description": { "en": "Cut number within the cutscene to play." } },
+    { "name": "_endWhiteFade", "type": "boolean", "description": { "en": "Optional; whether to end with a white fade instead of the default (defaults to false)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Play an HQ cutscene ending with a white fade\nRunHQEvent(\"hqev010200\", 3, true);"
+  }
+}

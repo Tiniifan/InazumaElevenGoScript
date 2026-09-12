@@ -1,0 +1,27 @@
+{
+  "name": "CMND_GET_SYS_IFLAG",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Reads back the current value of a global engine \"internal flag\" previously set with CMND_SET_SYS_IFLAG (e.g. IFLAG_WAIT_RUN_EVENT, IFLAG_END_AUTO_FADEIN_OFF)."
+  },
+  "params": [
+    {
+      "name": "flag",
+      "type": "integer",
+      "description": {
+        "en": "The IFLAG_* constant identifying the flag to read."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The flag's current value."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Busy-wait while the engine reports an event is still running\nwhile (CMND_GET_SYS_IFLAG(IFLAG_WAIT_RUN_EVENT) != 0)\n{\n\tsuspend();\n}"
+  }
+}

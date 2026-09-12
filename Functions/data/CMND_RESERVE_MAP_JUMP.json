@@ -1,0 +1,41 @@
+{
+  "name": "CMND_RESERVE_MAP_JUMP",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Reserves a jump to another map at a given position, to happen after the current script finishes, optionally turning off the BGM for the transition."
+  },
+  "params": [
+    {
+      "name": "mapId",
+      "type": "string",
+      "description": {
+        "en": "ID of the map to jump to."
+      }
+    },
+    {
+      "name": "position",
+      "type": "array",
+      "description": {
+        "en": "[x, y, z] position to place the player at on arrival."
+      }
+    },
+    {
+      "name": "bgmOff",
+      "type": "boolean",
+      "description": {
+        "en": "Whether to turn off the BGM during the transition."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Likely true once the map jump was reserved; null if the call was invalid. The success value is produced by an internal reservation helper that wasn't fully traceable from the decompiled code."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Reserve a map jump to a specific map and position\nCMND_RESERVE_MAP_JUMP(mapID, pos, bgmOff);"
+  }
+}

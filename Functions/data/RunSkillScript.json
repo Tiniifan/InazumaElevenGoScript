@@ -1,0 +1,27 @@
+{
+  "name": "RunSkillScript",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Plays a technique/skill cutscene (a \"waza\" animation) on the given map, disabling the map/camera pause bit and the goal-mouse model for its duration, then restoring them once the cutscene finishes."
+  },
+  "params": [
+    { "name": "_wazaID", "type": "string", "description": { "en": "Technique/skill ID whose cutscene to play." } },
+    { "name": "_mapID", "type": "string", "description": { "en": "Technique map to use for the cutscene." } },
+    { "name": "_evolution", "type": "integer", "description": { "en": "Evolution/upgrade state of the technique." } },
+    { "name": "_production", "type": "integer", "description": { "en": "Production/quality level flag for the cutscene." } },
+    { "name": "_success", "type": "boolean", "description": { "en": "Whether the technique succeeds in the cutscene." } },
+    { "name": "_mapReverse", "type": "boolean", "description": { "en": "Whether to mirror/reverse the technique map." } },
+    { "name": "_endAutoFade", "type": "boolean", "description": { "en": "Optional; whether to auto-fade out at the end (defaults to true)." } },
+    { "name": "_noTelop", "type": "boolean", "description": { "en": "Optional; whether to skip the technique name telop/caption (defaults to false)." } },
+    { "name": "_cmrCut", "type": "integer", "description": { "en": "Optional camera-cut variant to use (defaults to -1)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Set up the attacking character's shot parameters, then play the technique cutscene\nSetChrPrmDetailForSkillScript(\"ATK\", 1, 13, 1, true, false, 0, 0, 10);\nRunSkillScript(\"vsj0001\", \"mv01i21\", 0, 0, true, false, true, false, 1);"
+  }
+}

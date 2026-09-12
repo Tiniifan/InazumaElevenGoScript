@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SYNC_EVENT_CHARA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Never called from any shipped script in script_clean/, and its native implementation is too involved to fully trace from decompiled code alone. By name and its position among the other chara-management commands, it likely synchronizes an event-controlled character instance's state (position/motion) with its underlying map/battle character."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "description": {
+        "en": "Character handle to synchronize."
+      }
+    }
+  ],
+  "returns": {
+    "type": "unknown",
+    "description": {
+      "en": "Not confirmed."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Sync the event copy of a character with its underlying map character\nCMND_SYNC_EVENT_CHARA(hChara);"
+  }
+}

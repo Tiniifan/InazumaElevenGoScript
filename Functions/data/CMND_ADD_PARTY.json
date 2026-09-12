@@ -1,0 +1,27 @@
+{
+  "name": "CMND_ADD_PARTY",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Adds a character to the player's party/roster by base parameter ID, returning the new party member's handle."
+  },
+  "params": [
+    {
+      "name": "paramId",
+      "type": "string",
+      "description": {
+        "en": "Base character parameter ID to add, e.g. \"para_cp0008\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the newly added party member."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Add a new character to the party\nlocal hdl = CMND_ADD_PARTY(\"para_cp0008\");"
+  }
+}

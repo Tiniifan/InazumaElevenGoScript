@@ -1,0 +1,24 @@
+{
+  "name": "AddPartyNum_Message_Back",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Same as AddPartyNum_Message, but shows the \"sysmes-back_party\" message (members rejoining) instead of \"sysmes-add_party\"."
+  },
+  "params": [
+    { "name": "_add_num", "type": "integer", "description": { "en": "Number of members to add back." } },
+    { "name": "_aParamID", "type": "array", "description": { "en": "Array of param IDs, one per member." } },
+    { "name": "_aPtLock", "type": "array", "description": { "en": "Array of position-lock flags, one per member." } },
+    { "name": "_aAvatarEnable", "type": "array", "description": { "en": "Array of avatar-enable flags, one per member." } },
+    { "name": "_aAvatarLock", "type": "array", "description": { "en": "Array of avatar-lock flags, one per member." } },
+    { "name": "_aLv", "type": "array", "description": { "en": "Array of levels to set, one per member (-1 to leave unchanged)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Bring several party members back in sequence\nAddPartyNum_Message_Back(3, charaID, ptLock, avaEnable, avaLock, level);"
+  }
+}

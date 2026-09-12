@@ -1,0 +1,17 @@
+{
+  "name": "EncountEffect",
+  "kind": "ev_main",
+  "category": "encounter",
+  "description": {
+    "en": "Plays the \"encounter\" transition effect used when a challenge/battle starts from the field: loads and plays an encounter sound and particle effect model, waits for its animation to finish, then flashes the screen white while the map BGM is stopped."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Play the encounter transition effect before starting a challenge\nEncountEffect();"
+  }
+}

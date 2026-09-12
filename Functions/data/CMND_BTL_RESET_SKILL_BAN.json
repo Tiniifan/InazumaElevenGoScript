@@ -1,0 +1,19 @@
+{
+  "name": "CMND_BTL_RESET_SKILL_BAN",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Clears every skill ban previously set with CMND_BTL_SET_SKILL_BAN, for every character at once."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null — the native implementation never pushes a value onto the stack on success; null is also returned if the call was invalid."
+    }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Ban a technique for a scripted sequence, then lift every ban afterwards\nCMND_BTL_SET_SKILL_BAN(true, \"para_cp0249\", \"whs0017\");\n// ... scripted sequence plays out ...\nCMND_BTL_RESET_SKILL_BAN();"
+  }
+}

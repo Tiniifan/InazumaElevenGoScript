@@ -1,0 +1,19 @@
+{
+  "name": "ScEventContinuousBGMAtMatch",
+  "kind": "ev_main",
+  "category": "sound",
+  "description": {
+    "en": "Thin wrapper around CMND_BTL_CONTINUOUS_BGM — temporarily overrides the match BGM with a given track for a match-side cutscene."
+  },
+  "params": [
+    { "name": "_bgmid", "type": "string", "description": { "en": "Optional BGM track ID to switch to (defaults to \"\")." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Override the match BGM with a specific track for a cutscene\nScEventContinuousBGMAtMatch(\"M_08\");"
+  }
+}

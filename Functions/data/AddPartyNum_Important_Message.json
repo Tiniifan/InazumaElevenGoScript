@@ -1,0 +1,24 @@
+{
+  "name": "AddPartyNum_Important_Message",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Same as AddPartyNum_Message, but plays the \"J_07\" jingle instead of \"J_08\" — used for adding several important members at once."
+  },
+  "params": [
+    { "name": "_add_num", "type": "integer", "description": { "en": "Number of members to add." } },
+    { "name": "_aParamID", "type": "array", "description": { "en": "Array of param IDs, one per member." } },
+    { "name": "_aPtLock", "type": "array", "description": { "en": "Array of position-lock flags, one per member." } },
+    { "name": "_aAvatarEnable", "type": "array", "description": { "en": "Array of avatar-enable flags, one per member." } },
+    { "name": "_aAvatarLock", "type": "array", "description": { "en": "Array of avatar-lock flags, one per member." } },
+    { "name": "_aLv", "type": "array", "description": { "en": "Array of levels to set, one per member (-1 to leave unchanged)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+  },
+  "example": {
+    "source": "invented",
+    "code": "// Add several important party members in sequence with the \"J_07\" jingle presentation\nAddPartyNum_Important_Message(3, charaID, ptLock, avaEnable, avaLock, level);"
+  }
+}

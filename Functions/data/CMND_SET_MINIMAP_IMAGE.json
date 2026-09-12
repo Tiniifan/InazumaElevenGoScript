@@ -1,0 +1,27 @@
+{
+  "name": "CMND_SET_MINIMAP_IMAGE",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Sets the minimap image shown for the current map, by name."
+  },
+  "params": [
+    {
+      "name": "imageName",
+      "type": "string",
+      "description": {
+        "en": "Name of the minimap image to display."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always returns null — the native never pushes a meaningful Squirrel value, whether the call succeeds or is rejected (e.g. for too few arguments)."
+    }
+  },
+  "example": {
+    "source": "real",
+    "code": "// Swap the minimap image (e.g. for a seasonal variant)\nCMND_SET_MINIMAP_IMAGE(\"mr01b02_sakura\");"
+  }
+}

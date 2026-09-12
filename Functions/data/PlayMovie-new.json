@@ -1,0 +1,81 @@
+{
+  "name": "PlayMovie",
+  "kind": "ev_main",
+  "category": "movie",
+  "description": {
+    "en": "Plays a movie and waits until it ends: CMND_MAKE_CHILD_MOVIE_SCENE(_movie, _sound + \"_<LG>\", ...), then it suspends until CMND_IS_RUN_CHILD_SCENE is false. \"_<LG>\" makes the sound follow the game's language."
+  },
+  "params": [
+    {
+      "name": "_movie",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Movie name, e.g. \"scene01\"."
+      }
+    },
+    {
+      "name": "_sound",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Sound name without the language suffix, e.g. \"a4m01a\"."
+      }
+    },
+    {
+      "name": "_scrA_fade",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "Top screen fade switch (MainScrFade)."
+      }
+    },
+    {
+      "name": "_scrB_fade",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "Bottom screen fade switch (SubScrFade)."
+      }
+    },
+    {
+      "name": "_bgm_fade",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "BGM fade switch (BGMFade)."
+      }
+    },
+    {
+      "name": "_frm_bgn_fade",
+      "type": "float",
+      "required": false,
+      "default": "15.0",
+      "description": {
+        "en": "Fade length at the start, in frames (EV_MOVIE_FADE_IN is 15)."
+      }
+    },
+    {
+      "name": "_frm_end_fade",
+      "type": "float",
+      "required": false,
+      "default": "15.0",
+      "description": {
+        "en": "Fade length at the end, in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "The opening movies (real usage, from ev42010100.nut)",
+      "source": "real",
+      "code": "local off_bit = CMND_GET_DRAW_OFF_BIT();\nCMND_SET_DRAW_OFF_BIT(off_bit | OFF_RPG);\nStartBlackFadeOut(SCREEN_AB, 0.0);\nStartBrightFade(SCREEN_AB, 0.0, EV_FADE_NORMAL);\nPlayMovie(\"scene01\", \"a4m01a\", false, false, false, EV_MOVIE_FADE_IN);\nPlayMovie(\"scene02\", \"a4m02a\", false, false, false);"
+    }
+  ]
+}

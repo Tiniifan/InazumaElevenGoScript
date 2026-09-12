@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_PT_LOCK_FLAG",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets or clears a player's party lock flag (a flag of the player's record; by the name, a locked member stays in the party). AddParty sets it for new members."
+  },
+  "params": [
+    {
+      "name": "playerHandle",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Player handle (CMND_ADD_PARTY, CMND_GET_PARTY_HANDLE)."
+      }
+    },
+    {
+      "name": "lock",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to lock."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set, false if the handle is 0.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Setting up a recruit (real usage, from ev42019001.nut)",
+      "source": "real",
+      "code": "local hdl = CMND_ADD_PARTY(\"para_cp0008\");\nCMND_SET_SOCCER_POSITION(hdl, 9);\nCMND_SET_UNIFORM_NUMBER(hdl, 8);\nCMND_SET_PT_LOCK_FLAG(hdl, true);"
+    }
+  ]
+}

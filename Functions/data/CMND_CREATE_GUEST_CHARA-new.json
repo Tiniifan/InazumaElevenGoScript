@@ -1,0 +1,52 @@
+{
+  "name": "CMND_CREATE_GUEST_CHARA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Creates a guest: a character that walks with the player on the field (a follower object), registered in the party data, and returns its handle. Only one guest is kept; GET_CHARA_HANDLE type 2 returns it and CMND_DELETE_GUEST_CHARA clears it.\n- kind 0: the character para_cpNNNN in the kit body (NNNN = number).\n- kind 1: the NPC cnNNNN."
+  },
+  "params": [
+    {
+      "name": "kind",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "0 for a para_cp character, 1 for a cn NPC."
+      }
+    },
+    {
+      "name": "number",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Character number NNNN."
+      }
+    },
+    {
+      "name": "body",
+      "type": "integer",
+      "required": false,
+      "description": {
+        "en": "Kind 0: kit number, e.g. 902."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "Handle of the guest.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "An NPC following the player (real usage, from ev42010600.nut)",
+      "source": "real",
+      "code": "local hTenmaL = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC);\nlocal hHarunaL = CMND_CREATE_GUEST_CHARA(1, 4);\nCMND_SET_DRAW_FORCE(hHarunaL);"
+    },
+    {
+      "case": "A teammate following the player (real usage, from ev42012500.nut)",
+      "source": "real",
+      "code": "local hTenmaL = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC);\nlocal hShinsukeL = CMND_CREATE_GUEST_CHARA(0, 5, 902);\nCMND_SET_DRAW_FORCE(hShinsukeL);\nlocal hShinsukeImg;\nWaitLoading(hShinsukeL);"
+    }
+  ]
+}

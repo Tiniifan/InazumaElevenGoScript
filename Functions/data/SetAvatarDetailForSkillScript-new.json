@@ -1,0 +1,39 @@
+{
+  "name": "SetAvatarDetailForSkillScript",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Gives a side of the next skill scene a fighting spirit: it writes the entry <side>_AVATAR (e.g. ATK_AVATAR) in the skill settings table. It calls CMND_SETUP_SKL_SQ_AVATAR(_side, 1, _avatarID)."
+  },
+  "params": [
+    {
+      "name": "_side",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Side of the skill scene: \"ATK\" (attacking side) or \"DEF\" (defending side)."
+      }
+    },
+    {
+      "name": "_avatarID",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Fighting spirit number."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Spirits on both sides (real usage, from ev42019997.nut)",
+      "source": "real",
+      "code": "CMND_INIT_SKILL_SCRIPT();\nSetChrPrmDetailForSkillScript(\"ATK\", 1, 8, 1, true, false, 0, 0, 0);\nSetChrPrmDetailForSkillScript(\"DEF\", 1, 10, 903, true, false, 0, 0, 0);\nSetAvatarDetailForSkillScript(\"ATK\", 1);\nSetAvatarDetailForSkillScript(\"DEF\", 2);\nRunSkillScript(\"kka0001\", \"mv01b01\", 0, 0, true, false, true);"
+    }
+  ]
+}

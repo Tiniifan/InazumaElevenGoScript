@@ -1,0 +1,45 @@
+{
+  "name": "CMND_SET_PASSION_PT",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets the player's passion points, or adds to them when the second argument is true. Passion points are a currency kept with the party data (0 to 9,999,999). In add mode the result is kept between 0 and 9,999,999; a plain set stores the value as given."
+  },
+  "params": [
+    {
+      "name": "value",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "New value, or amount to add (negative to remove)."
+      }
+    },
+    {
+      "name": "add",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to add instead of set."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "The rest area (real usage, from ie4_ev_sub_heal.nut)",
+      "source": "real",
+      "code": "local lost_pt = CMND_GET_HEAL_PASSION_PT();\nCMND_MESSAGE_REPLACE_VAL(1, lost_pt);\nCreateSpeech(\"sysmes-heal-sel1\");\nlocal ret = CMND_MESWIN_GET_SEL();\n\nif (ret == 0)\n{\n\tlocal now_pt = CMND_GET_PASSION_PT();\n\n\tif (lost_pt > now_pt)\n\t{\n\t\tCreateSpeech(\"sysmes-heal-01\");\n\t}\n\telse\n\t{\n\t\tCMND_SET_PASSION_PT(now_pt - lost_pt);\n\t}\n\t// ...\n}"
+    },
+    {
+      "case": "Giving 100 passion points (real usage, from ev42021000.nut)",
+      "source": "real",
+      "code": "CMND_SET_GLOBAL_BIT_FLAG(1561);\nCMND_SET_PASSION_PT(100, true);\nOutlineEffect(20020010);"
+    }
+  ]
+}

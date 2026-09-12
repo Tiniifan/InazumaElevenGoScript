@@ -1,0 +1,92 @@
+{
+  "name": "CMND_MESSAGE_OPEN",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Opens the message window with a text, as a child scene of the event. The ev_main helpers CreateSpeech, CreateSpeechHide, CreateSpeech_MatchStart, CreateMessage, CreateMonologue and CreateMakikaeshi wrap it: they call it, then suspend() until CMND_IS_RUN_CHILD_SCENE() is false, that is until the player has closed the message.\nThe arguments are stored as settings of the window (their names come from the engine): TextID, CenterX, CenterY, Window, then the speaker (WashaID, from the character given), DrawRightWasha, DrawScr and OnTeamLv."
+  },
+  "params": [
+    {
+      "name": "textId",
+      "type": "string|integer",
+      "required": true,
+      "description": {
+        "en": "Message ID, e.g. \"ev100\" (or its hash)."
+      }
+    },
+    {
+      "name": "centerX",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "CenterX setting: centre the text horizontally (true for monologues)."
+      }
+    },
+    {
+      "name": "centerY",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "CenterY setting: centre the text vertically (true for monologues)."
+      }
+    },
+    {
+      "name": "window",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "Window setting: show the speech window (true for dialogue, false for monologues)."
+      }
+    },
+    {
+      "name": "speaker",
+      "type": "string|integer",
+      "required": false,
+      "description": {
+        "en": "Speaking character (parameter ID or hash); its name ID is stored as WashaID. 0 for none."
+      }
+    },
+    {
+      "name": "drawRightWasha",
+      "type": "boolean",
+      "required": false,
+      "description": {
+        "en": "DrawRightWasha setting: show the speaker on the right side."
+      }
+    },
+    {
+      "name": "drawScreen",
+      "type": "integer",
+      "required": false,
+      "description": {
+        "en": "DrawScr setting: screen to draw on (e.g. SCREEN_A)."
+      }
+    },
+    {
+      "name": "onTeamLv",
+      "type": "boolean",
+      "required": false,
+      "description": {
+        "en": "OnTeamLv setting; CreateSpeech_MatchStart passes true."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Always true once the window is requested.\nnull if the script system is not ready or too few arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "The standard speech helper (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CreateSpeech <- function ( _id, _chara = 0, _bRight = false )\n{\n\tif (CMND_MESSAGE_OPEN(_id, false, false, true, _chara, _bRight))\n\t{\n\t\tsuspend();\n\n\t\twhile (CMND_IS_RUN_CHILD_SCENE())\n\t\t{\n\t\t\tsuspend();\n\t\t}\n\t}\n};"
+    },
+    {
+      "case": "A centred monologue (real code, from ie4_ev_main.nut, CreateMonologue)",
+      "source": "real",
+      "code": "CMND_MESSAGE_OPEN(_id, true, true, false, 0, false, _drawScreen)"
+    }
+  ]
+}

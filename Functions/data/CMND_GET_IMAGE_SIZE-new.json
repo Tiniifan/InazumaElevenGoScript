@@ -1,0 +1,39 @@
+{
+  "name": "CMND_GET_IMAGE_SIZE",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Copies an image's width and height into an array: element 0 the width, element 1 the height (only as many elements as the array has, at most 2)."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle."
+      }
+    },
+    {
+      "name": "wh",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Receives [width, height]."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once copied, false if the image is not found.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Sizing a caption (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "if (hEvolution)\n{\n\tCMND_GET_IMAGE_SIZE(hEvolution, wh);\n\tiEvolutionSize.x = wh[0];\n\tiEvolutionSize.y = wh[1];\n}"
+    }
+  ]
+}

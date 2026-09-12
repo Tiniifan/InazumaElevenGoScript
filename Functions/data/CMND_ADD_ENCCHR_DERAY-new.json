@@ -1,0 +1,22 @@
+{
+  "name": "CMND_ADD_ENCCHR_DERAY",
+  "kind": "native",
+  "category": "encounter",
+  "description": {
+    "en": "Puts a challenge NPC (an \"encounter character\") on a cooldown, so it can't be challenged again straight away (\"DERAY\" is the developers' spelling of delay).\n\nThe engine keeps a list of the 8 most recent cooldowns. This call looks up the encounter by its index, then stores its ID in that list together with the current time. If the encounter is already in the list, only its time is refreshed. When the list is full, the oldest entry is overwritten.\nThe part of the engine that reads the list back was not traced, but the shipped encounter script is consistent with a cooldown: when the player talks to the NPC again while it applies, the script takes its \"wait\" branch and plays a dedicated line (talk ID 3 of CMND_GET_ENCCHR_TALK_ID)."
+  },
+  "params": [
+    { "name": "encounterIndex", "type": "integer", "required": true, "description": { "en": "Index of the encounter, as returned by CMND_GET_ENCCHR_INDEX. Nothing happens if no encounter uses that index." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null, whether the cooldown was recorded or not." }
+  },
+  "examples": [
+    {
+      "case": "Starting the cooldown after a challenge (real usage, from ie4_ev_sub_enc.nut)",
+      "source": "real",
+      "code": "// lose is the result code the engine hands to the encounter script\n// (through SetParamLose) once the challenge is over.\n// The NPC turns to the player, says its line, and the cooldown starts\n// only when the code is 1.\nlocal encIndex = CMND_GET_ENCCHR_INDEX();\nif (encIndex >= 0)\n{\n\tlocal mesID = CMND_GET_ENCCHR_TALK_ID(encIndex, lose);\n\tif (mesID != 0)\n\t{\n\t\tCreateSpeech(mesID);\n\t}\n\n\tif (lose == 1)\n\t{\n\t\tCMND_ADD_ENCCHR_DERAY(encIndex);\n\t}\n}"
+    }
+  ]
+}

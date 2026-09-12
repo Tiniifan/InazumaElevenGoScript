@@ -1,0 +1,47 @@
+{
+  "name": "EvLowMdlMove",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Slides a character to a position over a number of frames, with no walk or run motion and no final rotation: CMND_CHR_POS_VAL_TRG(_hdl, [x, y, z], _frame, 0). Only the first three values of _mvPos are used. Wait for the end with WaitEvLowMdlMoving."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "_mvPos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Target [x, y, z] (a fourth value is ignored)."
+      }
+    },
+    {
+      "name": "_frame",
+      "type": "integer|float",
+      "required": true,
+      "description": {
+        "en": "Duration of the move in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Moving the player character while the camera follows (real usage, from ev42010200.nut)",
+      "source": "real",
+      "code": "EvLowMdlMove(hTenmaL, [-86.699997, 0.0, -159.7], 80);\nCamCtrlMoveTo(hCam, 80, [-86.699997, 81.699997, -55.900002, -86.699997, 3.5, -159.7]);\nWaitEvLowMdlMoving(hTenmaL);"
+    }
+  ]
+}

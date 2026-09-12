@@ -1,0 +1,22 @@
+{
+  "name": "CMND_MESWIN_LOCK",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Sets a flag of the event system (bit 1 of its state flags). The events call it before a run of messages and CMND_MESWIN_UNLOCK after it (over 1700 pairs), which points to keeping the message window in place between the messages of a conversation. The engine code that reads the flag was not traced."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Around a conversation (real usage, from ev42015100.nut)",
+      "source": "real",
+      "code": "CMND_MESWIN_LOCK();\nCreateSpeech(\"ev100\");\nlocal ret = CMND_MESWIN_GET_SEL();\n// ... more messages ...\nCMND_MESWIN_UNLOCK();"
+    }
+  ]
+}

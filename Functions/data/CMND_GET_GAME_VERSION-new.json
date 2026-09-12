@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_GAME_VERSION",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Returns which version of the game is running: 0 (GAME_VER_DR) or 1 (GAME_VER_SH), the two editions of Inazuma Eleven GO (Dark and Shine, by the constant names)."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "0 or 1.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Content for one edition (real usage, from ev42034000.nut)",
+      "source": "real",
+      "code": "if (CMND_GET_GAME_VERSION() == GAME_VER_DR && CMND_GET_GLOBAL_BIT_FLAG(1330))\n{\n\tev42034000_50();\n}"
+    }
+  ]
+}

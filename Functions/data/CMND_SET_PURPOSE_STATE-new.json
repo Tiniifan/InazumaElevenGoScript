@@ -1,0 +1,31 @@
+{
+  "name": "CMND_SET_PURPOSE_STATE",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Sets the state of the current objective (purpose) display: the value (any non-zero value counts as 1) is written into the two objective display objects. PurposeEffect switches it on and off every 20 frames to make the new objective blink."
+  },
+  "params": [
+    {
+      "name": "state",
+      "type": "integer|boolean",
+      "required": true,
+      "description": {
+        "en": "true (or non-zero) to show the objective, false to hide it."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (also when the script system is not ready or no argument is given, in which case nothing changes)."
+    }
+  },
+  "examples": [
+    {
+      "case": "After loading a new objective (real usage, from ev42061300.nut)",
+      "source": "real",
+      "code": "local hdlPpsMes = CMND_UPDATE_PURPOSE();\n\nwhile (CMND_IS_LOADING(hdlPpsMes))\n{\n\tsuspend();\n}\n\nCMND_SET_PURPOSE_STATE(true);"
+    }
+  ]
+}

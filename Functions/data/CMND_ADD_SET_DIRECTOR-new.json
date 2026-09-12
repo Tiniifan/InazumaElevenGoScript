@@ -1,0 +1,29 @@
+{
+  "name": "CMND_ADD_SET_DIRECTOR",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Gives the player a coach (director) and makes it the team's coach, in one call: the coach item is added to the inventory, then equipped on team 0.\n\nThe player's data keeps four teams (team 0 plus three extra teams). By default only team 0 gets the new coach. Pass true as third argument to also set it on teams 1, 2 and 3.\nPass true as second argument to first take the coach currently set on team 0 out of the inventory, so the new one replaces it instead of adding to the collection."
+  },
+  "params": [
+    { "name": "directorId", "type": "string", "required": true, "description": { "en": "Coach item ID, e.g. \"iim0001\"." } },
+    { "name": "replaceCurrent", "type": "boolean", "required": false, "default": "false", "description": { "en": "true to remove team 0's current coach from the inventory before adding the new one." } },
+    { "name": "allTeams", "type": "boolean", "required": false, "default": "false", "description": { "en": "true to set the coach on all four teams, false for team 0 only." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the coach has been added and set.\nfalse if the ID argument is not a string, the item system is not ready, or the item could not be added.\nnull if the engine is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "Setting up the starting coach on every team (real usage, new-game setup)",
+      "source": "real",
+      "code": "// At the start of the game, give the first coach and put it on all four\n// teams, without removing anything first.\nCMND_ADD_SET_DIRECTOR(\"iim0001\", false, true);"
+    },
+    {
+      "case": "Replacing the current coach on the main team",
+      "source": "invented",
+      "code": "// Swap team 0's coach: the old one is taken out of the inventory.\nCMND_ADD_SET_DIRECTOR(\"iim0002\", true);"
+    }
+  ]
+}

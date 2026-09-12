@@ -1,0 +1,35 @@
+{
+  "name": "CMND_BTL_SET_POS_LOCK",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Locks a player into a role in the team lineup, or removes the lock. Story matches use it so the player cannot move key characters: for example keeping one character in goal or sending an injured one to the bench.\nLocks are stored in a list of 32 entries (player, lock type, scope). The lineup screen checks the lineup against them: a locked player standing outside their allowed positions is reported, with the lock type and the player. The lineup positions are 0 = goalkeeper, 1 to 10 = field players, 11 to 15 = bench:\n- LOCK_TYPE_FIELDER (0): must be at a position from 1 to 10;\n- LOCK_TYPE_KEEPER (1): must be at position 0;\n- LOCK_TYPE_BENCH (2): must be at a position from 11 to 15.\nThe scope says when the lock applies, depending on which team the player controls (the same match-setup value CMND_BTL_IS_CPU uses): 0 = only when it is team 0, 1 = only when it is team 1, 2 or more (the default) = always.\n\nWith false, the first lock on that player whose scope covers the given scope is removed (the lock type is not compared). To change a player's lock, the scripts remove the old one and add the new one. CMND_BTL_DEL_POS_LOCK also removes a lock, and CMND_BTL_RESET_POS_LOCK clears them all."
+  },
+  "params": [
+    { "name": "enable", "type": "boolean", "required": true, "description": { "en": "true to add or update the lock, false to remove it." } },
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Parameter ID of the player, e.g. \"para_cp0003\"." } },
+    { "name": "lockType", "type": "integer", "required": true, "description": { "en": "LOCK_TYPE_FIELDER (0), LOCK_TYPE_KEEPER (1) or LOCK_TYPE_BENCH (2), constants from ie4_ev_main.nut." } },
+    { "name": "scope", "type": "integer", "required": false, "default": "2 (always)", "description": { "en": "0 = only when the player controls team 0, 1 = only when the player controls team 1, 2 or more = always." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when fewer than 3 arguments are given)." }
+  },
+  "examples": [
+    {
+      "case": "Locking the lineup in the pre-match setup (real usage, from btl0003.nut)",
+      "source": "real",
+      "code": "BtlSetting <- function ()\n{\n\t// ... forced outcomes ...\n\tCMND_BTL_SET_POS_LOCK(true, \"para_cp0070\", LOCK_TYPE_FIELDER);\n\tCMND_BTL_SET_POS_LOCK(true, \"para_cp0069\", LOCK_TYPE_FIELDER);\n\tCMND_BTL_SET_POS_LOCK(true, \"para_cp0062\", LOCK_TYPE_FIELDER);\n\tCMND_BTL_SET_POS_LOCK(true, \"para_cp0064\", LOCK_TYPE_FIELDER);\n\tCMND_BTL_SET_POS_LOCK(true, \"para_cp0061\", LOCK_TYPE_KEEPER);\n};"
+    },
+    {
+      "case": "Moving a player from the bench into the field lock before a scene (real usage, from btl0008.nut)",
+      "source": "real",
+      "code": "RunEv44070070 <- function ()\n{\n\t// Remove the bench lock, then lock para_cp0003 as a field player\n\tCMND_BTL_SET_POS_LOCK(false, \"para_cp0003\", LOCK_TYPE_BENCH);\n\tCMND_BTL_SET_POS_LOCK(true, \"para_cp0003\", LOCK_TYPE_FIELDER);\n\tCMND_BTL_SET_EVPARAM(44070070);\n\tsuspend();\n\t// ...\n};"
+    },
+    {
+      "case": "A lock that only applies when the player controls team 1 (real usage, from btl0015.nut)",
+      "source": "real",
+      "code": "BtlSetting <- function ()\n{\n\tCMND_BTL_SET_POS_LOCK(true, \"para_cp0308\", LOCK_TYPE_FIELDER, 1);\n};"
+    }
+  ]
+}

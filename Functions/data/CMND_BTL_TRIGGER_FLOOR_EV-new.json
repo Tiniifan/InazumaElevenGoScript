@@ -1,0 +1,28 @@
+{
+  "name": "CMND_BTL_TRIGGER_FLOOR_EV",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Starts a floor event on a hazard map: the moment the pitch visibly changes (a cyclone appears, a section drops or rises, the quicksand shifts). The floor zones and their attributes describe the ground; this call makes the match play the change.\n\nThe event types are not global constants. Each hazard map declares the one it uses:\n- FLOOR_EVT_APPEARCYCLONE = 1 (mf11b01)\n- FLOOR_EVT_PITCHDOWN = 2 and FLOOR_EVT_PITCHUP = 3 (mf13b01)\n- FLOOR_EVT_QUICKSAND = 4 (mf15b01)\nThe meaning of the second value depends on the event, as the examples show."
+  },
+  "params": [
+    { "name": "eventType", "type": "integer", "required": true, "description": { "en": "Event type, see the list above." } },
+    { "name": "param", "type": "integer", "required": true, "description": { "en": "Event value. Pitch down/up: the section number, counting from 1. Quicksand: both halves' depths packed as (depth2 << 4) + depth1, or 0 to end the effect. Cyclone: 0." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the event has been started.\nnull if the match system is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Shifting and then settling the quicksand (real usage, from mf15b01.nut)",
+      "source": "real",
+      "code": "// Start the shift with both depths packed into one value...\nlocal upd = CMND_BTL_GET_RAND(1, 4);\nlocal dwd = CMND_BTL_GET_RAND(1, 4);\nCMND_BTL_ADD_FLOOR_ATTR(\"FL01\", upd);\nCMND_BTL_ADD_FLOOR_ATTR(\"FL02\", dwd);\nCMND_BTL_TRIGGER_FLOOR_EV(FLOOR_EVT_QUICKSAND, (dwd << 4) + upd);\n// ... and on the next cycle, end it.\nCMND_BTL_TRIGGER_FLOOR_EV(FLOOR_EVT_QUICKSAND, 0);"
+    },
+    {
+      "case": "Announcing the cyclone (real usage, from mf11b01.nut)",
+      "source": "real",
+      "code": "// Played once, the first time the tornadoes come out\nif (!bTelop)\n{\n\tCMND_BTL_TRIGGER_FLOOR_EV(FLOOR_EVT_APPEARCYCLONE, 0);\n}"
+    }
+  ]
+}

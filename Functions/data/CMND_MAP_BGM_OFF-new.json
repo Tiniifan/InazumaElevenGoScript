@@ -1,0 +1,22 @@
+{
+  "name": "CMND_MAP_BGM_OFF",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Makes the map start without its BGM (BgmStopStart), typically because an event starts right away. It writes into the map start settings that the map scripts fill while the map loads (their init code), so it is meant to be called from a map script."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Before an event that starts on arrival (real usage, from me01b03.nut)",
+      "source": "real",
+      "code": "if (CMND_GET_GLOBAL_BIT_FLAG(1048) && !CMND_GET_GLOBAL_BIT_FLAG(1047))\n{\n\tCMND_MAP_BGM_OFF();\n\tReserveEvent(42113300);\n}"
+    }
+  ]
+}

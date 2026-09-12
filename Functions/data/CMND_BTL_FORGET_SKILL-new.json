@@ -1,0 +1,30 @@
+{
+  "name": "CMND_BTL_FORGET_SKILL",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Removes a Special Move from a player of one match team. It is the counterpart of CMND_BTL_LEARNING_SKILL.\n\nWith false as fourth argument, the move is removed for good:\n- from the player's entry in the match team data (its six Special Move slots, SpecialMove1ID to SpecialMove6ID in the projectz BattlePlayer layout), with that slot's level reset to 1;\n- from the player's saved data, in the same slot.\nIn every case it then updates the player on the pitch, but that step only concerns skill-effect moves (data record of type 15, carrying an effect type and a value). It clears whichever of the player's three effect slots holds that move's effect (the slots CMND_BTL_GET_SKILL_EFFECTIVE checks). The player's live list of six moves is not touched.\nThe shipped scripts always pass false, in BtlSetting (the pre-match setup callback), to take a move away from a player before the match."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team of the player: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Parameter ID of the player, e.g. \"para_cp0010\"." } },
+    { "name": "skillId", "type": "string", "required": true, "description": { "en": "Special Move ID, e.g. \"whs0035\"." } },
+    { "name": "matchOnly", "type": "boolean", "required": false, "default": "true (when omitted)", "description": { "en": "false to remove the move for good (team data and saved data).\nOmitted or true: only the pitch update described above runs." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when fewer than 3 arguments are given)." }
+  },
+  "examples": [
+    {
+      "case": "Taking a move away from the opponent before a story match (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "// Pre-match setup of the story match: dress the opponent's para_cp0010\n// in kit 903, force the duel outcomes, and remove their Special Move whs0035.\nBtlSetting <- function ()\n{\n\tCMND_BTL_CHANGE_UNIFORM(1, \"para_cp0010\", 903, 0, 0, 903);\n\tCMND_BTL_CHANGE_UNIFORM(0, \"para_cp0008\", 1, 0, 18);\n\tCMND_BTL_SET_FORCE_WIN(true, 0, 1, true);\n\tCMND_BTL_SET_FORCE_WIN(true, 0, 0, true);\n\tCMND_BTL_SET_FORCE_WIN(true, \"para_cp0010\");\n\tCMND_BTL_FORGET_SKILL(1, \"para_cp0010\", \"whs0035\", false);\n};"
+    },
+    {
+      "case": "Finding which team the CPU plays before removing the move (real usage, from btl3001.nut)",
+      "source": "real",
+      "code": "BtlSetting <- function ()\n{\n\t// Target team 1 if it is CPU-controlled, otherwise team 0\n\tlocal cpu_team_id = 0;\n\n\tif (CMND_BTL_IS_CPU(1))\n\t{\n\t\tcpu_team_id = 1;\n\t}\n\n\tCMND_BTL_CHANGE_UNIFORM(cpu_team_id, \"para_cp0010\", 903, 0, 0, 903);\n\tCMND_BTL_FORGET_SKILL(cpu_team_id, \"para_cp0010\", \"whs0035\", false);\n};"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "CMND_MESSAGE_REPLACE_VAL",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Sets a number placeholder for the next messages. Placeholders are filled in the text of the next messages: the value is stored under a key made from the kind and the index, which the message parser reads when it meets the matching tag in the text.\nThe key is REP_VAL_<index>."
+  },
+  "params": [
+    {
+      "name": "index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Placeholder number used in the message text (0, 1, 2...)."
+      }
+    },
+    {
+      "name": "value",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Number to show."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null.\nnull if the script system is not ready or too few arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Showing a price and a reward in a question (real usage, from ev44029999.nut)",
+      "source": "real",
+      "code": "local USE_GAMECOIN = 10;\nlocal GET_FRIEND_POINT = 500;\nCMND_MESWIN_LOCK();\nCreateSpeech(\"tlk_ev1001\");\nCMND_MESSAGE_REPLACE_VAL(1, USE_GAMECOIN);\nCMND_MESSAGE_REPLACE_VAL(2, GET_FRIEND_POINT);\nCreateSpeech(\"tlk_ev1002\");\nlocal ret = CMND_MESWIN_GET_SEL();"
+    }
+  ]
+}

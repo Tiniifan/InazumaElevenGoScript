@@ -1,0 +1,65 @@
+{
+  "name": "CMND_SETUP_RUN_TAC",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Requests a tactics scene: it queues a change to the \"SubScript\" state with the TACTICS settings (tactics ID, map, production value) and sets system flag 6 to 1. The scene plays once the calling script suspends. Use the RunTactics helper.\nUp to 11 handles are read from each array. Each attacker object gets display settings adjusted, its position and rotation reset to 0 and its scale to 1, and is listed as a moving participant (MOVE). Each defender object gets the same display settings (position unchanged) and is listed as a non-moving participant (NON_MOVE). A 0 in the array (as the events pass for no defender) is still listed."
+  },
+  "params": [
+    {
+      "name": "tacticsID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Tactics ID, e.g. \"vet0001\"."
+      }
+    },
+    {
+      "name": "attackers",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Handles of the moving participants (at most 11)."
+      }
+    },
+    {
+      "name": "defenders",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Handles of the other participants (at most 11)."
+      }
+    },
+    {
+      "name": "production",
+      "type": "integer",
+      "required": false,
+      "default": "0",
+      "description": {
+        "en": "Production value."
+      }
+    },
+    {
+      "name": "mapID",
+      "type": "string",
+      "required": false,
+      "default": "\"\"",
+      "description": {
+        "en": "Background map, e.g. \"mf01i21\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (null if the script system is not ready or fewer than 3 arguments are given, in which case nothing is queued)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside RunTactics (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local IFLAG_END_AUTO_FADEIN_OFF = 6;\nCMND_SET_SYS_IFLAG(IFLAG_END_AUTO_FADEIN_OFF, 1);\nCMND_SETUP_RUN_TAC(_tacID, _aAtk, _aDef, 0, _mapID);\nsuspend();\nCMND_SET_SYS_IFLAG(IFLAG_END_AUTO_FADEIN_OFF, 0);"
+    }
+  ]
+}

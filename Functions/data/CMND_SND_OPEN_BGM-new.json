@@ -1,0 +1,54 @@
+{
+  "name": "CMND_SND_OPEN_BGM",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Opens a music track (BGM) on the BGM channel and returns its handle. The track is not started: wait with CMND_SND_IS_LOADING, then start it with CMND_SND_PLAY.\nThe optional second argument is passed to the BGM open call with the name; the scripts pass 0 or 30 and its effect was not traced. The optional third argument is the position to start from, as returned by CMND_SND_GET_POS_BGM; the ev_main helper OpenBgmHistory uses it to resume a saved track.\nIf the track cannot be opened, the function returns the handle of the BGM already playing (0 if none).\nSound handles are integers. Streams opened with the CMND_SND_OPEN_* commands (BGM, event sounds, voices, Special Move sounds, map ambience) get a handle that refers to a stream channel. CMND_SND_OPEN_SYS_SE returns a packed number that names a sound effect instead."
+  },
+  "params": [
+    {
+      "name": "bgmId",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Track name, e.g. \"M_08\", or the map's default from CMND_SND_GET_DEF_BGMID()."
+      }
+    },
+    {
+      "name": "openParam",
+      "type": "integer",
+      "required": false,
+      "default": "0",
+      "description": {
+        "en": "16-bit value passed to the open call (0 or 30 in the scripts)."
+      }
+    },
+    {
+      "name": "startPos",
+      "type": "integer",
+      "required": false,
+      "default": "-1 (from the start)",
+      "description": {
+        "en": "Position to start from, as given by CMND_SND_GET_POS_BGM."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "Handle of the opened track, or of the BGM already playing if the open failed.\n0 if the name is missing.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Restarting the map's music after an event (real usage, from ev42010100.nut)",
+      "source": "real",
+      "code": "local defBgmID = CMND_SND_GET_DEF_BGMID();\nhMapSnd = CMND_SND_OPEN_BGM(defBgmID);\n\nwhile (CMND_SND_IS_LOADING(hMapSnd))\n{\n\tsuspend();\n}\n\nCMND_SND_PLAY(hMapSnd);"
+    },
+    {
+      "case": "Resuming a saved track (real code, from ie4_ev_main.nut, OpenBgmHistory)",
+      "source": "real",
+      "code": "if (_resume)\n{\n\t// Start from the position saved by SaveBgmHistory\n\tCMND_SND_OPEN_BGM(history_bgm_name, 0, history_bgm_pos);\n}\nelse\n{\n\tCMND_SND_OPEN_BGM(history_bgm_name);\n}"
+    }
+  ]
+}

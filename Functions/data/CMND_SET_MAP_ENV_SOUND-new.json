@@ -1,0 +1,31 @@
+{
+  "name": "CMND_SET_MAP_ENV_SOUND",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Chooses the environment sound the map plays (EnvSoundID); an empty string gives none. It writes into the map start settings that the map scripts fill while the map loads (their init code), so it is meant to be called from a map script."
+  },
+  "params": [
+    {
+      "name": "envSoundID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Environment sound ID, or \"\" for none."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "A silent map before an event (real usage, from mr13b01.nut)",
+      "source": "real",
+      "code": "CMND_MAP_BGM_OFF();\nCMND_SET_MAP_ENV_SOUND(\"\");\nReserveEvent(42093000);"
+    }
+  ]
+}

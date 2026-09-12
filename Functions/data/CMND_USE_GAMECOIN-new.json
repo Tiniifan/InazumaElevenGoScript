@@ -1,0 +1,31 @@
+{
+  "name": "CMND_USE_GAMECOIN",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Spends 3DS Play Coins through the console's system: at most 20 at a time (a larger number, or a failed request, spends nothing). The game's count is updated on success."
+  },
+  "params": [
+    {
+      "name": "count",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Number of Play Coins to spend, 0 to 20."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Always true, whether or not the coins were spent (check with CMND_GET_GAMECOIN).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Spending Play Coins for friendship points (real usage, from ev44029999.nut)",
+      "source": "real",
+      "code": "local haveCoin = CMND_GET_GAMECOIN();\n\nif (haveCoin >= USE_GAMECOIN)\n{\n\tCMND_USE_GAMECOIN(USE_GAMECOIN);\n\tlocal FriendPNT = CMND_GET_FRIENDSHIP_PT();\n\tCMND_SET_FRIENDSHIP_PT(FriendPNT + GET_FRIEND_POINT);\n\tCreateSpeech(\"tlk_ev1004\");\n\thaveCoin = CMND_GET_GAMECOIN();\n\t// ...\n}"
+    }
+  ]
+}

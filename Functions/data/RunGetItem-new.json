@@ -1,0 +1,40 @@
+{
+  "name": "RunGetItem",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Gives an item with the usual jingle and the \"sysmes-item-get\" message: RunGetItemEx(_item, _num, 30, 30, \"J_08\", 0, \"sysmes-item-get\"). The BGM is stopped with a fade of 30, the function waits 30 frames, and the jingle J_08 plays while the message shows."
+  },
+  "params": [
+    {
+      "name": "_item",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Item ID, e.g. \"ssa0100\"."
+      }
+    },
+    {
+      "name": "_num",
+      "type": "integer",
+      "required": false,
+      "default": "1",
+      "description": {
+        "en": "How many to give."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Receiving an item (real usage, from ev42010400.nut)",
+      "source": "real",
+      "code": "RunGetItem(\"ssa0100\", 1);"
+    }
+  ]
+}

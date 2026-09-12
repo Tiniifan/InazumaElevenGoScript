@@ -1,0 +1,25 @@
+{
+  "name": "CMND_BTL_SET_KESHIN_INVINCIBLE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Makes a player's Fighting Spirit unbreakable in clashes, or ends it (keshin = Fighting Spirit).\nIt adds the player to (or removes them from) the match's invincible list. After a clash, a listed player whose Fighting Spirit is out has its gauge put back to at least 100, so the spirit cannot run out. This step is skipped when the player is already protected from gauge costs (CMND_BTL_SET_FORCE_TOUGH or the forced-win list).\n\nThe player can be given in three ways, chosen by the number of arguments (same rules as CMND_BTL_SET_FORCE_WIN):\n- 2 arguments (enable, charaId): by parameter ID.\n- 3 arguments (enable, memberIndex, teamSlot): member number memberIndex of that team's match roster.\n- 4 arguments (enable, slotOffset, teamSlot, any): whoever stands at position slotOffset among that team's players on the pitch. The fourth argument is not read.\nThe list holds up to 32 entries. CMND_BTL_RESET_KESHIN_INVINCIBLE empties it."
+  },
+  "params": [
+    { "name": "enable", "type": "boolean", "required": true, "description": { "en": "true to add the player to the invincible list, false to remove them." } },
+    { "name": "player", "type": "string|integer", "required": true, "description": { "en": "2-argument form: parameter ID (e.g. \"para_cp0009\").\n3-argument form: member number in the team's match roster.\n4-argument form: position offset among the team's players on the pitch." } },
+    { "name": "teamSlot", "type": "integer", "required": false, "description": { "en": "3- and 4-argument forms: team of the player, 0 = the player's team, 1 = the opponent team." } },
+    { "name": "unused", "type": "any", "required": false, "description": { "en": "Only there to select the 4-argument form; never read." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when fewer than 2 arguments are given)." }
+  },
+  "examples": [
+    {
+      "case": "When the player's Fighting Spirit first appears in a story match (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "CallMatchAvatar <- function ()\n{\n\tif (eventCounter == 4)\n\t{\n\t\teventCounter++;\n\t\tCMND_BTL_DISABLE_RETURN_MENU(\"KsnBtlMenu\");\n\t\tCMND_BTL_SET_EVPARAM(44010110);\n\t\tsuspend();\n\t\tCMND_SET_GLOBAL_BIT_FLAG(1402, 1);\n\t\tCMND_BTL_STOP_AI(0);\n\t\tCMND_BTL_SET_PURPOSE(1, 9, true, 0, 10);\n\t\tCMND_BTL_SET_PURPOSETEXT(true, \"purpose_120\", \"para_cp0009\");\n\t\t// para_cp0009's Fighting Spirit cannot run out\n\t\tCMND_BTL_SET_KESHIN_INVINCIBLE(true, \"para_cp0009\");\n\t}\n};"
+    }
+  ]
+}

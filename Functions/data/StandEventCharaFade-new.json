@@ -1,0 +1,48 @@
+{
+  "name": "StandEventCharaFade",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Fades a character (or an array of them) in or out over _frm frames without waiting. With _alpha above 0 it sets the alpha to 0, shows the object and fades to _alpha. Otherwise it fades from 1.0 to _alpha and hides the object at once (CMND_SET_ENABLE false), so the fade-out is not visible. StandEventCharaFadeWait is the version that waits and hides after the fade. No shipped script calls this one."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle|array",
+      "required": true,
+      "description": {
+        "en": "Character handle or array of handles."
+      }
+    },
+    {
+      "name": "_alpha",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Target alpha: above 0 to fade in, 0 to fade out."
+      }
+    },
+    {
+      "name": "_frm",
+      "type": "integer",
+      "required": false,
+      "default": "10",
+      "description": {
+        "en": "Length of the fade in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Fading a model in without waiting (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "StandEventCharaFade(hTenmaH, 1.0, 10);\nCreateSpeech(\"ev100\");"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GET_AVATAR_ENABLE",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Tells whether a player's fighting spirit is enabled (a flag of the player's record)."
+  },
+  "params": [
+    {
+      "name": "playerHandle",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Player handle (CMND_ADD_PARTY, CMND_GET_PARTY_HANDLE)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true if enabled, false if not or if the handle is 0 or invalid.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Checking a spirit (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local hdl = CMND_GET_PARTY_HANDLE(\"para_cp0009\");\n\nif (!CMND_GET_AVATAR_ENABLE(hdl))\n{\n\tCMND_SET_AVATAR_ENABLE(hdl, true);\n}"
+    }
+  ]
+}

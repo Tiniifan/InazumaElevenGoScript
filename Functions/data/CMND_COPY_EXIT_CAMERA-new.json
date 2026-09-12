@@ -1,0 +1,31 @@
+{
+  "name": "CMND_COPY_EXIT_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Sets (non-zero) or clears (0) a flag of the script system which, by the command's name, makes the field camera take over from the event camera's last position when the event ends. SetExitRpgCamera sets it after placing the camera at the field view."
+  },
+  "params": [
+    {
+      "name": "flag",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "1 to set the flag, 0 to clear it."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "End of an event (real usage, from ev42100200.nut)",
+      "source": "real",
+      "code": "CMND_COPY_EXIT_CAMERA(1);\nCamCtrlExit();\nSetDrawAndPause(true);"
+    }
+  ]
+}

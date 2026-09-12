@@ -1,0 +1,39 @@
+{
+  "name": "PlayTrailer",
+  "kind": "ev_main",
+  "category": "movie",
+  "description": {
+    "en": "Plays the preview of the next chapter: a slideshow of pictures with narration. It closes the BGM, fades both screens out, loads the background data/img/np_bg_<LG>.xi, the first picture npNN_1 and the narration npNN_<LG> (NN = _evt_id), fades in and plays the narration. The pictures npNN_2 to npNN_<_img_num> then fade in one after the other, spread over about 18 seconds (1080 frames in total). At the end it fades out, deletes the pictures and closes the sound."
+  },
+  "params": [
+    {
+      "name": "_evt_id",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Preview number NN (two digits in the file names)."
+      }
+    },
+    {
+      "name": "_img_num",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Number of pictures."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "At the end of chapter 2 (real usage, from ev42015100.nut)",
+      "source": "real",
+      "code": "PlayTrailer(2, 4);\nReserveMapJump(\"mr01b06\", [0, 0, 0, 0]);"
+    }
+  ]
+}

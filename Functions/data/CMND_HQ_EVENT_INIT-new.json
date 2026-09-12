@@ -1,0 +1,22 @@
+{
+  "name": "CMND_HQ_EVENT_INIT",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Clears the HQ event setup before a new one: the 16 registered objects, the map light settings of each cut and the per-cut visibility settings (every object visible in every cut). An HQ event (see RunHQEvent) plays its cuts with the objects registered here."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Setting up the first HQ event (real usage, from ev42010100.nut)",
+      "source": "real",
+      "code": "CMND_HQ_EVENT_INIT();\nCMND_REG_HDL_HQ_EVENT(hEvMap, 0);\nCMND_REG_HDL_HQ_EVENT(hCamera, 1);\nCMND_REG_HDL_HQ_EVENT(hTenmaH, 2);\nCMND_REG_HDL_HQ_EVENT(hSasukeH, 2);\nCMND_REG_HDL_HQ_EVENT(hEff, 2);\nCMND_REG_MAP_LIGHT_HQ_EVENT(0, 1, 1);\nCMND_REG_MAP_LIGHT_HQ_EVENT(0, 2, 1);\nCMND_REG_MAP_LIGHT_HQ_EVENT(0, 3, 0);\n// ...\nRunHQEvent(\"hqev010100\", 6);"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "CMND_GET_HASH",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Returns the game's hash (CRC32) of a string, the form in which the game stores IDs such as parameter IDs or timer names."
+  },
+  "params": [
+    {
+      "name": "text",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "String to hash, e.g. \"para_cp0008\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The hash.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Comparing a timer ID (real usage, from btl0012.nut)",
+      "source": "real",
+      "code": "if (evCnt == 4 && timerID == CMND_GET_HASH(\"timer44100050\"))\n{\n\t// ...\n}"
+    },
+    {
+      "case": "Passing a character hash (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_MESSAGE_REPLACE_CHARA(_index, CMND_GET_HASH(_chr), true, false);"
+    }
+  ]
+}

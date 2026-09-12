@@ -1,0 +1,22 @@
+{
+  "name": "CMND_IS_RUN_CHILD_SCENE",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Tells whether a child scene (menu, movie or HQ event started with CMND_MAKE_CHILD_MENU_SCENE, CMND_MAKE_CHILD_MOVIE_SCENE or CMND_MAKE_CHILD_HQ_EVENT_SCENE) is still running: it reads the script system's child-scene flag."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true while a child scene runs, false otherwise.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Waiting for a menu to close (real usage, from ev42022000.nut)",
+      "source": "real",
+      "code": "CMND_MAKE_CHILD_MENU_SCENE(\"OrganizeMenu\");\nsuspend();\n\nwhile (CMND_IS_RUN_CHILD_SCENE())\n{\n\tsuspend();\n}"
+    }
+  ]
+}

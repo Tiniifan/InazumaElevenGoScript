@@ -1,0 +1,22 @@
+{
+  "name": "EncountEffect",
+  "kind": "ev_main",
+  "category": "encounter",
+  "description": {
+    "en": "Plays the effect shown when a match or challenge starts: it opens the event sound \"str_004\" and creates the effect model data/effect/ega0012.xc, waits for both, shows the model, closes the map BGM (10 frames), plays the sound and the model's motion \"01\" and waits for the motion to end. It then flashes the top screen white, fades both screens to black over 15 frames, removes the white and deletes the model. The screens are left black."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "At the end of a dialogue (real usage, from ev42011200.nut)",
+      "source": "real",
+      "code": "EndStandEvent();\nCMND_DELETE_CHARA(hTenmaH);\nCMND_DELETE_CHARA(hTsurugiH);\nEncountEffect();\nCMND_SET_GLOBAL_BIT_FLAG(57);"
+    }
+  ]
+}

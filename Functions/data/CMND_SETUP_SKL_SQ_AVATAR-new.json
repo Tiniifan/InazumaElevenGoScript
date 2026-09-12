@@ -1,0 +1,47 @@
+{
+  "name": "CMND_SETUP_SKL_SQ_AVATAR",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Gives a side of the next skill scene a fighting spirit: it writes the entry <side>_AVATAR (e.g. ATK_AVATAR) in the skill settings table. With mode 1 the value is avatarID; any other mode writes 0 (no spirit)."
+  },
+  "params": [
+    {
+      "name": "side",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Side of the skill scene: \"ATK\" (attacking side) or \"DEF\" (defending side)."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "1 to set a spirit."
+      }
+    },
+    {
+      "name": "avatarID",
+      "type": "integer",
+      "required": false,
+      "description": {
+        "en": "Fighting spirit number (read only with mode 1)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (null if the script system is not ready, fewer than 2 arguments or the table set up for another scene kind: nothing is written)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside SetAvatarDetailForSkillScript (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "SetAvatarDetailForSkillScript <- function ( _side, _avatarID )\n{\n\tCMND_SETUP_SKL_SQ_AVATAR(_side, 1, _avatarID);\n};"
+    }
+  ]
+}

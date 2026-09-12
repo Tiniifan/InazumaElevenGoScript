@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_GET_NOT_FORCE_FAUL_FLAG",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Reads the match flag written by CMND_BTL_SET_NOT_FORCE_FAUL_FLAG.\nThe match also keeps the flag up to date on its own: while it updates the pitch display, it sets it to 1 when either team's goalkeeper is in the forced-win list (CMND_BTL_SET_FORCE_WIN), and to 0 when neither is. So during a match it mostly tells whether a goalkeeper is under a forced win.\nNo shipped script calls it."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true if the flag is set, false otherwise.\nnull if the script system is not ready." }
+  },
+  "examples": [
+    {
+      "case": "Checking the flag before a scripted beat (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Skip the beat while a goalkeeper is under a forced win\nif (!CMND_BTL_GET_NOT_FORCE_FAUL_FLAG())\n{\n\t// ... scripted beat ...\n}"
+    }
+  ]
+}

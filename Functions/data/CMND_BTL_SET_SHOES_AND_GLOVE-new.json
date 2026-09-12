@@ -1,0 +1,24 @@
+{
+  "name": "CMND_BTL_SET_SHOES_AND_GLOVE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets the boots and gloves used by a whole match team (not by a single player). Both are stored in the team's match setup.\nThe story match scripts call it at the top of InitBtl, before adding their players."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "shoesId", "type": "string|integer", "required": true, "description": { "en": "Boots item ID, e.g. \"ssa0001\", or its CRC32 hash as an integer." } },
+    { "name": "gloveId", "type": "string|integer", "required": true, "description": { "en": "Gloves item ID, e.g. \"sga0001\", or its CRC32 hash as an integer.\nThe native only checks for 2 arguments but always reads this one, so pass it." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has run.\nnull if the match system is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Equipping the player's team at match setup (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "// Team 0 gets the first boots and gloves, then the squad is built\nInitBtl <- function ()\n{\n\tCMND_BTL_SET_SHOES_AND_GLOVE(0, \"ssa0001\", \"sga0001\");\n\tCMND_BTL_ADD_MEMBER(0, \"para_cp0001\", 1, 1);\n\t// ...\n};"
+    }
+  ]
+}

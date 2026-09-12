@@ -1,0 +1,39 @@
+{
+  "name": "CMND_GET_POSRY",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Copies an object's position and direction into an array: x, y, z and the direction around the vertical axis in degrees (only as many values as the array has, at most 4)."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle (character, model, image...)."
+      }
+    },
+    {
+      "name": "posry",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Receives [x, y, z, direction]; create it with 3 or 4 elements."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once copied.\nnull if the object is not found, the second argument is not an array, the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Walking 20 units from where the character stands (real usage, from ev42012500.nut)",
+      "source": "real",
+      "code": "local pos = [\n\t0,\n\t0,\n\t0,\n\t0\n];\n// ...\nCMND_GET_POSRY(hTenmaL, pos);\npos[2] += 20;\nEvLowMdlRunWalk(hTenmaL, pos, S_WALK_01);"
+    }
+  ]
+}

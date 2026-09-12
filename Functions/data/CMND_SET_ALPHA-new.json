@@ -1,0 +1,61 @@
+{
+  "name": "CMND_SET_ALPHA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Sets the transparency of an object (image, character, model...), or of every object of an array of handles. With two arguments the alpha is set at once. With four, it fades from the first value to the second over the given number of frames (default 30); e.g. (h, 0.0, 1.0, 240) fades in over 240 frames."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle|array",
+      "required": true,
+      "description": {
+        "en": "Object handle, or an array of handles."
+      }
+    },
+    {
+      "name": "alpha",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Alpha (0.0 transparent to 1.0 opaque), or the starting alpha of a fade."
+      }
+    },
+    {
+      "name": "alphaEnd",
+      "type": "float",
+      "required": false,
+      "description": {
+        "en": "Final alpha of the fade (default: the same as alpha)."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "float",
+      "required": false,
+      "default": "30.0",
+      "description": {
+        "en": "Length of the fade in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set.\nnull if an object is not found (for an array, the following ones are not changed), the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A slow fade-in (real usage, from ev42131800.nut)",
+      "source": "real",
+      "code": "CMND_SET_ENABLE(hImoutoL, true);\nCMND_SET_ALPHA(hImoutoL, 0.0, 1.0, 240);"
+    },
+    {
+      "case": "Setting it frame by frame (real code, from ie4_ev_main.nut, ObjFade)",
+      "source": "real",
+      "code": "CMND_SET_ALPHA(_hdl, rate * _alp_end + (1.0 - rate) * _alp_bgn);"
+    }
+  ]
+}

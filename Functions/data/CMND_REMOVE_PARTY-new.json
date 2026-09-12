@@ -1,0 +1,49 @@
+{
+  "name": "CMND_REMOVE_PARTY",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Removes a character from the party. The character is looked up among the party members by parameter ID; nothing happens if they are not in it.\nWith the pt_lock argument set, the removal routine is called with that flag and nothing else happens. Otherwise the member is removed and, if st_reset is true, their record is also deleted from the saved player data.\nThe ev_main helpers RemovePartyCmnd and RemoveParty wrap it."
+  },
+  "params": [
+    {
+      "name": "paramId",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Parameter ID of the character, e.g. \"para_cp0010\"."
+      }
+    },
+    {
+      "name": "stReset",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to delete the character's saved record as well (only when ptLock is false)."
+      }
+    },
+    {
+      "name": "ptLock",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "Flag passed to the removal routine; when true, the record is never deleted."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (also when the character is not in the party or the arguments are missing)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Through the ev_main helper (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "RemovePartyCmnd <- function ( _paramID, _flg_st_reset, _flg_pt_lock )\n{\n\tCMND_REMOVE_PARTY(_paramID, _flg_st_reset, _flg_pt_lock);\n};"
+    }
+  ]
+}

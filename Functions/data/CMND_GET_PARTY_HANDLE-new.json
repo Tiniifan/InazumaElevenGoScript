@@ -1,0 +1,36 @@
+{
+  "name": "CMND_GET_PARTY_HANDLE",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the player handle of a party member, found by parameter ID: it goes through the party list and returns the handle of the first member whose parameter ID matches. Other commands (CMND_GET_SOCCER_POSITION, CMND_SET_AVATAR_ENABLE, CMND_GET_AVATAR_LOCK_FLAG...) take this handle."
+  },
+  "params": [
+    {
+      "name": "paramID",
+      "type": "string|integer",
+      "required": true,
+      "description": {
+        "en": "Parameter ID, e.g. \"para_cp0001\" (or its hash)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The player handle, or 0 if nobody in the party has that parameter ID.\nnull if the script system is not ready, no argument is given or the party data is not available."
+    }
+  },
+  "examples": [
+    {
+      "case": "Checking a member's position (real usage, from ev42020800.nut)",
+      "source": "real",
+      "code": "local hdl = CMND_GET_PARTY_HANDLE(\"para_cp0001\");\nlocal isSangokuKeeper = CMND_GET_SOCCER_POSITION(hdl, true) == 1;"
+    },
+    {
+      "case": "Enabling a member's spirit (real usage, from btl0004.nut)",
+      "source": "real",
+      "code": "local shindo_handle = CMND_GET_PARTY_HANDLE(\"para_cp0009\");\nCMND_SET_AVATAR_ENABLE(shindo_handle, true);"
+    }
+  ]
+}

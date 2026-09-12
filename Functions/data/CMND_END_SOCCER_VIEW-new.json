@@ -1,0 +1,22 @@
+{
+  "name": "CMND_END_SOCCER_VIEW",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "During a match, calls a routine of the match (not traced further; by the name, it ends the match view set up for a scene). Outside a match it does nothing. No shipped script calls it."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Always true.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Example (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "CMND_START_SOCCER_VIEW();\n// ...\nCMND_END_SOCCER_VIEW();"
+    }
+  ]
+}

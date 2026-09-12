@@ -1,0 +1,95 @@
+{
+  "name": "EvLowMdlSetPath6",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Sends a character along a path through 6 points: CMND_CHR_PATH_SETUP(_hdl, _spd, _trg, _pnt1, _pnt2, _pnt3, _pnt4, _pnt5, _pnt6). The helpers EvLowMdlSetPath3 to EvLowMdlSetPath8 differ only in the number of points. No shipped script calls them; the events call CMND_CHR_PATH_SETUP directly. Wait for the end with WaitEvLowMdlMoving."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "_spd",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Speed, e.g. EV_MINI_CHARA_MOVE_SPEED_WALK."
+      }
+    },
+    {
+      "name": "_trg",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Second value of CMND_CHR_PATH_SETUP (see there)."
+      }
+    },
+    {
+      "name": "_pnt1",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Point 1: [x, y, z] or [x, y, z, rotY]."
+      }
+    },
+    {
+      "name": "_pnt2",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Point 2: [x, y, z] or [x, y, z, rotY]."
+      }
+    },
+    {
+      "name": "_pnt3",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Point 3: [x, y, z] or [x, y, z, rotY]."
+      }
+    },
+    {
+      "name": "_pnt4",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Point 4: [x, y, z] or [x, y, z, rotY]."
+      }
+    },
+    {
+      "name": "_pnt5",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Point 5: [x, y, z] or [x, y, z, rotY]."
+      }
+    },
+    {
+      "name": "_pnt6",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Point 6: [x, y, z] or [x, y, z, rotY]."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A path of 6 points (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "EvLowMdlSetPath6(hTenmaL, EV_MINI_CHARA_MOVE_SPEED_WALK, 0.0, [10.0, 0.0, -10.0], [20.0, 0.0, -20.0], [30.0, 0.0, -30.0], [40.0, 0.0, -40.0], [50.0, 0.0, -50.0], [60.0, 0.0, -60.0]);\nWaitEvLowMdlMoving(hTenmaL);"
+    }
+  ]
+}

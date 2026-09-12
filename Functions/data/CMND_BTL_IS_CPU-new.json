@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_IS_CPU",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Returns whether a match team is the computer-controlled one, meaning the team the player does not control.\nThe match setup records which team the player controls. When that is team 0 (the usual case), IS_CPU(1) is true and IS_CPU(0) is false; when it is team 1, the other way round.\nWhen one particular match-setup flag is set and a second one is not, it returns false for both teams. What those two flags stand for was not identified.\nThe only shipped use is in btl3001.nut, which uses it to find the CPU team before changing one of its players."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team to test: 0 = the player's team, 1 = the opponent team (in the usual setup, where the player controls team 0)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true if that team is the computer-controlled one, false otherwise.\nnull if the script system is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "Finding the CPU team in the pre-match setup (real usage, from btl3001.nut)",
+      "source": "real",
+      "code": "BtlSetting <- function ()\n{\n\t// Target team 1 if it is CPU-controlled, otherwise team 0\n\tlocal cpu_team_id = 0;\n\n\tif (CMND_BTL_IS_CPU(1))\n\t{\n\t\tcpu_team_id = 1;\n\t}\n\n\t// Change that team's para_cp0010: kit 903, and remove the move whs0035\n\tCMND_BTL_CHANGE_UNIFORM(cpu_team_id, \"para_cp0010\", 903, 0, 0, 903);\n\tCMND_BTL_FORGET_SKILL(cpu_team_id, \"para_cp0010\", \"whs0035\", false);\n};"
+    }
+  ]
+}

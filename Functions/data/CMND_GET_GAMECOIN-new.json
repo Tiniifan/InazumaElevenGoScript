@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_GAMECOIN",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the number of 3DS Play Coins the console holds, as last read by the game."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The number of Play Coins.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Spending Play Coins for friendship points (real usage, from ev44029999.nut)",
+      "source": "real",
+      "code": "local haveCoin = CMND_GET_GAMECOIN();\n\nif (haveCoin >= USE_GAMECOIN)\n{\n\tCMND_USE_GAMECOIN(USE_GAMECOIN);\n\tlocal FriendPNT = CMND_GET_FRIENDSHIP_PT();\n\tCMND_SET_FRIENDSHIP_PT(FriendPNT + GET_FRIEND_POINT);\n\tCreateSpeech(\"tlk_ev1004\");\n\thaveCoin = CMND_GET_GAMECOIN();\n\t// ...\n}"
+    }
+  ]
+}

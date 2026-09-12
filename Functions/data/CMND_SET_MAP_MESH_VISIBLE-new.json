@@ -1,0 +1,86 @@
+{
+  "name": "CMND_SET_MAP_MESH_VISIBLE",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Shows or hides one mesh (part) of a map by name, e.g. \"mr01b01.sakura\", so a map can change with the story. A map keeps at most 24 such changes; later ones are ignored.\nThe optional arguments play a map animation along with the change: a mode (1 or 2, two different animation slots; the scripts use 1), the animation name and the file it comes from, e.g. (hMap, \"mf15b01.a_down\", 1, 1, \"mf15b01_a_down_in\", \"mf15b01\").\nDuring a match the change is passed to the match map too, unless the seventh argument is false."
+  },
+  "params": [
+    {
+      "name": "hMap",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Map handle (CMND_GET_MAP_HANDLE or CMND_CREATE_MAP)."
+      }
+    },
+    {
+      "name": "meshName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Mesh name, \"<map>.<mesh>\"."
+      }
+    },
+    {
+      "name": "visible",
+      "type": "boolean|integer",
+      "required": true,
+      "description": {
+        "en": "1 (true) to show, 0 to hide."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer",
+      "required": false,
+      "default": "0",
+      "description": {
+        "en": "Animation mode, 1 or 2 (0 for none)."
+      }
+    },
+    {
+      "name": "animName",
+      "type": "string",
+      "required": false,
+      "description": {
+        "en": "Animation name."
+      }
+    },
+    {
+      "name": "animFile",
+      "type": "string",
+      "required": false,
+      "description": {
+        "en": "File the animation comes from."
+      }
+    },
+    {
+      "name": "applyInMatch",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "false to leave the match map alone."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (also when the script system is not ready or fewer than 3 arguments are given, in which case nothing changes)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A map that changes with the story (real usage, from mr01b01.nut)",
+      "source": "real",
+      "code": "CMND_SET_MAP_MESH_VISIBLE(hMap, \"mr01b01.caravan\", 0);\nCMND_SET_MAP_MESH_VISIBLE(hMap, \"mr01b01.sakura\", 1);\nCMND_SET_MAP_MESH_VISIBLE(hMap, \"mr01b01.sakura_hana\", 1);\nCMND_SET_MAP_MESH_VISIBLE(hMap, \"mr01b01.sakura_hana_anim\", 1);\nCMND_SET_MAP_MESH_VISIBLE(hMap, \"mr01b01.midori\", 0);"
+    },
+    {
+      "case": "With an animation (real usage, from mf15b01.nut)",
+      "source": "real",
+      "code": "local hMap = CMND_GET_MAP_HANDLE();\n// ...\nCMND_SET_MAP_MESH_VISIBLE(hMap, \"mf15b01.a_up\", 0);\nCMND_SET_MAP_MESH_VISIBLE(hMap, \"mf15b01.a_down\", 1, 1, \"mf15b01_a_down_in\", \"mf15b01\");"
+    }
+  ]
+}

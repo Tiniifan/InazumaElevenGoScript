@@ -1,0 +1,39 @@
+{
+  "name": "CMND_WHITE_FADE_IN",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Starts fading a screen back in from white over a number of frames. The call returns straight away; wait with CMND_IS_WHITE_FADE.\nScreens use SCREEN_A (0, top), SCREEN_B (1, bottom) and SCREEN_AB (2, both).\nWhile an event has its bottom-screen background loaded (the EvSubBg image), a fade asked for SCREEN_A is applied to both screens instead.\nThe ev_main helper StartWhiteFadeIn wraps this call with the waiting loop."
+  },
+  "params": [
+    {
+      "name": "screen",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "SCREEN_A, SCREEN_B or SCREEN_AB."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Length of the fade in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (also when the script system is not ready or fewer than 2 arguments are given, in which case nothing starts)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside StartWhiteFadeIn (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_WHITE_FADE_IN(_screen, _frame);\n\nwhile (CMND_IS_WHITE_FADE(_screen))\n{\n\tsuspend();\n}"
+    }
+  ]
+}

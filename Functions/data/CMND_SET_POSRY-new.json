@@ -1,0 +1,68 @@
+{
+  "name": "CMND_SET_POSRY",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Places an object at once. Two forms:\n- separate numbers (x, y, z, direction): missing ones are 0 and the direction is in degrees;\n- an array [x, y, z, direction] (at most 4 values; missing ones keep their current value): here the fourth value is stored as is, without the degree conversion, so it is taken as radians.\nImages use the same command with [x, y] screen coordinates. For characters that the movement helpers drive, also call CMND_CHR_POS_VAL_TRG to the same spot (as SetCharaPosAndMotName does)."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle (character, model, image...)."
+      }
+    },
+    {
+      "name": "xOrArray",
+      "type": "float|array",
+      "required": true,
+      "description": {
+        "en": "x, or the array form."
+      }
+    },
+    {
+      "name": "y",
+      "type": "float",
+      "required": false,
+      "description": {
+        "en": "y (separate form)."
+      }
+    },
+    {
+      "name": "z",
+      "type": "float",
+      "required": false,
+      "description": {
+        "en": "z (separate form)."
+      }
+    },
+    {
+      "name": "direction",
+      "type": "float",
+      "required": false,
+      "description": {
+        "en": "Direction in degrees (separate form)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once placed.\nnull if the object is not found, the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Separate numbers (real code, from ie4_ev_main.nut, SetCharaPosAndMotName)",
+      "source": "real",
+      "code": "CMND_SET_POSRY(_hdl, _stdPos[0], _stdPos[1], _stdPos[2], _stdPos[3]);"
+    },
+    {
+      "case": "An array for a bust-up image (real code, from ie4_ev_main.nut, CreateBustup)",
+      "source": "real",
+      "code": "local hdl = CMND_CREATE_BUSTUP(_mdlHdl, _name);\n\nif (_right)\n{\n\tCMND_SET_POSRY(hdl, [\n\t\t5,\n\t\t66,\n\t\t0\n\t]);\n}"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "name": "CreateBustup",
+  "kind": "ev_main",
+  "category": "image-ui",
+  "description": {
+    "en": "Creates the bust-up picture of a character (CMND_CREATE_BUSTUP(_mdlHdl, _name)) and places it: at [5, 66, 0] when _right is true (the default), at [323, 66, 0] otherwise. Returns the picture's handle."
+  },
+  "params": [
+    {
+      "name": "_mdlHdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character model handle."
+      }
+    },
+    {
+      "name": "_name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the picture object (the helpers use the character's name followed by 顔)."
+      }
+    },
+    {
+      "name": "_right",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true for the position [5, 66, 0], false for [323, 66, 0]."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the bust-up picture."
+    }
+  },
+  "examples": [
+    {
+      "case": "A bust-up for a character (real usage, from ev42010600.nut; the Shift-JIS object name is replaced by a variable here)",
+      "source": "real",
+      "code": "hHarunaImg = CreateBustup(hHarunaL, pictureName);"
+    }
+  ]
+}

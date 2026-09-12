@@ -1,0 +1,39 @@
+{
+  "name": "CMND_DELETE_MOTION",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Removes the extra motions loaded onto a character with CMND_LOAD_MOTION. The events pass -1, which by its use removes them all. CMND_DELETE_CHARA uses the same routine for match players."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "which",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Which motions to remove; -1 for all (as the events pass)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "The routine's result (true if something was removed).\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "After a scene (real usage, from ev42101400.nut)",
+      "source": "real",
+      "code": "WaitFrame(30);\nCMND_DELETE_MOTION(hShinsukeL, -1);\nCMND_DELETE_MOTION(hTenmaL, -1);\nCMND_DELETE_MOTION(hKageyamaL, -1);\nStartStandEvent();"
+    }
+  ]
+}

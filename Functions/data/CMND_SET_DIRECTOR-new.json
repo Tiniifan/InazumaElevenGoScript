@@ -1,0 +1,31 @@
+{
+  "name": "CMND_SET_DIRECTOR",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets the player's team manager (coach) by ID, e.g. \"iim0002\" (by the command's name; the ID has the form of an item ID). The ID is hashed and passed to the team routine."
+  },
+  "params": [
+    {
+      "name": "directorID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Manager ID, e.g. \"iim0002\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "The routine's result, true once set; false if the ID is missing.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A new manager for the team (real usage, from ev42120900.nut)",
+      "source": "real",
+      "code": "CMND_SET_GLOBAL_BIT_FLAG(2016, false);\nCMND_SET_GLOBAL_BIT_FLAG(2017);\nCMND_SET_DIRECTOR(\"iim0002\");"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "ShowStoryChart",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Fades both screens to black and opens the story chart menu (CMND_MAKE_CHILD_MENU_SCENE(\"PlotMenu\")), then waits until the player closes it."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "At a chapter break (real usage, from ev42040300.nut)",
+      "source": "real",
+      "code": "ShowStoryChart();"
+    }
+  ]
+}

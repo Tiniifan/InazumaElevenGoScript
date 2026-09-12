@@ -1,0 +1,24 @@
+{
+  "name": "CMND_BTL_SET_SKILL_BAN",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Bans one Special Move of one player for the match, or lifts the ban. A story match uses it to keep the opponent from using their strongest moves until a scripted beat.\nBans are stored as (player, move) pairs, 64 at most. When the game builds the list of moves a player can choose in a clash, each move gets a usable flag: it is false when the player lacks the TP, and also when that (player, move) pair is banned. So a banned move cannot be chosen.\nWith false, the matching pair is removed. CMND_BTL_RESET_SKILL_BAN removes all of them, and the list is also emptied when the match is cleaned up."
+  },
+  "params": [
+    { "name": "enable", "type": "boolean", "required": true, "description": { "en": "true to ban the move, false to lift the ban." } },
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Parameter ID of the player, e.g. \"para_cp0088\"." } },
+    { "name": "skillId", "type": "string", "required": true, "description": { "en": "Special Move ID, e.g. \"whs0014\"." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when fewer than 3 arguments are given)." }
+  },
+  "examples": [
+    {
+      "case": "Banning the opponent's shots before the match, lifting the bans in a later beat (real usage, from btl0004.nut)",
+      "source": "real",
+      "code": "// Pre-match setup: several opponents cannot use given Special Moves\nCMND_BTL_SET_SKILL_BAN(true, \"para_cp0088\", \"whs0014\");\nCMND_BTL_SET_SKILL_BAN(true, \"para_cp0089\", \"whs0010\");\nCMND_BTL_SET_SKILL_BAN(true, \"para_cp0090\", \"whs0010\");\n// ...\n\n// Scripted beat: the bans are lifted and para_cp0086 (team 1)\n// summons a Fighting Spirit\nCMND_BTL_SET_DISABLE_AVATER(\"para_cp0086\", false);\nCMND_BTL_SET_SKILL_BAN(false, \"para_cp0088\", \"whs0014\");\nCMND_BTL_SET_SKILL_BAN(false, \"para_cp0089\", \"whs0010\");\nCMND_BTL_SET_SKILL_BAN(false, \"para_cp0090\", \"whs0010\");\n// ...\nCMND_BTL_SET_AVATER(\"para_cp0086\", \"ck0012\", 1);"
+    }
+  ]
+}

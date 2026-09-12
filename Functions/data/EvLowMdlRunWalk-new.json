@@ -1,0 +1,47 @@
+{
+  "name": "EvLowMdlRunWalk",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Makes a character walk or run to a position: it sets the motion _speed[1] (CMND_SET_MOTION), then calls CMND_CHR_POS_VAL_TRG(_hdl, [x, y, z], 999, 0, _speed[0]).\nie4_ev_main.nut provides ready-made _speed pairs: S_WALK_01 = [0.3, \"歩き前01\"], S_WALK_07 = [0.3, \"歩き前07\"], S_RUN_01 = [1.0, \"走り前01\"], S_RUN_07 = [1.0, \"走り前07\"]. Wait for the end with WaitEvLowMdlMoving."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "_mvPos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Target [x, y, z]."
+      }
+    },
+    {
+      "name": "_speed",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "[speed, motion name], e.g. S_WALK_01 or S_RUN_01."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Walking to a spot (real usage, from ev42010600.nut)",
+      "source": "real",
+      "code": "EvLowMdlRunWalk(hTenmaL, [-34.700001, 0.1, -157.39999], S_WALK_01);"
+    }
+  ]
+}

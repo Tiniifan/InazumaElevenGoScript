@@ -1,0 +1,68 @@
+{
+  "name": "CMND_SET_LOOK_AT",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Makes a character look at something. The look-at state is a setting of the character's head (it turns to look at a target).\n- mode 0: switches the look-at on with its default target (what that target is was not traced; the events use it on the player's character).\n- mode 2: looks at the point (x, y, z) given after the mode.\nOther modes do nothing. CMND_RESET_LOOK_AT switches it off."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "0 or 2."
+      }
+    },
+    {
+      "name": "x",
+      "type": "float",
+      "required": false,
+      "description": {
+        "en": "Mode 2: point x."
+      }
+    },
+    {
+      "name": "y",
+      "type": "float",
+      "required": false,
+      "description": {
+        "en": "Mode 2: point y."
+      }
+    },
+    {
+      "name": "z",
+      "type": "float",
+      "required": false,
+      "description": {
+        "en": "Mode 2: point z."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "null once set; false if the character is not found.\nnull too if mode 2 is given without the three coordinates, the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Default mode (real usage, from ev42010300.nut; the Shift-JIS icon name is replaced by a variable here)",
+      "source": "real",
+      "code": "CMND_SET_ICON_TO_CHARA(hTenmaL, surpriseIcon);\nWaitFrame(65);\nCMND_SET_LOOK_AT(hTenmaL, 0);\nCMND_CHR_TURN_AUTO_TRG(hTenmaL, 0, 0, 1);"
+    },
+    {
+      "case": "Looking at a point (real usage, from ev42010700.nut)",
+      "source": "real",
+      "code": "CMND_SET_LOOK_AT(hKudouL, 2, -150.0, 0.40000001, -80);"
+    }
+  ]
+}

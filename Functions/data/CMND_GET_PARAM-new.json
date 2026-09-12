@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_PARAM",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Not found in the game. This name is in the list of CMND_* names, but nothing registers it: there is no registration in the IDA or Ghidra decompiles, no call in the shipped scripts and no trace in the ELF's symbol strings. It is most likely a stray list entry, close to CMND_GET_PARAM_ID_RANDOM and DBGCMND_GET_PARAM, which both exist. Calling it from a script would fail because the function does not exist."
+  },
+  "params": [],
+  "returns": {
+    "type": "none",
+    "description": {
+      "en": "No implementation exists to return anything."
+    }
+  },
+  "examples": [
+    {
+      "case": "Use one of the real commands instead (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// CMND_GET_PARAM does not exist; for example, pick a random player instead\nlocal paramHash = CMND_GET_PARAM_ID_RANDOM(0, false);"
+    }
+  ]
+}

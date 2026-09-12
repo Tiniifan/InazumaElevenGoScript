@@ -3,30 +3,35 @@
   "kind": "ev_main",
   "category": "party",
   "description": {
-    "en": "Adds one or more party members with a full \"new member joined\" presentation: optionally fades out/stops the current BGM, waits, then for each member plays a jingle, shows the recruitment message, calls AddParty, and waits for the jingle to finish, before restoring the BGM. This is the general engine behind all the AddParty_Message/AddPartyNum_Message convenience wrappers."
+    "en": "The general routine behind all AddParty_*_Message and AddPartyNum_*_Message helpers: adds one or more characters to the party, each with a jingle and a system message.\nIf _fade is 0 or more, the current BGM is stopped with that fade (CMND_SND_STOP) and the function waits until it has stopped. It then waits _wait frames (WaitFrame).\nFor each character in turn: the jingle _jingle is opened and played; the message placeholder 0 is set to the character (CMND_MESSAGE_REPLACE_CHARA); the message _event is shown with CreateSpeech; the character is added with AddParty; and the function waits until the jingle has finished.\nAt the end, if _fade is 0 or more, the BGM plays again with the same fade.\nThe presets use jingle \"J_08\" (or \"J_07\" for the Important ones), message \"sysmes-add_party\" (or \"sysmes-back_party\" for the Back ones), and fade/wait 30 (or -1 for NoFadeBGM)."
   },
   "params": [
-    { "name": "_add_num", "type": "integer", "required": true, "description": { "en": "Number of members to add (length of the following array arguments)." } },
-    { "name": "_aParamID", "type": "array", "required": true, "description": { "en": "Array of param IDs, one per member to add." } },
-    { "name": "_aPtLock", "type": "array", "required": true, "description": { "en": "Array of position-lock flags, one per member." } },
-    { "name": "_aAvatarEnable", "type": "array", "required": true, "description": { "en": "Array of Fighting Spirit-enable flags, one per member." } },
-    { "name": "_aAvatarLock", "type": "array", "required": true, "description": { "en": "Array of Fighting Spirit-lock flags, one per member." } },
-    { "name": "_aLv", "type": "array", "required": true, "description": { "en": "Array of levels to set, one per member (-1 to leave unchanged)." } },
-    { "name": "_fade", "type": "integer", "required": true, "description": { "en": "BGM fade-out duration in frames before the sequence; a negative value skips fading/stopping the BGM entirely." } },
-    { "name": "_wait", "type": "integer", "required": true, "description": { "en": "Number of frames to wait after the BGM fade before starting." } },
-    { "name": "_jingle", "type": "string", "required": true, "description": { "en": "Jingle sound event ID to play for each added member." } },
-    { "name": "_index", "type": "integer", "required": true, "description": { "en": "Unused by this implementation (kept for signature compatibility)." } },
-    { "name": "_event", "type": "string", "required": true, "description": { "en": "Message ID shown via CreateSpeech for each added member." } }
+    {"name": "_add_num", "type": "integer", "required": true, "description": {"en": "Number of characters to add; the arrays below are read from index 0 to _add_num - 1."}},
+    {"name": "_aParamID", "type": "array", "required": true, "description": {"en": "Parameter IDs of the characters, e.g. [\"para_cp0001\", \"para_cp0013\"]."}},
+    {"name": "_aPtLock", "type": "array", "required": true, "description": {"en": "One _ptLock value per character (see AddParty)."}},
+    {"name": "_aAvatarEnable", "type": "array", "required": true, "description": {"en": "One _avatarEnable value per character (see AddParty)."}},
+    {"name": "_aAvatarLock", "type": "array", "required": true, "description": {"en": "One _avatarLock value per character (see AddParty)."}},
+    {"name": "_aLv", "type": "array", "required": true, "description": {"en": "One level per character; -1 (or any value of 0 or less) keeps the current level."}},
+    {"name": "_fade", "type": "integer", "required": true, "description": {"en": "Fade used to stop and restart the BGM; -1 leaves the BGM alone. The presets use 30 or -1."}},
+    {"name": "_wait", "type": "integer", "required": true, "description": {"en": "Frames to wait before the first jingle (WaitFrame). The presets use 30, or -1 with no fade."}},
+    {"name": "_jingle", "type": "string", "required": true, "description": {"en": "Event sound played for each character, e.g. \"J_08\" or \"J_07\"."}},
+    {"name": "_index", "type": "integer", "required": true, "description": {"en": "Not used by the function; the presets pass 0."}},
+    {"name": "_event", "type": "string", "required": true, "description": {"en": "Message ID shown for each character, e.g. \"sysmes-add_party\" or \"sysmes-back_party\"."}}
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": { "en": "Always null (no return statement)." }
   },
   "examples": [
     {
-      "case": "Adding one party member with a jingle and recruitment message (real usage, equivalent to what AddParty_Message builds)",
+      "case": "What AddParty_Message(\"para_cp0015\", true, false, false, 18) runs (real preset, from ie4_ev_main.nut and ev42070500.nut)",
       "source": "real",
-      "code": "// Add one party member with a jingle and recruitment message (as AddParty_Message does)\nAddParty_MessageEx(1, [\"para_cp0015\"], [true], [false], [false], [18], 30, 30, \"J_08\", 0, \"sysmes-add_party\");"
+      "code": "AddParty_MessageEx(1, [\"para_cp0015\"], [true], [false], [false], [18], 30, 30, \"J_08\", 0, \"sysmes-add_party\");"
+    },
+    {
+      "case": "A custom jingle and message (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Keep the BGM, return message, important jingle\nAddParty_MessageEx(1, [\"para_cp0010\"], [true], [true], [true], [-1], -1, -1, \"J_07\", 0, \"sysmes-back_party\");"
     }
   ]
 }

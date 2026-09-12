@@ -1,0 +1,36 @@
+{
+  "name": "CMND_2DO_DELETE_TELOP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Removes a caption created with CMND_2DO_CREATE_TELOP, CMND_2DO_CREATE_AVA_TELOP or CMND_2DO_CREATE_AVA_SUB_TELOP, by the name it was registered under.\nThe cutscene scripts call it at the end of the sequence to clean up their captions."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the caption to remove."
+      }
+    }
+  ],
+  "returns": {
+    "type": "string|null",
+    "description": {
+      "en": "The name you passed (not null) if a caption with that name existed and was removed.\nnull if no caption had that name, if no argument was given, or if the engine is not ready.\n(On success the native reports a result without pushing one, so Squirrel hands back the last argument, which here is the name.)"
+    }
+  },
+  "examples": [
+    {
+      "case": "Cleaning up both captions after a Fighting Spirit move (real usage, from ie4_ev_sub_skl.nut; caption names shortened from the script's Shift-JIS names)",
+      "source": "real",
+      "code": "// Remove the move-name caption and the Fighting Spirit name caption.\nCMND_2DO_DELETE_TELOP(\"skill_name\");\nCMND_2DO_DELETE_TELOP(\"avatar_name\");"
+    },
+    {
+      "case": "Checking whether the caption existed",
+      "source": "invented",
+      "code": "// A null result means there was nothing to delete.\nif (CMND_2DO_DELETE_TELOP(\"skill_name\") == null)\n{\n\t// the caption had already been removed\n}"
+    }
+  ]
+}

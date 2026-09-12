@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_HAS_AVATER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Returns whether a player's Fighting Spirit is currently out on the pitch (\"avater\" is the game's spelling of avatar).\nIt looks the player up among the match players by parameter ID and reads their Fighting Spirit flag. That flag is set when the Fighting Spirit is summoned (CMND_BTL_SET_AVATER does this) and cleared when it goes away. CMND_BTL_GET_AVATER_NUM counts the same flag over a whole team."
+  },
+  "params": [
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Parameter ID of the player, e.g. \"para_cp0008\"." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true if the player's Fighting Spirit is out.\nfalse if it is not, or if no match player has that ID.\nnull if the script system is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "Dismissing one of the team's Fighting Spirits unless a given player's is already out (real usage, from btl0014.nut)",
+      "source": "real",
+      "code": "// Three or more of the player's team's Fighting Spirits are out, and\n// para_cp0008's is not one of them: dismiss one first\nif (CMND_BTL_GET_AVATER_NUM(0) >= 3 && !CMND_BTL_HAS_AVATER(\"para_cp0008\"))\n{\n\tCMND_BTL_RESET_AVATER(0);\n}\n\n// Arguments in SET_AVATER order: RESET_AVATER reads \"ck0001\" as the\n// player ID, so this call does nothing (see CMND_BTL_RESET_AVATER)\nCMND_BTL_RESET_AVATER(\"para_cp0008\", \"ck0001\", 0);"
+    }
+  ]
+}

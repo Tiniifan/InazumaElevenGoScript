@@ -1,0 +1,28 @@
+{
+  "name": "CMND_BTL_SET_POINT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets both teams' scores to exact values at once, from a 2-element array (CMND_BTL_ADD_POINT adds to them instead). Scores are capped at 99; negative values are ignored.\n\nWith true as second argument, the two values are also copied into the match setup data, in a pair of fields kept apart from the live score. The only shipped use is a story match that starts with the player's team already down 0-10."
+  },
+  "params": [
+    { "name": "scores", "type": "array", "required": true, "description": { "en": "[score of team 0, score of team 1]." } },
+    { "name": "saveToSetup", "type": "boolean", "required": false, "default": "false", "description": { "en": "true to also copy the scores into the match setup data." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Starting a story match already losing 0-10 (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "// The script also checks that the native exists before calling it.\nlocal point = [0, 10];\nif (\"CMND_BTL_SET_POINT\" in getroottable())\n{\n\tCMND_BTL_SET_POINT(point, true);\n}"
+    },
+    {
+      "case": "Rewriting the live score only",
+      "source": "invented",
+      "code": "// Put the opponent one goal ahead of the player's team\nlocal my_point = CMND_BTL_GET_POINT(0);\nCMND_BTL_SET_POINT([my_point, my_point + 1]);"
+    }
+  ]
+}

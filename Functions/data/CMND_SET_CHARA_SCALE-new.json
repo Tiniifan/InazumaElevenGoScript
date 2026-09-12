@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_CHARA_SCALE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Sets the size of a character model."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "scale",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Scale factor (1.0 normal)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "null in every case (also when the character is not found)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside SetHiMdlPosAndMotID (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_SET_CHARA_SCALE(_hdl, 1.0);"
+    }
+  ]
+}

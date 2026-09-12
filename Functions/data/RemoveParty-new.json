@@ -1,0 +1,39 @@
+{
+  "name": "RemoveParty",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Removes a character from the party with no message: RemovePartyCmnd(_paramID, _flg_st_reset, !_flg_st_reset). So with _flg_st_reset true the member is removed and their saved record deleted; with false the removal routine is called with its pt_lock flag set."
+  },
+  "params": [
+    {
+      "name": "_paramID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Parameter ID of the character to remove, e.g. \"para_cp0010\"."
+      }
+    },
+    {
+      "name": "_flg_st_reset",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to also delete the character's saved record, so they start over if they join again. The shipped calls pass false."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Removing a member silently (real usage, from ev42020900.nut)",
+      "source": "real",
+      "code": "RemoveParty(\"para_cp0010\", false);"
+    }
+  ]
+}

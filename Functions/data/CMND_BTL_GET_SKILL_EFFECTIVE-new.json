@@ -1,0 +1,31 @@
+{
+  "name": "CMND_BTL_GET_SKILL_EFFECTIVE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Tells whether a skill effect with a given type and value is active for a player, counting both the team's effects and the player's own. The clash formulas of ie4_soccer_sys.nut use it to apply effects such as ignoring element advantage.\n\nEffects are stored as (type, value) pairs in two places:\n- each team has four effect entries (CMND_BTL_GET_KSN_SKILL_EFFECTIVE checks those alone);\n- each player on the pitch has three effect slots, filled from the skill-effect moves they know (see CMND_BTL_LEARNING_SKILL). CMND_BTL_GET_PLY_SKILL_EFFECTIVE checks those alone.\nIn each place only the first entry of the requested type is looked at, and it counts if its value equals the requested value. The result is written into the output array: 0, 1 or 2.\n\nEffect types named in ie4_soccer_sys.nut: SKILL_EFF_CONS_UP_TP (12), SKILL_EFF_CONS_GP (13), SKILL_EFF_PLUS_CRITICAL (14), SKILL_EFF_SCC_DOWN (15), SKILL_EFF_PLUS_EFFECTIVE (21), SKILL_EFF_IGNORE_EFFECTIVE (22). The script also tests type 41 without naming it."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team whose effect entries are checked: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "playerSlot", "type": "integer", "required": true, "description": { "en": "Pitch slot (0 to 31) of the player whose effect slots are checked, as given by CMND_BTL_GET_CALC_PARAM mode 1." } },
+    { "name": "effectType", "type": "integer", "required": true, "description": { "en": "Effect type to look for (see the list above)." } },
+    { "name": "value", "type": "integer", "required": true, "description": { "en": "Value the effect must have. The scripts pass 0." } },
+    { "name": "result", "type": "array", "required": true, "description": { "en": "OUTPUT: result[0] receives the count (0, 1 or 2). It must be an array: ie4_soccer_sys.nut once passes a plain integer (the type 41 test), which is left unchanged, so that test always sees 0." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null. The count comes back in the output array.\nAlso null, with nothing written, if fewer than 5 arguments are given." }
+  },
+  "examples": [
+    {
+      "case": "Cancelling the element bonus when an effect says so (real usage, from ie4_soccer_sys.nut, CalcSuccessRate)",
+      "source": "real",
+      "code": "// Element advantage of the chosen command\nlocal element_plus = GetElementRevision(_attr[0], _cmndParam[3]);\n\n// Any team or player effect of type SKILL_EFF_IGNORE_EFFECTIVE (22)\n// with value 0 cancels it\nlocal num = [0];\nCMND_BTL_GET_SKILL_EFFECTIVE(_teamID, _playerID, SKILL_EFF_IGNORE_EFFECTIVE, 0, num);\nif (num[0])\n{\n\telement_plus = 0;\n}"
+    },
+    {
+      "case": "Checking a TP cost effect (real usage, from ie4_soccer_sys.nut, GetSkillConsUpTP)",
+      "source": "real",
+      "code": "local num = [0];\nCMND_BTL_GET_SKILL_EFFECTIVE(_TeamId, _PlayerId, SKILL_EFF_CONS_UP_TP, 0, num);\nif (num[0] && !_hasAvt)\n{\n\treturn SKILL_EFF_CONS_UP_TP_VALUE;\n}"
+    }
+  ]
+}

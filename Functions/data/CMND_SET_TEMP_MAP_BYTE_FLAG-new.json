@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_TEMP_MAP_BYTE_FLAG",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Writes a temporary map byte flag (only the low 8 bits of the value are kept). Temporary map byte flags are a table of byte values (0 to 255) in the flag data, right after the temporary map bit flags. The number is not checked and the table size was not traced."
+  },
+  "params": [
+    {
+      "name": "index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Byte number."
+      }
+    },
+    {
+      "name": "value",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Value, 0 to 255."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true (also when the flag data is not available).\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A per-map counter (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local talks = CMND_GET_TEMP_MAP_BYTE_FLAG(0);\nCMND_SET_TEMP_MAP_BYTE_FLAG(0, talks + 1);"
+    }
+  ]
+}

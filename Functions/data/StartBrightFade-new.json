@@ -1,0 +1,47 @@
+{
+  "name": "StartBrightFade",
+  "kind": "ev_main",
+  "category": "screen-fx",
+  "description": {
+    "en": "Changes the brightness of a screen and waits until the change is done. With SCREEN_AB it uses CMND_BRIGHT_FADE_ALL and waits on CMND_IS_BRIGHT_FADE_ALL; otherwise CMND_BRIGHT_FADE and CMND_IS_BRIGHT_FADE for that screen. Brightness -1.0 is black and 0.0 the normal picture."
+  },
+  "params": [
+    {
+      "name": "_screen",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "SCREEN_A (0, top), SCREEN_B (1, bottom) or SCREEN_AB (2, both)."
+      }
+    },
+    {
+      "name": "_bright",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Target brightness: -1.0 for black, 0.0 for normal."
+      }
+    },
+    {
+      "name": "_frame",
+      "type": "integer|float",
+      "required": true,
+      "description": {
+        "en": "Length of the fade in frames (EV_FADE_QUICK = 5, EV_FADE_NORMAL = 10, EV_FADE_SLOW = 15); 0 for an instant change."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Fade out, then back in (real usage, the two most common calls)",
+      "source": "real",
+      "code": "StartBrightFade(SCREEN_A, -1.0, EV_FADE_SLOW);\n// ... change the scene ...\nStartBrightFade(SCREEN_A, 0.0, EV_FADE_SLOW);"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "CMND_BTL_SET_RESULT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Tells the engine the outcome of the duel or shot it asked a script to resolve.\nIn this game the clash maths runs in Squirrel. When a clash happens, the engine calls a ScBtlCalc_* function: the shared ones are in ie4_soccer_sys.nut, and a match script can replace them. That function computes both sides' values, decides the outcome and reports it here.\nThe callbacks in ie4_soccer_sys.nut that call it:\n- ScBtlCalc_CMDBTL (1-on-1 duel): 4 arguments;\n- ScBtlCalc_CMDSHOOT (shot): 5 arguments, with the miss flag;\n- ScBtlCalc_CMDKEEPER (goalkeeper save): 1 argument;\n- ScBtlCalc_CMDCHAIN (chain shot): 3 arguments;\n- ScBtlCalc_CMDBLOCK (shot block): 3 arguments;\n- ScBtlCalc_CMDKESHIN (Fighting Spirit clash): 4 arguments, where the two values are the damage dealt to each side;\n- ScBtlCalc_CMD_TACTICS (tactic clash): 1 argument.\nThe parameter names below are the developers' local variable names in ie4_soccer_sys.nut.\n\nArguments are read in groups: the two values only when at least 3 arguments are given, the foul flag from 4 arguments, the miss flag from 5."
+  },
+  "params": [
+    { "name": "is_win", "type": "boolean", "required": true, "description": { "en": "true if the attacking side wins the clash." } },
+    { "name": "atk_power", "type": "integer", "required": false, "description": { "en": "Value of the attacking side (its power in most callbacks, the damage it deals in the Fighting Spirit clash)." } },
+    { "name": "def_power", "type": "integer", "required": false, "description": { "en": "Value of the defending side. Read together with atk_power, so pass both or neither. Shot callbacks pass 0." } },
+    { "name": "is_faul", "type": "boolean", "required": false, "description": { "en": "true if the clash ends in a foul (\"faul\" is the developers' spelling)." } },
+    { "name": "miss", "type": "boolean", "required": false, "description": { "en": "true if the shot misses. Only the shot callback passes it." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Reporting a 1-on-1 duel with a possible foul (real usage, from ie4_soccer_sys.nut, ScBtlCalc_CMDBTL)",
+      "source": "real",
+      "code": "// After computing both powers and rolling for a foul:\nCMND_BTL_SET_RESULT(is_win, atk_power, def_power, is_faul);"
+    },
+    {
+      "case": "Reporting a shot that may miss (real usage, from ie4_soccer_sys.nut, ScBtlCalc_CMDSHOOT)",
+      "source": "real",
+      "code": "// No defending value here; the fifth argument says whether it missed\nlocal miss = IsMiss_HeadVolley(_id, _bAvt);\nCMND_BTL_SET_RESULT(true, atk_power, 0, false, miss);"
+    },
+    {
+      "case": "Reporting only who won (real usage, from ie4_soccer_sys.nut, ScBtlCalc_CMDKEEPER)",
+      "source": "real",
+      "code": "// One-argument form, used for the goalkeeper save and the tactic clash\nCMND_BTL_SET_RESULT(is_win);"
+    },
+    {
+      "case": "A match script forcing the result of every duel (real usage, from btl0302.nut)",
+      "source": "real",
+      "code": "// Replacement of the duel callback: the attacker always wins, with\n// random values.\nScBtlCalc_CMDBTL <- function ( _cmdAtk, _cmdDef, _avtAtk, _avtDef )\n{\n\tlocal trg = CMND_BTL_GET_RAND(50, 99);\n\tlocal tnm = CMND_BTL_GET_RAND(1, 19);\n\tCMND_BTL_SET_RESULT(true, trg, tnm, false);\n};"
+    }
+  ]
+}

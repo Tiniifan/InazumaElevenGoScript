@@ -1,0 +1,39 @@
+{
+  "name": "EvLowMdlSetLookAtChara_Head",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Makes a character look at another one with its head only: it reads the target's position (CMND_GET_POSRY) and passes it to CMND_SET_LOOK_AT(_hdl, 2, x, y, z). The body does not turn."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "_tHdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character to look at."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Glancing at a character while walking (real usage, from ev42010300.nut)",
+      "source": "real",
+      "code": "EvLowMdlMove(hTenmaL, [115.7, 30.299999, -254.5, -90], 130);\nWaitFrame(40);\nEvLowMdlSetLookAtChara_Head(hTenmaL, hAoiL);"
+    }
+  ]
+}

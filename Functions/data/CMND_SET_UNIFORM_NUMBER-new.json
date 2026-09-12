@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_UNIFORM_NUMBER",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets the shirt number of a player."
+  },
+  "params": [
+    {
+      "name": "playerHandle",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Player handle (CMND_ADD_PARTY, CMND_GET_PARTY_HANDLE)."
+      }
+    },
+    {
+      "name": "number",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Shirt number."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set, false if the handle is 0.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Setting up a recruit (real usage, from ev42019001.nut)",
+      "source": "real",
+      "code": "local hdl = CMND_ADD_PARTY(\"para_cp0008\");\nCMND_SET_SOCCER_POSITION(hdl, 9);\nCMND_SET_UNIFORM_NUMBER(hdl, 8);\nCMND_SET_PT_LOCK_FLAG(hdl, true);"
+    }
+  ]
+}

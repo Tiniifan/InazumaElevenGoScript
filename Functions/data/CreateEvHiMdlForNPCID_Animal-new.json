@@ -1,0 +1,48 @@
+{
+  "name": "CreateEvHiMdlForNPCID_Animal",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Same as CreateEvHiMdlForNPCID with _no_base false and the event memory area: CMND_CREATE_CHARA(1, _charaName, set, _npc_id, true, false, false, DEV_MEM_NAME_EVENT). No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "_charaName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object; the events use the character's name followed by L (light model) or H (detailed model)."
+      }
+    },
+    {
+      "name": "_npc_id",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "NPC ID."
+      }
+    },
+    {
+      "name": "_talk",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true for the \"Talk\" motion set (talking model), false for \"dmy\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character (see CMND_CREATE_CHARA)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A detailed animal NPC (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local hDogH = CreateEvHiMdlForNPCID_Animal(\"dogH\", npcId);"
+    }
+  ]
+}

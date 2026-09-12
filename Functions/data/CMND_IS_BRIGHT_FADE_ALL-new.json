@@ -1,0 +1,22 @@
+{
+  "name": "CMND_IS_BRIGHT_FADE_ALL",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Tells whether a brightness fade started with CMND_BRIGHT_FADE_ALL is still in progress. While an event has its bottom-screen background loaded (the EvSubBg image), it checks the top and the bottom screen, whatever screen is asked."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true while the fade is in progress, false otherwise.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside StartBrightFade for both screens (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "if (_screen == SCREEN_AB)\n{\n\tCMND_BRIGHT_FADE_ALL(_bright, _frame);\n\n\twhile (CMND_IS_BRIGHT_FADE_ALL())\n\t{\n\t\tsuspend();\n\t}\n}"
+    }
+  ]
+}

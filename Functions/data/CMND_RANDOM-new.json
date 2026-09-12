@@ -3,29 +3,25 @@
   "kind": "native",
   "category": "system",
   "description": {
-    "en": "Returns a random integer in [0, max). Internally checks a QA/debug override table (keyed \"SP_NUMBER\") that can force a specific result during testing; in normal play it returns a real random value."
+    "en": "Returns a random integer from 0 to max - 1. With max = 0 it returns 0.\nThe Special Move scripts (waza/) use it to pick one of their presentation variants.\n\nThe result can be forced once from outside. CMND_RUN_SKILL_SCRIPT takes a ninth argument that it stores as \"SP_NUMBER\" (-1 by default). The ev_main wrapper RunSkillScript passes its _cmrCut argument there. When CMND_RANDOM finds that value set, from 0 to max - 1, it returns it instead of a random number and resets it to -1. So the story events choose which variant of a Special Move plays, while normal play leaves it random."
   },
   "params": [
-    {
-      "name": "max",
-      "type": "integer",
-      "required": true,
-      "description": {
-        "en": "Exclusive upper bound."
-      }
-    }
+    { "name": "max", "type": "integer", "required": true, "description": { "en": "Number of possible results (upper bound, excluded)." } }
   ],
   "returns": {
-    "type": "integer",
-    "description": {
-      "en": "The random value."
-    }
+    "type": "integer|null",
+    "description": { "en": "A value from 0 to max - 1 (the forced SP_NUMBER if one is set and in range).\n0 when max is 0.\nnull if the script system is not ready or no argument is given." }
   },
   "examples": [
     {
-      "case": "Picking one of several animation variants at random",
+      "case": "Picking one of three variants in a Special Move script (real usage, from waza/vsl0008.nut)",
       "source": "real",
-      "code": "// Excerpt from a Special Move script's SkillFunc(_success): pick one of 3\n// animation variants at random to vary the technique's presentation.\nlocal variantIndex = CMND_RANDOM(3);\nif (variantIndex == 0)\n{\n\tSetupNum(1, 0, 0, 1, 2);\n\tSetupEnable(1, \"gol\", 0);\n}\nelse if (variantIndex == 1)\n{\n\tSetupNum(1, 0, 0, 1, 2);\n\tSetupMotion(1, \"01a\");\n\tSetupEnable(1, \"gol\", 0);\n}\nelse\n{\n\tSetupNum(1, 0, 0, 1, 2);\n\tSetupMotion(1, \"01b\");\n}"
+      "code": "SkillFunc <- function ( _success )\n{\n\t// 0, 1 or 2, unless the caller forced a variant\n\tlocal val = CMND_RANDOM(3);\n\n\tif (val == 0)\n\t{\n\t\tSetupNum(1, 0, 0, 1, 2);\n\t\tSetupEnable(1, \"gol\", 0);\n\t}\n\telse if (val == 1)\n\t{\n\t\tSetupNum(1, 0, 0, 1, 2);\n\t\tSetupMotion(1, \"01a\");\n\t\tSetupEnable(1, \"gol\", 0);\n\t}\n\telse if (val == 2)\n\t{\n\t\tSetupNum(1, 0, 0, 1, 2);\n\t\tSetupMotion(1, \"01b\");\n\t\tSetupEnable(1, \"gol\", 0);\n\t}\n};"
+    },
+    {
+      "case": "An event forcing the variant (real usage, from ev44020012.nut and waza/vsj0001.nut)",
+      "source": "real",
+      "code": "// In the event: the last argument (_cmrCut) becomes SP_NUMBER\nRunSkillScript(\"vsj0001\", \"mv03b01\", 0, 0, true, false, true, false, 0);\n\n// In vsj0001.nut: CMND_RANDOM(2) now returns 0\nSkillFunc <- function ( _success )\n{\n\tlocal val = CMND_RANDOM(2);\n\n\tif (val == 0)\n\t{\n\t\tSetupNum(1, 1, 0, 1, 1);\n\t}\n\telse\n\t{\n\t\tSetupNum(1, 1, 0, 1, 1);\n\t\tSetupMotion(1, \"01a\");\n\t}\n};"
     }
   ]
 }

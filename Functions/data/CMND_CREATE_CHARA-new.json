@@ -1,0 +1,35 @@
+{
+  "name": "CMND_CREATE_CHARA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Creates a character (or model) object for an event and returns its handle. Wait for it with WaitLoading, then show it with CMND_SET_ENABLE. The events almost always go through the ev_main helpers (CreateEvHiMdlFor..., CreateEvLowMdlFor..., CreateEvLowMdlBall...).\n\nThe first argument is the kind of object; the second is the object's name; the third is a motion-set string for character kinds (the helpers pass \"Talk\" for talking models, \"dmy\" or \"dmmy\" otherwise) or a model file for kinds 3 and 7. The other arguments depend on the kind:\n- 0: (0, name, set, hi, ev). The model of the character the player controls.\n- 1: (1, name, set, npcId, hi, ev, noBase, memory). An NPC by ID string, e.g. \"evc0001\".\n- 3: (3, name, modelFile, set, shadow, option). A plain model file, e.g. \"data/chr/model/itm/ev_bal01.xc\" for the ball. shadow is a small number; the helpers pass their _shadow flag there.\n- 4: (4, name, set, number, body, hi, home, keeper, shoes, gloves, ev, noBase, memory, uniform). The character para_cpNNNN built from the number, with its kit: body number, home or away kit, goalkeeper outfit, shoes and gloves numbers, uniform.\n- 5: (5, name, set, number, hi, ev, noBase, memory). The NPC cnNNNN.\n- 6: (6, name, set, paramId, isUpper, hi, ev, team). A match player. During a match, the player is looked up in the match team data and dressed in their match kit; team 2 (the helpers' default) means searching by parameter ID alone.\n- 7: (7, name, modelFile, set, option). A plain model file, like kind 3 with another setting.\n- 8: (8, name, eventChrId, set, hi, noBase, memory). A character from the event character table, which gives either a para_cp or a cn number and the kit. An unknown ID returns 0. (For this kind the ev_main helper CreateEvLowMdlForEventChrID passes its _base argument in the noBase slot.)\n\nhi true asks for the detailed model (the Hi helpers); otherwise a lighter model is used (the Low helpers), ev (the helpers' _ev) choosing between two light settings. noBase is the helpers' _no_base flag. It sets the same creation bit that CMND_SET_BASE_MOT_NO_LOAD_FLAG(true) forces on every new character, so, by that command's name, it skips loading the base motions. A detailed model whose set is not \"Talk\" gets extra display settings. memory is the name of the memory area to use (the helpers pass DEV_MEM_NAME_EVENT; the default is \"Union\")."
+  },
+  "params": [
+    { "name": "kind", "type": "integer", "required": true, "description": { "en": "Kind of object: 0, 1, 3, 4, 5, 6, 7 or 8 (see the description)." } },
+    { "name": "name", "type": "string", "required": true, "description": { "en": "Name of the new object (the events use names such as the character's name followed by L or H)." } },
+    { "name": "setOrModel", "type": "string", "required": true, "description": { "en": "Motion set (\"Talk\", \"dmy\", \"dmmy\") or, for kinds 3 and 7, the model file." } },
+    { "name": "...", "type": "any", "required": false, "description": { "en": "Arguments of the chosen kind, in the order given in the description." } }
+  ],
+  "returns": {
+    "type": "handle|null",
+    "description": { "en": "Handle of the new object (0 for kind 8 with an unknown ID).\nnull if the script system is not ready or fewer than 3 arguments are given." }
+  },
+  "examples": [
+    {
+      "case": "A detailed model for a match scene (real code, from ie4_ev_main.nut, CreateEvHiMdlForMatch)",
+      "source": "real",
+      "code": "CreateEvHiMdlForMatch <- function ( _charaname, _is_upper, _id, _teamID = 2 )\n{\n\tlocal hdl = 0;\n\thdl = CMND_CREATE_CHARA(6, _charaname, \"dmmy\", _id, _is_upper, true, false, _teamID);\n\treturn hdl;\n};"
+    },
+    {
+      "case": "The ball model (real code, from ie4_ev_main.nut, CreateEvLowMdlBall)",
+      "source": "real",
+      "code": "local hBall = CMND_CREATE_CHARA(3, _ballName, \"data/chr/model/itm/ev_bal01.xc\", \"dmy\", _shadow);"
+    },
+    {
+      "case": "A light NPC model by number (real code, from ie4_ev_main.nut, CreateEvLowMdlForCharaNo_NPCOnly)",
+      "source": "real",
+      "code": "local evc_hdl = CMND_CREATE_CHARA(5, _charaName, \"dmmy\", _npc_no, false, false, false, DEV_MEM_NAME_EVENT);"
+    }
+  ]
+}

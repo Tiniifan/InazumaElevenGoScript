@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_SET_NOT_FORCE_FAUL_FLAG",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Writes a match flag that CMND_BTL_GET_NOT_FORCE_FAUL_FLAG reads back. Going by its name (\"faul\" is the developers' spelling), the flag was meant to stop forced outcomes from producing fouls.\nIn the code traced, though, nothing but GET_NOT_FORCE_FAUL_FLAG reads it. The match also rewrites it on its own: while it updates the pitch display, it sets the flag to 1 when either team's goalkeeper is in the forced-win list (filled by CMND_BTL_SET_FORCE_WIN), and to 0 when neither is. So a value written here does not last. Match setup also resets it to 0.\nThe only shipped use is btl0003.nut: true when the match begins, false in its result callback."
+  },
+  "params": [
+    { "name": "enable", "type": "boolean", "required": true, "description": { "en": "true (non-zero) to set the flag, false to clear it." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when no argument is given)." }
+  },
+  "examples": [
+    {
+      "case": "Set at kick-off, cleared at the result (real usage, from btl0003.nut)",
+      "source": "real",
+      "code": "CallMatchBeginMatch <- function ()\n{\n\tCMND_BTL_SET_NOT_FORCE_FAUL_FLAG(true);\n};\n\nScBtlResult <- function ()\n{\n\tCMND_BTL_SET_NOT_FORCE_FAUL_FLAG(false);\n\tlocal isWin = 0;\n\tisWin = CMND_BTL_GET_RESULT();\n\t// ... story flags ...\n\tCMND_BTL_RESET_FORCE_WIN();\n\tCMND_BTL_RESET_FORCE_LOSE();\n};"
+    }
+  ]
+}

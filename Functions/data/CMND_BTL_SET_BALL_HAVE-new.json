@@ -1,0 +1,29 @@
+{
+  "name": "CMND_BTL_SET_BALL_HAVE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Gives the ball to a player. The ball is moved to the player's position, and the player becomes the holder for the given team. The story matches call it right after a scripted scene, so play resumes with the ball where the scene left it.\nThe player can be given by parameter ID (searched among that team's players, bench included) or by a position offset among that team's players on the pitch.\nThe optional third argument sets a flag in the ball's state; its effect was not identified (it is used once, in btl0004.nut).\nIt also resets some of the ball's state (its movement values)."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team that gets the ball: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "player", "type": "string|integer", "required": true, "description": { "en": "Parameter ID (e.g. \"para_cp0008\") or position offset among the team's players on the pitch (e.g. 0 or 9)." } },
+    { "name": "flag", "type": "boolean", "required": false, "default": "false", "description": { "en": "Stored in a bit of the ball's state; effect not identified." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the ball is given.\nfalse when a position offset matches no player (nothing happens). With a parameter ID it returns true even if the team has no player with that ID.\nnull if the script system is not ready or fewer than 2 arguments are given." }
+  },
+  "examples": [
+    {
+      "case": "Handing the ball to the opponent's ace after a scene (real usage, from btl0016.nut)",
+      "source": "real",
+      "code": "// After the scene, team 1's para_cp0321 has the ball and their\n// Fighting Spirit\nCMND_BTL_SET_EVPARAM(44120030);\nCMND_BTL_SET_BALL_HAVE(1, \"para_cp0321\");\nCMND_BTL_SET_AVATER(\"para_cp0321\", \"ck0023\", 1);"
+    },
+    {
+      "case": "By position offset (real usage, from btl0032.nut)",
+      "source": "real",
+      "code": "CMND_BTL_SET_EVPARAM(44070040);\nsuspend();\nCMND_BTL_SET_PURPOSE(0);\nCMND_BTL_SET_PURPOSETEXT(false);\n// Position 9 of team 1 gets the ball\nCMND_BTL_SET_BALL_HAVE(1, 9);"
+    }
+  ]
+}

@@ -3,29 +3,24 @@
   "kind": "ev_main",
   "category": "party",
   "description": {
-    "en": "Same as AddParty_Message, but plays the \"J_07\" jingle instead of \"J_08\" — used for a more significant/important party-member recruitment."
+    "en": "Adds one character to the party with the important recruitment presentation. The jingle J_07 plays, the system message \"sysmes-add_party\" is shown with the character's name filled in (CMND_MESSAGE_REPLACE_CHARA), then the character is added with AddParty, and the function waits until the jingle has finished.\nThe current BGM is first stopped with a fade of 30 (CMND_SND_STOP); the function waits until it has stopped, then waits 30 more frames. Once everyone is added, the BGM starts again with the same fade.\nIt is a preset of AddParty_MessageEx(1, [_paramID], [_ptLock], [_avatarEnable], [_avatarLock], [_lv], 30, 30, \"J_07\", 0, \"sysmes-add_party\")."
   },
   "params": [
-    { "name": "_paramID", "type": "string", "required": true, "description": { "en": "Param ID of the character to add to the party." } },
-    { "name": "_ptLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's position slot." } },
-    { "name": "_avatarEnable", "type": "boolean", "required": true, "description": { "en": "Whether to enable the member's Fighting Spirit." } },
-    { "name": "_avatarLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's Fighting Spirit." } },
-    { "name": "_lv", "type": "integer", "required": false, "default": "-1 (don't change the member's level)", "description": { "en": "Level to set for the new member." } }
+    {"name": "_paramID", "type": "string", "required": true, "description": {"en": "Parameter ID of the character to add, e.g. \"para_cp0015\"."}},
+    {"name": "_ptLock", "type": "boolean", "required": true, "description": {"en": "Passed to CMND_SET_PT_LOCK_FLAG for the new member. Every shipped call passes true."}},
+    {"name": "_avatarEnable", "type": "boolean", "required": true, "description": {"en": "Passed to CMND_SET_AVATAR_ENABLE (whether the member's Fighting Spirit is enabled). Most shipped calls pass false; a few later events pass true for para_cp0009 and para_cp0010."}},
+    {"name": "_avatarLock", "type": "boolean", "required": true, "description": {"en": "Passed to CMND_SET_AVATAR_LOCK_FLAG for the new member."}},
+    {"name": "_lv", "type": "integer", "required": false, "default": "-1 (keep the current level)", "description": {"en": "Level to give the member with CMND_SET_LV. Only used when greater than 0."}}
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": { "en": "Always null (no return statement)." }
   },
   "examples": [
     {
-      "case": "Adding an important member and setting their level (not found in script_clean/; invented, following the AddParty_Message family's real usage pattern)",
+      "case": "Typical call (not found in script_clean/; invented)",
       "source": "invented",
-      "code": "// Add an important party member with the \"J_07\" jingle presentation and set their level to 20\nAddParty_Important_Message(\"para_cp0001\", true, false, false, 20);"
-    },
-    {
-      "case": "Adding an important member without changing their level",
-      "source": "invented",
-      "code": "// Add an important party member with the \"J_07\" jingle presentation, keeping their current level\nAddParty_Important_Message(\"para_cp0001\", true, false, false);"
+      "code": "// para_cp0015 joins at level 18\nAddParty_Important_Message(\"para_cp0015\", true, false, false, 18);"
     }
   ]
 }

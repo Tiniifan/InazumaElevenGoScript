@@ -1,0 +1,47 @@
+{
+  "name": "CMND_GET_RPG_CAMERA_POS",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Computes where the field (RPG) camera would be for a character: the look-at point (written to ref) is the character's position raised by RefOffsetY, and the camera position (written to pos) is that point moved by Dist in the direction given by RotH and RotV. The map's camera settings (MAP_ENV of the current map) give RefOffsetY (height of the look-at point above the character), Dist (distance), RotH and RotV (angles, in degrees in the map data). Without them the defaults are 3.5, 130.0, 0 and 20 degrees."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character to frame (the events pass the character the player controls)."
+      }
+    },
+    {
+      "name": "pos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Receives [x, y, z] of the camera position."
+      }
+    },
+    {
+      "name": "ref",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Receives [x, y, z] of the look-at point."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null; the results are in the arrays. If the character is not found, the origin is used as its position."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside GetRpgCameraPos (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local hchr = CMND_GET_CHARA_HANDLE(1, true);\nlocal pos = array(3, 0.0);\nlocal ref = array(3, 0.0);\nCMND_GET_RPG_CAMERA_POS(hchr, pos, ref);"
+    }
+  ]
+}

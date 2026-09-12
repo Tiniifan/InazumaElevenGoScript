@@ -1,0 +1,27 @@
+{
+  "name": "CMND_BTL_CONTINUOUS_BGM",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Makes the music an in-match event started carry on into play. The track currently playing on the BGM channel becomes the match BGM, and its name is stored so the match can reopen it later. Without this call the match switches back to its own music when play resumes.\nIt only has an effect while a match is running, and only with a non-empty name.\n\nThe story events call it through the ev_main wrapper ScEventContinuousBGMAtMatch(_bgmid) at the end of an in-match scene. They pass the same track they opened at the start of the scene with CMND_SND_OPEN_BGM."
+  },
+  "params": [
+    { "name": "bgmId", "type": "string", "required": true, "description": { "en": "Name of the track now playing, e.g. \"M_08\". It is stored as the match BGM name, so it should match the track the event opened." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has been handled, including when it did nothing (no match running or empty name).\nnull if the script system is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "Keeping the event's music after an in-match scene (real usage, from ev44010020.nut)",
+      "source": "real",
+      "code": "// At the start of the scene, the event opens its own track\nlocal hEvSnd = CMND_SND_OPEN_BGM(\"M_08\");\n// ... scene ...\n\n// At the end, hand that track over to the match so it keeps playing\n// (the ev_main wrapper calls CMND_BTL_CONTINUOUS_BGM(\"M_08\"))\nScEventContinuousBGMAtMatch(\"M_08\");\nEndScEvent(isEvUpperDisp, scEvHdl);"
+    },
+    {
+      "case": "The ev_main wrapper (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "// With the default empty name the native does nothing\nScEventContinuousBGMAtMatch <- function ( _bgmid = \"\" )\n{\n\tCMND_BTL_CONTINUOUS_BGM(_bgmid);\n};"
+    }
+  ]
+}

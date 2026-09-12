@@ -1,0 +1,25 @@
+{
+  "name": "CMND_BTL_SET_FORCE_TOUGH_ONLY_TP",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Like CMND_BTL_SET_FORCE_TOUGH, but with only one protection: the player's commands stop costing TP while their Fighting Spirit is not out. GP loss and Fighting Spirit gauge costs still apply.\nIt uses the same tough list as SET_FORCE_TOUGH, so calling one after the other for the same player replaces that player's protections. CMND_BTL_RESET_FORCE_TOUGH empties the list.\n\nThe player can be given in three ways, chosen by the number of arguments (same rules as CMND_BTL_SET_FORCE_WIN):\n- 2 arguments (enable, charaId): by parameter ID.\n- 3 arguments (enable, memberIndex, teamSlot): member number memberIndex of that team's match roster.\n- 4 arguments (enable, slotOffset, teamSlot, any): whoever stands at position slotOffset among that team's players on the pitch. The fourth argument is not read.\nSeveral match scripts use the 4-argument form in a loop over positions 0 to 10 of team 1, so none of the opponent's eleven players pay TP."
+  },
+  "params": [
+    { "name": "enable", "type": "boolean", "required": true, "description": { "en": "true to waive the player's TP costs, false to remove them from the tough list." } },
+    { "name": "player", "type": "string|integer", "required": true, "description": { "en": "2-argument form: parameter ID.\n3-argument form: member number in the team's match roster.\n4-argument form: position offset among the team's players on the pitch." } },
+    { "name": "teamSlot", "type": "integer", "required": false, "description": { "en": "3- and 4-argument forms: team of the player, 0 = the player's team, 1 = the opponent team." } },
+    { "name": "unused", "type": "any", "required": false, "description": { "en": "Only there to select the 4-argument form; never read. The scripts pass true." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "No TP costs for the whole opponent team (real usage, from btl1024.nut)",
+      "source": "real",
+      "code": "// Pre-match setup: positions 0 to 10 of team 1 (the opponent)\nBtlSetting <- function ()\n{\n\tfor( local i = 0; i < 11; i++ )\n\t{\n\t\tCMND_BTL_SET_FORCE_TOUGH_ONLY_TP(true, i, 1, true);\n\t}\n};"
+    }
+  ]
+}

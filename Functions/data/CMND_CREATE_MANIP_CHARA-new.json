@@ -1,0 +1,39 @@
+{
+  "name": "CMND_CREATE_MANIP_CHARA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Creates the character the player controls from a party member: the party entry number (0 is the first) gives the character and body the kit (0 keeps the member's own). The events delete the current one first; the ev_main helper ResetEvLowMdlForCharaPlayer does both and returns the new handle."
+  },
+  "params": [
+    {
+      "name": "partyIndex",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Party entry number (the events pass 0)."
+      }
+    },
+    {
+      "name": "body",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Kit number, e.g. 902, 950; 0 for the member's own."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once created, false if there is no member at that entry.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside ResetEvLowMdlForCharaPlayer (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local hPly = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC, true);\nCMND_DELETE_CHARA(hPly);\nCMND_CREATE_MANIP_CHARA(0, _body);\nreturn CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC);"
+    }
+  ]
+}

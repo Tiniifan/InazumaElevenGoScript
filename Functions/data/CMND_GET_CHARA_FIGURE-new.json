@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GET_CHARA_FIGURE",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the figure (body type) of a character from its base data: a small number (0 to 15) that selects which motion set fits the model, e.g. data/chr/motion/game/mot_u<figure name>_gm01.xc."
+  },
+  "params": [
+    {
+      "name": "baseID",
+      "type": "integer|string",
+      "required": true,
+      "description": {
+        "en": "Base ID (from CMND_GET_CHARABASEID), or a base ID string."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The figure number.\nnull if the character is not found, the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Choosing a motion file by body type (real usage, from ev47900100.nut)",
+      "source": "real",
+      "code": "local baseID = CMND_GET_CHARABASEID(charaID);\nlocal fig = CMND_GET_CHARA_FIGURE(baseID);\n\nif (!fig)\n{\n\tfig = 0;\n}"
+    }
+  ]
+}

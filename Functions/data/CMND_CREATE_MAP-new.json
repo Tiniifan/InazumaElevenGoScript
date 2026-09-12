@@ -1,0 +1,31 @@
+{
+  "name": "CMND_CREATE_MAP",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Loads another map as an extra object, for example the stage of an HQ event, and returns its handle. Delete it with CMND_DELETE_MAP."
+  },
+  "params": [
+    {
+      "name": "mapID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Map ID, e.g. \"me51b01\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "Handle of the map object.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "The stage of an HQ event (real usage, from ev42010100.nut)",
+      "source": "real",
+      "code": "StartSetupHQEventChara();\nlocal hEvMap = CMND_CREATE_MAP(\"me51b01\");"
+    }
+  ]
+}

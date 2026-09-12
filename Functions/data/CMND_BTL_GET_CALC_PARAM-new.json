@@ -1,0 +1,37 @@
+{
+  "name": "CMND_BTL_GET_CALC_PARAM",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Reads the inputs of a clash calculation into arrays passed by the script. The ScBtlCalc_* callbacks of ie4_soccer_sys.nut use it to fetch everything they need before computing the outcome, which they then report with CMND_BTL_SET_RESULT.\nThe first argument selects the mode. The other arguments are inputs or output arrays, depending on the mode. Each output array must already exist and be large enough; the native writes into it.\n\nThe players involved are identified by their slot number on the pitch (0 to 31), as returned by mode 1. The scripts store them in arrays named AtkParamId and DefParamId, but they are slot numbers, not parameter IDs.\n\nModes (arguments after the mode, \"out\" marks an output array):\n0: (out team, out atkIds[3], out defIds[3]). The attacking team, then the parameter ID hashes of the players involved on each side. Needs 4 arguments; not used by the scripts.\n1: (out AtkTeamId[1], out AtkNum[1], out AtkParamId[3], out DefNum[1], out DefParamId[3]). Attacking team (0 = the player's team, 1 = the opponent team), how many players take part on each side, and their pitch slots. Needs 6 arguments.\n2: (slot, out[8]). The player's eight stats, in the order the debug print labels them: KICK, DRV (dribble), TEC, BLC (block), SPD, STM (stamina), CTH (catch), LCK (luck).\n3: (team, out[5]). The command that team chose for the clash, labelled by the debug print: POW, DIFF, FAUL, ATTR (element), NUM.\n4: (slot, out[1]). The player's element.\n5: (slot, team, out[2]). If the player's Fighting Spirit is out: [its power, its element]. The power is multiplied by (1 + p/100) when the team has a skill effect of type 29 with value p (see CMND_BTL_GET_KSN_SKILL_EFFECTIVE). Otherwise [0, 0]. Used by the Fighting Spirit clash.\n6: (slot, out[1]). The player's GP value (the scripts call it gp and use it for a GP penalty).\n7: (out[1]). The element of one player whose slot the match keeps in its state (the scripts call it enemy_element).\n8: (slot, team, out[1]). Fighting Spirit power added to the clash: the power from mode 5 plus one hundredth of another player value (not identified), or 0 if the Fighting Spirit is not out.\n9: (out atk[1], out def[1]). Objective bonus: atk is 1 if team 0 attacks and its lead player in the clash is the character named by the last CMND_BTL_SET_PURPOSETEXT; def is 1 if team 1 attacks and team 0's lead player is that character.\n10: (team, check, slot, unused, out[1]). Level difference: the level of that team's player minus the other team's level. The player is found by adding slot to the team's first slot. If the player's level is 0, the team's level is used instead. When check is true and a flag linked to the other team's first player is 0, the output is 0. CalFinalRevision uses it to weaken a lower-level side.\n11: (slot, team, out[1]). 1 if the player is their team's goalkeeper and a position check on the pitch passes, 0 otherwise. The debug print calls it \"offense keeper\" or \"defense keeper\", and the script then halves the other side's power.\nAny other mode does nothing."
+  },
+  "params": [
+    { "name": "mode", "type": "integer", "required": true, "description": { "en": "Which group of values to read (0 to 11, see the list above). The shipped scripts use 1 to 11." } },
+    { "name": "arg1", "type": "integer|array", "required": true, "description": { "en": "First argument of the mode: a pitch slot, a team (0 = the player's team, 1 = the opponent team) or an output array." } },
+    { "name": "arg2", "type": "integer|boolean|array", "required": false, "description": { "en": "Second argument of the mode (see the list above)." } },
+    { "name": "arg3", "type": "integer|array", "required": false, "description": { "en": "Third argument of the mode (modes 0, 1, 5, 8, 10, 11)." } },
+    { "name": "arg4", "type": "integer|array", "required": false, "description": { "en": "Fourth argument of the mode (modes 1 and 10)." } },
+    { "name": "arg5", "type": "array", "required": false, "description": { "en": "Fifth argument of the mode (modes 1 and 10)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null. The values come back through the output arrays.\nAlso null, with nothing written, if fewer than 2 arguments are given." }
+  },
+  "examples": [
+    {
+      "case": "Fetching both sides of a duel and the attacker's stats (real usage, from ie4_soccer_sys.nut, ScBtlCalc_CMDBTL)",
+      "source": "real",
+      "code": "// Who attacks, and which pitch slots take part on each side\nlocal AtkTeamId = [0];\nlocal AtkNum = [0];\nlocal AtkParamId = [0, 0, 0];\nlocal DefNum = [0];\nlocal DefParamId = [0, 0, 0];\nCMND_BTL_GET_CALC_PARAM(1, AtkTeamId, AtkNum, AtkParamId, DefNum, DefParamId);\n\n// The command each team chose: [POW, DIFF, FAUL, ATTR, NUM]\nlocal AtkCmndParam = [0, 0, 0, 0, 0];\nCMND_BTL_GET_CALC_PARAM(3, AtkTeamId[0], AtkCmndParam);\nlocal DefCmndParam = [0, 0, 0, 0, 0];\nCMND_BTL_GET_CALC_PARAM(3, AtkTeamId[0] ^ 1, DefCmndParam);\n\n// The lead attacker's eight stats, then each attacker's element\nlocal AtkPlayerParam = [0, 0, 0, 0, 0, 0, 0, 0];\nlocal AtkElement = [[5], [5], [5]];\nCMND_BTL_GET_CALC_PARAM(2, AtkParamId[0], AtkPlayerParam);\nfor( local i = 0; i < AtkNum[0]; i++ )\n{\n\tCMND_BTL_GET_CALC_PARAM(4, AtkParamId[i], AtkElement[i]);\n}"
+    },
+    {
+      "case": "Fighting Spirit power and the objective bonus (real usage, from ie4_soccer_sys.nut, ScBtlCalc_CMDBTL)",
+      "source": "real",
+      "code": "// 0 unless the lead attacker's Fighting Spirit is out\nlocal AtkKeshinPower = [0];\nCMND_BTL_GET_CALC_PARAM(8, AtkParamId[0], AtkTeamId[0], AtkKeshinPower);\n\n// Is the objective's character leading the attack or the defence?\nlocal atkPPsBns = [0];\nlocal defPPsBns = [0];\nCMND_BTL_GET_CALC_PARAM(9, atkPPsBns, defPPsBns);"
+    },
+    {
+      "case": "Level difference between the two sides (real usage, from ie4_soccer_sys.nut)",
+      "source": "real",
+      "code": "CalFinalRevision <- function ( teamId, AtkParamId = 0, DefParamId = 0 )\n{\n\tlocal subTeamLv = [0];\n\tCMND_BTL_GET_CALC_PARAM(10, teamId, true, AtkParamId, DefParamId, subTeamLv);\n\n\t// Not lower than the other side: no change\n\tif (subTeamLv[0] >= 0)\n\t{\n\t\treturn 1.0;\n\t}\n\n\t// Lower: the further below, the weaker (down to 0.2)\n\tlocal sub = -subTeamLv[0];\n\tif (sub > 30)\n\t{\n\t\treturn 0.2;\n\t}\n\treturn 0.00079999998 * sub * sub - 0.0517 * sub + 1.0;\n};"
+    }
+  ]
+}

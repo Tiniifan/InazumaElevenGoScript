@@ -1,0 +1,39 @@
+{
+  "name": "CreateEvLowMdlForCharaNo_AnimalNoBustup_Shadow",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "CreateEvLowMdlForCharaNo_Animal(_charaName, _npc_no, true, true): with a shadow and without the bust-up picture. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "_charaName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object; the events use the character's name followed by L (light model) or H (detailed model)."
+      }
+    },
+    {
+      "name": "_npc_no",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Number of the model file caNNNNm.xc."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character (see CMND_CREATE_CHARA)."
+    }
+  },
+  "examples": [
+    {
+      "case": "An animal with a shadow, no bust-up (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local hDog = CreateEvLowMdlForCharaNo_AnimalNoBustup_Shadow(\"dogL\", 35);"
+    }
+  ]
+}

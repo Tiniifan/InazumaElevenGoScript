@@ -1,0 +1,47 @@
+{
+  "name": "CMND_SET_SAVE_INFO",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Sets the place where a saved game resumes: the phase number, the map ID (up to 12 characters) and the position [x, y, z] (integers are converted). The ev_main helper SaveRun calls it before opening the save menu. If the save data is not available, nothing is stored and true is still returned."
+  },
+  "params": [
+    {
+      "name": "phaseNo",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Phase number stored with the save."
+      }
+    },
+    {
+      "name": "mapID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Map where the game resumes."
+      }
+    },
+    {
+      "name": "pos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Position [x, y, z] (at most 3 values read)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once stored (or when the save data is not available).\nnull if pos is not an array (the phase and map are already stored at that point), the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside SaveRun (real code, from ie4_ev_main.nut; the decompiled file shows the existence test as $[stack offset 0]; it is written here with getroottable(), the form ev42019001.nut shows)",
+      "source": "real",
+      "code": "if (\"CMND_SET_SAVE_INFO\" in getroottable())\n{\n\tCMND_SET_SAVE_INFO(_phase_no, _map_id, _pos);\n}"
+    }
+  ]
+}

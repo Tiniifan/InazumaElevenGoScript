@@ -1,0 +1,31 @@
+{
+  "name": "CMND_CREATE_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Creates an event camera object with the given name and returns its handle. No shipped script calls it; the events load animated cameras with CMND_LOAD_CAMERA or move the active camera instead."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new camera object."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "Handle of the new camera.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A new camera placed by script (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local hCam = CMND_CREATE_CAMERA(\"MyCamera\");\nCMND_SET_CAMERA_POS(hCam, [0.0, 50.0, 100.0]);\nCMND_SET_CAMERA_REF(hCam, [0.0, 10.0, 0.0]);"
+    }
+  ]
+}

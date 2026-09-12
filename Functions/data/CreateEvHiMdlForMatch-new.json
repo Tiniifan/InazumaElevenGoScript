@@ -1,0 +1,56 @@
+{
+  "name": "CreateEvHiMdlForMatch",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a detailed (Hi) model of a match player for an in-match scene: CMND_CREATE_CHARA(6, _charaname, \"dmmy\", _id, _is_upper, true, false, _teamID). During a match the player is found in the match data and dressed in their match kit."
+  },
+  "params": [
+    {
+      "name": "_charaname",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object."
+      }
+    },
+    {
+      "name": "_is_upper",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "The scene's isEvUpperDisp value."
+      }
+    },
+    {
+      "name": "_id",
+      "type": "string|integer",
+      "required": true,
+      "description": {
+        "en": "Parameter ID of the player, e.g. \"para_cp0008\"."
+      }
+    },
+    {
+      "name": "_teamID",
+      "type": "integer",
+      "required": false,
+      "default": "2",
+      "description": {
+        "en": "Team to search: 0 = the player's team, 1 = the opponent team, 2 = search by ID only."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character (see CMND_CREATE_CHARA)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A close-up of a player in a match scene (real usage, from ev44010020.nut; the Shift-JIS object name is replaced by a variable here)",
+      "source": "real",
+      "code": "local hTenmaH = CreateEvHiMdlForMatch(charaName, isEvUpperDisp, \"para_cp0008\");"
+    }
+  ]
+}

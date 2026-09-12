@@ -1,0 +1,28 @@
+{
+  "name": "CMND_BTL_DEL_FLOOR_ATTR",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Removes one floor attribute from a zone: it clears bit (1 << attr) in the zone's attribute mask, leaving the other attributes and the zone itself in place.\nTo clear every attribute of a zone at once use CMND_BTL_RESET_FLOOR_ATTR; to remove the zones themselves use CMND_BTL_ALL_RESET_FLOOR.\nNothing happens if no zone has that name."
+  },
+  "params": [
+    { "name": "name", "type": "string", "required": true, "description": { "en": "Name of the zone, as registered with CMND_BTL_REGIST_FLOOR_ATTR." } },
+    { "name": "attr", "type": "integer", "required": true, "description": { "en": "Bit number of the attribute to remove (0 to 31)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has run, whether or not the zone was found.\nnull if the match system is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Raising one lowered section of the pitch again (real usage, from mf13b01.nut)",
+      "source": "real",
+      "code": "// Remove the lowered-pitch attribute (5) from the chosen section only,\n// then start the pitch-up event for it.\nScMapPitchUp <- function ( idx )\n{\n\tif (idx == 0)\n\t{\n\t\tCMND_BTL_DEL_FLOOR_ATTR(\"FL01\", 5);\n\t}\n\telse if (idx == 1)\n\t{\n\t\tCMND_BTL_DEL_FLOOR_ATTR(\"FL02\", 5);\n\t}\n\n\tCMND_BTL_TRIGGER_FLOOR_EV(FLOOR_EVT_PITCHUP, idx + 1);\n};"
+    },
+    {
+      "case": "Clearing every quicksand depth bit (real usage, from mf15b01.nut)",
+      "source": "real",
+      "code": "// Attributes 1 to 4 are the quicksand depths; remove them from both halves\nCMND_BTL_DEL_FLOOR_ATTR(\"FL01\", 1);\nCMND_BTL_DEL_FLOOR_ATTR(\"FL01\", 2);\nCMND_BTL_DEL_FLOOR_ATTR(\"FL01\", 3);\nCMND_BTL_DEL_FLOOR_ATTR(\"FL01\", 4);\nCMND_BTL_DEL_FLOOR_ATTR(\"FL02\", 1);\nCMND_BTL_DEL_FLOOR_ATTR(\"FL02\", 2);\nCMND_BTL_DEL_FLOOR_ATTR(\"FL02\", 3);\nCMND_BTL_DEL_FLOOR_ATTR(\"FL02\", 4);"
+    }
+  ]
+}

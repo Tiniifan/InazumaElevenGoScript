@@ -1,0 +1,28 @@
+{
+  "name": "CMND_BTL_SET_MATCH_PHASE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets the match period and the match clock. Story matches use it after a scripted beat to jump to a given moment, for example straight to the second half.\n\nThe clock is the one CMND_BTL_GET_MATCH_TIME reads, in seconds (the engine stores it in hundredths). The scripts treat it as time within the current half: they log a goal at minute 5 of the second half with CMND_BTL_SET_POINT_HISTORY(1, 1, 5, ...) and then set (1, 300).\nIt also raises the progress milestone read by CMND_BTL_GET_MATCHPHASE: to 100 for period 0 and to 300 for periods 1 to 4 (the milestone never goes down).\nNot to be confused with CMND_BTL_SET_MATCHPHASE, which writes that milestone directly."
+  },
+  "params": [
+    { "name": "period", "type": "integer", "required": true, "description": { "en": "Match period: 0 = first half, 1 = second half (the shipped scripts only use these two)." } },
+    { "name": "seconds", "type": "integer", "required": true, "description": { "en": "Match clock to set, in seconds (60 = 1:00, 300 = 5:00, 1200 = 20:00). The scripts use values from 0 to 1830." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Jumping to the second half after a scripted goal (real usage, from btl0003.nut)",
+      "source": "real",
+      "code": "// Log the opponent's goal at minute 5 of the second half, then continue\n// the match from 5:00 in the second half.\nCMND_BTL_SET_POINT_HISTORY(1, 1, 5, \"para_cp0069\");\nCMND_BTL_SET_MATCH_PHASE(1, 300);"
+    },
+    {
+      "case": "Moving the clock forward after a scripted beat (real usage, from btl0011.nut)",
+      "source": "real",
+      "code": "// After the event scene, set up a restart and a new objective, then\n// continue the first half from 10:00.\nCMND_BTL_SET_EVPARAM(44090020);\nsuspend();\nCMND_BTL_SET_MATCH_RESTART(1, 4, [0.80000001, 0.0, 0.60000002]);\nCMND_BTL_SET_PURPOSE(2, 9, true, 0, 0.0, -0.40000001);\nCMND_BTL_SET_PURPOSETEXT(true, \"purpose_021\", \"para_cp0009\");\nCMND_BTL_SET_MATCH_PHASE(0, 600);"
+    }
+  ]
+}

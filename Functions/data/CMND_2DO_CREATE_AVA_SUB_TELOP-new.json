@@ -1,0 +1,28 @@
+{
+  "name": "CMND_2DO_CREATE_AVA_SUB_TELOP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Creates a single named caption showing a Fighting Spirit's name.\nIt works like CMND_2DO_CREATE_AVA_TELOP (same Fighting Spirit table, same colouring, caption created hidden), but it makes only one caption and does not split the name text at its line break.\n\nIf the ID is not a known Fighting Spirit, nothing is created and the function returns null.\nIt is never called by the shipped scripts, which use CMND_2DO_CREATE_AVA_TELOP instead."
+  },
+  "params": [
+    { "name": "name", "type": "string", "required": true, "description": { "en": "Name to register the caption under." } },
+    { "name": "objParam1", "type": "integer", "required": true, "description": { "en": "Passed unchanged to the engine's 2D object creation call. Meaning not identified (the sibling functions are called with 0 or 1 here)." } },
+    { "name": "objParam2", "type": "integer", "required": true, "description": { "en": "Passed unchanged to the same creation call. Meaning not identified (the sibling functions are called with 12 here)." } },
+    { "name": "objParam3", "type": "integer", "required": true, "description": { "en": "Passed unchanged to the same creation call. Meaning not identified (the sibling functions are called with 0 here)." } },
+    { "name": "avatarId", "type": "string", "required": true, "description": { "en": "Fighting Spirit ID whose name is displayed, e.g. \"ck0023\"." } },
+    { "name": "outSize", "type": "array", "required": true, "description": { "en": "OUTPUT. Receives the caption's [width, height] in pixels. Pass a 2-element array such as [0, 0]." } },
+    { "name": "spacing", "type": "float", "required": false, "default": "4.0", "description": { "en": "Base spacing between characters, used while laying out and measuring the text." } }
+  ],
+  "returns": {
+    "type": "any|null",
+    "description": { "en": "null if the engine is not ready, fewer than 6 arguments were given, or the ID is not a known Fighting Spirit.\nOn success the native reports a result without pushing one, so Squirrel hands back the last argument you passed (never null)." }
+  },
+  "examples": [
+    {
+      "case": "Captioning a Fighting Spirit on one line (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Show a Fighting Spirit's name as one caption and centre it.\nlocal size = [0, 0];\nif (CMND_2DO_CREATE_AVA_SUB_TELOP(\"spirit_name\", 0, 12, 0, \"ck0023\", size, 6) != null)\n{\n\tCMND_2DO_STATE_DRAW_TELOP(\"spirit_name\", true);\n\tCMND_2DO_POS_SET_TELOP(\"spirit_name\", 200 - size[0] / 2, 120);\n}"
+    }
+  ]
+}

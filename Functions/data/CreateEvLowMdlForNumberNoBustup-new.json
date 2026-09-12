@@ -1,0 +1,83 @@
+{
+  "name": "CreateEvLowMdlForNumberNoBustup",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "CreateEvLowMdlForNumber without the bust-up picture."
+  },
+  "params": [
+    {
+      "name": "_charaName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object; the events use the character's name followed by L (light model) or H (detailed model)."
+      }
+    },
+    {
+      "name": "_face",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Character number: the model is para_cpNNNN (the developers named this argument _face)."
+      }
+    },
+    {
+      "name": "_body",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Body (kit) number; also used as the shoes number, and as the gloves number for a goalkeeper."
+      }
+    },
+    {
+      "name": "_home",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true for the home kit, false for away."
+      }
+    },
+    {
+      "name": "_keeper",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true for the goalkeeper outfit (gloves get the body number)."
+      }
+    },
+    {
+      "name": "_ev",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "See CreateEvLowMdlForNumber."
+      }
+    },
+    {
+      "name": "_mem",
+      "type": "string",
+      "required": false,
+      "default": "DEV_MEM_NAME_EVENT",
+      "description": {
+        "en": "Memory area name."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character (see CMND_CREATE_CHARA)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Creating a light model only (real usage, from ev42010900.nut; the Shift-JIS object name is replaced by a variable here)",
+      "source": "real",
+      "code": "local hIshikariL = CreateEvLowMdlForNumberNoBustup(charaName, 30, 20);"
+    }
+  ]
+}

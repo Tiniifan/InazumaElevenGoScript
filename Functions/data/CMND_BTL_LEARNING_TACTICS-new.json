@@ -1,0 +1,28 @@
+{
+  "name": "CMND_BTL_LEARNING_TACTICS",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Gives a team a tactic during the match. The story matches call it right after the scripted scene in which the team comes up with a new tactic.\nThe tactic is looked up in the tactics data by its ID. Its tactic number n is read from that record, and bit n - 1 is set in the team's tactics mask for the current match. Nothing happens if the ID is unknown or n is 32 or more.\nWhich code reads that mask was not traced; the name and the story context point to the tactic becoming available to the team."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team that gets the tactic: 0 = the player's team, 1 = the opponent team. Any other value does nothing." } },
+    { "name": "tacticId", "type": "string", "required": true, "description": { "en": "Tactic ID, e.g. \"wht0001\"." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when fewer than 2 arguments are given)." }
+  },
+  "examples": [
+    {
+      "case": "After the scene where the team finds a new tactic (real usage, from btl0004.nut)",
+      "source": "real",
+      "code": "RunEv44030016 <- function ()\n{\n\t// Play the event scene, then give the player's team tactic wht0001\n\tCMND_BTL_SET_EVPARAM(44030016);\n\tsuspend();\n\tCMND_BTL_LEARNING_TACTICS(0, \"wht0001\");\n\t// ...\n};"
+    },
+    {
+      "case": "Together with a new Special Move after a scripted goal (real usage, from btl0006.nut)",
+      "source": "real",
+      "code": "// Team 1 kicks off; the player's team gets tactic wht0002 and\n// para_cp0008 learns the Special Move whs0003.\nCMND_BTL_SET_MATCH_RESTART(1);\nCMND_BTL_LEARNING_TACTICS(0, \"wht0002\");\nCMND_BTL_LEARNING_SKILL(0, \"para_cp0008\", \"whs0003\", 0);"
+    }
+  ]
+}

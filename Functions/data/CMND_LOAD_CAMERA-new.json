@@ -1,0 +1,39 @@
+{
+  "name": "CMND_LOAD_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Loads an animated camera (a camera motion file, often inside a .pck archive: \"archive.pck|file.xv\") as a new object and returns its handle. Wait for it with WaitLoading, make it the active camera with CMND_PUSH_CAMERA, play its animation with CMND_SET_MOTION(hCamera, \"01\", ...) and delete it with CMND_DELETE_CAMERA."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object."
+      }
+    },
+    {
+      "name": "file",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Camera motion file, e.g. \"data/chr/motion/waza/vma0001.pck|vma0001_cam.xv\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "Handle of the camera object.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A camera animation for a match scene (real usage, from ev44010001.nut; the Shift-JIS object names are replaced by variables here)",
+      "source": "real",
+      "code": "local hCamera = CMND_LOAD_CAMERA(cameraName, \"data/chr/motion/waza/vma0001.pck|vma0001_cam.xv\");\nlocal hTelop = CMND_CREATE_CHARA(7, telopName, \"data/chr/motion/waza/vma0001/vma0001_telop.xc\", \"Effect\");\nWaitLoading(hCamera);\nWaitLoading(hTelop);\nCMND_SET_ENABLE(hTelop, true);\nCMND_SET_ANTIALIASE(0, 1);\nCMND_PUSH_CAMERA(hCamera);\nCMND_BRIGHT_FADE(SCREEN_A, 0.0, 60.0);\nCMND_SET_MOTION(hCamera, \"01\", 3, 0);\n// ... wait for the motion ...\nStartBrightFade(SCREEN_A, -1.0, 60.0);\nCMND_POP_CAMERA();\nCMND_SET_ANTIALIASE(0, 0);\nCMND_DELETE_CHARA(hTelop);\nCMND_DELETE_CAMERA(hCamera);"
+    }
+  ]
+}

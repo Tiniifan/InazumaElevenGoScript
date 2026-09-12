@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_PAUSE_BIT",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Returns the pause bits: each set bit pauses one part of the game (field characters, field camera...), with the same bit values as the draw-off bits. Bits (constants of ie4_ev_main.nut): OFF_RPG_CHARA 1, OFF_RPG_MAP 2, OFF_RPG_CAMERA 4, OFF_EVENT_CHARA 8, OFF_EVENT_MAP 16, OFF_MENU_CHARA 32, OFF_MENU_MAP 64, OFF_RPG_MINIMAP 128, OFF_EVENT_CHIBI 512; groups OFF_RPG, OFF_EVENT, OFF_MENU, OFF_ALL."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The pause bits.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside RunSkillScript (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local stp_bit = CMND_GET_PAUSE_BIT();\nCMND_SET_PAUSE_BIT(stp_bit & ~OFF_RPG_CAMERA);\n// ...\nCMND_SET_PAUSE_BIT(stp_bit);"
+    }
+  ]
+}

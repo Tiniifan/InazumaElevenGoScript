@@ -1,0 +1,31 @@
+{
+  "name": "CMND_IS_BUILD_LIGHT",
+  "kind": "native",
+  "category": "lighting",
+  "description": {
+    "en": "Tells whether a light object loaded with CMND_LOAD_LIGHT has been built (is ready to use)."
+  },
+  "params": [
+    {
+      "name": "hLight",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Light handle."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true if the light is built, false otherwise.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Showing the lights once built (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "if (CMND_IS_BUILD_LIGHT(hLight))\n{\n\tCMND_SET_ENABLE(hLight, true);\n}"
+    }
+  ]
+}

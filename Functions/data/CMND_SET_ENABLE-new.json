@@ -1,0 +1,44 @@
+{
+  "name": "CMND_SET_ENABLE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Shows (true) or hides (false) an object: character, model, map, image, camera... The first argument can also be an array of handles.\nFor a character of the event's character list whose name appears twice in that list, the setting is also stored in the list. For objects of kind 5 (the upper 16 bits of the handle equal 5), the object itself is kept hidden and only the list entry receives the setting (not traced further)."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle|array",
+      "required": true,
+      "description": {
+        "en": "Object handle, or an array of handles."
+      }
+    },
+    {
+      "name": "enable",
+      "type": "boolean|integer",
+      "required": true,
+      "description": {
+        "en": "true (or non-zero) to show, false to hide."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "null in every case: after a change, and also when an object is not found (for an array, the handles after an unknown one are not changed), the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Showing new models (real usage, from ev42011800.nut)",
+      "source": "real",
+      "code": "CMND_SET_ENABLE(tacs1, true);\nCMND_SET_ENABLE(tacs2, true);"
+    },
+    {
+      "case": "Restoring a saved state (real usage, from ev44030016.nut)",
+      "source": "real",
+      "code": "local post_enable = CMND_GET_ENABLE(goal_hdl);\nCMND_SET_ENABLE(goal_hdl, 0);\nRunSkillScript(\"vsl0009\", \"mv04b01\", 0, 0, true, false);\nCMND_SET_ENABLE(goal_hdl, post_enable);"
+    }
+  ]
+}

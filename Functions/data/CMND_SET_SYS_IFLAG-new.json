@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_SYS_IFLAG",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Writes a system flag (any integer value). System flags are 32 integer slots (0 to 31) kept by the script system, used to pass states between the scripts and the engine. Names found in the scripts: 1 IFLAG_WAZA_EVENT, 3 IFLAG_BUILD_FINISH, 4 IFLAG_WAIT_RUN_EVENT, 5 IFLAG_WAZA_TRIGGER, 6 IFLAG_END_AUTO_FADEIN_OFF, 7 IFLAG_WAZA_SKIP, 8 RPG_IFLAG_DEBUG_PRINT_BTL_CALC, 11 IFLAG_WAZA_GOAL_OFF. Flags 9 and 10 are the ones CMND_BTL_NO_FADEIN sets."
+  },
+  "params": [
+    {
+      "name": "index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Slot number, 0 to 31."
+      }
+    },
+    {
+      "name": "value",
+      "type": "integer|boolean",
+      "required": true,
+      "description": {
+        "en": "Value to store."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once written, false if the number is 32 or more.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Around a tactics scene (real code, from ie4_ev_main.nut, RunTactics)",
+      "source": "real",
+      "code": "local IFLAG_END_AUTO_FADEIN_OFF = 6;\nCMND_SET_SYS_IFLAG(IFLAG_END_AUTO_FADEIN_OFF, 1);\nCMND_SETUP_RUN_TAC(_tacID, _aAtk, _aDef, 0, _mapID);\nsuspend();\nCMND_SET_SYS_IFLAG(IFLAG_END_AUTO_FADEIN_OFF, 0);"
+    }
+  ]
+}

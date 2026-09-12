@@ -1,0 +1,47 @@
+{
+  "name": "CMND_SET_CAMERA_PARAM",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Sets one setting of a camera. Names: \"Fov\" (field of view, in degrees), \"Stereo\", \"Smooth\" (1 on, 0 off), \"DepthLevel\" and \"DepthRange\" (depth-of-field settings, see CMND_DEPTHLEVEL_FADE and CMND_DEPTHRANGE_FADE). For Smooth, 0 turns smoothing off and any other value turns it on."
+  },
+  "params": [
+    {
+      "name": "hCamera",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Camera handle (CMND_GET_ACT_CAMERA, CMND_LOAD_CAMERA, CMND_CREATE_CAMERA)."
+      }
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Setting name."
+      }
+    },
+    {
+      "name": "value",
+      "type": "float|integer",
+      "required": true,
+      "description": {
+        "en": "New value."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set.\nfalse if the camera is not found or the name is unknown.\nnull if the script system is not ready or fewer than 3 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Depth of field at the start of a skill scene (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "CMND_BRIGHT_FADE(0, 0.0, 5);\nCMND_SET_CAMERA_PARAM(hCamera, \"DepthRange\", 0.34999999);\nCMND_SET_CAMERA_PARAM(hCamera, \"DepthLevel\", 5.0);\nCMND_DEPTHRANGE_FADE(hCamera, 0.0, 1.0, 60.0);"
+    }
+  ]
+}

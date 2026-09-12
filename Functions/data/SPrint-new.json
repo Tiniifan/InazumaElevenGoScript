@@ -1,0 +1,31 @@
+{
+  "name": "SPrint",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Debug print: sends \"--- \" + _str + a line break to Squirrel's print function. The shipped game shows no such output (see the README), so it has no visible effect; the scripts keep many of these calls as markers."
+  },
+  "params": [
+    {
+      "name": "_str",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Text to print."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A debug marker (real usage, from ev42081400.nut)",
+      "source": "real",
+      "code": "SPrint(\"++++++++++ ev42081400 -- Error01 ++++++++++\");"
+    }
+  ]
+}

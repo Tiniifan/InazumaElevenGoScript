@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BRIGHT_GET",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Returns a screen's current brightness level (-1.0 = black, 0.0 = normal picture), for example to check where a fade currently stands."
+  },
+  "params": [
+    { "name": "screen", "type": "integer", "required": true, "description": { "en": "Screen to read: SCREEN_A (0) or SCREEN_B (1)." } }
+  ],
+  "returns": {
+    "type": "float|null",
+    "description": { "en": "The screen's current brightness.\nnull if the engine is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "Only fading out when the screen is not black yet (real usage, from ev_main's OutlineEffect)",
+      "source": "real",
+      "code": "// Before showing the story chart, fade both screens to black,\n// unless the top screen is already black.\nlocal bright = CMND_BRIGHT_GET(SCREEN_A);\nif (bright > -1.0)\n{\n\tStartBrightFade(SCREEN_AB, -1.0, EV_FADE_SLOW);\n}"
+    }
+  ]
+}

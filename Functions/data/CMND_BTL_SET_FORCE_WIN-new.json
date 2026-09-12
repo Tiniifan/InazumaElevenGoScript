@@ -1,0 +1,30 @@
+{
+  "name": "CMND_BTL_SET_FORCE_WIN",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Adds a player to, or removes them from, the match's forced-win list. The clash resolution checks this list (and the forced-lose list of CMND_BTL_SET_FORCE_LOSE) for the players taking part in a clash and overrides the result the ScBtlCalc_* callback computed. The story matches use it so their scripted beats always play out the same way.\nAdding a player to this list also removes them from the forced-lose list. Removing them (false) takes them out of both lists.\nPlayers in this list also pay no GP, TP or Fighting Spirit gauge costs in clashes, as if they had CMND_BTL_SET_FORCE_TOUGH.\n\nThe player can be given in three ways, chosen by the number of arguments:\n- 2 arguments (enable, charaId): by parameter ID.\n- 3 arguments (enable, memberIndex, teamSlot): member number memberIndex of that team's match roster. It is turned into that member's parameter ID at the time of the call.\n- 4 arguments (enable, slotOffset, teamSlot, any): whoever stands at position slotOffset among that team's players on the pitch, checked at each clash. The fourth argument is not read.\nAn entry is removed only by a call that names it the same way: removing a player by ID does not remove an entry made with the 4-argument form.\nThe list holds up to 32 entries. CMND_BTL_RESET_FORCE_WIN empties it.\n\nThe story matches mostly call it as (true, 0, 0, true) and (true, 0, 1, true), which force position 0 among each team's players on the pitch during their scripted beats, then the same with false afterwards."
+  },
+  "params": [
+    { "name": "enable", "type": "boolean", "required": true, "description": { "en": "true to add the player to the forced-win list, false to remove them." } },
+    { "name": "player", "type": "string|integer", "required": true, "description": { "en": "2-argument form: parameter ID (e.g. \"para_cp0010\").\n3-argument form: member number in the team's match roster.\n4-argument form: position offset among the team's players on the pitch." } },
+    { "name": "teamSlot", "type": "integer", "required": false, "description": { "en": "3- and 4-argument forms: team of the player, 0 = the player's team, 1 = the opponent team." } },
+    { "name": "unused", "type": "any", "required": false, "description": { "en": "Only there to select the 4-argument form; never read. The scripts pass true." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when fewer than 2 arguments are given)." }
+  },
+  "examples": [
+    {
+      "case": "Forcing a scripted beat at the first kick-off (real usage, from btl0008.nut)",
+      "source": "real",
+      "code": "CallMatchKickoffFirst <- function ()\n{\n\tif (eventCounter == 0)\n\t{\n\t\tCMND_BTL_SET_MATCH_PHASE(0, 60);\n\t\tCMND_BTL_SET_PURPOSE(3, -1, true, 0, -0.40000001, 0);\n\t\tCMND_BTL_SET_PURPOSETEXT(true, \"purpose_130\");\n\t\t// Position 0 of team 1 and of team 0 win their clashes\n\t\tCMND_BTL_SET_FORCE_WIN(true, 0, 1, true);\n\t\tCMND_BTL_SET_FORCE_WIN(true, 0, 0, true);\n\t\tCMND_BTL_SET_MATCH_EFFECT(1, 0);\n\t\teventCounter++;\n\t}\n};"
+    },
+    {
+      "case": "Forcing one named player in the pre-match setup (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "BtlSetting <- function ()\n{\n\tCMND_BTL_CHANGE_UNIFORM(1, \"para_cp0010\", 903, 0, 0, 903);\n\tCMND_BTL_CHANGE_UNIFORM(0, \"para_cp0008\", 1, 0, 18);\n\tCMND_BTL_SET_FORCE_WIN(true, 0, 1, true);\n\tCMND_BTL_SET_FORCE_WIN(true, 0, 0, true);\n\t// The opponent's para_cp0010 wins every clash\n\tCMND_BTL_SET_FORCE_WIN(true, \"para_cp0010\");\n\tCMND_BTL_FORGET_SKILL(1, \"para_cp0010\", \"whs0035\", false);\n};"
+    }
+  ]
+}

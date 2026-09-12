@@ -1,0 +1,22 @@
+{
+  "name": "CMND_START_SOCCER_VIEW",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Does nothing in the retail game: it only returns true. The skill scene script calls it at its start."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Always true.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Start of a skill scene (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "CMND_START_SOCCER_VIEW();\nCallSkillFunc();"
+    }
+  ]
+}

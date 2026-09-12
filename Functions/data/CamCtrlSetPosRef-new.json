@@ -3,21 +3,37 @@
   "kind": "ev_main",
   "category": "camera",
   "description": {
-    "en": "Immediately sets the controlled camera's position and reference (look-at) point, and syncs the camera-control state to match (no interpolation)."
+    "en": "Places the camera at once, with no movement: sets its position and look-at point (CMND_SET_CAMERA_POS and CMND_SET_CAMERA_REF), and records them as the current and previous point of the camera-control state, so the next CamCtrlMoveTo starts from there.\nThe camera-control helpers keep their state in subev_ctx.cam_ctrl, the context of an event started by CallEvent. While such an event runs, CallEvent calls sysCamCtrlStep every frame: it applies the engine's camera move (CMND_GET_MOVE_INFO_CAMERA) to the camera, keeps the look-at point on the followed character when there is one, and marks the move as finished once it is over (see IsCamCtrlMove)."
   },
   "params": [
-    { "name": "_hcam", "type": "handle", "required": true, "description": { "en": "Handle of the camera being controlled." } },
-    { "name": "_posref", "type": "array", "required": true, "description": { "en": "6-element array [posX, posY, posZ, refX, refY, refZ] with the new camera position and reference point." } }
+    {
+      "name": "_hcam",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Camera handle, usually from CMND_GET_ACT_CAMERA()."
+      }
+    },
+    {
+      "name": "_posref",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "6-element array [posX, posY, posZ, refX, refY, refZ]: camera position, then the point it looks at."
+      }
+    }
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": {
+      "en": "Always null (no return statement)."
+    }
   },
   "examples": [
     {
-      "case": "Snapping the camera to a fixed position and reference point",
+      "case": "Placing the camera, then moving it slowly (real usage, from ev42120100.nut)",
       "source": "real",
-      "code": "// Snap the camera to a fixed position and reference point\nlocal hCam = CMND_GET_ACT_CAMERA();\nCamCtrlSetPosRef(hCam, [122.3, 29.9, 64.6, -19.0, 17.3, -35.7]);"
+      "code": "CamCtrlSetPosRef(hCam, [91.019997, 120.09, -41.669998, 8.8400002, -18.889999, -265.48999]);\nStartBrightFade(SCREEN_AB, 0.0, EV_FADE_SLOW);\n// Glide to the new spot over 200 frames and wait\nCamCtrlMoveTo(hCam, 200, [84.82, 109.61, -58.549999, 8.8400002, -12.65, -265.48999]);\n\nwhile (IsCamCtrlMove())\n{\n\tsuspend();\n}"
     }
   ]
 }

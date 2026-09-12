@@ -1,0 +1,31 @@
+{
+  "name": "CMND_BTL_ACTIVE_TORNADE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Places a tornado reserved with CMND_BTL_REG_TORNADE on the pitch and switches it on.\n\nThe tornado's entry in the pitch-object table receives the position (X and Z, height 0) and its active field is set to 1, which is what CMND_BTL_IS_ACTIVE_TORNADE reads back.\nThe optional fourth argument is stored in the entry as the tornado's strength. A value of 300 or more also turns the tornado into the stronger variant (its active field becomes 3 instead of 1). The optional fifth argument is stored in the next field of the entry; its effect was not identified."
+  },
+  "params": [
+    { "name": "handle", "type": "integer", "required": true, "description": { "en": "Tornado handle returned by CMND_BTL_REG_TORNADE." } },
+    { "name": "x", "type": "float", "required": true, "description": { "en": "X position on the pitch." } },
+    { "name": "z", "type": "float", "required": true, "description": { "en": "Z position on the pitch." } },
+    { "name": "strength", "type": "integer", "required": false, "description": { "en": "Tornado strength. 300 or more makes it the stronger variant." } },
+    { "name": "extra", "type": "integer", "required": false, "description": { "en": "Stored with the tornado; its effect was not identified. The shipped scripts pass 0 or 1." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the tornado is placed.\nnull if the match system is not ready or fewer than 3 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Switching the tornado on for a scripted beat, then moving it (real usage, from btl0008.nut)",
+      "source": "real",
+      "code": "// First a normal tornado in front of the goal...\nCMND_BTL_ACTIVE_TORNADE(htrn, 0.0, -110.0, 0.0, 1);\n// ... later the stronger variant elsewhere (strength 300).\nCMND_BTL_ACTIVE_TORNADE(htrn, -27, -184, 300, 0);"
+    },
+    {
+      "case": "Placing a tornado with default settings",
+      "source": "invented",
+      "code": "// Position only: strength and extra fields are left unchanged\nlocal htrn = CMND_BTL_REG_TORNADE();\nCMND_BTL_ACTIVE_TORNADE(htrn, 50.0, 80.0);"
+    }
+  ]
+}

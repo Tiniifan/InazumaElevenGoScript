@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_RESET_FLOOR_ATTR",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Clears every floor attribute of one zone (its whole attribute mask goes to 0). The zone itself stays registered and keeps its rectangle.\nCompare CMND_BTL_DEL_FLOOR_ATTR, which clears a single attribute, and CMND_BTL_ALL_RESET_FLOOR, which removes every zone.\nNothing happens if no zone has that name. It is never called by the shipped scripts."
+  },
+  "params": [
+    { "name": "name", "type": "string", "required": true, "description": { "en": "Name of the zone, as registered with CMND_BTL_REGIST_FLOOR_ATTR." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has run, whether or not the zone was found.\nnull if the match system is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "Clearing a zone in one call (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Equivalent to the four DEL calls the quicksand map makes per zone\nCMND_BTL_RESET_FLOOR_ATTR(\"FL01\");\nCMND_BTL_RESET_FLOOR_ATTR(\"FL02\");"
+    }
+  ]
+}

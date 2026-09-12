@@ -1,0 +1,31 @@
+{
+  "name": "PlayerToTenmaBgn",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a light model of para_cp0008 in the given kit (CreateEvLowMdlForNumber(name, 8, _body)) and returns it, so an event can use it in place of the player's own model. PlayerToTenmaEnd puts the player character back where that model ended."
+  },
+  "params": [
+    {
+      "name": "_body",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Body (kit) number, e.g. 902."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new model."
+    }
+  },
+  "examples": [
+    {
+      "case": "Start and end of the swap (real usage, from ev42130200.nut)",
+      "source": "real",
+      "code": "local hTenmaL = PlayerToTenmaBgn(902);\n// ... scene ...\nPlayerToTenmaEnd(hTenmaL);"
+    }
+  ]
+}

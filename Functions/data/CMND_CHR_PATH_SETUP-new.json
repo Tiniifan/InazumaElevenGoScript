@@ -1,0 +1,63 @@
+{
+  "name": "CMND_CHR_PATH_SETUP",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Sends a character along a path through up to 8 points, starting from where it stands.\nThe points come after the speed and the second value, one array per point: [x, y, z] or [x, y, z, rotY]. The native reads arrays until it meets an argument that is not an array; arrays with fewer than 3 elements are skipped, and only the first 8 points are kept.\nThe ev_main helpers EvLowMdlSetPath3 to EvLowMdlSetPath8 wrap it for 3 to 8 points; their arguments are named (_hdl, _spd, _trg, _pnt1...).\nWait for the end with CMND_CHR_POS_VAL_IS_MOVING.\nCharacter moves and turns are run by a movement manager with 16 slots, one per character. CMND_CHR_POS_VAL_TRG, CMND_CHR_PATH_SETUP and the CMND_CHR_TURN_* commands take a free slot for the character when it has none."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "speed",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Movement speed; the scripts pass EV_MINI_CHARA_MOVE_SPEED_WALK (0.3)."
+      }
+    },
+    {
+      "name": "trg",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Second value passed to the move routine with the speed (named _trg in ev_main); the scripts pass 0.0, 1 or 10.0. Its exact role was not traced."
+      }
+    },
+    {
+      "name": "point1",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "First point [x, y, z] or [x, y, z, rotY]."
+      }
+    },
+    {
+      "name": "point2...point8",
+      "type": "array",
+      "required": false,
+      "description": {
+        "en": "Further points, up to 8 in total."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "Slot number (0 to 15) of the character in the movement manager.\nnull if all 16 slots are taken, the script system is not ready, or too few arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Walking a character through three points (real usage, from ev42100900.nut)",
+      "source": "real",
+      "code": "CMND_CHR_PATH_SETUP(hTsurugiL, EV_MINI_CHARA_MOVE_SPEED_WALK, 10.0,\n\t[126.0, 0.30000001, 50.0, -150],\n\t[122.0, 0.30000001, 30.0, -160],\n\t[118.0, 0.30000001, -20.0, -170]);\nWaitFrame(80);"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "SaveBgmHistory",
+  "kind": "ev_main",
+  "category": "sound",
+  "description": {
+    "en": "Remembers the music that is playing: its name (CMND_SND_GET_ID_BGM) and position (CMND_SND_GET_POS_BGM) go into the globals history_bgm_name and history_bgm_pos, for OpenBgmHistory. No shipped script calls it."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Keeping the music across a scene (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "SaveBgmHistory();\n// ... the scene plays its own music ...\nOpenBgmHistory(true);"
+    }
+  ]
+}

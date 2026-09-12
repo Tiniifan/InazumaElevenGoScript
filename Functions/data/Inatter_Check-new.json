@@ -1,0 +1,22 @@
+{
+  "name": "Inatter_Check",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Runs the Inatter check: starts its background loading (CMND_INATTER_BGLOADING), waits until CMND_INATTER_IS_LOADING is false, then calls CMND_INATTER_CHECK_ADD. SetGameSubPhase calls it after each sub-phase change."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside SetGameSubPhase (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "if (_ppsEffFlag)\n{\n\tPurposeEffect(_jng, _bgm_fade_off);\n}\n\nInatter_Check();"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "name": "CMND_SET_SHADOW_BONE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Makes a character's shadow follow a bone: bone name, a flag and a value (the scripts pass 0.4 for characters and 0.01 for balls; by its use, a size or offset). It only acts on objects using the second kind of shadow (the kind the skill and tactics scenes give their characters and balls)."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "bone",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Bone name, e.g. \"c_c1\" or \"rot\"."
+      }
+    },
+    {
+      "name": "flag",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "Flag stored with it."
+      }
+    },
+    {
+      "name": "value",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Value stored with it."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set, false if the object is not found. Also true when the object has another kind of shadow or the bone name is missing, in which case nothing changes.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Shadow on the body bone (real usage, from ev42061100.nut)",
+      "source": "real",
+      "code": "CMND_SET_SHADOW_BONE(hSasukeL, \"c_c1\", true, 0.40000001);\nCMND_SET_SHADOW_SCALE(hSasukeL, 1.0, 1.0, 2.3);"
+    }
+  ]
+}

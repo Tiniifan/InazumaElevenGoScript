@@ -1,0 +1,47 @@
+{
+  "name": "EvLowMdlSetLookAtPos",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Turns a character to face a point over a number of frames: the direction is worked out with GetRyLookAtPos, then CMND_CHR_TURN_TRG(_hdl, 0, direction, _frame, 1) turns the character with the walk motion. Wait for the end with WaitEvLowMdlMoving."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "_pos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Point to face [x, y, z]."
+      }
+    },
+    {
+      "name": "_frame",
+      "type": "integer|float",
+      "required": true,
+      "description": {
+        "en": "Duration of the turn in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Turning toward where the character will walk (real usage, from ev42010200.nut)",
+      "source": "real",
+      "code": "EvLowMdlSetLookAtPos(hTenmaL, [-86.699997, 0.0, -159.7], 30);\nWaitEvLowMdlMoving(hTenmaL);"
+    }
+  ]
+}

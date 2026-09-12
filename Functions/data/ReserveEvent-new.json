@@ -1,0 +1,40 @@
+{
+  "name": "ReserveEvent",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Schedules a story event to run next: CMND_RESERVE_EVENT(\"STD\", eventID, overwrite), \"STD\" being the standard event type."
+  },
+  "params": [
+    {
+      "name": "eventID",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Event number, e.g. 42200400."
+      }
+    },
+    {
+      "name": "overwrite",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "Passed to CMND_RESERVE_EVENT."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "From a map script (real usage, from me01b02.nut)",
+      "source": "real",
+      "code": "ReserveEvent(42200400);"
+    }
+  ]
+}

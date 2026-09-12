@@ -1,0 +1,28 @@
+{
+  "name": "CMND_BLACK_FADE_OUT",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Starts fading a screen out to black over a number of frames. The call returns straight away; use CMND_IS_BLACK_FADE to wait for the fade to finish.\n\nScreens use the public constants SCREEN_A (0, top screen), SCREEN_B (1, bottom screen) and SCREEN_AB (2, both).\nWhile an event has its bottom-screen background loaded (the EvSubBg image the event system shows on the lower screen), a fade asked for SCREEN_A is applied to both screens instead.\n\nThe ev_main helper StartBlackFadeOut wraps this call together with the waiting loop."
+  },
+  "params": [
+    { "name": "screen", "type": "integer", "required": true, "description": { "en": "Screen to fade: SCREEN_A (0), SCREEN_B (1) or SCREEN_AB (2)." } },
+    { "name": "frames", "type": "float", "required": true, "description": { "en": "Length of the fade in frames. The event scripts use the constants EV_FADE_QUICK (5), EV_FADE_NORMAL (10) and EV_FADE_SLOW (15)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Fading to black and waiting for the fade (real usage, the body of ev_main's StartBlackFadeOut)",
+      "source": "real",
+      "code": "// Fade the chosen screen to black, then block until it is fully black\nStartBlackFadeOut <- function ( _screen, _frame )\n{\n\tCMND_BLACK_FADE_OUT(_screen, _frame);\n\n\twhile (CMND_IS_BLACK_FADE(_screen))\n\t{\n\t\tsuspend();\n\t}\n};"
+    },
+    {
+      "case": "Fading both screens at once",
+      "source": "invented",
+      "code": "// Cut both screens to black at the normal speed before a scene change\nCMND_BLACK_FADE_OUT(SCREEN_AB, EV_FADE_NORMAL);\nwhile (CMND_IS_BLACK_FADE(SCREEN_AB))\n{\n\tsuspend();\n}"
+    }
+  ]
+}

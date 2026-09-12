@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_GET_POINT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Returns the current score (number of goals) of one match team. Scores are stored as bytes and capped at 99."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team: 0 = the player's team, 1 = the opponent team. Any value above 1 is treated as 1." } }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": { "en": "The team's score.\nnull if the match system is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "Checking who is ahead at the end of a match (real usage, from btl0015.nut)",
+      "source": "real",
+      "code": "// Set a story flag only if the player's team (0) beat the opponent (1)\nlocal point_self = CMND_BTL_GET_POINT(0);\nlocal point_enemy = CMND_BTL_GET_POINT(1);\n\nif (point_self > point_enemy)\n{\n\tCMND_SET_GLOBAL_BIT_FLAG(1375, 1);\n}\n\nCMND_BTL_SAVE_HISTORY();\nCMND_BTL_END_MATCH();"
+    }
+  ]
+}

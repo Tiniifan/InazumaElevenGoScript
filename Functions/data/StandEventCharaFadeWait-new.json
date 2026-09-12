@@ -1,0 +1,48 @@
+{
+  "name": "StandEventCharaFadeWait",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Fades characters in or out over _frm frames and waits for the fade. With _alpha above 0: alpha to 0, show, fade to _alpha, wait. Otherwise: fade from 1.0 to _alpha, wait, then hide. The stand scenes use it to bring the two speakers in before the dialogue and out after it."
+  },
+  "params": [
+    {
+      "name": "_hdl_ary",
+      "type": "handle|array",
+      "required": true,
+      "description": {
+        "en": "Character handle or array of handles."
+      }
+    },
+    {
+      "name": "_alpha",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Target alpha: 1.0 to fade in, 0.0 to fade out."
+      }
+    },
+    {
+      "name": "_frm",
+      "type": "integer",
+      "required": false,
+      "default": "10",
+      "description": {
+        "en": "Length of the fade in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Bringing two speakers in, talking, and taking them out (real usage, from ev42010600.nut)",
+      "source": "real",
+      "code": "StartStandEvent();\nStandEventCharaFadeWait([hTenmaH, hHarunaH], 1.0, 10);\nCMND_MESWIN_LOCK();\nCreateSpeech(\"ev400\");\nCreateSpeech(\"ev500\", 0, true);\nCMND_MESWIN_UNLOCK();\nStandEventCharaFadeWait([hTenmaH, hHarunaH], 0.0);"
+    }
+  ]
+}

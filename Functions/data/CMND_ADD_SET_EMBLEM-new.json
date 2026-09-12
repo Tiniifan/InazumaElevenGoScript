@@ -1,0 +1,22 @@
+{
+  "name": "CMND_ADD_SET_EMBLEM",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Gives the player a team emblem and makes it team 0's emblem, in one call: one copy of the emblem item is added to the inventory, then it is set on team 0."
+  },
+  "params": [
+    { "name": "emblemId", "type": "string", "required": true, "description": { "en": "Emblem item ID, e.g. \"iie0001\"." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has run (the emblem is set even if the ID did not match, in which case an empty emblem is set).\nfalse if the item system is not ready.\nnull if the engine is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "New-game team setup (real usage)",
+      "source": "real",
+      "code": "// Give the starting formation (on all four teams) and the starting emblem.\nCMND_ADD_SET_FORMATION(\"ifa0001\", false, true);\nCMND_ADD_SET_EMBLEM(\"iie0001\");"
+    }
+  ]
+}

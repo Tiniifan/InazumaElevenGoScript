@@ -1,0 +1,81 @@
+{
+  "name": "CMND_CHR_TURN_NORMAL_TALK",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Turns a character to face another one for a conversation. It takes the same arguments as CMND_CHR_TURN_TRG, but uses a simpler turn routine that only knows the walk (歩き前NN) and stand (立ちNN) motions, never the turn-around motions.\nThe final direction is the direction from the character to the target plus angle, in degrees. With no target (0, or a handle that matches nothing), angle is used as an absolute direction instead.\nThe turn is handled by the character movement manager, which has 16 slots. The character takes a free slot if it has none (see CMND_CHR_REG_MOVE_MNGR). Wait for the end of the turn with CMND_CHR_POS_VAL_IS_MOVING.\nThe NPC event scripts (ev43010000.nut, ev43020000.nut) use it to make the player and the NPC face each other when a conversation starts."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character to turn."
+      }
+    },
+    {
+      "name": "hTarget",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character to face, or 0 to use angle as an absolute direction."
+      }
+    },
+    {
+      "name": "angle",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Degrees: an offset from the direction to the target, or the absolute direction when there is no target (e.g. 0, 90, 180, 270, -160)."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Duration of the turn in frames (the scripts pass 15.0)."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer",
+      "required": false,
+      "default": "1",
+      "description": {
+        "en": "Motion choice passed to the turn routine; the scripts pass true (1)."
+      }
+    },
+    {
+      "name": "speed",
+      "type": "float",
+      "required": false,
+      "description": {
+        "en": "Turning speed in degrees per frame; when given, it sets the duration."
+      }
+    },
+    {
+      "name": "motionNum",
+      "type": "integer",
+      "required": false,
+      "default": "1",
+      "description": {
+        "en": "Number NN of the motions used."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "Slot number (0 to 15) of the character in the movement manager.\nnull if the character is not found, all 16 slots are taken, the script system is not ready, or too few arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Player and NPC facing each other (real usage, from ev43010000.nut)",
+      "source": "real",
+      "code": "local ctrlHdl = CMND_GET_CHARA_HANDLE(1, true);\n// The player turns to the NPC...\nCMND_CHR_TURN_NORMAL_TALK(ctrlHdl, npcHdl, 0.0, 15.0, true);\n\n// ... and the NPC turns back if it should\nif (is_turn)\n{\n\tCMND_CHR_TURN_NORMAL_TALK(npcHdl, ctrlHdl, 0.0, 15.0, true);\n}"
+    }
+  ]
+}

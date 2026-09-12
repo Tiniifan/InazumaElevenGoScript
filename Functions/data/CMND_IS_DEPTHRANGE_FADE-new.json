@@ -1,0 +1,22 @@
+{
+  "name": "CMND_IS_DEPTHRANGE_FADE",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Tells whether a depth-of-field range fade (CMND_DEPTHRANGE_FADE) is still in progress. It takes no camera: there is one such fade at a time. No shipped script calls it."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true while the fade is in progress, false otherwise.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Waiting for a depth fade (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local hCam = CMND_GET_ACT_CAMERA();\nCMND_DEPTHRANGE_FADE(hCam, 1.0, 1.5, 20.0);\n\nwhile (CMND_IS_DEPTHRANGE_FADE())\n{\n\tsuspend();\n}"
+    }
+  ]
+}

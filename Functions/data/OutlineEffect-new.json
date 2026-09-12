@@ -1,0 +1,49 @@
+{
+  "name": "OutlineEffect",
+  "kind": "ev_main",
+  "category": "screen-fx",
+  "description": {
+    "en": "Chapter transition with the story chart: it fades both screens to black if the top screen is not already black (EV_FADE_SLOW), changes the sub-phase without effect (SetGameSubPhase(_subPhase, false)), shows the story chart (ShowStoryChart), swaps the top screen's brightness display (CMND_BRIGHT_SWAP(SCREEN_A, true, true)) and presents the new objective with PurposeEffect(\"J_10\", _bgm_fade_off).\nIf _isMapJump is false and the screen was at normal brightness at the start, it fades back in; otherwise the screens stay dark, for the map jump or fade that follows."
+  },
+  "params": [
+    {
+      "name": "_subPhase",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "New sub-phase number, e.g. 10020010."
+      }
+    },
+    {
+      "name": "_isMapJump",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true when a map jump follows (the screen stays dark)."
+      }
+    },
+    {
+      "name": "_bgm_fade_off",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "Passed to PurposeEffect: true leaves the map BGM stopped."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Followed by a fade-in (real usage, from ev42010500.nut)",
+      "source": "real",
+      "code": "CMND_SND_PLAY(hMapSnd, 1.0, 30);\nOutlineEffect(10020010);\nCMND_BRIGHT_FADE(SCREEN_AB, 0, EV_FADE_SLOW);\nCMND_SET_GLOBAL_BIT_FLAG(5);"
+    }
+  ]
+}

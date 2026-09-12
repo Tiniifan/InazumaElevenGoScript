@@ -1,0 +1,31 @@
+{
+  "name": "CMND_CHR_DEL_MOVE_MNGR",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Frees a character's slot in the movement manager. The slot is cleared entirely (its path and its move and turn states), so a move in progress stops where the character is. Nothing happens if the character has no slot.\nCharacter moves and turns are run by a movement manager with 16 slots, one per character. CMND_CHR_POS_VAL_TRG, CMND_CHR_PATH_SETUP and the CMND_CHR_TURN_* commands take a free slot for the character when it has none."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Stopping a character that was sent walking (real usage, from ev42051600.nut)",
+      "source": "real",
+      "code": "// hTsurugiL2 walks toward a far point...\nCMND_CHR_POS_VAL_TRG(hTsurugiL2, [9.1000004, 0.2, -100.0, 180], 999, 0, EV_MINI_CHARA_MOVE_SPEED_WALK, 20);\nWaitFrame(30);\nCMND_CHR_TURN_AUTO_TRG(hTenmaL, 0, 180, 1);\n\nwhile (CMND_CHR_POS_VAL_IS_MOVING(hTenmaL))\n{\n\tsuspend();\n}\n\n// ... and is stopped here, wherever it has got to\nCMND_CHR_DEL_MOVE_MNGR(hTsurugiL2);"
+    }
+  ]
+}

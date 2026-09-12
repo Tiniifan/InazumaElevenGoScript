@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GET_ENCCHR_HANDLE",
+  "kind": "native",
+  "category": "encounter",
+  "description": {
+    "en": "Returns the character handle of a challenge NPC by its index. The challenge NPCs of a map (the characters that start a match when talked to) are kept in a table of the script system, by index; the challenge script ie4_ev_sub_enc.nut uses these commands."
+  },
+  "params": [
+    {
+      "name": "index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Challenge table index."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "The handle (0 if the entry is empty).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "After a challenge match (real usage, from ie4_ev_sub_enc.nut)",
+      "source": "real",
+      "code": "local encIndex = CMND_GET_ENCCHR_INDEX();\n\nif (encIndex >= 0)\n{\n\tlocal encChrHdl = CMND_GET_ENCCHR_HANDLE(encIndex);\n\tlocal mesID = CMND_GET_ENCCHR_TALK_ID(encIndex, lose);\n\t// ...\n}"
+    }
+  ]
+}

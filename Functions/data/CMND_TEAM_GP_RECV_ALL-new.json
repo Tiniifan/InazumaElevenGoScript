@@ -1,0 +1,22 @@
+{
+  "name": "CMND_TEAM_GP_RECV_ALL",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Fully restores the GP and the TP of every member of the party list, despite its name: each member's GP and TP are set to their maximum. Unlike the IS_MAX checks, it is not limited to 16 members. The events call it together with CMND_TEAM_TP_RECV_ALL, which does nothing."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once done.\nnull if the script system is not ready or the player data is not available."
+    }
+  },
+  "examples": [
+    {
+      "case": "After a dialogue, before the objective update (real usage, from ev42061300.nut)",
+      "source": "real",
+      "code": "StartBrightFade(SCREEN_AB, -1.0, EV_FADE_SLOW);\nCMND_TEAM_GP_RECV_ALL();\nCMND_TEAM_TP_RECV_ALL();\nlocal hdlPpsMes = CMND_UPDATE_PURPOSE();"
+    }
+  ]
+}

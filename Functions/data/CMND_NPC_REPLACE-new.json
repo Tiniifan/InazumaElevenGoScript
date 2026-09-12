@@ -1,0 +1,22 @@
+{
+  "name": "CMND_NPC_REPLACE",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Requests the replacement of the map's NPCs by the ones of the current story state: it sets bit 0x40 of the event system flags. Wait for the replacement with CMND_IS_NPC_REPLACING. SetGameSubPhase calls it before changing the sub-phase."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once requested.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside SetGameSubPhase (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_NPC_REPLACE();\nCMND_SET_GAME_SUB_PHASE(_subPhase);\nlocal hdlPpsMes = CMND_UPDATE_PURPOSE();\n\nwhile (CMND_IS_LOADING(hdlPpsMes))\n{\n\tsuspend();\n}"
+    }
+  ]
+}

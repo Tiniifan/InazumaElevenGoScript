@@ -1,0 +1,39 @@
+{
+  "name": "CMND_GET_CAMERA_FRAME",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Reads the animation frames of a camera loaded with CMND_LOAD_CAMERA: element 0 of the array receives the current frame and element 1 the length of the animation (only as many elements as the array has, at most 2)."
+  },
+  "params": [
+    {
+      "name": "hCamera",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Camera handle (CMND_GET_ACT_CAMERA, CMND_LOAD_CAMERA, CMND_CREATE_CAMERA)."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Receives [currentFrame, length]; create it with 2 elements."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once read, false if the camera is not found.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Following the camera animation (real usage, from ie4_ev_sub_skl.nut; the Shift-JIS camera name is replaced by a variable here)",
+      "source": "real",
+      "code": "local cmr_frm = [\n\t0,\n\t0\n];\nCMND_GET_CAMERA_FRAME(hCamera, cmr_frm);\nlocal frm = cmr_frm[0];\n\nif (cmr_frm[0] == cmr_frm[1])\n{\n\tfrm = 0;\n}"
+    }
+  ]
+}

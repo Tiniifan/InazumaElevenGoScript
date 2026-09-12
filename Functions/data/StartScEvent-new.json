@@ -1,0 +1,48 @@
+{
+  "name": "StartScEvent",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Starts an in-match scene. It does nothing outside a match (CMND_IS_SOCCER_ACTIVE). Otherwise it switches the match into event mode (CMND_BTL_SET_ACTIVE_EVENT(1, _is_upper)) and waits until the switch is done (CMND_BTL_IS_FINISH_ACTEV).\nWhen the scene uses the top screen, it also stores the map and Special Move map handles in aHdl[0] and aHdl[1], shows the Special Move map in place of the normal map, and loads the goal model data/chr/option/goal01.xc into aHdl[2] (with a shadow if _shadow is true).\nEndScEvent undoes all of this."
+  },
+  "params": [
+    {
+      "name": "_is_upper",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Non-zero when the scene uses the top screen (the events pass their isEvUpperDisp variable, usually 1)."
+      }
+    },
+    {
+      "name": "aHdl",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "3-element array the function fills with handles (map, Special Move map, goal model) and that EndScEvent reads back; the events pass their scEvHdl array."
+      }
+    },
+    {
+      "name": "_shadow",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to create the goal model with a shadow (StartScEvent_Shadow)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Start and end of an in-match scene (real usage, from ev44010020.nut)",
+      "source": "real",
+      "code": "local isEvUpperDisp = 1;\nlocal scEvHdl = [0, 0, 0];\nStartScEvent(isEvUpperDisp, scEvHdl);\n// ... scene ...\nEndScEvent(isEvUpperDisp, scEvHdl);"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_RESET_SKILL_BAN",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Lifts every Special Move ban set with CMND_BTL_SET_SKILL_BAN at once (all 64 entries of the ban list).\nNo shipped script calls it: btl0004.nut lifts its bans one by one with SET_SKILL_BAN(false, ...)."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Lifting all bans at a scripted beat (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Pre-match: ban two moves\nCMND_BTL_SET_SKILL_BAN(true, \"para_cp0088\", \"whs0014\");\nCMND_BTL_SET_SKILL_BAN(true, \"para_cp0090\", \"whs0010\");\n\n// Later: let everyone use every move again\nCMND_BTL_RESET_SKILL_BAN();"
+    }
+  ]
+}

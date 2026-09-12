@@ -1,0 +1,31 @@
+{
+  "name": "CMND_BTL_REGIST_FLOOR_ATTR",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Registers a named rectangular zone of the pitch, so the hazard maps can tag it with floor attributes (CMND_BTL_ADD_FLOOR_ATTR) and trigger floor events on it (CMND_BTL_TRIGGER_FLOOR_EV).\n\nThe rectangle is given as a corner and a size, not as two corners: the engine treats a position as inside the zone when its X lies between x and x + width (and likewise in Z with z and depth). For example the quicksand map splits the pitch in two with (-137, 0, 274, 283) and (-137, -283, 274, 283).\nUp to 12 zones can exist at once; further registrations are ignored. A new zone starts with no attributes. CMND_BTL_ALL_RESET_FLOOR removes every zone."
+  },
+  "params": [
+    { "name": "name", "type": "string", "required": true, "description": { "en": "Zone name, e.g. \"FL01\". The other floor functions find the zone by this name (hashed with CRC32)." } },
+    { "name": "x", "type": "float", "required": true, "description": { "en": "X of the zone's corner." } },
+    { "name": "z", "type": "float", "required": true, "description": { "en": "Z of the zone's corner." } },
+    { "name": "width", "type": "float", "required": true, "description": { "en": "Size of the zone along X." } },
+    { "name": "depth", "type": "float", "required": true, "description": { "en": "Size of the zone along Z." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has run, including when the 12 zones are already used and nothing was registered.\nnull if the match system is not ready or fewer than 5 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Splitting the pitch into two halves (real usage, from mf15b01.nut)",
+      "source": "real",
+      "code": "// Two zones of 274 x 283, one on each side of the halfway line (Z = 0)\nCMND_BTL_REGIST_FLOOR_ATTR(\"FL01\", -137, 0, 274, 283);\nCMND_BTL_REGIST_FLOOR_ATTR(\"FL02\", -137, -283, 274, 283);"
+    },
+    {
+      "case": "Registering zones from a table, then tagging them (real usage, from mf13b01.nut)",
+      "source": "real",
+      "code": "// mapFloorAttr[idx] holds one [x, z, width, depth] entry per zone.\n// Every zone gets attribute 5, then the pitch-down event starts.\nScMapPitchDown <- function ( idx )\n{\n\tfor( local i = 0; i < mapFloorAttr[idx].len(); i++ )\n\t{\n\t\tCMND_BTL_REGIST_FLOOR_ATTR(mapFloorAttrName[i], mapFloorAttr[idx][i][0], mapFloorAttr[idx][i][1], mapFloorAttr[idx][i][2], mapFloorAttr[idx][i][3]);\n\t\tCMND_BTL_ADD_FLOOR_ATTR(mapFloorAttrName[i], 5);\n\t}\n\n\tCMND_BTL_TRIGGER_FLOOR_EV(FLOOR_EVT_PITCHDOWN, idx + 1);\n};"
+    }
+  ]
+}

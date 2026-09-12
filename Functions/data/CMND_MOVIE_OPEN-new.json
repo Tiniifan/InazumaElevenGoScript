@@ -1,0 +1,31 @@
+{
+  "name": "CMND_MOVIE_OPEN",
+  "kind": "native",
+  "category": "movie",
+  "description": {
+    "en": "Starts loading a movie: the file movie/<name>.moflex is loaded into a movie object named after the movie (created if it does not exist yet). Wait with CMND_MOVIE_IS_LOADING, then start it with CMND_MOVIE_PLAY.\nA movie object is named by the movie name: CMND_MOVIE_OPEN loads data movie/<name>.moflex into an object of that name, and the other CMND_MOVIE_* commands find it by the same name. None of these commands is used by the shipped scripts; the story plays its movies with the ev_main helper PlayMovie, which uses CMND_MAKE_CHILD_MOVIE_SCENE."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Movie name, without folder or extension (the file is movie/<name>.moflex)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "The result of the load request (true when it was accepted).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Open, play and close a movie (not found in script_clean/; invented, the movie name is made up)",
+      "source": "invented",
+      "code": "local movieName = \"op01\";\nCMND_MOVIE_OPEN(movieName);\n\nwhile (CMND_MOVIE_IS_LOADING(movieName))\n{\n\tsuspend();\n}\n\nCMND_MOVIE_PLAY(movieName);\n\nwhile (CMND_MOVIE_IS_PLAYING(movieName))\n{\n\tsuspend();\n}\n\nCMND_MOVIE_CLOSE(movieName);"
+    }
+  ]
+}

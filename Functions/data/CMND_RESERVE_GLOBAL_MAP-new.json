@@ -1,0 +1,22 @@
+{
+  "name": "CMND_RESERVE_GLOBAL_MAP",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Schedules a jump from the current map to its parent map (the wider area map it belongs to), remembering where to come back.\nIt reads the current map's environment settings (MAP_ENV): ParentID gives the destination and GroupID a group number. On the map me01i01 a destination stored by the game is used instead, with group 999. It records the current map, the group and the position and direction of a party character (probably the one the player controls) as the return point, then schedules the jump.\nCalled with exactly 4 arguments, it does nothing."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true (also in the 4-argument case where nothing is done).\nnull if the current map cannot be found or the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "At the end of an event (real usage, from ev42050400.nut)",
+      "source": "real",
+      "code": "CMND_SET_GLOBAL_BIT_FLAG(405);\nCMND_SET_GLOBAL_BIT_FLAG(1449);\nWaitFrame(30);\nCMND_RESERVE_GLOBAL_MAP();"
+    }
+  ]
+}

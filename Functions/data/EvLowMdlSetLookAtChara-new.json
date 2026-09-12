@@ -1,0 +1,47 @@
+{
+  "name": "EvLowMdlSetLookAtChara",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Turns a character to face another one over a number of frames, with the walk motion: CMND_CHR_TURN_TRG(_hdl, _targetHdl, 0, _frame, 1). Wait for the end with WaitEvLowMdlMoving."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "_targetHdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character to face."
+      }
+    },
+    {
+      "name": "_frame",
+      "type": "integer|float",
+      "required": true,
+      "description": {
+        "en": "Duration of the turn in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Facing another character (real usage, from ev42010600.nut)",
+      "source": "real",
+      "code": "EvLowMdlSetLookAtChara(hTenmaL, hHarunaL, 30);"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "name": "CMND_SET_LIGHT_ENABLE",
+  "kind": "native",
+  "category": "lighting",
+  "description": {
+    "en": "Turns one of the lights of a light object on or off: light number 0 to 8; only the value 1 (or true) turns it on. The skill scenes switch lights per camera cut with it."
+  },
+  "params": [
+    {
+      "name": "hLight",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Light handle."
+      }
+    },
+    {
+      "name": "index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Light number, 0 to 8."
+      }
+    },
+    {
+      "name": "enable",
+      "type": "boolean|integer",
+      "required": true,
+      "description": {
+        "en": "true (1) for on, anything else for off."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set.\nfalse if the light object is not found or the number is above 8.\nnull if the script system is not ready or fewer than 3 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Lights per cut (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "for( local i = 0; i < 4; i++ )\n{\n\tlocal lgt_enable = (aLightCutOffBit[i] & bit) == 0 ? true : false;\n\tCMND_SET_LIGHT_ENABLE(hLight, i, lgt_enable);\n}"
+    }
+  ]
+}

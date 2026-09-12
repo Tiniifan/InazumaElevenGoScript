@@ -1,0 +1,39 @@
+{
+  "name": "GetRyLookAtPos",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Returns the direction, in degrees, from a character to a point on the ground plane: RadToDeg(atan2(x - charX, z - charZ)), the character's position coming from CMND_GET_POSRY. EvLowMdlSetLookAtPos uses it."
+  },
+  "params": [
+    {
+      "name": "_hchr",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "_pos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Point [x, y, z]."
+      }
+    }
+  ],
+  "returns": {
+    "type": "float",
+    "description": {
+      "en": "Direction in degrees."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside EvLowMdlSetLookAtPos (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_CHR_TURN_TRG(_hdl, 0, GetRyLookAtPos(_hdl, [_pos[0], _pos[1], _pos[2]]), _frame, 1);"
+    }
+  ]
+}

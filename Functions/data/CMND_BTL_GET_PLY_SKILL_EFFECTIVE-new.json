@@ -1,0 +1,31 @@
+{
+  "name": "CMND_BTL_GET_PLY_SKILL_EFFECTIVE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Tells whether one player on the pitch has a skill effect with a given type and value. It is the player-only half of CMND_BTL_GET_SKILL_EFFECTIVE.\nEach player on the pitch has three effect slots, filled from the skill-effect moves they know (see CMND_BTL_LEARNING_SKILL). Only the first slot of the requested type is looked at; it counts if its value equals the requested value. The result (0 or 1) is written into the output array.\nThe first argument (team) is read but not used."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team of the player (0 = the player's team, 1 = the opponent team). Required but ignored." } },
+    { "name": "playerSlot", "type": "integer", "required": true, "description": { "en": "Pitch slot (0 to 31) of the player, as given by CMND_BTL_GET_CALC_PARAM mode 1." } },
+    { "name": "effectType", "type": "integer", "required": true, "description": { "en": "Effect type to look for, e.g. SKILL_EFF_PLUS_EFFECTIVE (21), SKILL_EFF_PLUS_CRITICAL (14), SKILL_EFF_SCC_DOWN (15) from ie4_soccer_sys.nut." } },
+    { "name": "value", "type": "integer", "required": true, "description": { "en": "Value the effect must have. For SKILL_EFF_PLUS_EFFECTIVE the script passes 0 or the command's element." } },
+    { "name": "result", "type": "array", "required": true, "description": { "en": "OUTPUT: result[0] receives 1 if the player has that effect with that value, 0 otherwise." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null. The answer comes back in the output array.\nAlso null, with nothing written, if fewer than 5 arguments are given." }
+  },
+  "examples": [
+    {
+      "case": "Adding an element bonus from the player's effects (real usage, from ie4_soccer_sys.nut, GetSkillElement)",
+      "source": "real",
+      "code": "// SKILL_EFF_PARAM <- [0, 10, 20]; the result 0 or 1 picks the bonus\nlocal num = [0];\nif (_adv > 0)\n{\n\tCMND_BTL_GET_PLY_SKILL_EFFECTIVE(_TeamId, _PlayerId, SKILL_EFF_PLUS_EFFECTIVE, 0, num);\n\tvalue += SKILL_EFF_PARAM[num[0]];\n}"
+    },
+    {
+      "case": "Critical-hit chance from luck and two player effects (real usage, from ie4_soccer_sys.nut, GetCritialPer)",
+      "source": "real",
+      "code": "local value = _luck * 0.029999999;\n\n// SKILL_EFF_PLUS_CRITICAL (14): x1.5\nlocal num = [0];\nCMND_BTL_GET_PLY_SKILL_EFFECTIVE(0, _playerID, SKILL_EFF_PLUS_CRITICAL, 0, num);\nif (num[0] > 0)\n{\n\tvalue = value * 1.5;\n}\n\n// SKILL_EFF_SCC_DOWN (15): x0.3\nlocal num2 = [0];\nCMND_BTL_GET_PLY_SKILL_EFFECTIVE(0, _playerID, SKILL_EFF_SCC_DOWN, 0, num2);\nif (num2[0] > 0)\n{\n\tvalue = value * 0.30000001;\n}"
+    }
+  ]
+}

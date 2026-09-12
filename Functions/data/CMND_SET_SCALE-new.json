@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_SCALE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Sets the size of an object (the same factor on x, y and z); the skill scenes use it to scale their maps."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle."
+      }
+    },
+    {
+      "name": "scale",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Scale factor (1.0 normal)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set.\nnull if the object is not found, the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A smaller map (real usage, from ev44010020.nut)",
+      "source": "real",
+      "code": "CMND_SET_SCALE(hActMap, 0.44999999);"
+    }
+  ]
+}

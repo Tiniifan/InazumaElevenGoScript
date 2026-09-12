@@ -1,0 +1,29 @@
+{
+  "name": "CMND_BRIGHT_FADE",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Starts changing a screen's brightness to a target level over a number of frames. The call returns straight away; use CMND_IS_BRIGHT_FADE to wait for it.\n\nBrightness -1.0 is fully black and 0.0 is the normal picture.\nScreens use SCREEN_A (0, top), SCREEN_B (1, bottom) and SCREEN_AB (2, both).\nWhile an event has its bottom-screen background loaded (the EvSubBg image), a fade asked for SCREEN_A is applied to the top and bottom screens instead.\n\nThe ev_main helper StartBrightFade wraps this call together with the waiting loop."
+  },
+  "params": [
+    { "name": "screen", "type": "integer", "required": true, "description": { "en": "Screen to fade: SCREEN_A (0), SCREEN_B (1) or SCREEN_AB (2)." } },
+    { "name": "brightness", "type": "float", "required": true, "description": { "en": "Target brightness: -1.0 for black, 0.0 for the normal picture." } },
+    { "name": "frames", "type": "float", "required": true, "description": { "en": "Length of the fade, in frames." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the fade has been started.\nnull if the engine is not ready or fewer than 3 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "One screen or both, then wait (real usage, the body of ev_main's StartBrightFade)",
+      "source": "real",
+      "code": "// Both screens go through CMND_BRIGHT_FADE_ALL, a single screen through\n// CMND_BRIGHT_FADE; either way the helper waits for the fade to end.\nStartBrightFade <- function ( _screen, _bright, _frame )\n{\n\tif (_screen == SCREEN_AB)\n\t{\n\t\tCMND_BRIGHT_FADE_ALL(_bright, _frame);\n\t\twhile (CMND_IS_BRIGHT_FADE_ALL())\n\t\t{\n\t\t\tsuspend();\n\t\t}\n\t}\n\telse\n\t{\n\t\tCMND_BRIGHT_FADE(_screen, _bright, _frame);\n\t\twhile (CMND_IS_BRIGHT_FADE(_screen))\n\t\t{\n\t\t\tsuspend();\n\t\t}\n\t}\n};"
+    },
+    {
+      "case": "Bringing the picture back",
+      "source": "invented",
+      "code": "// Return the top screen to its normal brightness over 15 frames\nCMND_BRIGHT_FADE(SCREEN_A, 0.0, EV_FADE_SLOW);"
+    }
+  ]
+}

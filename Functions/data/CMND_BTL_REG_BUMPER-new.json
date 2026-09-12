@@ -1,0 +1,27 @@
+{
+  "name": "CMND_BTL_REG_BUMPER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Adds a pinball-style bumper to the match pitch, in one call. Unlike tornadoes and flippers, a bumper needs no second call and no handle is returned.\n\nTwo things are created:\n- a collision body built from the full 3D position and the five shape values (the engine registers it as kind 4);\n- an entry of kind 1 in the pitch-object table, placed at the position's X and Z.\n\nThe five values are named h, w, c, min and max in the shipped script (30, 20, 1.1, 80 and 120). Their exact roles were not traced; a c above 1 and a min/max pair would fit a bounce factor with a speed range, which is what a pinball bumper does, but that reading is not confirmed."
+  },
+  "params": [
+    { "name": "position", "type": "array", "required": true, "description": { "en": "3-element array [x, y, z]. The collision body uses all three; the pitch-object entry uses x and z." } },
+    { "name": "h", "type": "float", "required": true, "description": { "en": "First shape value (h in the shipped script, 30.0)." } },
+    { "name": "w", "type": "float", "required": true, "description": { "en": "Second shape value (w in the shipped script, 20.0)." } },
+    { "name": "c", "type": "float", "required": true, "description": { "en": "Third shape value (c in the shipped script, 1.1).\nThe native only checks that 3 arguments are present, but it always reads all six, so pass them all." } },
+    { "name": "min", "type": "float", "required": true, "description": { "en": "Fourth shape value (min in the shipped script, 80.0)." } },
+    { "name": "max", "type": "float", "required": true, "description": { "en": "Fifth shape value (max in the shipped script, 120.0)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the bumper is added.\nnull if the match system is not ready or fewer than 3 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "The four corner bumpers of the pinball pitch (real usage, from mf14b01.nut)",
+      "source": "real",
+      "code": "// One position array is moved between calls; the shape values stay the same.\nlocal v = [0, -10.0, 0];\nlocal h = 30.0;\nlocal c = 1.1;\nlocal w = 20.0;\nlocal min = 16.0 * 5.0;\nlocal max = 24.0 * 5.0;\nv[0] = 66;\nv[2] = 118;\nCMND_BTL_REG_BUMPER(v, h, w, c, min, max);\nv[0] = -66;\nCMND_BTL_REG_BUMPER(v, h, w, c, min, max);\nv[2] = -118;\nCMND_BTL_REG_BUMPER(v, h, w, c, min, max);\nv[0] = 66;\nCMND_BTL_REG_BUMPER(v, h, w, c, min, max);"
+    }
+  ]
+}

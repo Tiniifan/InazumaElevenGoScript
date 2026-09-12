@@ -1,0 +1,55 @@
+{
+  "name": "MoveTalkChara",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Moves a character in a straight line from _start to _end ([x, y, z, rotY]) over _frame frames, one step per frame with CMND_SET_POSRY and suspend(). Each value is clamped so it does not go past its end value.\nNote: the rotation clamp is mistyped in the script and writes the end rotation into z instead of the rotation, so when the rotation overshoots, the z position jumps to that value for the frame. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "_start",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Start [x, y, z, rotY]."
+      }
+    },
+    {
+      "name": "_end",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "End [x, y, z, rotY]."
+      }
+    },
+    {
+      "name": "_frame",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Number of frames (steps)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Sliding a model into place (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "MoveTalkChara(hTenmaH, [-20.0, -11.0, -17.0, 30], [-6.0, -11.0, -17.0, 30], 20);"
+    }
+  ]
+}

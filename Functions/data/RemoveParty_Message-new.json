@@ -1,0 +1,48 @@
+{
+  "name": "RemoveParty_Message",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Removes one character from the party with the leaving presentation. For each character, the sound effect sys_021 plays (CMND_SND_OPEN_SYS_SE(21)), the system message \"sysmes-remove_party\" is shown with the character's name filled in, then the character is removed; the next one waits until the sound has finished.\nThe BGM is first stopped with a fade of 30, then the function waits 45 frames; once everyone is removed, the BGM plays again with a fade of 30 and the function waits 30 more frames.\nIt is RemoveParty_MessageEx(1, [_paramID], [_flg_st_reset], 30, 45, 21, 0, \"sysmes-remove_party\", _not_pt_lock)."
+  },
+  "params": [
+    {
+      "name": "_paramID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Parameter ID of the character to remove, e.g. \"para_cp0010\"."
+      }
+    },
+    {
+      "name": "_flg_st_reset",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to also delete the character's saved record, so they start over if they join again. The shipped calls pass false."
+      }
+    },
+    {
+      "name": "_not_pt_lock",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to call RemovePartyCmnd(id, reset, false) instead of RemoveParty(id, reset); see RemoveParty for the difference."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A member leaving the team (real usage, from ev42090900.nut)",
+      "source": "real",
+      "code": "RemoveParty_Message(\"para_cp0005\", false);"
+    }
+  ]
+}

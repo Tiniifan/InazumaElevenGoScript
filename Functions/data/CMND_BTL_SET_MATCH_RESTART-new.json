@@ -1,0 +1,29 @@
+{
+  "name": "CMND_BTL_SET_MATCH_RESTART",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Restarts play, either with a kick-off or with another kind of restart, for a given team.\n\nWith only the team (or a second argument of 0), it sets up a kick-off by that team. After a scripted goal the story scripts give the kick-off to the team that conceded.\nWith a non-zero second argument it sets up a different restart, placed at the position given in the third argument. The values used by the scripts (1, 3 and 4) line up with the public restart constants RS_THROWING (1), RS_GOALKICK (3) and RS_DFREEKICK (4), which suggests that is what this value is.\nThe position is relative to the pitch: the engine multiplies X and Z by the pitch size factors and adds the pitch origin (Y is ignored)."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team that restarts: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "restartType", "type": "integer", "required": false, "default": "0 (kick-off)", "description": { "en": "0 for a kick-off. Any other value sets up a different restart; the shipped scripts use 1, 3 and 4 (see the RS_* constants)." } },
+    { "name": "position", "type": "array", "required": false, "description": { "en": "[x, y, z] in pitch-relative units, e.g. [0.8, 0.0, 0.6]. Defaults to the engine's default spot." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the restart is set up.\nnull if the match system is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "Kick-off after a scripted goal (real usage, from btl0010.nut)",
+      "source": "real",
+      "code": "// Team 0 (the player's team) scores at the current minute...\nlocal time = CMND_BTL_GET_MATCH_TIME();\nCMND_BTL_ADD_POINT([1, 0]);\nCMND_BTL_SET_POINT_HISTORY(0, 0, time / 60, format(\"para_cp%04d\", idKageyama));\n// ... so team 1 kicks off\nCMND_BTL_SET_MATCH_RESTART(1);"
+    },
+    {
+      "case": "A placed restart for a scripted set piece (real usage, from btl0011.nut)",
+      "source": "real",
+      "code": "// After the event scene, restart with type 4 for team 1 at a\n// pitch-relative position, set a new objective and move the clock.\nCMND_BTL_SET_EVPARAM(44090020);\nsuspend();\nCMND_BTL_SET_MATCH_RESTART(1, 4, [0.80000001, 0.0, 0.60000002]);\nCMND_BTL_SET_PURPOSE(2, 9, true, 0, 0.0, -0.40000001);\nCMND_BTL_SET_PURPOSETEXT(true, \"purpose_021\", \"para_cp0009\");\nCMND_BTL_SET_MATCH_PHASE(0, 600);"
+    }
+  ]
+}

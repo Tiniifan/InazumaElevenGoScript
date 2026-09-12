@@ -1,0 +1,39 @@
+{
+  "name": "CMND_LOAD_LIGHT",
+  "kind": "native",
+  "category": "lighting",
+  "description": {
+    "en": "Loads a light setup file (.xk) as an object and returns its handle; the skill scenes load one per scene. Wait with WaitLoading, check CMND_IS_BUILD_LIGHT, show it with CMND_SET_ENABLE and delete it with CMND_DELETE_LIGHT."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object."
+      }
+    },
+    {
+      "name": "file",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Light file, e.g. an archive path ending in \"lgt.xk\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "Handle of the light object.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A skill scene's lights (real usage, from ie4_ev_sub_skl.nut; the Shift-JIS object name is replaced by a variable here)",
+      "source": "real",
+      "code": "hLight = CMND_LOAD_LIGHT(lightName, sBasePack + \"lgt.xk\");"
+    }
+  ]
+}

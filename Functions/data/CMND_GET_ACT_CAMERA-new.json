@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_ACT_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Returns the handle of the active camera, the camera the field and the events show (the handle stored by the script system)."
+  },
+  "params": [],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "The active camera handle.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Reading the active camera's depth of field (real usage, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local hCam = CMND_GET_ACT_CAMERA();\nEV_TALK_DP_LVL_TMP = CMND_GET_CAMERA_PARAM(hCam, \"DepthLevel\");"
+    }
+  ]
+}

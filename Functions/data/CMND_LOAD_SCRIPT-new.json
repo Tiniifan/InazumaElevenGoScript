@@ -1,0 +1,39 @@
+{
+  "name": "CMND_LOAD_SCRIPT",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Loads a compiled script file (.nutb) and runs it in the context table named by the second argument; CallEvent uses it to load an event script into \"subev_ctx\". An empty path unloads the script loaded before."
+  },
+  "params": [
+    {
+      "name": "path",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Script file, e.g. \"data/script/event/ev42010100.nutb\", or \"\" to unload."
+      }
+    },
+    {
+      "name": "context",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the context table, e.g. \"subev_ctx\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|boolean|null",
+    "description": {
+      "en": "1 once loaded (true for the unload case).\nnull if the load failed, the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside CallEvent (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local path = \"data/script/event/ev\" + _evid + \".nutb\";\nlocal script = CMND_LOAD_SCRIPT(path, \"subev_ctx\");\n\nwhile (CMND_WAIT_LDS(script))\n{\n\tsuspend();\n}"
+    }
+  ]
+}

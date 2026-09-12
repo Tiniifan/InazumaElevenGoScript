@@ -1,0 +1,39 @@
+{
+  "name": "StartScEvent_Shadow",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "StartScEvent with the goal model created with a shadow: StartScEvent(_is_upper, aHdl, true). No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "_is_upper",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Non-zero when the scene uses the top screen (the events pass their isEvUpperDisp variable, usually 1)."
+      }
+    },
+    {
+      "name": "aHdl",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "3-element array the function fills with handles (map, Special Move map, goal model) and that EndScEvent reads back; the events pass their scEvHdl array."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "An in-match scene with a shadowed goal (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local scEvHdl = [0, 0, 0];\nStartScEvent_Shadow(1, scEvHdl);\n// ... scene ...\nEndScEvent(1, scEvHdl);"
+    }
+  ]
+}

@@ -3,20 +3,29 @@
   "kind": "ev_main",
   "category": "scene",
   "description": {
-    "en": "Loads and runs a story/quest event script by numeric ID (from data/script/event/ev<id>.nutb), waiting for it to load, then driving its Event coroutine (and the match camera controller, via sysCamCtrlStep) to completion frame by frame."
+    "en": "Runs a story event script, ev<_evid>.nutb, to its end. It creates a fresh event context (subev_ctx) with room for 4 coroutines, loads the event script \"data/script/event/ev\" + _evid + \".nutb\" into that context (CMND_LOAD_SCRIPT) and waits for it to load. It then runs the script's Event function as a coroutine, waking it up once per frame until it has finished, and clears the context at the end.\nEach frame it also calls SYS_EVENT_STEP() and sysCamCtrlStep, which drives the camera-control helpers (CamCtrlInit, CamCtrlMoveTo...).\nIt is called by ie4_ev_sub_std.nut, the standard event script: its Main function picks the runner from the event type set by SetupParam (4 = CallKiznaxEvent, 5 = CallShopEvent, 9 = CallMasterAvatar, anything else = CallEvent)."
   },
   "params": [
-    { "name": "_evid", "type": "integer", "required": true, "description": { "en": "Numeric event ID, used to build the event script's file path." } }
+    {
+      "name": "_evid",
+      "type": "integer|string",
+      "required": true,
+      "description": {
+        "en": "Event number, appended to \"ev\" to build the file name (e.g. 42010200 for ev42010200.nutb)."
+      }
+    }
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": {
+      "en": "Always null (no return statement)."
+    }
   },
   "examples": [
     {
-      "case": "Dispatching to the right event runner depending on the NPC's event type (real usage, from ie4_ev_sub_std.nut)",
+      "case": "The standard event script falling back to CallEvent (real code, from ie4_ev_sub_std.nut)",
       "source": "real",
-      "code": "// Excerpt from ie4_ev_sub_std.nut: evID/evType/npcHdl are set earlier by\n// Initialize()/SetupParam() from the NPC that triggered this event.\nevID <- 0;\nevType <- 0;\nnpcHdl <- 0;\n\n// Dispatch to the right event runner depending on the NPC's event type\nif (evType == 4)\n{\n\tCallKiznaxEvent(evID, npcHdl);\n}\nelse if (evType == 5)\n{\n\tCallShopEvent(evID, npcHdl);\n}\nelse if (evType == 9)\n{\n\tCallMasterAvatar(evID, npcHdl);\n}\nelse\n{\n\tCallEvent(evID);\n}"
+      "code": "Main <- function ( arg_tbl )\n{\n\tif (evType == 4)\n\t{\n\t\tCallKiznaxEvent(evID, npcHdl);\n\t}\n\telse if (evType == 5)\n\t{\n\t\tCallShopEvent(evID, npcHdl);\n\t}\n\telse if (evType == 9)\n\t{\n\t\tCallMasterAvatar(evID, npcHdl);\n\t}\n\telse\n\t{\n\t\tCallEvent(evID);\n\t}\n};"
     }
   ]
 }

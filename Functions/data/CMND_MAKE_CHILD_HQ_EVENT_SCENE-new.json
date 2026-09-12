@@ -1,0 +1,47 @@
+{
+  "name": "CMND_MAKE_CHILD_HQ_EVENT_SCENE",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Requests an HQ event, a staged cut-scene played by the engine with the models the event has prepared: it queues a change to an \"HQEvent\" child scene (task Ie4HQEventTask) with the sound name, the number of cuts and the end fade. \"<LG>\" in the sound name is replaced by the game's language code. It plays once the calling script suspends; wait with CMND_IS_RUN_CHILD_SCENE. Use the RunHQEvent helper."
+  },
+  "params": [
+    {
+      "name": "sound",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Sound name, e.g. \"hqev010100_<LG>\"."
+      }
+    },
+    {
+      "name": "cutNum",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Number of cuts."
+      }
+    },
+    {
+      "name": "endWhiteFade",
+      "type": "boolean",
+      "required": false,
+      "description": {
+        "en": "true to end on a fade to white (EndFadeWhite)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once queued.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside RunHQEvent (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local snd = _sndID + \"_<LG>\";\nCMND_MAKE_CHILD_HQ_EVENT_SCENE(snd, _cutNum, _endWhiteFade);\nsuspend();\n\nwhile (CMND_IS_RUN_CHILD_SCENE())\n{\n\tsuspend();\n}"
+    }
+  ]
+}

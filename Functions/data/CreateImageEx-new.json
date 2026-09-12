@@ -1,0 +1,56 @@
+{
+  "name": "CreateImageEx",
+  "kind": "ev_main",
+  "category": "image-ui",
+  "description": {
+    "en": "Like CreateImage, but with an explicit animation name: CMND_LOAD_IMAGE(_imgName, \"data/tutorial/\" + _fileName + \".xa\", 1, _anmName), placed at _pos."
+  },
+  "params": [
+    {
+      "name": "_imgName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the image object."
+      }
+    },
+    {
+      "name": "_fileName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "File name without folder or extension (<LG> is replaced by the language)."
+      }
+    },
+    {
+      "name": "_anmName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Animation to use from the file."
+      }
+    },
+    {
+      "name": "_pos",
+      "type": "array",
+      "required": false,
+      "default": "[200, 120, 0, 0]",
+      "description": {
+        "en": "Position [x, y, z, rotY]."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the image."
+    }
+  },
+  "examples": [
+    {
+      "case": "The game-over picture (real code, from ie4_ev_main.nut, GameOver; the Shift-JIS object name is replaced by a variable here)",
+      "source": "real",
+      "code": "local hImg = CreateImageEx(imageName, \"gameover_<LG>\", \"gameover\");\nWaitLoading(hImg);\nCMND_SET_ENABLE(hImg, true);"
+    }
+  ]
+}

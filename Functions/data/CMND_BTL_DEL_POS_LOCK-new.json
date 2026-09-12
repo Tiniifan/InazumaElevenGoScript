@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_DEL_POS_LOCK",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Removes a lineup lock set with CMND_BTL_SET_POS_LOCK. It takes out the first lock on that player whose scope covers the given scope, whatever its lock type. It does the same as SET_POS_LOCK(false, charaId, anyType, scope).\nWith the default scope (2), only locks that apply always (set with scope 2 or more, the SET_POS_LOCK default) are matched; a lock set with scope 0 or 1 needs that same scope here.\nNo shipped script calls it; they use SET_POS_LOCK(false, ...) or CMND_BTL_RESET_POS_LOCK."
+  },
+  "params": [
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Parameter ID of the locked player." } },
+    { "name": "scope", "type": "integer", "required": false, "default": "2", "description": { "en": "Scope of the lock to remove: 0, 1, or 2 and more (see CMND_BTL_SET_POS_LOCK)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when no argument is given)." }
+  },
+  "examples": [
+    {
+      "case": "Freeing a player locked on the bench (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Lock para_cp0009 on the bench for part of the match...\nCMND_BTL_SET_POS_LOCK(true, \"para_cp0009\", LOCK_TYPE_BENCH);\n// ... then let the player put them back in\nCMND_BTL_DEL_POS_LOCK(\"para_cp0009\");"
+    }
+  ]
+}

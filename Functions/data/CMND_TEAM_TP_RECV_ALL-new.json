@@ -1,0 +1,22 @@
+{
+  "name": "CMND_TEAM_TP_RECV_ALL",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Does nothing in the retail game: it only returns true. The events always call it right after CMND_TEAM_GP_RECV_ALL, which already restores both GP and TP."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Always true.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "After a dialogue, before the objective update (real usage, from ev42061300.nut)",
+      "source": "real",
+      "code": "StartBrightFade(SCREEN_AB, -1.0, EV_FADE_SLOW);\nCMND_TEAM_GP_RECV_ALL();\nCMND_TEAM_TP_RECV_ALL();\nlocal hdlPpsMes = CMND_UPDATE_PURPOSE();"
+    }
+  ]
+}

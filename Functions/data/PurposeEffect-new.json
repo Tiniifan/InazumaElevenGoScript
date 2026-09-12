@@ -1,0 +1,41 @@
+{
+  "name": "PurposeEffect",
+  "kind": "ev_main",
+  "category": "screen-fx",
+  "description": {
+    "en": "Presents a new objective: it stops the map BGM (10 frames), opens and plays the jingle _jng, makes the objective display blink (CMND_SET_PURPOSE_STATE on and off every 20 frames, ending on), waits for the jingle to end and closes it. Unless _bgm_fade_off is true, it then plays the map BGM again (volume 1.0, 10 frames).\nNo event calls it directly: SetGameSubPhase (with its effect flag) and OutlineEffect do."
+  },
+  "params": [
+    {
+      "name": "_jng",
+      "type": "string",
+      "required": false,
+      "default": "\"J_10\"",
+      "description": {
+        "en": "Jingle sound, e.g. \"J_10\" or \"J_18\"."
+      }
+    },
+    {
+      "name": "_bgm_fade_off",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to leave the map BGM stopped."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside SetGameSubPhase (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "if (_ppsEffFlag)\n{\n\tPurposeEffect(_jng, _bgm_fade_off);\n}"
+    }
+  ]
+}

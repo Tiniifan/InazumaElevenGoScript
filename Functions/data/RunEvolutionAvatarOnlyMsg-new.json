@@ -1,0 +1,48 @@
+{
+  "name": "RunEvolutionAvatarOnlyMsg",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Shows the Fighting Spirit evolution presentation (jingle J_07, message \"sysmes-Avatar-00002\") without changing anything. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "_chr",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Parameter ID of the character, e.g. \"para_cp0008\"."
+      }
+    },
+    {
+      "name": "_avt",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Fighting Spirit ID, e.g. \"ck0025\"."
+      }
+    },
+    {
+      "name": "_lock",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true to lock the character's Fighting Spirit afterwards (CMND_SET_AVATAR_LOCK_FLAG(hdl, true)); otherwise the lock state it had before is kept."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Announcing an evolution already applied (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "RunEvolutionAvatarOnlyMsg(\"para_cp0008\", \"ck0033\");"
+    }
+  ]
+}

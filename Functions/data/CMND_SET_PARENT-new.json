@@ -1,0 +1,47 @@
+{
+  "name": "CMND_SET_PARENT",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Attaches an object to a bone of a character so it follows it, e.g. a ball or a phone in the right hand (bone \"r_a4\")."
+  },
+  "params": [
+    {
+      "name": "hChild",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object to attach."
+      }
+    },
+    {
+      "name": "hParent",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character to attach it to."
+      }
+    },
+    {
+      "name": "bone",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Bone name, e.g. \"r_a4\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "null once attached; false if either object is not found.\nnull too if the script system is not ready or fewer than 3 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A ball in a character's hand (real usage, from ev42011800.nut)",
+      "source": "real",
+      "code": "CreateSpeech(\"ev600\");\nCMND_SET_PARENT(hBall2, hTetsuodaL, \"r_a4\");\nCMND_SET_ENABLE(hBall2, true);"
+    }
+  ]
+}

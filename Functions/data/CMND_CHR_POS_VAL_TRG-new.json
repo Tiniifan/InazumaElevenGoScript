@@ -1,0 +1,77 @@
+{
+  "name": "CMND_CHR_POS_VAL_TRG",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Sends a character to a position, optionally facing a given direction at the end.\nThe target is an array [x, y, z] or [x, y, z, rotY] (rotY in degrees). Without rotY the character ends facing the way it walked.\nWith a speed, the character plays a motion while it moves: up to 0.7 the walk motion 歩き前NN, above that the run motion 走り前NN. ie4_ev_main.nut gives EV_MINI_CHARA_MOVE_SPEED_WALK = 0.3 and EV_MINI_CHARA_MOVE_SPEED_RUN = 1.0. NN is the motion number (last argument, default 1).\nThe scripts use two shapes: (target, 999, 0, speed[, NN]) for a walk or run, and (target, frames, 0) with no speed, frames from 1 to 200, for a plain slide over that time.\nWait for the end with CMND_CHR_POS_VAL_IS_MOVING.\nCharacter moves and turns are run by a movement manager with 16 slots, one per character. CMND_CHR_POS_VAL_TRG, CMND_CHR_PATH_SETUP and the CMND_CHR_TURN_* commands take a free slot for the character when it has none."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "target",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "[x, y, z] or [x, y, z, rotY] (degrees)."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Duration value; the scripts pass 999 together with a speed, or a number of frames (1 to 200) without one."
+      }
+    },
+    {
+      "name": "flag",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Passed on to the move routine; every shipped call passes 0."
+      }
+    },
+    {
+      "name": "speed",
+      "type": "float",
+      "required": false,
+      "description": {
+        "en": "Movement speed: EV_MINI_CHARA_MOVE_SPEED_WALK (0.3) or EV_MINI_CHARA_MOVE_SPEED_RUN (1.0). It also picks the walk or run motion."
+      }
+    },
+    {
+      "name": "motionNum",
+      "type": "integer",
+      "required": false,
+      "default": "1",
+      "description": {
+        "en": "Number NN of the walk or run motion (the scripts use 1, 7, 9, 20, 30)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "Slot number (0 to 15) of the character in the movement manager.\nnull if all 16 slots are taken, the script system is not ready, or too few arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Walking to a spot while the screen fades in, then waiting (real usage, from ev42010600.nut)",
+      "source": "real",
+      "code": "// No rotY: the player character ends facing the way it walked\nCMND_CHR_POS_VAL_TRG(hTenmaL, [-248.60001, 0.1, -37.799999], 999, 0, EV_MINI_CHARA_MOVE_SPEED_WALK, 1);\nStartBrightFade(SCREEN_AB, 0.0, 60.0);\n\nwhile (CMND_CHR_POS_VAL_IS_MOVING(hTenmaL))\n{\n\tsuspend();\n}"
+    },
+    {
+      "case": "Running, facing the direction of travel (invented)",
+      "source": "invented",
+      "code": "// No rotY: the character ends facing the way it ran\nCMND_CHR_POS_VAL_TRG(hTenmaL, [10.0, 0.0, -40.0], 999, 0, EV_MINI_CHARA_MOVE_SPEED_RUN);"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "CMND_BTL_ADD_MEMBER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Adds a player to one of the two match rosters, at a given level and formation number.\nMatch scripts call it from their InitBtl function to build a squad that is fixed by the story instead of taken from the player's own team.\n\nThe character ID is hashed with CRC32 and looked up in the player parameter table. If it is found, the player is appended to the chosen team, then its battle record is set up:\n- its level is set, and every Special Move whose learn level is at or below that level becomes available;\n- its formation number is set;\n- its current FP and TP are reset from its base values.\n\nIf the ID is not found in the parameter table, nothing is added and the call still returns true.\n(The native's own symbol is spelled cnndBtlAddMember, a typo in the game.)"
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team to add the player to.\n0 = the player's team, 1 = the opponent team." } },
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Player parameter ID, e.g. \"para_cp0001\"." } },
+    { "name": "level", "type": "integer", "required": true, "description": { "en": "Level the player plays at in this match (stored in the battle record's Level field).\nIt also decides which Special Moves are unlocked: a move is available when its learn level is lower than or equal to this value." } },
+    { "name": "playerNumber", "type": "integer", "required": true, "description": { "en": "The player's number in the formation (stored in the battle record's PlayerNumber field).\n0 is the goalkeeper slot. The story scripts number their eleven players 1 to 11, then reorder them with CMND_BTL_CHANGR_MEMBER_POS." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has run, whether or not the character ID was found.\nnull if the match system is not ready or fewer than 4 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Building a fixed story squad in InitBtl (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "// A story match replaces the player's team with a fixed squad.\n// Every player is added to team 0 (the player's team) at level 1,\n// numbered 1 to 11, then two of them swap positions.\nInitBtl <- function ()\n{\n\tCMND_BTL_SET_SHOES_AND_GLOVE(0, \"ssa0001\", \"sga0001\");\n\tCMND_BTL_ADD_MEMBER(0, \"para_cp0001\", 1, 1);\n\tCMND_BTL_ADD_MEMBER(0, \"para_cp0002\", 1, 2);\n\tCMND_BTL_ADD_MEMBER(0, \"para_cp0003\", 1, 3);\n\tCMND_BTL_ADD_MEMBER(0, \"para_cp0004\", 1, 4);\n\t// ... players 5 to 11 ...\n\tCMND_BTL_CHANGR_MEMBER_POS(0, \"para_cp0001\", 1);\n\tCMND_BTL_CHANGR_MEMBER_POS(0, \"para_cp0003\", 2);\n};"
+    },
+    {
+      "case": "Adding a stronger guest to the opponent team",
+      "source": "invented",
+      "code": "// Give the opponent team (1) a high-level player in slot 10.\n// At level 50 every Special Move it learns by level 50 is available.\nCMND_BTL_ADD_MEMBER(1, \"para_cp0010\", 50, 10);"
+    }
+  ]
+}

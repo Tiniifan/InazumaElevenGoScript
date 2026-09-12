@@ -1,0 +1,39 @@
+{
+  "name": "CreateMakikaeshi",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Shows the comeback monologue of a match (makikaeshi = comeback). Before opening the message it sets number placeholder 1 to the goal gap plus one: CMND_BTL_GET_POINT(0) - CMND_BTL_GET_POINT(1) + 1, team 0 being the player's team and 1 the opponent. The text then shows like CreateMonologue."
+  },
+  "params": [
+    {
+      "name": "_id",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Message ID, e.g. \"ev100\"."
+      }
+    },
+    {
+      "name": "_drawScreen",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Screen to draw on, e.g. SCREEN_A."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "During a match scene (real usage, from ev44120026.nut)",
+      "source": "real",
+      "code": "StartStandEvent();\nCMND_MESWIN_LOCK();\nCreateMakikaeshi(\"ev100\", SCREEN_A);\nCMND_MESWIN_UNLOCK();\nEndStandEvent();"
+    }
+  ]
+}

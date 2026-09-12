@@ -3,20 +3,29 @@
   "kind": "ev_main",
   "category": "scene",
   "description": {
-    "en": "Plays the chapter-title screen for a given episode ID: fades to black, loads and shows the title background and text images plus a voice-over, fades back in, plays the voice-over while fading the title text in, waits for it to finish, fades to black again, then cleans up the images/sound."
+    "en": "Shows a chapter title card, then fades back out.\nIt fades the top screen to black (CMND_BRIGHT_FADE(0, -1.0, 30.0)) and waits. It loads the background data/ep_bg.xa, the title image data/img/ep<_chapID>_<LG>.xi and the event sound ep<_chapID>_<LG>, waiting for all three.\nIt then shows both images (the title starting transparent) and fades in over 60 frames. After 30 more frames it plays the sound and fades the title in over 21 frames.\nOnce the sound has finished, it fades the screen out over 60 frames, deletes the images and closes the sound. <LG> is the language placeholder the engine fills in."
   },
   "params": [
-    { "name": "_chapID", "type": "string", "required": true, "description": { "en": "Episode/chapter ID used to build the title image and sound file paths (data/img/ep<chapID>_<LG>.xi, ep<chapID>_<LG> sound event)." } }
+    {
+      "name": "_chapID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Chapter number as a two-digit string, e.g. \"01\"."
+      }
+    }
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": {
+      "en": "Always null (no return statement)."
+    }
   },
   "examples": [
     {
-      "case": "Showing a chapter's title screen",
+      "case": "Title card for chapter 1 (real usage, from ev42010100.nut)",
       "source": "real",
-      "code": "// Show chapter 2's title screen\nChapterTitleCall(\"02\");"
+      "code": "StartBrightFade(SCREEN_A, -1.0, 45.0);\nCMND_DELETE_IMAGE(hImg2);\nCMND_DELETE_IMAGE(hImg3);\nCMND_DELETE_IMAGE(hImg4);\nChapterTitleCall(\"01\");\nStartBlackFadeOut(SCREEN_AB, 0.0);\nStartBrightFade(SCREEN_AB, 0.0, EV_FADE_NORMAL);"
     }
   ]
 }

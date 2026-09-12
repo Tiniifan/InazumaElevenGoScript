@@ -1,0 +1,32 @@
+{
+  "name": "CMND_SND_GET_DEF_BGMID",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Returns the name of the default music of the current map, read from the map's MAP_ENV data (SndBGM entry). The events use it to restart the map's music at their end.\nDuring a match, and when the optional argument is not true, it returns instead a BGM name kept in the match state."
+  },
+  "params": [
+    {
+      "name": "forceMap",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to read the map's value even during a match."
+      }
+    }
+  ],
+  "returns": {
+    "type": "string|null",
+    "description": {
+      "en": "Track name, e.g. \"M_05\".\nnull if the map has no default BGM, or if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Restarting the map's music (real usage, from ev42010600.nut)",
+      "source": "real",
+      "code": "local defBgmID = CMND_SND_GET_DEF_BGMID();\nhMapSnd = CMND_SND_OPEN_BGM(defBgmID);\n\nwhile (CMND_SND_IS_LOADING(hMapSnd))\n{\n\tsuspend();\n}"
+    }
+  ]
+}

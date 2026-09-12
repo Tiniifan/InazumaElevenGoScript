@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_IS_MATCH_MEMBER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Tells whether a character is part of the player's match team: the first 16 places of the team order (11 starters and 5 substitutes), or fewer if the roster is smaller.\nThe story events use it before a match to check that the characters the scene needs are in the team."
+  },
+  "params": [
+    { "name": "unused", "type": "integer", "required": true, "description": { "en": "Read but not used. The shipped scripts pass 0." } },
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Player parameter ID to look for, e.g. \"para_cp0008\"." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true if the character is in those first 16 places, false otherwise.\nnull if the engine is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Checking that two story characters are in the team (real usage, from ev42022000.nut)",
+      "source": "real",
+      "code": "// Both characters must be in the match team for the scripted version\n// of the match to be used.\nlocal tenma_check = CMND_BTL_IS_MATCH_MEMBER(0, \"para_cp0008\");\nlocal shindo_check = CMND_BTL_IS_MATCH_MEMBER(0, \"para_cp0009\");\n\nif (tenma_check && shindo_check)\n{\n\tmember_check = true;\n}"
+    }
+  ]
+}

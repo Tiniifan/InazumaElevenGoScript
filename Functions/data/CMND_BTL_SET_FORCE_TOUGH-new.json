@@ -1,0 +1,25 @@
+{
+  "name": "CMND_BTL_SET_FORCE_TOUGH",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Makes a player \"tough\" for the match, or ends it: their clashes stop costing them anything.\nIt adds the player to (or removes them from) the match's tough list with three protections:\n- no GP loss from clashes;\n- no TP cost for their commands while their Fighting Spirit is not out;\n- no Fighting Spirit gauge cost while it is out.\nCMND_BTL_SET_FORCE_TOUGH_ONLY_TP uses the same list with only the TP protection. Calling one after the other for the same player replaces that player's protections. Players in the forced-win list (CMND_BTL_SET_FORCE_WIN) get all three protections as well.\n\nThe player can be given in three ways, chosen by the number of arguments (same rules as CMND_BTL_SET_FORCE_WIN):\n- 2 arguments (enable, charaId): by parameter ID.\n- 3 arguments (enable, memberIndex, teamSlot): member number memberIndex of that team's match roster, turned into its parameter ID at the time of the call.\n- 4 arguments (enable, slotOffset, teamSlot, any): whoever stands at position slotOffset among that team's players on the pitch. The fourth argument is not read.\nThe list holds up to 32 entries. CMND_BTL_RESET_FORCE_TOUGH empties it."
+  },
+  "params": [
+    { "name": "enable", "type": "boolean", "required": true, "description": { "en": "true to protect the player, false to remove them from the tough list." } },
+    { "name": "player", "type": "string|integer", "required": true, "description": { "en": "2-argument form: parameter ID (e.g. \"para_cp0008\").\n3-argument form: member number in the team's match roster.\n4-argument form: position offset among the team's players on the pitch." } },
+    { "name": "teamSlot", "type": "integer", "required": false, "description": { "en": "3- and 4-argument forms: team of the player, 0 = the player's team, 1 = the opponent team." } },
+    { "name": "unused", "type": "any", "required": false, "description": { "en": "Only there to select the 4-argument form; never read." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Protecting the opponent's ace for a scripted beat (real usage, from btl0016.nut)",
+      "source": "real",
+      "code": "// After the scene: give team 1's para_cp0321 the ball and their Fighting\n// Spirit, and make them tough so it cannot be worn down\nCMND_BTL_SET_EVPARAM(44120030);\nCMND_BTL_SET_BALL_HAVE(1, \"para_cp0321\");\nCMND_BTL_SET_AVATER(\"para_cp0321\", \"ck0023\", 1);\nCMND_BTL_SET_FORCE_TOUGH(true, \"para_cp0321\");\n\n// ... later, in the next beat ...\nCMND_BTL_SET_FORCE_TOUGH(false, \"para_cp0321\");"
+    }
+  ]
+}

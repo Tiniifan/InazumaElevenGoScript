@@ -1,0 +1,39 @@
+{
+  "name": "CMND_GET_MOVE_INFO_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Reads the current state of the engine camera move: the array receives the position in elements 0 to 2 and the look-at point in elements 3 to 5. The engine camera move is the one started with CMND_SET_MOVE_INFO_CAMERA; only one camera can be moving at a time. If the handle is not the moving camera, the array is left unchanged."
+  },
+  "params": [
+    {
+      "name": "hCamera",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Camera handle (CMND_GET_ACT_CAMERA, CMND_LOAD_CAMERA, CMND_CREATE_CAMERA)."
+      }
+    },
+    {
+      "name": "posref",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Receives [posX, posY, posZ, refX, refY, refZ]; create it with 6 elements."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null; the results are in the array."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside sysCamCtrlStep (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local posref = [\n\t0.0,\n\t0.0,\n\t0.0,\n\t0.0,\n\t0.0,\n\t0.0\n];\nCMND_GET_MOVE_INFO_CAMERA(cam_ctrl.hcam, posref);\nCMND_SET_CAMERA_POS(cam_ctrl.hcam, posref.slice(0, 3));\nCMND_SET_CAMERA_REF(cam_ctrl.hcam, posref.slice(3, 6));"
+    }
+  ]
+}

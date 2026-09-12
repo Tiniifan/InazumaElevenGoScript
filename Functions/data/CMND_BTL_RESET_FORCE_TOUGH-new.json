@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_RESET_FORCE_TOUGH",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Empties the match's tough list: every entry added with CMND_BTL_SET_FORCE_TOUGH or CMND_BTL_SET_FORCE_TOUGH_ONLY_TP is cleared at once (32 entries), so all players pay their GP, TP and Fighting Spirit gauge costs again.\nPlayers in the forced-win list keep those protections; use CMND_BTL_RESET_FORCE_WIN for them.\nNo shipped script calls it; they remove players one by one with SET_FORCE_TOUGH(false, ...)."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Dropping every tough entry in a result callback (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "ScBtlResult <- function ()\n{\n\t// Clear forced outcomes and tough players together\n\tCMND_BTL_RESET_FORCE_WIN();\n\tCMND_BTL_RESET_FORCE_LOSE();\n\tCMND_BTL_RESET_FORCE_TOUGH();\n};"
+    }
+  ]
+}

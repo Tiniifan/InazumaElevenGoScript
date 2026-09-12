@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GET_MOTION_NAME",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Returns the name of the motion an object is playing (as set with CMND_SET_MOTION). The NPC talk script saves it before the talk to restore it afterwards."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle."
+      }
+    }
+  ],
+  "returns": {
+    "type": "string|null",
+    "description": {
+      "en": "The motion name.\nnull if the object is not found or has no motion, the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Saving an NPC's motion before a talk (real usage, from ev43010000.nut)",
+      "source": "real",
+      "code": "if (npcHdl > 0)\n{\n\tmot_name = CMND_GET_MOTION_NAME(npcHdl);\n\tlocal body_turn = CMND_TALK_START(npcHdl);"
+    }
+  ]
+}

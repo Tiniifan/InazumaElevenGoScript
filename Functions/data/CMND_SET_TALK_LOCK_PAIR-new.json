@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_TALK_LOCK_PAIR",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "A talk lock is a phase where the player has to talk to a set of NPCs (see StartTalkLock). The list lives in the game progress data and holds up to 12 NPCs.\nLinks other NPC IDs to one NPC of the talk lock (up to 6 per NPC). No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "npcID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "An NPC ID of the talk lock."
+      }
+    },
+    {
+      "name": "pairIDs...",
+      "type": "string",
+      "required": false,
+      "description": {
+        "en": "Other NPC IDs to link."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Linking two NPCs (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "StartTalkLock(TL_TYPE_A, \"evc0001\", \"evc0002\");\nCMND_SET_TALK_LOCK_PAIR(\"evc0001\", \"evc0002\");"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "StopEventRun",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Stops the player at an invisible boundary: three child threads run together. The player character turns toward _pos (20 frames), walks to it (30 frames) and stands; the camera moves over 40 frames to the RPG camera position offset by _pos, looking at _pos raised by 3.5; and the message _txt_id is shown. Then the player is warped in place (CMND_CHR_WARP_SET), camera control ends and the normal field camera is restored (SetExitRpgCamera)."
+  },
+  "params": [
+    {
+      "name": "_txt_id",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Message ID (the scripts also pass \"null\")."
+      }
+    },
+    {
+      "name": "_pos",
+      "type": "array",
+      "required": false,
+      "default": "[0, 0, 0]",
+      "description": {
+        "en": "Point to walk back to [x, y, z]."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "From a map event (real usage, from ev43040000.nut)",
+      "source": "real",
+      "code": "StopEventRun(\"null\", pos);"
+    }
+  ]
+}

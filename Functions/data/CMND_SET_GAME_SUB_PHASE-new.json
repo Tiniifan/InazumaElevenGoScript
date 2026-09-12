@@ -1,0 +1,31 @@
+{
+  "name": "CMND_SET_GAME_SUB_PHASE",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Sets the game sub-phase, the number that tracks the player's progress through the story (e.g. 10010010). Map and event scripts compare it with CMND_GET_GAME_SUB_PHASE. Use the ev_main helper SetGameSubPhase, which also replaces the NPCs and updates the objective."
+  },
+  "params": [
+    {
+      "name": "subPhase",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "New sub-phase number."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside SetGameSubPhase (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_NPC_REPLACE();\nCMND_SET_GAME_SUB_PHASE(_subPhase);\nlocal hdlPpsMes = CMND_UPDATE_PURPOSE();\n\nwhile (CMND_IS_LOADING(hdlPpsMes))\n{\n\tsuspend();\n}"
+    }
+  ]
+}

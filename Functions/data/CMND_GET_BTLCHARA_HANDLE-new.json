@@ -1,0 +1,49 @@
+{
+  "name": "CMND_GET_BTLCHARA_HANDLE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Returns the handle of a player in the current match, found by parameter ID, so an event can use its model. The player is added to the event's character list and, unless the third argument is true, its bust-up portrait is prepared. No shipped script calls it; the match events create their own models with the CreateEv...ForMatch helpers."
+  },
+  "params": [
+    {
+      "name": "paramID",
+      "type": "string|integer",
+      "required": true,
+      "description": {
+        "en": "Parameter ID, e.g. \"para_cp0008\" (or its hash)."
+      }
+    },
+    {
+      "name": "team",
+      "type": "integer",
+      "required": false,
+      "default": "-1",
+      "description": {
+        "en": "0 = the player's team, 1 = the opponent; 2 or -1 searches both."
+      }
+    },
+    {
+      "name": "noBustup",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true skips the bust-up."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "The player's handle (0 if not found).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A match player's model (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local hTenma = CMND_GET_BTLCHARA_HANDLE(\"para_cp0008\", 0);\nCMND_SET_MOTION(hTenma, \"01\", 0, 0);"
+    }
+  ]
+}

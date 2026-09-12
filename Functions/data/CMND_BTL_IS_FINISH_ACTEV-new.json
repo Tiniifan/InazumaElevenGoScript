@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_IS_FINISH_ACTEV",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Tells whether the match has finished carrying out the last CMND_BTL_SET_ACTIVE_EVENT request (\"actev\" for active event).\nSET_ACTIVE_EVENT posts a request; the match handles it over several frames, waiting for its screen transitions, and clears it once the switch into or out of event mode is done. This function returns true when no request is pending.\nThe ev_main helpers StartScEvent and EndScEvent loop on it with suspend() after each request."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true if no event-mode request is pending (the last switch is complete), false while one is still being carried out.\nnull if the script system is not ready." }
+  },
+  "examples": [
+    {
+      "case": "Waiting for the match to enter event mode (real code, from ie4_ev_main.nut, StartScEvent)",
+      "source": "real",
+      "code": "CMND_BTL_SET_ACTIVE_EVENT(1, _is_upper);\n\n// Give the engine frames until the switch is done\nwhile (!CMND_BTL_IS_FINISH_ACTEV())\n{\n\tsuspend();\n}"
+    }
+  ]
+}

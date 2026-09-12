@@ -1,0 +1,39 @@
+{
+  "name": "GetRyLookAtChara",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Returns the direction, in degrees, from one character to another: GetRyLookAtPos with the second character's position (CMND_GET_POSRY). No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "_hchr",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character that would turn."
+      }
+    },
+    {
+      "name": "_hlook",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character to look at."
+      }
+    }
+  ],
+  "returns": {
+    "type": "float",
+    "description": {
+      "en": "Direction in degrees."
+    }
+  },
+  "examples": [
+    {
+      "case": "Turning toward another character, computed by hand (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local ry = GetRyLookAtChara(hTenmaL, hAoiL);\nEvLowMdlSetRotY(hTenmaL, ry, 20);"
+    }
+  ]
+}

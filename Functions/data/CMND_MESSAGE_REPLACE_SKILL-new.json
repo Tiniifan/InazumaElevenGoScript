@@ -1,0 +1,39 @@
+{
+  "name": "CMND_MESSAGE_REPLACE_SKILL",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Sets a Special Move name placeholder for the next messages. Placeholders are filled in the text of the next messages: the value is stored under a key made from the kind and the index, which the message parser reads when it meets the matching tag in the text.\nThe key is REP_SKILL_<index>; the move can be given by ID string (stored as its hash) or by number."
+  },
+  "params": [
+    {
+      "name": "index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Placeholder number used in the message text (0, 1, 2...)."
+      }
+    },
+    {
+      "name": "skill",
+      "type": "string|integer",
+      "required": true,
+      "description": {
+        "en": "Special Move ID string, e.g. \"whs0003\", or number."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null.\nnull if the script system is not ready or too few arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Announcing a new Special Move (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_MESSAGE_REPLACE_CHARA(_index, CMND_GET_HASH(_chr), true, false);\nCMND_MESSAGE_REPLACE_SKILL(_index, _skill);\nCreateSpeech(_event);\nCMND_SKILL_UNLOCK(_chr, _skill);"
+    }
+  ]
+}

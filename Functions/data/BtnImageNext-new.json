@@ -3,18 +3,20 @@
   "kind": "ev_main",
   "category": "image-ui",
   "description": {
-    "en": "Waits, suspending frame by frame, until the player presses A, B or taps the touch screen, then returns true."
+    "en": "Waits until the player presses A or B, or touches the touch screen, then returns true. It checks once per frame, after a suspend(), so it always takes at least one frame.\nIt never returns false, so a caller's while (!BtnImageNext()) loop body never runs: the wait happens inside BtnImageNext itself. ShowTutorialEx uses it to wait before closing a tutorial image."
   },
   "params": [],
   "returns": {
     "type": "boolean",
-    "description": { "en": "Always true once the player provides the expected input." }
+    "description": {
+      "en": "Always true, once A, B or a touch has been detected."
+    }
   },
   "examples": [
     {
-      "case": "Waiting for the player to advance a tutorial image",
+      "case": "Waiting before closing a tutorial page (real code, from ie4_ev_main.nut, ShowTutorialEx)",
       "source": "real",
-      "code": "// Wait for the player to advance a tutorial image\nwhile (!BtnImageNext())\n{\n\tsuspend();\n}"
+      "code": "WaitFrame(60);\n// Show the \"next\" arrow, then wait for the player\nCMND_SET_IMAGE_ANM(hAnm, \"next1\");\nCMND_SET_ENABLE(hAnm, true);\n\nwhile (!BtnImageNext())\n{\n\tsuspend();\n}"
     }
   ]
 }

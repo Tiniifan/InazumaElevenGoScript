@@ -1,0 +1,95 @@
+{
+  "name": "RunEvolutionAvatarEx",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Evolves a character's Fighting Spirit with a jingle and a message. It stops the current BGM with a fade of _fade (CMND_SND_STOP) and opens the jingle _jingle; it waits until the BGM has stopped, waits _wait frames and waits for the jingle to load, then plays the jingle. After CMND_RESET_TALK_CHARA it fills the message placeholders (index _index), shows the message _event with CreateSpeech and applies the reward. It waits for the jingle to end and plays the BGM again with the same fade (CMND_SND_PLAY(hBGM, 1.0, _fade)). The character and the new form fill placeholder _index (CMND_MESSAGE_REPLACE_CHARA and CMND_MESSAGE_REPLACE_ITEM).\nIf _evol is true, it gets the character's party handle, enables the Fighting Spirit (CMND_SET_AVATAR_ENABLE), unlocks it for the change, calls CMND_AVATAR_EVOLUTION(_chr, _avt), then restores the lock flag it had, and locks it if _lock is true. If _evol is false, only the message is shown."
+  },
+  "params": [
+    {
+      "name": "_chr",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Parameter ID of the character, e.g. \"para_cp0008\"."
+      }
+    },
+    {
+      "name": "_avt",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Fighting Spirit ID, e.g. \"ck0025\"."
+      }
+    },
+    {
+      "name": "_fade",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Fade used to stop and restart the BGM (the presets pass 30)."
+      }
+    },
+    {
+      "name": "_wait",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Frames to wait after the BGM has stopped (the presets pass 30)."
+      }
+    },
+    {
+      "name": "_jingle",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Event sound played during the message (\"J_08\" or \"J_07\" in the presets)."
+      }
+    },
+    {
+      "name": "_index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Placeholder index used in the message (the presets pass 0)."
+      }
+    },
+    {
+      "name": "_event",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Message ID shown."
+      }
+    },
+    {
+      "name": "_evol",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to apply the evolution, false to show only the message."
+      }
+    },
+    {
+      "name": "_lock",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to lock the character's Fighting Spirit afterwards (CMND_SET_AVATAR_LOCK_FLAG(hdl, true)); otherwise the lock state it had before is kept."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "What RunEvolutionAvatar(\"para_cp0008\", \"ck0033\") runs (real preset, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "RunEvolutionAvatarEx(\"para_cp0008\", \"ck0033\", 30, 30, \"J_07\", 0, \"sysmes-Avatar-00002\", true, true);"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "CMND_CHARA_RESET_ACT",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "During a match, resets the current action of a player on the pitch (clears its action state). The player is given by parameter ID (searched among all the pitch slots) or by pitch slot number; the team only has to be 0 or 1 for anything to happen. The match script that uses it first tests that the command exists."
+  },
+  "params": [
+    {
+      "name": "team",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "0 = the player's team, 1 = the opponent."
+      }
+    },
+    {
+      "name": "player",
+      "type": "string|integer",
+      "required": true,
+      "description": {
+        "en": "Parameter ID (e.g. \"para_cp0131\") or pitch slot number."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "After giving the ball to a player (real usage, from btl0006.nut; the decompiled file shows the existence test as $[stack offset 0]; it is written here with getroottable(), the form ev42019001.nut shows)",
+      "source": "real",
+      "code": "CMND_BTL_SET_BALL_HAVE(1, \"para_cp0131\");\n\nif (\"CMND_CHARA_RESET_ACT\" in getroottable())\n{\n\tCMND_CHARA_RESET_ACT(1, \"para_cp0131\");\n}"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "CMND_IS_LOADING",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Tells whether an object (character, model, camera, image, sound handle of the objective display...) is still loading. For a character of the event's character list, its linked object (probably its bust-up) counts too. The ev_main helper WaitLoading loops on it."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle (character, model, image...)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true while loading, false once ready.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside WaitLoading (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "WaitLoading <- function ( _hdl )\n{\n\n\twhile (CMND_IS_LOADING(_hdl))\n\t{\n\t\tsuspend();\n\t}\n\n};"
+    }
+  ]
+}

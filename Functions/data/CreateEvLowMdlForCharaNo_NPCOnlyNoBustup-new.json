@@ -1,0 +1,39 @@
+{
+  "name": "CreateEvLowMdlForCharaNo_NPCOnlyNoBustup",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "CreateEvLowMdlForCharaNo_NPCOnly without the bust-up picture."
+  },
+  "params": [
+    {
+      "name": "_charaName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object; the events use the character's name followed by L (light model) or H (detailed model)."
+      }
+    },
+    {
+      "name": "_npc_no",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "NPC number: the model is cnNNNN."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character (see CMND_CREATE_CHARA)."
+    }
+  },
+  "examples": [
+    {
+      "case": "An NPC model only (real usage, from ev42010900.nut; the Shift-JIS object name is replaced by a variable here)",
+      "source": "real",
+      "code": "local hHarunaL = CreateEvLowMdlForCharaNo_NPCOnlyNoBustup(charaName, 4);"
+    }
+  ]
+}

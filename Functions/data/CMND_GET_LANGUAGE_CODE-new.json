@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_LANGUAGE_CODE",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Returns the code of the game's language, used to build file names: \"en\" (default), \"fr\", \"de\", \"it\" or \"es\"."
+  },
+  "params": [],
+  "returns": {
+    "type": "string|null",
+    "description": {
+      "en": "The language code.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Language-dependent file names (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "local lang = CMND_GET_LANGUAGE_CODE();\nsBasePath = \"data/chr/motion/waza/\" + sSkillName + \"/\" + sSkillName + \"_\";"
+    }
+  ]
+}

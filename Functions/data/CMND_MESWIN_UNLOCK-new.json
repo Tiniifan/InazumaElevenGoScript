@@ -1,0 +1,22 @@
+{
+  "name": "CMND_MESWIN_UNLOCK",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Clears the flag set by CMND_MESWIN_LOCK (bit 1 of the event system's state flags) and sets another one (bit 2). The events call it after the last message of a run started with CMND_MESWIN_LOCK. The engine code that reads the flags was not traced."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "After the last message of a conversation (real usage, from ev44010070.nut)",
+      "source": "real",
+      "code": "CreateSpeech(\"ev1700\", 0, true);\nStartBrightFade(SCREEN_A, -1.0, 30.0);\nCMND_MESWIN_UNLOCK();"
+    }
+  ]
+}

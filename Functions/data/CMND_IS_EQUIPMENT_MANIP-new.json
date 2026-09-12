@@ -1,0 +1,31 @@
+{
+  "name": "CMND_IS_EQUIPMENT_MANIP",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Returns what the first member of the party list (the character the player controls, as the scripts use it) has equipped in an equipment slot: the item's ID, or 0 for nothing."
+  },
+  "params": [
+    {
+      "name": "slot",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Equipment slot number (the scripts use 0)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The equipped item's ID, or 0 if the slot is empty or the player data is not found.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Nothing equipped yet (real usage, from ev42010450.nut)",
+      "source": "real",
+      "code": "if (CMND_IS_EQUIPMENT_MANIP(0) == 0)\n{\n\tlocal hCam = CMND_GET_ACT_CAMERA();\n\t// ...\n}"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "CMND_DELETE_GUEST_CHARA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Removes the guest (see CMND_CREATE_GUEST_CHARA) from the party data. The events delete the guest's model with CMND_DELETE_CHARA as well."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Dropping the guest (real usage, from ev42010900.nut)",
+      "source": "real",
+      "code": "local hHarunaL = CMND_GET_CHARA_HANDLE(2);\nCMND_DELETE_CHARA(hHarunaL);\nCMND_DELETE_GUEST_CHARA();"
+    }
+  ]
+}

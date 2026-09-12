@@ -1,0 +1,29 @@
+{
+  "name": "CMND_BTL_SET_CHARA_POS",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Places a player of one team at a given spot of the pitch, facing a given direction. The story matches use it after a scripted scene to put the players where the scene left them.\nThe position array is [x, z, rotY], the order the scripts' posXZRotY variables name. x and z are relative to the pitch: the engine multiplies them by the pitch size factors and adds the pitch origin (the same convention as CMND_BTL_SET_MATCH_RESTART). The height is always 0. rotY is the facing angle in radians (the scripts use 0.0 and 3.14).\nIf the player holds the ball, the ball moves with them.\nThe player can be given by parameter ID (searched among that team's players on the pitch) or by a position offset among them. Nothing happens if no player matches."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team of the player: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "player", "type": "string|integer", "required": true, "description": { "en": "Parameter ID (e.g. \"para_cp0008\") or position offset among the team's players on the pitch." } },
+    { "name": "posXZRotY", "type": "array", "required": true, "description": { "en": "[x, z, rotY]: pitch-relative x and z (e.g. 0.0, -0.4) and facing angle in radians." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when fewer than 3 arguments are given)." }
+  },
+  "examples": [
+    {
+      "case": "Placing two players after a scene, one turned around (real usage, from btl0003.nut)",
+      "source": "real",
+      "code": "// para_cp0008 at x 0.0, z -0.4, turned by 3.14 radians\nlocal posXZRotY = [0.0, -0.40000001, 3.1400001];\nCMND_BTL_SET_CHARA_POS(0, \"para_cp0008\", posXZRotY);\n// para_cp0009 a little further, facing the default way\nposXZRotY = [0.0, -0.60000002, 0.0];\nCMND_BTL_SET_CHARA_POS(0, \"para_cp0009\", posXZRotY);"
+    },
+    {
+      "case": "Inline arrays for the opponent (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "CMND_BTL_SET_CHARA_POS(1, \"para_cp0010\", [0.0, -0.2, 0.0]);\nCMND_BTL_SET_CHARA_POS(1, \"para_cp0047\", [0.25, -0.2, 0.0]);"
+    }
+  ]
+}

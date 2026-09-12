@@ -1,0 +1,57 @@
+{
+  "name": "CreateEvLowMdlForEventChrID",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a light (Low) model from the event character table: CMND_CREATE_CHARA(8, _charaName, _id, \"dmy\", false, _base, _mem). The table gives the character (para_cp or cn number) and the kit; an unknown ID gives 0. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "_charaName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object; the events use the character's name followed by L (light model) or H (detailed model)."
+      }
+    },
+    {
+      "name": "_id",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Event character ID."
+      }
+    },
+    {
+      "name": "_base",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "Passed in CMND_CREATE_CHARA's noBase slot."
+      }
+    },
+    {
+      "name": "_mem",
+      "type": "string",
+      "required": false,
+      "default": "DEV_MEM_NAME_EVENT",
+      "description": {
+        "en": "Memory area name."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character, 0 if the ID is unknown."
+    }
+  },
+  "examples": [
+    {
+      "case": "A character from the event table (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local hChr = CreateEvLowMdlForEventChrID(\"chrL\", eventCharaId);"
+    }
+  ]
+}

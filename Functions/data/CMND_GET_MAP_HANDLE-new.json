@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_MAP_HANDLE",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Returns the handle of the current map."
+  },
+  "params": [],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "The current map's handle.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Changing the current map's meshes (real usage, from mf15b01.nut)",
+      "source": "real",
+      "code": "local hMap = CMND_GET_MAP_HANDLE();\n// ...\nCMND_SET_MAP_MESH_VISIBLE(hMap, \"mf15b01.a_up\", 0);"
+    }
+  ]
+}

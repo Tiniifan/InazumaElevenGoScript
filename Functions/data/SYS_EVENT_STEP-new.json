@@ -1,0 +1,22 @@
+{
+  "name": "SYS_EVENT_STEP",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Advances the character movement manager by one step: for each of its 16 slots, a slot whose character no longer exists is freed, and the move or turn in progress is updated. CallEvent calls it once per frame; QuickTurn calls it when asked to (_ev_step). Scripts that wait on moves outside CallEvent call it themselves."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Waiting for turns in the NPC event (real usage, from ev43010000.nut)",
+      "source": "real",
+      "code": "if (!loop_ctrl && !loop_npc)\n{\n\tbreak;\n}\n\nSYS_EVENT_STEP();\nsuspend();"
+    }
+  ]
+}

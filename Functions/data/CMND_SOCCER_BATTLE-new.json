@@ -1,0 +1,68 @@
+{
+  "name": "CMND_SOCCER_BATTLE",
+  "kind": "native",
+  "category": "encounter",
+  "description": {
+    "en": "Starts a match: the match map (e.g. \"mf02b11\") and the battle ID (e.g. \"btl0308\", the match script). It prepares the match data (the battle ID), then schedules a jump to the match map. The place to come back to is the current map and the position and direction of the character the player controls.\nThe third argument is a flag stored with the match data when it is a boolean or an integer (the story events pass true; the challenge NPCs pass an empty table, which counts as false). With five arguments, the fourth (a map ID) and the fifth (an array [x, y, z, direction]) give another place to come back to."
+  },
+  "params": [
+    {
+      "name": "mapID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Match map, e.g. \"mf02b11\"."
+      }
+    },
+    {
+      "name": "battleID",
+      "type": "string|integer",
+      "required": true,
+      "description": {
+        "en": "Battle ID, e.g. \"btl0308\" (or its hash)."
+      }
+    },
+    {
+      "name": "flag",
+      "type": "boolean|table",
+      "required": false,
+      "description": {
+        "en": "Stored with the match data (true in story matches)."
+      }
+    },
+    {
+      "name": "returnMap",
+      "type": "string",
+      "required": false,
+      "description": {
+        "en": "Map to come back to (with returnPos)."
+      }
+    },
+    {
+      "name": "returnPos",
+      "type": "array",
+      "required": false,
+      "description": {
+        "en": "[x, y, z, direction] to come back to."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once scheduled, false if the jump could not be scheduled.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A story match (real usage, from ev42061300.nut)",
+      "source": "real",
+      "code": "CMND_SET_GLOBAL_BIT_FLAG(516);\nCMND_SET_GLOBAL_BIT_FLAG(517);\nCMND_SOCCER_BATTLE(\"mf02b11\", \"btl0308\", true);"
+    },
+    {
+      "case": "A challenge NPC's match (real usage, from ie4_ev_sub_enc.nut)",
+      "source": "real",
+      "code": "EncountEffect();\nCMND_SOCCER_BATTLE(mapID, btlID, {});"
+    }
+  ]
+}

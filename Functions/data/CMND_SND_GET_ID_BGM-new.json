@@ -1,0 +1,22 @@
+{
+  "name": "CMND_SND_GET_ID_BGM",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Returns the name of the track on the BGM channel (e.g. \"M_08\"), or an empty string if none. The ev_main helper SaveBgmHistory stores it with CMND_SND_GET_POS_BGM so OpenBgmHistory can reopen the same track later."
+  },
+  "params": [],
+  "returns": {
+    "type": "string|null",
+    "description": {
+      "en": "Name of the current BGM, \"\" if none.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Remembering the current music (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "SaveBgmHistory <- function ()\n{\n\thistory_bgm_name = CMND_SND_GET_ID_BGM();\n\thistory_bgm_pos = CMND_SND_GET_POS_BGM();\n};"
+    }
+  ]
+}

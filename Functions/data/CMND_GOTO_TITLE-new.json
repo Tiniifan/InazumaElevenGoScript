@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GOTO_TITLE",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Sends the game back to the title screen: it stores the game's current state value, sets it to 2 and calls two engine routines (not traced further). The ev_main helper GameOver calls it last."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once requested.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "End of GameOver (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "while (CMND_SND_IS_PLAYING(hEvSnd))\n{\n\tsuspend();\n}\n\nCMND_SND_CLOSE(hEvSnd, 30);\nCMND_DELETE_IMAGE(hImg);\nCMND_GOTO_TITLE();"
+    }
+  ]
+}

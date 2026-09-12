@@ -1,0 +1,47 @@
+{
+  "name": "CMND_GET_CAMERA_POSREF",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Copies a camera's position into the array pos and, when a third argument is given, its look-at point into ref. The arrays must already have 3 elements."
+  },
+  "params": [
+    {
+      "name": "hCamera",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Camera handle (CMND_GET_ACT_CAMERA, CMND_LOAD_CAMERA, CMND_CREATE_CAMERA)."
+      }
+    },
+    {
+      "name": "pos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Receives [x, y, z] of the position."
+      }
+    },
+    {
+      "name": "ref",
+      "type": "array",
+      "required": false,
+      "description": {
+        "en": "Receives [x, y, z] of the look-at point."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once copied.\nnull if the camera is not found, the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside CamCtrlReset (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_GET_CAMERA_POSREF(_hcam, cam_ctrl.now_pos, cam_ctrl.now_ref);\nCMND_GET_CAMERA_POSREF(_hcam, cam_ctrl.prev_pos, cam_ctrl.prev_ref);"
+    }
+  ]
+}

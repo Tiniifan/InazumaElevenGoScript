@@ -1,0 +1,28 @@
+{
+  "name": "CMND_BTL_SET_ACTIVE_EVENT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Asks the match to switch into event mode (to play a scene in the middle of a match) or back out of it. It only posts the request; the match carries it out over the next frames, waiting for its screen transitions, then clears the request. Wait for that with CMND_BTL_IS_FINISH_ACTEV.\n\nSwitching in reconfigures the match scene for the event; several of those display changes depend on the second argument, which says whether the event uses the top screen. Switching out restores the match scene.\nThe ev_main helpers StartScEvent and EndScEvent wrap it: they call it with 1 or 0, then wait until CMND_BTL_IS_FINISH_ACTEV() is true."
+  },
+  "params": [
+    { "name": "active", "type": "integer", "required": true, "description": { "en": "1 (any non-zero value) to enter event mode, 0 to leave it." } },
+    { "name": "isUpper", "type": "integer", "required": true, "description": { "en": "Non-zero if the event is shown on the top screen (StartScEvent passes its _is_upper argument)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the request is posted.\nnull if the script system is not ready or fewer than 2 arguments are given." }
+  },
+  "examples": [
+    {
+      "case": "Entering event mode at the start of an in-match scene (real code, from ie4_ev_main.nut, StartScEvent)",
+      "source": "real",
+      "code": "// Only during a match\nlocal isActive = CMND_IS_SOCCER_ACTIVE();\nif (!isActive)\n{\n\treturn;\n}\n\n// Ask for event mode, then wait until the match has switched\nCMND_BTL_SET_ACTIVE_EVENT(1, _is_upper);\nwhile (!CMND_BTL_IS_FINISH_ACTEV())\n{\n\tsuspend();\n}"
+    },
+    {
+      "case": "Leaving event mode at the end of the scene (real code, from ie4_ev_main.nut, EndScEvent)",
+      "source": "real",
+      "code": "CMND_BTL_SET_ACTIVE_EVENT(0, _is_upper);\neventGoalMouseHdl = 0;\n\nwhile (!CMND_BTL_IS_FINISH_ACTEV())\n{\n\tsuspend();\n}"
+    }
+  ]
+}

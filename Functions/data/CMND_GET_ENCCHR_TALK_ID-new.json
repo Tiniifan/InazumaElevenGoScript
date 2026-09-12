@@ -1,0 +1,39 @@
+{
+  "name": "CMND_GET_ENCCHR_TALK_ID",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Returns one of the message IDs of a challenge NPC: kind 0, 1, 2 or 3 selects which (the challenge script passes its lose value). The challenge NPCs of a map (the characters that start a match when talked to) are kept in a table of the script system, by index; the challenge script ie4_ev_sub_enc.nut uses these commands."
+  },
+  "params": [
+    {
+      "name": "index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Challenge table index."
+      }
+    },
+    {
+      "name": "kind",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Message kind, 0 to 3."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The message ID, or 0 if the entry is empty or the kind is not 0 to 3.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "After a challenge match (real usage, from ie4_ev_sub_enc.nut)",
+      "source": "real",
+      "code": "local encIndex = CMND_GET_ENCCHR_INDEX();\n\nif (encIndex >= 0)\n{\n\tlocal encChrHdl = CMND_GET_ENCCHR_HANDLE(encIndex);\n\tlocal mesID = CMND_GET_ENCCHR_TALK_ID(encIndex, lose);\n\t// ...\n}"
+    }
+  ]
+}

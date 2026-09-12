@@ -1,0 +1,53 @@
+{
+  "name": "CMND_SKILL_UNLOCK",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Makes a party member learn a technique: the member (by parameter ID) must have that technique among the 6 of their list, which is then marked as learned. The optional third argument (default true) is stored with it."
+  },
+  "params": [
+    {
+      "name": "paramID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Parameter ID, e.g. \"para_cp0008\"."
+      }
+    },
+    {
+      "name": "skillID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Technique ID, e.g. \"whd0008\"."
+      }
+    },
+    {
+      "name": "flag",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "Stored with the technique (not traced further)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once done (also when the technique is not in the member's list).\nnull if the member is not in the party, the data is not available, the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "After winning a match (real usage, from btl0308.nut)",
+      "source": "real",
+      "code": "if (isWin)\n{\n\tCMND_SET_GLOBAL_BIT_FLAG(518, 1);\n\tCMND_SKILL_UNLOCK(\"para_cp0008\", \"whd0008\");\n}"
+    },
+    {
+      "case": "Inside RunUnlockSkillEx (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_MESSAGE_REPLACE_CHARA(_index, CMND_GET_HASH(_chr), true, false);\nCMND_MESSAGE_REPLACE_SKILL(_index, _skill);\nCreateSpeech(_event);\nCMND_SKILL_UNLOCK(_chr, _skill);"
+    }
+  ]
+}

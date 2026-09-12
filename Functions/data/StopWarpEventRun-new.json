@@ -1,0 +1,49 @@
+{
+  "name": "StopWarpEventRun",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Like StopEventRun, but the player is put back by a warp instead of walking: the player character turns to _roty (30 frames) while the message _txt_id is shown, then the screen fades to black and the character is placed at _pos facing _roty with the stand motion (SetCharaPosAndMotName). The warp is applied (CMND_CHR_WARP_SET) and camera control ends."
+  },
+  "params": [
+    {
+      "name": "_txt_id",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Message ID."
+      }
+    },
+    {
+      "name": "_pos",
+      "type": "array",
+      "required": false,
+      "default": "[0, 0, 0]",
+      "description": {
+        "en": "Position [x, y, z] to put the player at."
+      }
+    },
+    {
+      "name": "_roty",
+      "type": "float",
+      "required": false,
+      "default": "0",
+      "description": {
+        "en": "Direction in degrees."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A whole event made of it (real usage, from ev45010001.nut)",
+      "source": "real",
+      "code": "Event <- function ()\n{\n\tStopWarpEventRun(\"ev100\", [-105.0, 1.0, 405.0], 90);\n};"
+    }
+  ]
+}

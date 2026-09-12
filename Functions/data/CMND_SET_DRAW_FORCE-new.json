@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_DRAW_FORCE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Forces a character to be drawn (a flag of the character) and adds it to the event's list of kept characters. Note that the optional second argument is read as a string: without it the flag is set, but a boolean there reads as no string and clears the flag."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "flag",
+      "type": "string",
+      "required": false,
+      "description": {
+        "en": "Leave it out to set the flag."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "null once done; false if the character is not found.\nnull too if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A guest that must stay visible (real usage, from ev42010600.nut)",
+      "source": "real",
+      "code": "local hHarunaL = CMND_CREATE_GUEST_CHARA(1, 4);\nCMND_SET_DRAW_FORCE(hHarunaL);"
+    }
+  ]
+}

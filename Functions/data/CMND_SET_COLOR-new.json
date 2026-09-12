@@ -1,0 +1,55 @@
+{
+  "name": "CMND_SET_COLOR",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Sets the color of an object: red, green and blue values (it sets both the current and the stored color). No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle."
+      }
+    },
+    {
+      "name": "r",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Red."
+      }
+    },
+    {
+      "name": "g",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Green."
+      }
+    },
+    {
+      "name": "b",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Blue."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set.\nnull if the object is not found, the script system is not ready or fewer than 4 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Tinting a model (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "CMND_SET_COLOR(hModel, 1.0, 0.5, 0.5);"
+    }
+  ]
+}

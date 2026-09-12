@@ -1,0 +1,66 @@
+{
+  "name": "SetGameSubPhase_Serious",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "SetGameSubPhase with the jingle J_18 instead of J_10 for the objective effect (the name suggests a serious turn of the story)."
+  },
+  "params": [
+    {
+      "name": "_subPhase",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Sub-phase number."
+      }
+    },
+    {
+      "name": "_ppsEffFlag",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to play the objective update effect."
+      }
+    },
+    {
+      "name": "_fade_out",
+      "type": "float",
+      "required": false,
+      "default": "15.0",
+      "description": {
+        "en": "Fade-out length in frames."
+      }
+    },
+    {
+      "name": "_fade_in",
+      "type": "float",
+      "required": false,
+      "default": "15.0",
+      "description": {
+        "en": "Fade-in length; below 0 to stay dark."
+      }
+    },
+    {
+      "name": "_scr",
+      "type": "integer",
+      "required": false,
+      "default": "SCREEN_AB",
+      "description": {
+        "en": "Screen(s) to fade."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Staying dark after the change (real usage, from ev42010850.nut)",
+      "source": "real",
+      "code": "SetGameSubPhase_Serious(10020030, true, EV_FADE_SLOW, -1.0, SCREEN_AB);"
+    }
+  ]
+}

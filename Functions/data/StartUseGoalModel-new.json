@@ -1,0 +1,32 @@
+{
+  "name": "StartUseGoalModel",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates the soccer goal model used in in-match scenes (data/chr/option/goal01.xc, via CMND_CREATE_CHARA kind 3), waits for it to load, shows it and returns its handle. Remove it with EndUseGoalModel."
+  },
+  "params": [
+    {
+      "name": "_shadow",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to give the goal a shadow."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the goal model."
+    }
+  },
+  "examples": [
+    {
+      "case": "A goal behind the characters of a scene (real usage, from ev44020010.nut)",
+      "source": "real",
+      "code": "local goal_hdl = StartUseGoalModel();\n// ... scene ...\nEndUseGoalModel(goal_hdl);"
+    }
+  ]
+}

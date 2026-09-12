@@ -1,0 +1,22 @@
+{
+  "name": "CMND_MESWIN_GET_SEL",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Returns the choice the player picked in the last message that offered one (the SEL value of the message window). The events read it right after the CreateSpeech that asked the question."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "Index of the chosen answer (0 for the first), -1 if no choice was made.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "A yes/no question (real usage, from ev44029999.nut)",
+      "source": "real",
+      "code": "CreateSpeech(\"tlk_ev1002\");\nlocal ret = CMND_MESWIN_GET_SEL();\n\nif (ret == 0)\n{\n\t// first answer\n}"
+    }
+  ]
+}

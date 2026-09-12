@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GET_TEMP_BIT_FLAG",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Reads a temporary bit flag. Temporary bit flags are a separate table of 128 bits (numbers 0 to 127) in the flag data, used by the system scripts for short-lived states (by the name; when they are cleared was not traced)."
+  },
+  "params": [
+    {
+      "name": "flag",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Flag number, 0 to 127."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true if the flag is set, false otherwise (also false if the flag data is not available).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Testing a temporary flag (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local heal_bit = 11;\n\nif (CMND_GET_TEMP_BIT_FLAG(heal_bit))\n{\n\t// the rest area dialogue is running\n}"
+    }
+  ]
+}

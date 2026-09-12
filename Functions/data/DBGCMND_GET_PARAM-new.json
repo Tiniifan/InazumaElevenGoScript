@@ -1,0 +1,31 @@
+{
+  "name": "DBGCMND_GET_PARAM",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "A debug command left in the retail game as a stub: with at least one argument it returns 0, otherwise null. It does not read anything. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "param",
+      "type": "any",
+      "required": true,
+      "description": {
+        "en": "Ignored."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "0, or null when no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Always 0 (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local value = DBGCMND_GET_PARAM(\"anything\"); // 0"
+    }
+  ]
+}

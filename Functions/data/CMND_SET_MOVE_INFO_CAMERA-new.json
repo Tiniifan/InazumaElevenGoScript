@@ -1,0 +1,63 @@
+{
+  "name": "CMND_SET_MOVE_INFO_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Starts an engine camera move: the camera goes to the position pos and the look-at point ref over the given number of frames, following the curve type. The previous move is cancelled. The ev_main helper CamCtrlMoveTo calls it, and sysCamCtrlStep then applies the move with CMND_GET_MOVE_INFO_CAMERA."
+  },
+  "params": [
+    {
+      "name": "hCamera",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Camera handle (CMND_GET_ACT_CAMERA, CMND_LOAD_CAMERA, CMND_CREATE_CAMERA)."
+      }
+    },
+    {
+      "name": "pos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Target position [x, y, z]."
+      }
+    },
+    {
+      "name": "ref",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Target look-at point [x, y, z]."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Length of the move in frames."
+      }
+    },
+    {
+      "name": "type",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Move type (CamCtrlMoveTo's _mv_type)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (also when fewer than 5 arguments are given, in which case nothing starts)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside CamCtrlMoveTo (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_SET_MOVE_INFO_CAMERA(_hcam, move.pos, move.ref, _mv_frame, _mv_type);"
+    }
+  ]
+}

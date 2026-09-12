@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GET_PRE_CTRL_CHARA_POS",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Copies a position kept by the script system for the controlled character into an array (at most 3 values: x, y, z). By its name and its use in ev43040000, where the player is walked back to it before leaving, it is where the character stood before the event."
+  },
+  "params": [
+    {
+      "name": "pos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Receives [x, y, z]."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once copied.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Walking the player back (real usage, from ev43040000.nut)",
+      "source": "real",
+      "code": "local ctrlHdl = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC);\nlocal pos = [\n\t0.0,\n\t0.0,\n\t0.0\n];\nCMND_GET_PRE_CTRL_CHARA_POS(pos);"
+    }
+  ]
+}

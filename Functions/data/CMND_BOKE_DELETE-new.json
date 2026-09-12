@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BOKE_DELETE",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Fades the out-of-focus blur (\"boke\") to a given strength over a number of frames, then turns the effect off. It is the counterpart of CMND_BOKE_CREATE; the game fades it to 0.0 at the end of each dialogue scene (ev_main's EndStandEvent)."
+  },
+  "params": [
+    { "name": "strength", "type": "float", "required": true, "description": { "en": "Strength to fade to before the effect is removed, normally 0.0." } },
+    { "name": "frames", "type": "float", "required": true, "description": { "en": "Length of the fade-out, in frames." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the fade-out has been started.\nnull if the engine is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Ending a dialogue scene (real usage, from ev_main's EndStandEvent)",
+      "source": "real",
+      "code": "// Put the camera's depth of field back to what it was before the scene,\n// fade the blur out, then wait for the transition.\nlocal hCam = CMND_GET_ACT_CAMERA();\nCMND_DEPTHLEVEL_FADE(hCam, EV_TALK_DP_LVL_TMP, _frm);\nCMND_DEPTHRANGE_FADE(hCam, 1.5, 1.0, _frm);\nCMND_BOKE_DELETE(0.0, 7.0);\nWaitFrame(_frm);"
+    }
+  ]
+}

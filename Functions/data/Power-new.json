@@ -1,0 +1,39 @@
+{
+  "name": "Power",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Raises _bas to the whole power _pow by repeated multiplication. Any _pow of 0 or less gives 1. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "_bas",
+      "type": "integer|float",
+      "required": true,
+      "description": {
+        "en": "Base."
+      }
+    },
+    {
+      "name": "_pow",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Exponent (whole number; 0 or less gives 1)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|float",
+    "description": {
+      "en": "_bas multiplied by itself _pow times, or 1."
+    }
+  },
+  "examples": [
+    {
+      "case": "Computing 2 to the power 5 (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local value = Power(2, 5); // 32"
+    }
+  ]
+}

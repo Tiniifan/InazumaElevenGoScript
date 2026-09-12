@@ -1,0 +1,57 @@
+{
+  "name": "ObjFade",
+  "kind": "ev_main",
+  "category": "image-ui",
+  "description": {
+    "en": "Fades an object's alpha from _alp_bgn to _alp_end over _frm frames, frame by frame (CMND_SET_ALPHA and suspend()), and returns the frames it took. Note that the last step sets the alpha to (elapsed frames / _frm) rather than to _alp_end, which only matches for the default 0.0 to 1.0 fade."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle (image, model...)."
+      }
+    },
+    {
+      "name": "_frm",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Length in frames."
+      }
+    },
+    {
+      "name": "_alp_bgn",
+      "type": "float",
+      "required": false,
+      "default": "0.0",
+      "description": {
+        "en": "Starting alpha."
+      }
+    },
+    {
+      "name": "_alp_end",
+      "type": "float",
+      "required": false,
+      "default": "1.0",
+      "description": {
+        "en": "Final alpha."
+      }
+    }
+  ],
+  "returns": {
+    "type": "float",
+    "description": {
+      "en": "Number of frames elapsed."
+    }
+  },
+  "examples": [
+    {
+      "case": "Fading a picture in (real usage, from ev42051600.nut; the Shift-JIS image name is replaced by a variable here)",
+      "source": "real",
+      "code": "local hImg2 = CMND_LOAD_IMAGE(imageName, \"data/img/cut0504.xi\");\n// ...\nObjFade(hImg2, EV_FADE_SLOW);"
+    }
+  ]
+}

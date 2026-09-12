@@ -1,0 +1,31 @@
+{
+  "name": "DegToRad",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Converts an angle from degrees to radians: _r * 3.1415927 / 180.0. ie4_ev_main.nut uses it in GetDistRotCameraPos."
+  },
+  "params": [
+    {
+      "name": "_r",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Angle in degrees."
+      }
+    }
+  ],
+  "returns": {
+    "type": "float",
+    "description": {
+      "en": "The angle in radians."
+    }
+  },
+  "examples": [
+    {
+      "case": "Use in GetDistRotCameraPos (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local rh = DegToRad(_dhv[1]);\nlocal rv = DegToRad(_dhv[2]);"
+    }
+  ]
+}

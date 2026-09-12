@@ -1,0 +1,29 @@
+{
+  "name": "CMND_BTL_CHANGR_MEMBER_POS",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Moves a match player to another position of the formation. The player swaps places with whoever occupied that position, both in the team's match roster and in the on-pitch player data.\nThe story match scripts call it in InitBtl, right after building a fixed squad with CMND_BTL_ADD_MEMBER, to put each player where the scene needs them.\n(\"CHANGR\" is the developers' typo for CHANGE; the function has to be called with this spelling.)"
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team of the player: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Player parameter ID, e.g. \"para_cp0001\". It must be a string (it is hashed with CRC32 to find the player)." } },
+    { "name": "position", "type": "integer", "required": true, "description": { "en": "Formation position to move the player to, counted from 1 (the engine subtracts 1 internally)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has run, including when the player was not found (then nothing moves).\nnull if the match system is not ready or fewer than 3 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Arranging a fixed story squad (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "// Add the squad, then place the first players on specific positions.\n// Each call swaps the player with the one already on that position.\nCMND_BTL_ADD_MEMBER(0, \"para_cp0001\", 1, 1);\nCMND_BTL_ADD_MEMBER(0, \"para_cp0002\", 1, 2);\nCMND_BTL_ADD_MEMBER(0, \"para_cp0003\", 1, 3);\nCMND_BTL_ADD_MEMBER(0, \"para_cp0004\", 1, 4);\nCMND_BTL_CHANGR_MEMBER_POS(0, \"para_cp0001\", 1);\nCMND_BTL_CHANGR_MEMBER_POS(0, \"para_cp0003\", 2);\nCMND_BTL_CHANGR_MEMBER_POS(0, \"para_cp0004\", 3);\nCMND_BTL_CHANGR_MEMBER_POS(0, \"para_cp0002\", 4);"
+    },
+    {
+      "case": "Putting a player of the player's own team on a given position (real usage, from btl0304.nut)",
+      "source": "real",
+      "code": "// para_cp0005 was not added by the script: it comes from the player's\n// team, and is moved to position 4 of the 5-a-side line-up.\nCMND_BTL_CHANGR_MEMBER_POS(0, \"para_cp0005\", 4);"
+    }
+  ]
+}

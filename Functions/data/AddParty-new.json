@@ -3,29 +3,34 @@
   "kind": "ev_main",
   "category": "party",
   "description": {
-    "en": "Adds a party member silently (no message/jingle), setting up their position lock, Fighting Spirit enable/lock flags, and optionally their level, via CMND_ADD_PARTY and its follow-up CMND_SET_*_FLAG calls. Does nothing extra if CMND_ADD_PARTY fails (returns a non-positive handle)."
+    "en": "Adds a character to the party with no message and no jingle, then sets their flags. It is what every AddParty_* and AddPartyNum_* helper calls for each character.\nIt calls CMND_ADD_PARTY; if that returns a handle greater than 0, it passes the flags to CMND_SET_PT_LOCK_FLAG, CMND_SET_AVATAR_ENABLE and CMND_SET_AVATAR_LOCK_FLAG, and sets the level with CMND_SET_LV when _lv is greater than 0. If CMND_ADD_PARTY returns 0 or less, nothing else happens."
   },
   "params": [
-    { "name": "_paramID", "type": "string", "required": true, "description": { "en": "Param ID of the character to add to the party." } },
-    { "name": "_ptLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's position slot." } },
-    { "name": "_avatarEnable", "type": "boolean", "required": true, "description": { "en": "Whether to enable the member's Fighting Spirit." } },
-    { "name": "_avatarLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's Fighting Spirit." } },
-    { "name": "_lv", "type": "integer", "required": false, "default": "-1 (don't change the member's level)", "description": { "en": "Level to set for the new member." } }
+    {"name": "_paramID", "type": "string", "required": true, "description": {"en": "Parameter ID of the character to add, e.g. \"para_cp0015\"."}},
+    {"name": "_ptLock", "type": "boolean", "required": true, "description": {"en": "Passed to CMND_SET_PT_LOCK_FLAG for the new member. Every shipped call passes true."}},
+    {"name": "_avatarEnable", "type": "boolean", "required": true, "description": {"en": "Passed to CMND_SET_AVATAR_ENABLE (whether the member's Fighting Spirit is enabled). Most shipped calls pass false; a few later events pass true for para_cp0009 and para_cp0010."}},
+    {"name": "_avatarLock", "type": "boolean", "required": true, "description": {"en": "Passed to CMND_SET_AVATAR_LOCK_FLAG for the new member."}},
+    {"name": "_lv", "type": "integer", "required": false, "default": "-1 (keep the current level)", "description": {"en": "Level to give the member with CMND_SET_LV. Only used when greater than 0."}}
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": { "en": "Always null (no return statement)." }
   },
   "examples": [
     {
-      "case": "Adding a party member without changing their level (real usage, from ev42010100.nut)",
+      "case": "A member joining silently, level unchanged (real usage, from ev42010100.nut)",
       "source": "real",
-      "code": "// Add a party member silently, without a message or jingle, keeping their current level\nAddParty(\"para_cp0008\", true, false, false);"
+      "code": "AddParty(\"para_cp0008\", true, false, false);"
     },
     {
-      "case": "Adding a party member and setting their level (real usage, from ev42020900.nut)",
+      "case": "Setting the level too (real usage, from ev42020900.nut)",
       "source": "real",
-      "code": "// Add a party member silently and set their level to 6\nAddParty(\"para_cp0010\", true, false, false, 6);"
+      "code": "// para_cp0010 joins at level 6\nAddParty(\"para_cp0010\", true, false, false, 6);"
+    },
+    {
+      "case": "With the Fighting Spirit enabled (real usage, from ev42123700.nut)",
+      "source": "real",
+      "code": "AddParty(\"para_cp0009\", true, true, true);"
     }
   ]
 }

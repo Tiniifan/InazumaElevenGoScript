@@ -1,0 +1,24 @@
+{
+  "name": "CMND_BTLEV_MOVECHARA",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Meant to move a match player to a position during a scripted match event, but it does nothing in this build.\nThe native checks for 3 arguments, reads the position array (argument 2) and the integer (argument 3), never even reads the handle, and returns true without moving anything. It is never called by the shipped scripts. Use CMND_BTL_SET_CHARA_POS to place a match player instead."
+  },
+  "params": [
+    { "name": "handle", "type": "handle", "required": true, "description": { "en": "Counted in the argument check but never read." } },
+    { "name": "position", "type": "array", "required": true, "description": { "en": "3-element array [x, y, z]. Read, then ignored." } },
+    { "name": "value", "type": "integer", "required": true, "description": { "en": "Read, then ignored." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "Always true when 3 or more arguments are given (this only means the arguments were accepted).\nnull if the match system is not ready or fewer than 3 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Use CMND_BTL_SET_CHARA_POS instead (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// This call is accepted but moves nobody:\nCMND_BTLEV_MOVECHARA(0, [0.0, 0.0, 0.0], 0);\n// This one actually places the player (side 0, X, Z, facing):\nCMND_BTL_SET_CHARA_POS(0, \"para_cp0008\", [0.0, 0.0, 0.0]);"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GET_AVATAR_LOCK_FLAG",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns a player's spirit lock flag (a flag of the player's record; by the name, a locked spirit cannot be changed). RunAttachAvatarEx saves it, unlocks the spirit to attach a new one, then restores it."
+  },
+  "params": [
+    {
+      "name": "playerHandle",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Player handle (CMND_ADD_PARTY, CMND_GET_PARTY_HANDLE)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true if locked, false if not or if the handle is 0 or invalid.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Attaching a spirit (real code, from ie4_ev_main.nut, RunAttachAvatarEx)",
+      "source": "real",
+      "code": "local hdl = CMND_GET_PARTY_HANDLE(_chr);\nlocal lock = CMND_GET_AVATAR_LOCK_FLAG(hdl);\nCMND_SET_AVATAR_ENABLE(hdl, true);\nCMND_SET_AVATAR_LOCK_FLAG(hdl, false);\nCMND_ATTACH_AVATAR(_chr, _avt);\nCMND_SET_AVATAR_LOCK_FLAG(hdl, lock);"
+    }
+  ]
+}

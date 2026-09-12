@@ -1,0 +1,47 @@
+{
+  "name": "CMND_RESERVE_MAP_JUMP",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Schedules a jump to another map, done when the event ends: the map ID and the arrival position and direction are stored. The ev_main helper ReserveMapJump wraps it.\nThe position array is read for up to 4 numbers (x, y, z, direction in degrees); missing values are 0. When a third argument is given, it sets (true) or clears (false) bit 0x80 of the event system flags; ReserveMapJump calls this argument bgmOff (its effect on the BGM was not traced)."
+  },
+  "params": [
+    {
+      "name": "mapID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Destination map, e.g. \"mr01b06\"."
+      }
+    },
+    {
+      "name": "pos",
+      "type": "array",
+      "required": false,
+      "description": {
+        "en": "[x, y, z, direction]; values missing from the array are 0."
+      }
+    },
+    {
+      "name": "bgmOff",
+      "type": "boolean",
+      "required": false,
+      "description": {
+        "en": "Sets or clears event flag bit 0x80 (named bgmOff by ReserveMapJump)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once scheduled.\nnull if pos is given but is not an array, the jump could not be scheduled, the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside ReserveMapJump (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "ReserveMapJump <- function ( mapID, pos, bgmOff = false )\n{\n\tCMND_RESERVE_MAP_JUMP(mapID, pos, bgmOff);\n};"
+    }
+  ]
+}

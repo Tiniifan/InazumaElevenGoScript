@@ -1,0 +1,22 @@
+{
+  "name": "IsTalkLock",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Tells whether a talk lock is active, by reading global flag 1403 (set by StartTalkLock, cleared by EndTalkLock). No shipped script calls it."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean",
+    "description": {
+      "en": "true if global flag 1403 is 1, false otherwise."
+    }
+  },
+  "examples": [
+    {
+      "case": "Checking before starting another talk lock (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "if (!IsTalkLock())\n{\n\tStartTalkLock(TL_TYPE_B, 1, \"evc0001\");\n}"
+    }
+  ]
+}

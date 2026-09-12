@@ -1,0 +1,100 @@
+{
+  "name": "SetChrPrmDetailForSkillScript",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Sets one participant of the next skill scene: the character para_cpNNNN (NNNN = _face) with the given kit. It calls CMND_SETUP_SKL_SQ_CHARA(_side, _index, 1, ...). The shirt number is ignored for uniforms 900 and above."
+  },
+  "params": [
+    {
+      "name": "_side",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Side of the skill scene: \"ATK\" (attacking side) or \"DEF\" (defending side)."
+      }
+    },
+    {
+      "name": "_index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Participant number on that side, starting at 1."
+      }
+    },
+    {
+      "name": "_face",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Character number NNNN of para_cpNNNN, e.g. 8."
+      }
+    },
+    {
+      "name": "_body",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Uniform (kit) number, e.g. 1, or 901 for a special outfit."
+      }
+    },
+    {
+      "name": "_home",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true for the home kit."
+      }
+    },
+    {
+      "name": "_keeper",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true for the goalkeeper outfit."
+      }
+    },
+    {
+      "name": "_shoes_no",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Shoes number."
+      }
+    },
+    {
+      "name": "_glove_no",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Gloves number."
+      }
+    },
+    {
+      "name": "_number",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Shirt number."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A goalkeeper (real usage, from ev42011800.nut)",
+      "source": "real",
+      "code": "CMND_INIT_SKILL_SCRIPT();\nSetChrPrmDetailForSkillScript(\"DEF\", 1, 41, 2, true, true, 2, 2, 1);\nRunSkillScript(\"vsk0001\", \"mv01i21\", 0, 0, true, false);"
+    },
+    {
+      "case": "Two attackers in special outfits (real usage, from ev42019997.nut)",
+      "source": "real",
+      "code": "CMND_INIT_SKILL_SCRIPT();\nSetChrPrmDetailForSkillScript(\"ATK\", 1, 8, 901, true, false, 0, 0, 0);\nSetChrPrmDetailForSkillScript(\"ATK\", 2, 9, 902, true, false, 0, 0, 0);\nSetChrPrmDetailForSkillScript(\"DEF\", 1, 10, 903, true, false, 0, 0, 0);\nRunSkillScript(\"who0016\", \"mv01b01\", 0, 0, true, true, true);"
+    }
+  ]
+}

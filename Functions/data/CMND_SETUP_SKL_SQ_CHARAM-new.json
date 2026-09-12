@@ -1,0 +1,56 @@
+{
+  "name": "CMND_SETUP_SKL_SQ_CHARAM",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Sets one participant of the next skill scene from a team member, by parameter ID.\nWhen the soccer scene exists, the character is looked up in the team rosters (team 0 or 1; 2 or more searches every team by parameter ID) and its kit is copied: uniform, home or away, goalkeeper outfit, shoes, gloves (goalkeepers only) and shirt number. Otherwise, or if the character is not found, a default kit is written: uniform 1, home, not goalkeeper, shoes 1, no gloves, number 1. The shirt number is written as 0 for uniforms 900 and above."
+  },
+  "params": [
+    {
+      "name": "side",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Side of the skill scene: \"ATK\" (attacking side) or \"DEF\" (defending side)."
+      }
+    },
+    {
+      "name": "index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Participant number on that side, starting at 1."
+      }
+    },
+    {
+      "name": "paramID",
+      "type": "string|integer",
+      "required": true,
+      "description": {
+        "en": "Parameter ID, e.g. \"para_cp0008\" (or its hash)."
+      }
+    },
+    {
+      "name": "team",
+      "type": "integer",
+      "required": false,
+      "default": "2",
+      "description": {
+        "en": "Team slot: 0 = the player's team, 1 = the opponent. 2 or more searches every team."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (null if the script system is not ready, fewer than 3 arguments or the table set up for another scene kind: nothing is written)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside SetChrPrmDetailForSkillScriptAtMatch (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "SetChrPrmDetailForSkillScriptAtMatch <- function ( _side, _index, _paramID, _team = 2 )\n{\n\tCMND_SETUP_SKL_SQ_CHARAM(_side, _index, _paramID, _team);\n};"
+    }
+  ]
+}

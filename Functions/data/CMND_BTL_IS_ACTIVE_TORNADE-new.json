@@ -1,0 +1,27 @@
+{
+  "name": "CMND_BTL_IS_ACTIVE_TORNADE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Tells whether a tornado is currently active on the pitch.\nIt reads the active field of the tornado's entry in the pitch-object table: CMND_BTL_ACTIVE_TORNADE sets that field to 1 (or 3 for the stronger variant), and a freshly reserved tornado starts at 0."
+  },
+  "params": [
+    { "name": "handle", "type": "integer", "required": true, "description": { "en": "Tornado handle returned by CMND_BTL_REG_TORNADE." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true if the tornado is active, false if it is not.\nnull if the match system is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "A map helper that checks the first tornado (real usage, from mf11b01.nut)",
+      "source": "real",
+      "code": "// Report whether the first tornado of the map is out on the pitch\nIsActiveTornade <- function ()\n{\n\tif (CMND_BTL_IS_ACTIVE_TORNADE(hTornade[0]))\n\t{\n\t\treturn true;\n\t}\n\n\treturn false;\n};"
+    },
+    {
+      "case": "Only placing a tornado that is not out yet",
+      "source": "invented",
+      "code": "// Avoid moving a tornado that is already active\nif (!CMND_BTL_IS_ACTIVE_TORNADE(hTornade[1]))\n{\n\tCMND_BTL_ACTIVE_TORNADE(hTornade[1], 0.0, 120.0);\n}"
+    }
+  ]
+}

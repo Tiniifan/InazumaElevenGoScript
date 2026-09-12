@@ -1,0 +1,29 @@
+{
+  "name": "CMND_CHR_WARP_SET",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Asks for a one-time \"warp\" of a character: on the character's next update, the engine places the model directly at the character's current position, then clears the request. With false, the pending request is cancelled instead.\nThe events call it at their end on the characters they moved (279 of the 280 shipped calls pass true), usually just before handing the camera back with SetExitRpgCamera and CamCtrlExit.\n\nWith true as third argument, it also resets three movement fields of the character (their meaning was not identified). This is used once, in ev42012200.nut.\nThe handle must be valid: when it matches no character, the native pushes 0 but does not stop, and goes on writing into the missing object."
+  },
+  "params": [
+    { "name": "hChara", "type": "handle", "required": true, "description": { "en": "Character handle, e.g. from CMND_GET_CHARA_HANDLE." } },
+    { "name": "warp", "type": "boolean", "required": true, "description": { "en": "true to request the warp, false to cancel a pending one." } },
+    { "name": "resetMove", "type": "boolean", "required": false, "default": "false", "description": { "en": "true to also reset three movement fields of the character." } }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": { "en": "0.\nnull if the script system is not ready or fewer than 2 arguments are given." }
+  },
+  "examples": [
+    {
+      "case": "End of an event, before giving the camera back (real usage, from ev42010200.nut)",
+      "source": "real",
+      "code": "WaitEvLowMdlMoving(hTenmaL);\nWaitCamCtrlMoving(hCam);\n// Snap the player character to where the event left them\nCMND_CHR_WARP_SET(hTenmaL, true);\nCamCtrlExit();"
+    },
+    {
+      "case": "Also resetting the movement state (real usage, from ev42012200.nut)",
+      "source": "real",
+      "code": "CMND_SET_ENABLE(hTenmaL, true);\nCMND_CHR_WARP_SET(hTenmaL, true);\nCMND_CHR_WARP_SET(hShinsukeL, true, true);\nSetExitRpgCamera();\nCamCtrlExit();"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_WAZA_MAP_HANDLE",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Returns the handle of the map model loaded for the skill scenes (the background map of CMND_RUN_SKILL_SCRIPT), if one is loaded. RunSkillScript shows it again after the scene."
+  },
+  "params": [],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "The skill map handle.\nWhen no skill map is loaded, nothing is pushed: the native returns a value read from the script system instead of a count, so the script normally gets null. null too if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside RunSkillScript (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local hMapMV = CMND_GET_WAZA_MAP_HANDLE();\n\nif (hMapMV != 0)\n{\n\tCMND_SET_ENABLE(hMapMV, true);\n}"
+    }
+  ]
+}

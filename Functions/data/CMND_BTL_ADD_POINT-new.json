@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_ADD_POINT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Adds goals to the two teams' scores at once, from a 2-element array. It is how the story match scripts award a scripted goal.\nEach score is capped at 99. A team whose score is negative (not in use) is left alone.\nAfter a scripted goal the scripts usually log the scorer with CMND_BTL_SET_POINT_HISTORY and restart play from the team that conceded with CMND_BTL_SET_MATCH_RESTART."
+  },
+  "params": [
+    { "name": "deltas", "type": "array", "required": true, "description": { "en": "[goals to add to team 0, goals to add to team 1]." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "A scripted goal for the opponent team (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "// Read the clock, give team 1 a goal, credit the scorer at the current\n// minute, give the scorer's AI back, then kick off again from team 0\n// (who conceded).\nlocal time = CMND_BTL_GET_MATCH_TIME();\nlocal point = [0, 1];\nCMND_BTL_ADD_POINT(point);\nCMND_BTL_SET_POINT_HISTORY(1, 1, time / 60, \"para_cp0010\");\nCMND_BTL_STOP_CHARA_AI(false, 1, \"para_cp0010\");\nCMND_BTL_SET_MATCH_RESTART(0);"
+    }
+  ]
+}

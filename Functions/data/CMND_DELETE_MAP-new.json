@@ -1,0 +1,31 @@
+{
+  "name": "CMND_DELETE_MAP",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Deletes a map object created with CMND_CREATE_MAP."
+  },
+  "params": [
+    {
+      "name": "hMap",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Map handle (CMND_GET_MAP_HANDLE or CMND_CREATE_MAP)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once deleted.\nnull if the map is not found, the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "After a talk on an extra map (real usage, from ev42015000.nut)",
+      "source": "real",
+      "code": "EndStandEvent();\nCMND_SET_DRAW_OFF_BIT(off_bit);\nCMND_DELETE_MAP(hEvMap);"
+    }
+  ]
+}

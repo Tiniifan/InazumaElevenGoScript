@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_IMAGE_ANM",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Switches an animated image (.xa) to another of its animations, by name."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle."
+      }
+    },
+    {
+      "name": "animName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Animation name, e.g. \"next1\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set (also when the name is missing), false if the image is not found.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside ShowTutorialEx (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local hAnm = CMND_LOAD_IMAGE(\"nextAnm\", \"data/win_<LG>.xa\", 1, 1);\nlocal imgTTHdl = CMND_LOAD_IMAGE(\"imgTT\", file_path, 1, _imgFileName);\n// ...\nCMND_SET_IMAGE_ANM(hAnm, \"next1\");\n// ...\nCMND_DELETE_IMAGE(hAnm);\n// ...\nCMND_DELETE_IMAGE(imgTTHdl);"
+    }
+  ]
+}

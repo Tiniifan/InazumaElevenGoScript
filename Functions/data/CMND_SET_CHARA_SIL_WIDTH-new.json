@@ -1,0 +1,47 @@
+{
+  "name": "CMND_SET_CHARA_SIL_WIDTH",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Sets a character's silhouette width and a color value. The silhouette is the outline drawn around a character. The skill scenes pass EV_CHARA_SIL_WIDTH (0.004) and EV_CHARA_SIL_COLOR (0.45)."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "width",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Outline width."
+      }
+    },
+    {
+      "name": "color",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Outline color value."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "null in every case (also when the character is not found)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Skill scene outlines (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "CMND_SET_CHARA_SIL_WIDTH(ahDef[i], EV_CHARA_SIL_WIDTH, EV_CHARA_SIL_COLOR);"
+    }
+  ]
+}

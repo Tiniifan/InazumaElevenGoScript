@@ -1,0 +1,73 @@
+{
+  "name": "CMND_SET_ICON_TO_CHARA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Shows an emotion icon above a character's head: an icon model (data/chr/model/menu/ev_icn01.xc, up to 15 at a time, reused once finished) plays the given motion, e.g. ビックリ01 (surprise), 汗02 (sweat), ムカッ01 (anger), 疑問01 (question), attached to the head bone c_c3.\nOptionally it also plays a motion on the character itself (third argument, with its mode and transition frames). The sixth argument (default true) is stored on the icon; its effect was not traced."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "iconMotion",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Icon motion (Shift-JIS name)."
+      }
+    },
+    {
+      "name": "charaMotion",
+      "type": "string",
+      "required": false,
+      "description": {
+        "en": "Motion to play on the character."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer",
+      "required": false,
+      "default": "0",
+      "description": {
+        "en": "Mode of that motion."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "float",
+      "required": false,
+      "description": {
+        "en": "Transition of that motion."
+      }
+    },
+    {
+      "name": "flag",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "Stored on the icon."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "Handle of the icon.\nnull if the character handle is not positive, the icon name is missing, no icon could be made, the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A surprised reaction (real usage, from ev42010600.nut; the Shift-JIS icon name is replaced by a variable here)",
+      "source": "real",
+      "code": "CreateSpeech(\"ev200\");\nCMND_MESWIN_UNLOCK();\nCMND_SET_ICON_TO_CHARA(hTenmaL, surpriseIcon);\nWaitLoading(hHarunaL);\nWaitFrame(65);"
+    }
+  ]
+}

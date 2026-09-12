@@ -1,0 +1,45 @@
+{
+  "name": "CMND_SET_GLOBAL_BIT_FLAG",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Sets or clears a global bit flag, one of the 2560 story and progress flags (numbers 0 to 2559). Without a second argument the flag is set. The flags live in the game's flag data (part of the save data). A number outside that range makes the game report an error, and the bit is still written past the table."
+  },
+  "params": [
+    {
+      "name": "flag",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Flag number, 0 to 2559."
+      }
+    },
+    {
+      "name": "value",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true to set the flag, false to clear it."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true (also when the flag data is not available and nothing is written).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Marking progress after the tutorials (real usage, from ev42010100.nut)",
+      "source": "real",
+      "code": "ShowTutorial2(\"tt0002\", 2);\nCMND_SET_GLOBAL_BIT_FLAG(1);\nSetGameSubPhase(10010010, true);"
+    },
+    {
+      "case": "Clearing a flag (real usage, from ev42061300.nut)",
+      "source": "real",
+      "code": "CMND_SET_GLOBAL_BIT_FLAG(517, false);"
+    }
+  ]
+}

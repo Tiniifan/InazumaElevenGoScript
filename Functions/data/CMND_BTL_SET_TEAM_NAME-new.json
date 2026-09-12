@@ -1,0 +1,24 @@
+{
+  "name": "CMND_BTL_SET_TEAM_NAME",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets the name shown for a match team. The name is a text key (hashed with CRC32 and stored in the team's match setup), so the displayed name is localised.\nThe second argument is also stored in the team's setup, in a 16-bit field; what reads it was not identified. Nothing is changed if the name argument is not a string."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "value", "type": "integer", "required": true, "description": { "en": "Stored in a 16-bit field of the team setup; meaning not identified. The shipped scripts always pass 1." } },
+    { "name": "nameId", "type": "string", "required": true, "description": { "en": "Text key of the team name, e.g. \"name_te0997\"." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has run.\nnull if the match system is not ready or fewer than 3 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Renaming the player's team for a special match (real usage)",
+      "source": "real",
+      "code": "// Show a special team name on the player's side\nCMND_BTL_SET_TEAM_NAME(0, 1, \"name_te0997\");"
+    }
+  ]
+}

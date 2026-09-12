@@ -1,0 +1,49 @@
+{
+  "name": "CreateSpeechHide",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Like CreateSpeech, but hides the speaker's name: after opening the window it calls CMND_WASHA_NAME_HIDE(), then waits with suspend() until CMND_IS_RUN_CHILD_SCENE() is false, that is until the player has read and closed the message."
+  },
+  "params": [
+    {
+      "name": "_id",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Message ID, e.g. \"ev100\"."
+      }
+    },
+    {
+      "name": "_chara",
+      "type": "string|integer",
+      "required": false,
+      "default": "0 (no speaker)",
+      "description": {
+        "en": "Speaking character (parameter ID or hash), shown as the speaker."
+      }
+    },
+    {
+      "name": "_bRight",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to show the speaker on the right side."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A line without the speaker's name (real usage, from ev42010900.nut)",
+      "source": "real",
+      "code": "CMND_MESWIN_LOCK();\nCreateSpeechHide(\"ev600\");\nCMND_MESWIN_UNLOCK();"
+    }
+  ]
+}

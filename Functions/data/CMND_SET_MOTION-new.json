@@ -1,0 +1,62 @@
+{
+  "name": "CMND_SET_MOTION",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Plays a motion on an object (character, camera, effect model...) by name, e.g. \"01\" or a Shift-JIS name such as 立ち01 (standing). mode: the scripts pass 0 for most character motions, 3 for camera and effect animations, sometimes 1 or 2 (the values were not traced further). frames: the transition length in frames (default 30; the scripts often pass 0 for an immediate change).\nThe name must be a string: ev42052200 passes a number (CMND_SET_MOTION(hRyuuzakiH, 61, 3, 3)), which does not give a name."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle."
+      }
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Motion name (at most 31 characters)."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer",
+      "required": false,
+      "default": "0",
+      "description": {
+        "en": "Play mode (see the description)."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "float",
+      "required": false,
+      "default": "30.0",
+      "description": {
+        "en": "Transition length in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once requested.\nnull if the object is not found or has no motion, the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside SetCharaPosAndMotName (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_SET_MOTION(_hdl, _motion, 0, 0);"
+    },
+    {
+      "case": "A camera animation (real usage, from ev44010001.nut)",
+      "source": "real",
+      "code": "CMND_PUSH_CAMERA(hCamera);\nCMND_BRIGHT_FADE(SCREEN_A, 0.0, 60.0);\nCMND_SET_MOTION(hCamera, \"01\", 3, 0);"
+    }
+  ]
+}

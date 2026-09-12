@@ -1,0 +1,84 @@
+{
+  "name": "SetGameSubPhase",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Moves the story to a new sub-phase, the step of the story the world reflects, with the objective update presentation.\nIn order: with _ppsEffFlag it swaps the brightness display (CMND_BRIGHT_SWAP). If the top screen is not already black, it fades the map effects and the screen _scr to black over _fade_out frames. It then replaces the NPCs for the new phase (CMND_NPC_REPLACE), sets the sub-phase (CMND_SET_GAME_SUB_PHASE) and loads the new objective message (CMND_UPDATE_PURPOSE). With _ppsEffFlag it plays the objective effect (PurposeEffect, jingle _jng). It then runs Inatter_Check and waits for the NPC replacement.\nIf the screen was at normal brightness before and _fade_in is 0 or more, it fades back in over _fade_in frames."
+  },
+  "params": [
+    {
+      "name": "_subPhase",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Sub-phase number, e.g. 10010010."
+      }
+    },
+    {
+      "name": "_ppsEffFlag",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to play the objective update effect."
+      }
+    },
+    {
+      "name": "_fade_out",
+      "type": "float",
+      "required": false,
+      "default": "15.0",
+      "description": {
+        "en": "Fade-out length in frames."
+      }
+    },
+    {
+      "name": "_fade_in",
+      "type": "float",
+      "required": false,
+      "default": "15.0",
+      "description": {
+        "en": "Fade-in length in frames; below 0 to stay dark."
+      }
+    },
+    {
+      "name": "_scr",
+      "type": "integer",
+      "required": false,
+      "default": "SCREEN_AB",
+      "description": {
+        "en": "Screen(s) to fade."
+      }
+    },
+    {
+      "name": "_jng",
+      "type": "string",
+      "required": false,
+      "default": "\"J_10\"",
+      "description": {
+        "en": "Jingle of the objective effect."
+      }
+    },
+    {
+      "name": "_bgm_fade_off",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "Passed to PurposeEffect."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "After the opening tutorials (real usage, from ev42010100.nut)",
+      "source": "real",
+      "code": "ShowTutorial2(\"tt0002\", 2);\nCMND_SET_GLOBAL_BIT_FLAG(1);\nSetGameSubPhase(10010010, true);"
+    }
+  ]
+}

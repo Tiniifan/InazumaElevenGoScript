@@ -1,0 +1,36 @@
+{
+  "name": "CMND_SET_TALK_LOCK_CHARA",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "A talk lock is a phase where the player has to talk to a set of NPCs (see StartTalkLock). The list lives in the game progress data and holds up to 12 NPCs.\nSets the NPCs of a talk lock from one array: the first element is the type. TL_TYPE_A (1): the other elements are the NPC IDs. TL_TYPE_B (2): the second element is a number, then the NPC IDs. Other types do nothing. StartTalkLock builds the array from its arguments."
+  },
+  "params": [
+    {
+      "name": "list",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "[type, (number for TL_TYPE_B), npcID, npcID, ...]."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside StartTalkLock (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local w = array(vargc);\n\nfor( local n = 0; n < vargc; ++n )\n{\n\tw[n] = vargv[n];\n}\n\nCMND_SET_TALK_LOCK_CHARA(w);"
+    },
+    {
+      "case": "How the events call StartTalkLock (real usage, from ev42011250.nut)",
+      "source": "real",
+      "code": "StartTalkLock(TL_TYPE_B, 1, \"evc0052\", \"evc0001\", \"evc0002\", \"evc0003\", \"evc0005\", \"evc0006\");"
+    }
+  ]
+}

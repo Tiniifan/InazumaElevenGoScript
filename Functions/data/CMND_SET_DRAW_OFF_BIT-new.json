@@ -1,0 +1,31 @@
+{
+  "name": "CMND_SET_DRAW_OFF_BIT",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Replaces the draw-off bits: each set bit hides one layer of the display. Read them first with CMND_GET_DRAW_OFF_BIT to change only some bits, and restore them afterwards. Bits (constants of ie4_ev_main.nut): OFF_RPG_CHARA 1, OFF_RPG_MAP 2, OFF_RPG_CAMERA 4, OFF_EVENT_CHARA 8, OFF_EVENT_MAP 16, OFF_MENU_CHARA 32, OFF_MENU_MAP 64, OFF_RPG_MINIMAP 128, OFF_EVENT_CHIBI 512; groups OFF_RPG, OFF_EVENT, OFF_MENU, OFF_ALL."
+  },
+  "params": [
+    {
+      "name": "bits",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "New draw-off bits."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Hiding the field during a skill scene (real usage, from ev42011800.nut)",
+      "source": "real",
+      "code": "local off_bit = CMND_GET_DRAW_OFF_BIT();\nCMND_SET_DRAW_OFF_BIT(off_bit | OFF_RPG);\nCMND_INIT_SKILL_SCRIPT();\nSetChrPrmDetailForSkillScript(\"ATK\", 1, 13, 1, true, false, 0, 0, 10);\nRunSkillScript(\"vsj0001\", \"mv01i21\", 0, 0, true, false, true, false, 1);\nCMND_SET_DRAW_OFF_BIT(off_bit);"
+    }
+  ]
+}

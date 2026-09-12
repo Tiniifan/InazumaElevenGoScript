@@ -1,0 +1,32 @@
+{
+  "name": "OpenBgmHistory",
+  "kind": "ev_main",
+  "category": "sound",
+  "description": {
+    "en": "Reopens the music saved by SaveBgmHistory, if any: CMND_SND_OPEN_BGM(history_bgm_name), or with _resume true CMND_SND_OPEN_BGM(history_bgm_name, 0, history_bgm_pos) to start where it was. It only opens the track; start it with CMND_SND_PLAY (the handle is not returned, CMND_SND_GET_BGM_SNDID gives it). No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "_resume",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to start from the saved position."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Resuming the saved music (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "OpenBgmHistory(true);\nlocal hBgm = CMND_SND_GET_BGM_SNDID();\n\nwhile (CMND_SND_IS_LOADING(hBgm))\n{\n\tsuspend();\n}\n\nCMND_SND_PLAY(hBgm);"
+    }
+  ]
+}

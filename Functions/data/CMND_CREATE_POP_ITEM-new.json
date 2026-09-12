@@ -1,0 +1,22 @@
+{
+  "name": "CMND_CREATE_POP_ITEM",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Prepares the item that pops out of a treasure chest (an \"item\" object of the field). The chest script calls it, when the command exists, as the chest opens; CMND_SET_POP_ITEM then gives the item and where it appears."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "A chest opening (real usage, from ie4_ev_sub_tbox.nut; the decompiled file shows the existence test as $[stack offset 0]; it is written here with getroottable(), the form ev42019001.nut shows)",
+      "source": "real",
+      "code": "local popSE = CMND_SND_OPEN_SYS_SE(25);\nCMND_SND_PLAY(popSE);\n\nif (\"CMND_CREATE_POP_ITEM\" in getroottable())\n{\n\tCMND_CREATE_POP_ITEM();\n}"
+    }
+  ]
+}

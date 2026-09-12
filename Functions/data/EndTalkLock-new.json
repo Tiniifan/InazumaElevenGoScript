@@ -1,0 +1,22 @@
+{
+  "name": "EndTalkLock",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Ends the talk lock started with StartTalkLock: clears global flag 1403, turns the lock state off (CMND_SET_TALK_LOCK_STATE(false)) and deletes the talk-lock icons."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Ending the talk lock (real usage, from ev42011700.nut)",
+      "source": "real",
+      "code": "EndTalkLock();"
+    }
+  ]
+}

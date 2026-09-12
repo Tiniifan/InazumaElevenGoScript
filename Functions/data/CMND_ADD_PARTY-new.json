@@ -1,0 +1,22 @@
+{
+  "name": "CMND_ADD_PARTY",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Recruits a character into the player's roster, by player parameter ID, and returns the new player's handle.\nThis is the low-level native behind the ev_main helper AddParty and all its message wrappers.\n\nWhat happens:\n- the ID is hashed and looked up in the player parameter table; an unknown ID returns 0;\n- if the roster is already full (the retail game caps it at 112 players), the call returns 0. Characters that carry a particular flag in their parameter data skip this check, except para_cp0012, para_cp0013 and para_cp0014, which are always checked;\n- if the character is already in the roster pool but marked as having left, it is simply brought back and keeps its handle;\n- otherwise a new player record is created and added to the roster."
+  },
+  "params": [
+    { "name": "paramId", "type": "string", "required": true, "description": { "en": "Player parameter ID, e.g. \"para_cp0008\"." } }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": { "en": "The player's handle (a packed player ID, used by the party functions such as CMND_SET_PT_LOCK_FLAG or CMND_SET_LV), or 0 when the character could not be added.\nnull if the engine is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "Recruiting a character and configuring it (adapted from the body of ev_main's AddParty, with its parameters replaced by values)",
+      "source": "real",
+      "code": "// Add the character, then lock its slot, disable its Fighting Spirit\n// and set its level, only if the recruitment worked.\nlocal hdl = CMND_ADD_PARTY(\"para_cp0008\");\nif (hdl > 0)\n{\n\tCMND_SET_PT_LOCK_FLAG(hdl, true);\n\tCMND_SET_AVATAR_ENABLE(hdl, false);\n\tCMND_SET_AVATAR_LOCK_FLAG(hdl, false);\n\tCMND_SET_LV(hdl, 5);\n}"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "CMND_BTL_NO_FADEIN",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Stops the match from bringing the screens back up by itself when the current in-match event ends. The story events call it at their very end, after fading both screens to black and closing their own music, so the match stays dark until its flow moves on.\n\nIt sets two of the event system's flags:\n- flag 9 is always set. While it is set, the match does not restore screen brightness when it leaves event mode, and the match BGM manager is held (it neither restarts nor switches the match music).\n- flag 10 is set to the value of the optional argument. It only holds the match BGM manager.\nThe match clears flag 9 when it moves on to its next phase, and clears both flags in a separate reset routine.\nWith no argument, flag 10 keeps its current value. There is no way to clear flag 9 from a script."
+  },
+  "params": [
+    { "name": "holdBgm", "type": "boolean", "required": false, "description": { "en": "Value written to flag 10 (true also holds the match BGM manager). Left unchanged when omitted. The events pass true when the match ends right after them." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "End of an in-match scene that leaves the screens black (real usage, from ev44010070.nut)",
+      "source": "real",
+      "code": "// Fade to black, close the event's music, clean up...\nStartBrightFade(SCREEN_A, -1.0, 30.0);\nCMND_MESWIN_UNLOCK();\nhEvSnd = CMND_SND_GET_BGM_SNDID();\nCMND_SND_CLOSE(hEvSnd, 30);\nEndStandEvent();\nCamCtrlExit();\n// ... and keep the match from fading back in on its own\nCMND_BTL_NO_FADEIN();\nEndScEvent(isEvUpperDisp, scEvHdl);"
+    },
+    {
+      "case": "Also holding the match music (real usage, from ev44010120.nut)",
+      "source": "real",
+      "code": "StartBrightFade(SCREEN_A, -1.0, 30);\nCMND_MESWIN_UNLOCK();\nEndStandEvent();\nCamCtrlExit();\nCMND_BTL_NO_FADEIN(true);\nEndScEvent(isEvUpperDisp, scEvHdl);"
+    }
+  ]
+}

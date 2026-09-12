@@ -1,0 +1,29 @@
+{
+  "name": "CMND_ADD_SET_FORMATION",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Gives the player a formation and sets it as a team formation, in one call: one copy of the formation item is added to the inventory, then it is set.\n\nWhere it is set depends on the second argument:\n- false (default): as team 0's formation, and also on teams 1, 2 and 3 when the third argument is true (the player's data keeps four teams);\n- true: into a separate formation field of the party data instead. The shipped scripts use this form for the \"ifb\" formations, and \"ifb\" formations are the ones the 5-a-side challenge scripts line up in (for example btl0301 uses \"ifb0301\"), so this is most likely the challenge formation.\nNothing is set if the ID is unknown."
+  },
+  "params": [
+    { "name": "formationId", "type": "string", "required": true, "description": { "en": "Formation item ID, e.g. \"ifa0001\" or \"ifb0111\"." } },
+    { "name": "separateSlot", "type": "boolean", "required": false, "default": "false", "description": { "en": "true to store the formation in the separate formation field (used for the \"ifb\" 5-a-side formations); false to set it as team 0's formation." } },
+    { "name": "allTeams", "type": "boolean", "required": false, "default": "false", "description": { "en": "Only used when separateSlot is false: true to set the formation on all four teams, false for team 0 only." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has run.\nfalse if the item system is not ready or the ID argument is not a string.\nnull if the engine is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "New-game formation setup (real usage)",
+      "source": "real",
+      "code": "// The 11-a-side formation goes on all four teams,\n// the 5-a-side one into its own field.\nCMND_ADD_SET_FORMATION(\"ifa0001\", false, true);\nCMND_ADD_SET_FORMATION(\"ifb0111\", true);"
+    },
+    {
+      "case": "Setting a formation on the main team only",
+      "source": "invented",
+      "code": "// Unlock a new 11-a-side formation and use it on team 0 only\nCMND_ADD_SET_FORMATION(\"ifa0002\");"
+    }
+  ]
+}

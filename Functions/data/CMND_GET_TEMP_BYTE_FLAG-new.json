@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GET_TEMP_BYTE_FLAG",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Reads a temporary byte flag. Temporary byte flags are a table of byte values (0 to 255) in the flag data, right after the temporary bit flags; 128 bytes fit before the next table. The number is not checked."
+  },
+  "params": [
+    {
+      "name": "index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Byte number, 0 to 127."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The byte value, 0 to 255 (0 if the flag data is not available).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Reading a counter (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local visits = CMND_GET_TEMP_BYTE_FLAG(0);\nCMND_SET_TEMP_BYTE_FLAG(0, visits + 1);"
+    }
+  ]
+}

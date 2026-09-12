@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_PARTY_MEMBER_NUM",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the number of members in the party list (the players recruited so far)."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The number of members.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "A dialogue that depends on the team size (real usage, from ev42022000.nut; the Shift-JIS motion name is replaced by a variable here)",
+      "source": "real",
+      "code": "CMND_MESWIN_LOCK();\n\nif (CMND_GET_PARTY_MEMBER_NUM() < 13)\n{\n\tCMND_SET_MOTION(hHandaL, talkMotion);\n\tCreateSpeech(\"ev40001\");"
+    }
+  ]
+}

@@ -3,20 +3,29 @@
   "kind": "ev_main",
   "category": "system",
   "description": {
-    "en": "Spawns a new Squirrel coroutine (via newthread) from the given function, bound to the current stack's locals, and registers it as a child thread to be driven by RunChildThread. Must be called after InitChildThread."
+    "en": "Starts a function as a child coroutine of the current event, so several things can happen at once (a fade, a message, a character walking...).\nIt creates a thread from _func (newthread), with the function's environment bound to the locals of the current call, stores it in the next free slot of subev_ctx.c_coros, and runs it right away until its first suspend(). InitChildThread(n) must be called first to make n slots. RunChildThread() then wakes all child threads every frame until every one has finished.\nThere is no bounds check: adding more threads than InitChildThread made room for fails."
   },
   "params": [
-    { "name": "_func", "type": "function", "required": true, "description": { "en": "Function to run as a new child coroutine." } }
+    {
+      "name": "_func",
+      "type": "function",
+      "required": true,
+      "description": {
+        "en": "Function to run in parallel. It can use suspend() and the other waiting helpers."
+      }
+    }
   ],
   "returns": {
     "type": "integer",
-    "description": { "en": "The child thread's slot index (its id within the current event context's thread array)." }
+    "description": {
+      "en": "Slot number of the new thread (0 for the first one)."
+    }
   },
   "examples": [
     {
-      "case": "Running several coroutines concurrently (real usage, from ev_main's StopEventRun)",
+      "case": "Three things at once in an event (real usage, from ev42010300.nut)",
       "source": "real",
-      "code": "// Excerpt from StopEventRun(_txt_id, _pos): run three coroutines concurrently\n// (moving the player, panning the camera, and showing a message) until all finish.\nlocal hTenmaL = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC, true);\nlocal hCam = CMND_GET_ACT_CAMERA();\nlocal TenmaProc = function () : (hTenmaL, _pos)\n{\n\tWaitFrame(1);\n\tEvLowMdlSetLookAtPos(hTenmaL, _pos, 20);\n};\nlocal CameraProc = function () : (hCam, _pos)\n{\n\tWaitCamCtrlMoving(hCam);\n};\nlocal TextProc = function () : (_txt_id)\n{\n\tCreateSpeech(_txt_id);\n};\nInitChildThread(3);\nAddChildThread(TenmaProc);\nAddChildThread(CameraProc);\nAddChildThread(TextProc);\nRunChildThread();"
+      "code": "local fadeinProc = function ()\n{\n\tWaitFrame(1);\n\tStartBrightFade(SCREEN_AB, 0.0, 60);\n};\nlocal TextProc = function ()\n{\n\tWaitFrame(90);\n\tCreateSpeech(\"ev100\");\n};\nlocal TenmaProc = function () : ( hTenmaL, hAoiL )\n{\n\tWaitFrame(1);\n\tWaitEvLowMdlMoving(hTenmaL);\n\tEvLowMdlMove(hTenmaL, [115.7, 30.299999, -254.5, -90], 130);\n\tWaitFrame(40);\n\tEvLowMdlSetLookAtChara_Head(hTenmaL, hAoiL);\n};\n// Room for three threads, start them, then wait until all are done\nInitChildThread(3);\nAddChildThread(fadeinProc);\nAddChildThread(TextProc);\nAddChildThread(TenmaProc);\nRunChildThread();"
     }
   ]
 }

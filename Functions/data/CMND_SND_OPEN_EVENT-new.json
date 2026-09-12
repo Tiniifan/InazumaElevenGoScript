@@ -1,0 +1,31 @@
+{
+  "name": "CMND_SND_OPEN_EVENT",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Opens an event sound (a jingle or an effect used by a scene, e.g. \"evt_050\") and returns its handle. The sound is not started: wait with CMND_SND_IS_LOADING, then start it with CMND_SND_PLAY. The name is prepared by the engine before opening (it can contain the <LG> language placeholder, as in the chapter title sounds).\nSound handles are integers. Streams opened with the CMND_SND_OPEN_* commands (BGM, event sounds, voices, Special Move sounds, map ambience) get a handle that refers to a stream channel. CMND_SND_OPEN_SYS_SE returns a packed number that names a sound effect instead."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Event sound name, e.g. \"evt_050\" or \"J_08\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "Handle of the sound; 0 if the name is missing.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A sound effect during a scene (real usage, from ev42023000.nut)",
+      "source": "real",
+      "code": "hEvSe = CMND_SND_OPEN_EVENT(\"evt_050\");\n\nwhile (CMND_SND_IS_LOADING(hEvSe))\n{\n\tsuspend();\n}\n\nCMND_SND_PLAY(hEvSe);"
+    }
+  ]
+}

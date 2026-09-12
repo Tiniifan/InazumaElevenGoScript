@@ -1,0 +1,37 @@
+{
+  "name": "ScEventWazaMapScale",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Sets the scale of the Special Move map (CMND_GET_WAZA_MAP_HANDLE) with CMND_SET_SCALE, 0.45 by default. The in-match scenes call it after StartScEvent; ToScaleWazaMap scales coordinates the same way."
+  },
+  "params": [
+    {
+      "name": "_scale",
+      "type": "float",
+      "required": false,
+      "default": "0.45",
+      "description": {
+        "en": "Scale to apply (1.0 restores the normal size)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "At the start of an in-match scene (real usage, from ev43030000.nut)",
+      "source": "real",
+      "code": "StartScEvent(isEvUpperDisp, scEvHdl);\nScEventWazaMapScale();"
+    },
+    {
+      "case": "Back to normal size at the end (real usage, from ev44010020.nut)",
+      "source": "real",
+      "code": "EndStandEvent();\nScEventWazaMapScale(1.0);"
+    }
+  ]
+}

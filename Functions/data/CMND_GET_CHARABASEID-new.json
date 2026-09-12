@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GET_CHARABASEID",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the base ID of a character from its parameter ID: the ID of the character's base data, which CMND_GET_CHARA_FIGURE takes."
+  },
+  "params": [
+    {
+      "name": "paramID",
+      "type": "string|integer",
+      "required": true,
+      "description": {
+        "en": "Parameter ID (or its hash)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The base ID, or 0 if the parameter ID is unknown.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Choosing a motion file by body type (real usage, from ev47900100.nut)",
+      "source": "real",
+      "code": "local charaID = chara[i];\nlocal baseID = CMND_GET_CHARABASEID(charaID);\nabaseID[i] = baseID;\nlocal fig = CMND_GET_CHARA_FIGURE(baseID);\n\nif (!fig)\n{\n\tfig = 0;\n}\n\nlocal path = \"data/chr/motion/game/mot_u\" + figName[fig] + \"_gm01.xc\";"
+    }
+  ]
+}

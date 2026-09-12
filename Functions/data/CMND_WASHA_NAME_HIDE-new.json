@@ -1,0 +1,22 @@
+{
+  "name": "CMND_WASHA_NAME_HIDE",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Hides the speaker's name (washa) in the message window opened just before: it sets a HideFlg in the pending scene change that CMND_MESSAGE_OPEN queued, if there is one."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "After opening a message (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "if (CMND_MESSAGE_OPEN(_id, false, false, true, _chara, _bRight))\n{\n\tCMND_WASHA_NAME_HIDE();\n\tsuspend();"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "CMND_TEAM_GP_IS_MAX",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Tells whether every player of the team has full GP. It looks at the first 16 members of the party list (at most 16; a match team being 11 players and 5 substitutes, probably the team's lineup). It returns false as soon as one of them has less GP than their maximum."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true if all of them have full GP, false otherwise.\nnull if the script system is not ready or the player data is not available."
+    }
+  },
+  "examples": [
+    {
+      "case": "Checking the team's GP (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "if (!CMND_TEAM_GP_IS_MAX())\n{\n\tCMND_TEAM_GP_RECV_ALL();\n}"
+    }
+  ]
+}

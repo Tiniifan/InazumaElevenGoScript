@@ -1,0 +1,25 @@
+{
+  "name": "CMND_BTL_END_MATCH",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Asks the match to end now, instead of waiting for the clock. It only sets the engine's end-of-match request flag; on its next update the match loop sees the flag and switches to its end state.\nThe story scripts call it at the end of their last scripted beat, after setting their story flags. It does not run the script's ScBtlResult by itself: btl0002.nut calls ScBtlResult() just before it."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Ending a story match after its last scripted beat (real usage, from btl0308.nut)",
+      "source": "real",
+      "code": "RunEv44060040 <- function ()\n{\n\t// Play the event scene and wait for it\n\tCMND_BTL_SET_EVPARAM(44060040);\n\tsuspend();\n\t// Unlock a technique, clear the on-screen objective\n\tCMND_SKILL_UNLOCK(\"para_cp0008\", \"whd0008\");\n\tCMND_BTL_SET_PURPOSE(0, -1, false, 0);\n\tCMND_BTL_SET_PURPOSETEXT(false, 0, 0);\n\tCMND_BTL_SET_MATCH_EFFECT(0, 0);\n\t// Record story progress, then stop the match\n\tCMND_SET_GLOBAL_BIT_FLAG(518, 1);\n\tCMND_SET_GLOBAL_BIT_FLAG(62);\n\tCMND_BTL_END_MATCH();\n};"
+    },
+    {
+      "case": "Ending the match from its end-of-match callback, after checking the score (real usage, from btl0015.nut)",
+      "source": "real",
+      "code": "// Set a story flag only if the player's team (0) is ahead\nlocal point_self = CMND_BTL_GET_POINT(0);\nlocal point_enemy = CMND_BTL_GET_POINT(1);\n\nif (point_self > point_enemy)\n{\n\tCMND_SET_GLOBAL_BIT_FLAG(1375, 1);\n}\n\n// Keep the match history, then end the match\nCMND_BTL_SAVE_HISTORY();\nCMND_BTL_END_MATCH();"
+    }
+  ]
+}

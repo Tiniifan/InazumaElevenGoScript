@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BRIGHT_SWAP_ALL",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Sets the same two brightness-related display flags as CMND_BRIGHT_SWAP, on both screens at once.\nExactly what the flags change on screen was not identified. It is never called by the shipped scripts."
+  },
+  "params": [
+    { "name": "flag1", "type": "boolean", "required": true, "description": { "en": "First flag, applied to both screens (bits 9 and 10)." } },
+    { "name": "flag2", "type": "boolean", "required": false, "default": "false", "description": { "en": "Second flag, applied to both screens (bits 11 and 12)." } }
+  ],
+  "returns": {
+    "type": "float|null",
+    "description": { "en": "1.0 once the flags were set, 0.0 if the display controller was missing.\nnull if the engine is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "Setting both flags on both screens (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Same as calling CMND_BRIGHT_SWAP on the top and bottom screens\nCMND_BRIGHT_SWAP_ALL(true, true);"
+    }
+  ]
+}

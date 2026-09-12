@@ -1,0 +1,28 @@
+{
+  "name": "CMND_BTL_ADD_FLOOR_ATTR",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Adds a floor attribute to a zone registered with CMND_BTL_REGIST_FLOOR_ATTR.\n\nAn attribute is a bit number: the zone keeps a 32-bit mask and this call sets bit (1 << attr) in it. A zone can carry several attributes at once, and where zones overlap their masks are combined.\nThe match reads these bits to decide how the ground behaves. The hazard maps use attributes 1 to 4 for the quicksand depth and 5 for the lowered-pitch sections.\nNothing happens if no zone has that name."
+  },
+  "params": [
+    { "name": "name", "type": "string", "required": true, "description": { "en": "Name of the zone, as registered with CMND_BTL_REGIST_FLOOR_ATTR." } },
+    { "name": "attr", "type": "integer", "required": true, "description": { "en": "Bit number of the attribute to add (0 to 31)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has run, whether or not the zone was found.\nnull if the match system is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Randomising the quicksand depth of both halves (real usage, from mf15b01.nut)",
+      "source": "real",
+      "code": "// Pick a depth from 1 to 3 for each half, tag the halves with it,\n// then start the quicksand event with both depths packed together.\nlocal upd = CMND_BTL_GET_RAND(1, 4);\nlocal dwd = CMND_BTL_GET_RAND(1, 4);\nCMND_BTL_ADD_FLOOR_ATTR(\"FL01\", upd);\nCMND_BTL_ADD_FLOOR_ATTR(\"FL02\", dwd);\nCMND_BTL_TRIGGER_FLOOR_EV(FLOOR_EVT_QUICKSAND, (dwd << 4) + upd);"
+    },
+    {
+      "case": "Giving a zone its starting attribute (real usage, from mf12b01.nut)",
+      "source": "real",
+      "code": "// Register one zone when the map loads and give it attribute 0\nScMapInit <- function ()\n{\n\tCMND_BTL_REGIST_FLOOR_ATTR(\"FL01\", -137, -238, 274, 576);\n\tCMND_BTL_ADD_FLOOR_ATTR(\"FL01\", 0);\n};"
+    }
+  ]
+}

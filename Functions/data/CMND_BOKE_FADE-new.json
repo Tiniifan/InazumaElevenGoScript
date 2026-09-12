@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BOKE_FADE",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Changes the strength of the out-of-focus blur (\"boke\") that is already on, over a number of frames, without turning it on or off.\nIt is never called by the shipped scripts."
+  },
+  "params": [
+    { "name": "strength", "type": "float", "required": true, "description": { "en": "New blur strength." } },
+    { "name": "frames", "type": "float", "required": true, "description": { "en": "Length of the transition, in frames." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the transition has been started.\nnull if the engine is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Softening the dialogue blur mid-scene (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// StartStandEvent turned the blur on at 0.9.\n// Lighten it for a calmer part of the conversation, then end the scene.\nStartStandEvent();\nCreateSpeech(\"ev100\");\nCMND_BOKE_FADE(0.4, 20.0);\nCreateSpeech(\"ev110\");\nEndStandEvent();"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "RunGetTactics",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Gives a tactic with the jingle J_07 and the message \"sysmes-Tactics-00001\": RunGetTacticsUseMsg(_tcs, \"sysmes-Tactics-00001\"). The tactic is given as an item with CMND_ADD_ITEM."
+  },
+  "params": [
+    {
+      "name": "_tcs",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Tactic ID, e.g. \"ift0001\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "After the scene where the team finds a tactic (real usage, from ev44030016.nut)",
+      "source": "real",
+      "code": "RunGetTactics(\"ift0001\");"
+    }
+  ]
+}

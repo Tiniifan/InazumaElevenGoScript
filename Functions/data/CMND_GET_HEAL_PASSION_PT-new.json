@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_HEAL_PASSION_PT",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the passion points a rest area charges to heal the team. The price comes from a game table, chosen by a progress value kept with the party data."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The price.\nnull if the price cannot be found or the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "The rest area (real usage, from ie4_ev_sub_heal.nut)",
+      "source": "real",
+      "code": "local lost_pt = CMND_GET_HEAL_PASSION_PT();\nCMND_MESSAGE_REPLACE_VAL(1, lost_pt);\nCreateSpeech(\"sysmes-heal-sel1\");\nlocal ret = CMND_MESWIN_GET_SEL();\n\nif (ret == 0)\n{\n\tlocal now_pt = CMND_GET_PASSION_PT();\n\n\tif (lost_pt > now_pt)\n\t{\n\t\tCreateSpeech(\"sysmes-heal-01\");\n\t}\n\telse\n\t{\n\t\tCMND_SET_PASSION_PT(now_pt - lost_pt);\n\t}\n\t// ...\n}"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_CAMERA_POS",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Sets a camera's position from an array [x, y, z] (at most 3 values read; integers are converted)."
+  },
+  "params": [
+    {
+      "name": "hCamera",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Camera handle (CMND_GET_ACT_CAMERA, CMND_LOAD_CAMERA, CMND_CREATE_CAMERA)."
+      }
+    },
+    {
+      "name": "pos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "[x, y, z]."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set, false if the camera is not found.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Placing the active camera at the field view (real code, from ie4_ev_main.nut, SetExitRpgCamera)",
+      "source": "real",
+      "code": "local pos = array(3, 0.0);\nlocal ref = array(3, 0.0);\nlocal hchr = CMND_GET_CHARA_HANDLE(1, true);\nCMND_GET_RPG_CAMERA_POS(hchr, pos, ref);\nlocal hcam = CMND_GET_ACT_CAMERA();\nCMND_SET_CAMERA_POS(hcam, pos);\nCMND_SET_CAMERA_REF(hcam, ref);\nCMND_COPY_EXIT_CAMERA(1);"
+    }
+  ]
+}

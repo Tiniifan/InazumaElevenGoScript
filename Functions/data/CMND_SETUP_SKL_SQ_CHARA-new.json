@@ -1,0 +1,108 @@
+{
+  "name": "CMND_SETUP_SKL_SQ_CHARA",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Sets one participant of the next skill scene, in the skill settings table (side, then INFO entry number index).\nThe table is marked as a skill setup (EV_TYPE \"SKILL\"); if it was already set up for another kind of scene, nothing is written and null is returned.\nFull form (10 arguments, used by SetChrPrmDetailForSkillScript): mode 1 gives the character para_cpNNNN (NNNN = number) with its kit: CHARA, UNIFORM_NO, HOME, KEEPER, SHOES, GLOVE and NUMBER. The shirt number is written as 0 when the uniform is 900 or more. Any other mode writes an empty entry (character 0).\nTwo-argument form (side, parameter ID string): it creates a character object for participant 1 right away (named wchr攻撃1 for \"ATK\", wchr防御1 otherwise) and stores its handle as PREHANDLE, with a figure value from that character's data as PREFIGURE. No shipped script uses this form."
+  },
+  "params": [
+    {
+      "name": "side",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Side of the skill scene: \"ATK\" (attacking side) or \"DEF\" (defending side)."
+      }
+    },
+    {
+      "name": "index",
+      "type": "integer|string",
+      "required": true,
+      "description": {
+        "en": "Participant number on that side, starting at 1. In the two-argument form, a parameter ID string instead."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer",
+      "required": false,
+      "description": {
+        "en": "1 to give a character (full form)."
+      }
+    },
+    {
+      "name": "number",
+      "type": "integer",
+      "required": false,
+      "description": {
+        "en": "Character number NNNN of para_cpNNNN."
+      }
+    },
+    {
+      "name": "uniform",
+      "type": "integer",
+      "required": false,
+      "description": {
+        "en": "Uniform (kit) number; 900 and above are special outfits."
+      }
+    },
+    {
+      "name": "home",
+      "type": "boolean",
+      "required": false,
+      "description": {
+        "en": "true for the home kit."
+      }
+    },
+    {
+      "name": "keeper",
+      "type": "boolean",
+      "required": false,
+      "description": {
+        "en": "true for the goalkeeper outfit."
+      }
+    },
+    {
+      "name": "shoes",
+      "type": "integer",
+      "required": false,
+      "description": {
+        "en": "Shoes number."
+      }
+    },
+    {
+      "name": "gloves",
+      "type": "integer",
+      "required": false,
+      "description": {
+        "en": "Gloves number."
+      }
+    },
+    {
+      "name": "shirtNumber",
+      "type": "integer",
+      "required": false,
+      "description": {
+        "en": "Shirt number (ignored when uniform is 900 or more)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null, whether the entry was written or not (null if the script system is not ready, fewer than 2 arguments, the table set up for another scene kind, or the entry could not be created)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside SetChrPrmDetailForSkillScript (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "SetChrPrmDetailForSkillScript <- function ( _side, _index, _face, _body, _home, _keeper, _shoes_no, _glove_no, _number )\n{\n\tCMND_SETUP_SKL_SQ_CHARA(_side, _index, 1, _face, _body, _home, _keeper, _shoes_no, _glove_no, _number);\n};"
+    },
+    {
+      "case": "Two-argument form (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Create the attacking participant from its parameter ID at once\nCMND_SETUP_SKL_SQ_CHARA(\"ATK\", \"para_cp0008\");"
+    }
+  ]
+}

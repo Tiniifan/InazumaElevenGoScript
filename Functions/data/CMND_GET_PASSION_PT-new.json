@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_PASSION_PT",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the player's passion points. Passion points are a currency kept with the party data (0 to 9,999,999)."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The passion points (0 if the party data is not available).\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "The rest area (real usage, from ie4_ev_sub_heal.nut)",
+      "source": "real",
+      "code": "local lost_pt = CMND_GET_HEAL_PASSION_PT();\nCMND_MESSAGE_REPLACE_VAL(1, lost_pt);\nCreateSpeech(\"sysmes-heal-sel1\");\nlocal ret = CMND_MESWIN_GET_SEL();\n\nif (ret == 0)\n{\n\tlocal now_pt = CMND_GET_PASSION_PT();\n\n\tif (lost_pt > now_pt)\n\t{\n\t\tCreateSpeech(\"sysmes-heal-01\");\n\t}\n\telse\n\t{\n\t\tCMND_SET_PASSION_PT(now_pt - lost_pt);\n\t}\n\t// ...\n}"
+    }
+  ]
+}

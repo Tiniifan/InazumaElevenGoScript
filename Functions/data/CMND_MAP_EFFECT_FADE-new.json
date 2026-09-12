@@ -1,0 +1,39 @@
+{
+  "name": "CMND_MAP_EFFECT_FADE",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Fades the map's effects to a level over a number of frames: 0.0 hides them and 1.0 shows them fully. SetGameSubPhase fades them out with the screen before a sub-phase change and back in afterwards."
+  },
+  "params": [
+    {
+      "name": "level",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Target level, 0.0 (hidden) to 1.0 (shown)."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Length of the fade in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once started.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside SetGameSubPhase (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "if (_ppsEffFlag)\n{\n\tCMND_MAP_EFFECT_FADE(0.0, _fade_out);\n}"
+    }
+  ]
+}

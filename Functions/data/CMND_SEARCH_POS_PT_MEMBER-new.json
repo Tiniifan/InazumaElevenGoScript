@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SEARCH_POS_PT_MEMBER",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Tells whether the party has a member of a given position type: it looks through the party list for a member whose character data has that position type. It needs two arguments but only reads the first. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "positionType",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Position type from the character data."
+      }
+    },
+    {
+      "name": "unused",
+      "type": "any",
+      "required": true,
+      "description": {
+        "en": "Required but not read."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "1 if such a member exists, 0 otherwise.\nnull if the party or player data is not available, the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Looking for a position type (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "if (CMND_SEARCH_POS_PT_MEMBER(1, 0) == 1)\n{\n\t// the party has a member of type 1\n}"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "GetRpgCameraPos",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Returns the field (RPG) camera position and look-at point for the character the player controls (CMND_GET_RPG_CAMERA_POS), as [posX, posY, posZ, refX, refY, refZ]. Arguments are accepted but ignored. No shipped script calls it."
+  },
+  "params": [],
+  "returns": {
+    "type": "array",
+    "description": {
+      "en": "[posX, posY, posZ, refX, refY, refZ]."
+    }
+  },
+  "examples": [
+    {
+      "case": "Moving the camera back to the field view (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local posref = GetRpgCameraPos();\nCamCtrlMoveTo(hCam, 30, posref);"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_LV",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets the level of a recruited player. The player also learns the techniques of their list that need that level or less, and their GP and TP are refilled to the new maximum."
+  },
+  "params": [
+    {
+      "name": "playerHandle",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Player handle (CMND_ADD_PARTY, CMND_GET_PARTY_HANDLE)."
+      }
+    },
+    {
+      "name": "level",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "New level."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set.\nnull if the handle is not a valid player, the player data is not available, the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A new recruit at level 20 (real usage, from ev42019001.nut)",
+      "source": "real",
+      "code": "local hdl = CMND_ADD_PARTY(\"para_cp0008\");\nCMND_SET_SOCCER_POSITION(hdl, 9);\nCMND_SET_UNIFORM_NUMBER(hdl, 8);\nCMND_SET_PT_LOCK_FLAG(hdl, true);\n\nif (\"CMND_SET_LV\" in getroottable())\n{\n\tCMND_SET_LV(hdl, 20);\n}"
+    }
+  ]
+}

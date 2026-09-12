@@ -1,0 +1,100 @@
+{
+  "name": "CMND_2DO_CREATE_AVA_TELOP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Creates the two-line caption shown when a Fighting Spirit move is performed (\"ava\" is short for avatar, the engine's internal word for a Fighting Spirit).\n\nThe sixth argument is a Fighting Spirit ID such as \"ck0023\". Its name text in the game's text tables contains a line break. The engine splits it there and makes two separate named captions:\n- the part before the line break goes into the caption named by the second argument, and its size is written into the eighth argument;\n- the part after the line break goes into the caption named by the first argument, and its size is written into the seventh argument.\nIf the ID is not a known Fighting Spirit, nothing is created and the function returns null.\n\nBoth captions are coloured from the Fighting Spirit's data entry (the same five colours as CMND_2DO_CREATE_TELOP) and are created hidden. Show them with CMND_2DO_STATE_DRAW_TELOP.\nThe shipped script builds the ID from the move script name with MakeKsnFileName, which turns \"vkaNNNN\" into \"ckNNNN\"."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name to register the main caption (the text after the line break) under."
+      }
+    },
+    {
+      "name": "subName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name to register the second caption (the text before the line break) under."
+      }
+    },
+    {
+      "name": "objParam1",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Passed unchanged to the engine's 2D object creation call for the main caption. Meaning not identified.\nThe shipped script passes 0."
+      }
+    },
+    {
+      "name": "objParam2",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Passed unchanged to the same creation call. Meaning not identified.\nThe shipped script passes 12."
+      }
+    },
+    {
+      "name": "objParam3",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Passed unchanged to the same creation call. Meaning not identified.\nThe shipped script passes 0."
+      }
+    },
+    {
+      "name": "avatarId",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Fighting Spirit ID whose name is displayed, e.g. \"ck0023\"."
+      }
+    },
+    {
+      "name": "outSize",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "OUTPUT. Receives the main caption's [width, height] in pixels. Pass a 2-element array such as [0, 0]."
+      }
+    },
+    {
+      "name": "outSubSize",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "OUTPUT. Receives the second caption's [width, height] in pixels.\nThe engine writes into it only if it is an array: the shipped script passes a Vecter2 object (preset to 256 x 64), which the engine cannot size, so that object keeps its preset values."
+      }
+    },
+    {
+      "name": "spacing",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Base spacing between characters, used while laying out and measuring the text. Required here because the function checks for all 9 arguments.\nThe shipped script passes 6."
+      }
+    }
+  ],
+  "returns": {
+    "type": "any|null",
+    "description": {
+      "en": "null if the engine is not ready, fewer than 9 arguments were given, or the ID is not a known Fighting Spirit.\nOn success the native reports a result without pushing one, so Squirrel hands back the last argument you passed (never null)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Fighting Spirit move caption (real usage, from ie4_ev_sub_skl.nut; caption names shortened from the script's Shift-JIS names)",
+      "source": "real",
+      "code": "// waza_name is the move script, e.g. \"vka0023\".\n// MakeKsnFileName turns it into the Fighting Spirit ID \"ck0023\".\nlocal waza_name = \"vka0023\";\nlocal wh = [0, 0];\nif (IsKsnName(waza_name))\n{\n\tlocal fn = MakeKsnFileName(waza_name);\n\tCMND_2DO_CREATE_AVA_TELOP(\"skill_name\", \"avatar_name\", 0, 12, 0, fn, wh, iAvaPetNameSize, 6);\n}"
+    },
+    {
+      "case": "Reading back both caption sizes",
+      "source": "invented",
+      "code": "// Pass two arrays to get both sizes, then show both captions.\nlocal mainSize = [0, 0];\nlocal subSize = [0, 0];\nCMND_2DO_CREATE_AVA_TELOP(\"skill_name\", \"avatar_name\", 0, 12, 0, \"ck0023\", mainSize, subSize, 6);\nCMND_2DO_STATE_DRAW_TELOP(\"skill_name\", true);\nCMND_2DO_STATE_DRAW_TELOP(\"avatar_name\", true);\nCMND_2DO_POS_SET_TELOP(\"avatar_name\", 200 - subSize[0] / 2, 180);"
+    }
+  ]
+}

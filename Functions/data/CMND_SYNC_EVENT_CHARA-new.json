@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SYNC_EVENT_CHARA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Makes the event's characters match a list of names: every character of the event's character list whose name is not among the given names is deleted (with its linked object). Then, for each given name, it looks the name up in the event character table; a character that is not already there is created (para_cp or cn model with the kit from the table). The handles are written into the last argument, an array, in the order of the names. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "names...",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "One or more character names from the event character table."
+      }
+    },
+    {
+      "name": "handles",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Last argument: receives the handles, one per name."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null|integer",
+    "description": {
+      "en": "null once done.\n0 if a name is not in the event character table (the following names are not processed) or the table is not available.\nnull too if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Keeping two characters (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local handles = [0, 0];\nCMND_SYNC_EVENT_CHARA(\"evchr01\", \"evchr02\", handles);\nlocal hFirst = handles[0];"
+    }
+  ]
+}

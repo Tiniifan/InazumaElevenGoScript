@@ -1,0 +1,47 @@
+{
+  "name": "CMND_GET_PARAM_ID_RANDOM",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Picks a random player of a team on the pitch in the current match and returns its parameter ID hash. It looks at the team's first pitch slots (up to 11). With includeKeeper false the goalkeeper is left out. Up to 11 more arguments (parameter IDs as strings or hashes) exclude those players, so repeated calls can pick different players."
+  },
+  "params": [
+    {
+      "name": "team",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "0 = the player's team, 1 = the opponent."
+      }
+    },
+    {
+      "name": "includeKeeper",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to allow the goalkeeper."
+      }
+    },
+    {
+      "name": "exclude...",
+      "type": "string|integer",
+      "required": false,
+      "description": {
+        "en": "Parameter IDs to leave out (up to 11)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The chosen player's parameter ID hash, or 0 if nobody is left.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Three different players for a tactics scene (real usage, from ev44030016.nut)",
+      "source": "real",
+      "code": "local tacs_id_1 = \"para_cp0009\";\nlocal tacs_id_2 = \"para_cp0008\";\nlocal tacs_id_3 = CMND_GET_PARAM_ID_RANDOM(0, false, tacs_id_1, tacs_id_2);\nlocal tacs_id_4 = CMND_GET_PARAM_ID_RANDOM(0, false, tacs_id_1, tacs_id_2, tacs_id_3);"
+    }
+  ]
+}

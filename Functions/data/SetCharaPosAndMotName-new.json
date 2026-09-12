@@ -1,0 +1,47 @@
+{
+  "name": "SetCharaPosAndMotName",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Puts a character at a position and direction at once and sets its motion by name: CMND_SET_POSRY with the four values of _stdPos as separate numbers (x, y, z, rotY in degrees), then CMND_CHR_POS_VAL_TRG to the same spot over 1 frame (so the movement manager agrees with the new place), then CMND_SET_MOTION(_hdl, _motion, 0, 0)."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "_stdPos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "[x, y, z, rotY] (degrees)."
+      }
+    },
+    {
+      "name": "_motion",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Motion name, e.g. the stand motion 立ち01."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Putting the player back before leaving an event (real usage, from ev42010100.nut; Shift-JIS motion names shortened)",
+      "source": "real",
+      "code": "SetCharaPosAndMotName(hTenmaL, [33.400002, 0.0, -19.9, 0], standMotion);\nCMND_CHR_WARP_SET(hTenmaL, true);\nSetExitRpgCamera();"
+    }
+  ]
+}

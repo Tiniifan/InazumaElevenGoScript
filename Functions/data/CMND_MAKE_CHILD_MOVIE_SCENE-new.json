@@ -1,0 +1,79 @@
+{
+  "name": "CMND_MAKE_CHILD_MOVIE_SCENE",
+  "kind": "native",
+  "category": "movie",
+  "description": {
+    "en": "Requests a movie: it queues a change to a \"Movie\" child scene (task Ie4MovieTask) with the movie name, its sound, three fade switches and two fade lengths. \"<LG>\" in the sound name is replaced by the game's language code. The movie plays once the calling script suspends; wait for it with CMND_IS_RUN_CHILD_SCENE. Use the PlayMovie helper."
+  },
+  "params": [
+    {
+      "name": "movie",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Movie name, e.g. \"scene01\"."
+      }
+    },
+    {
+      "name": "sound",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Sound name, e.g. \"a4m01a_<LG>\"."
+      }
+    },
+    {
+      "name": "mainScrFade",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "Stored as MainScrFade (top screen fade)."
+      }
+    },
+    {
+      "name": "subScrFade",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "Stored as SubScrFade (bottom screen fade)."
+      }
+    },
+    {
+      "name": "bgmFade",
+      "type": "boolean",
+      "required": false,
+      "description": {
+        "en": "Stored as BGMFade. PlayMovie always passes it."
+      }
+    },
+    {
+      "name": "frameBeginFade",
+      "type": "float",
+      "required": false,
+      "description": {
+        "en": "Stored as FrameBeginFade (fade length at the start, in frames). PlayMovie always passes it."
+      }
+    },
+    {
+      "name": "frameEndFade",
+      "type": "float",
+      "required": false,
+      "description": {
+        "en": "Stored as FrameEndFade (fade length at the end). PlayMovie always passes it."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once queued.\nnull if the script system is not ready or fewer than 4 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside PlayMovie (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local snd = _sound + \"_<LG>\";\nCMND_MAKE_CHILD_MOVIE_SCENE(_movie, snd, _scrA_fade, _scrB_fade, _bgm_fade, _frm_bgn_fade, _frm_end_fade);\nsuspend();\n\nwhile (CMND_IS_RUN_CHILD_SCENE())\n{\n\tsuspend();\n}"
+    }
+  ]
+}

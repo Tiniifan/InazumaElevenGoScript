@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GET_BASE_POSITION",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the position type (from the character data) of a party list entry, e.g. to know whether one of the first members plays a given position."
+  },
+  "params": [
+    {
+      "name": "index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Party list entry number, from 0."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The position type number.\nnull if there is no member at that entry, the data is not available, the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Checking the first five members (real usage, from ev42090800.nut)",
+      "source": "real",
+      "code": "local pos_0 = CMND_GET_BASE_POSITION(0);\nlocal pos_1 = CMND_GET_BASE_POSITION(1);\nlocal pos_2 = CMND_GET_BASE_POSITION(2);\nlocal pos_3 = CMND_GET_BASE_POSITION(3);\nlocal pos_4 = CMND_GET_BASE_POSITION(4);\n\nif (2 == pos_0 || 2 == pos_1 || 2 == pos_2 || 2 == pos_3 || 2 == pos_4)\n{\n\t// ...\n}"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "StartWhiteFadeIn",
+  "kind": "ev_main",
+  "category": "screen-fx",
+  "description": {
+    "en": "Fades a screen back in from white with CMND_WHITE_FADE_IN and waits until CMND_IS_WHITE_FADE is false."
+  },
+  "params": [
+    {
+      "name": "_screen",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "SCREEN_A (0, top), SCREEN_B (1, bottom) or SCREEN_AB (2, both)."
+      }
+    },
+    {
+      "name": "_frame",
+      "type": "integer|float",
+      "required": true,
+      "description": {
+        "en": "Length of the fade in frames (EV_FADE_QUICK = 5, EV_FADE_NORMAL = 10, EV_FADE_SLOW = 15); 0 for an instant change."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Coming back from a white screen (real usage, from ev42042400.nut)",
+      "source": "real",
+      "code": "StartWhiteFadeIn(SCREEN_A, 30);"
+    }
+  ]
+}

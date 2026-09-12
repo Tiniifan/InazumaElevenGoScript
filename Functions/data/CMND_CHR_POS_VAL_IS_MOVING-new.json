@@ -1,0 +1,31 @@
+{
+  "name": "CMND_CHR_POS_VAL_IS_MOVING",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Tells whether a character is still moving or turning under a command of the movement manager (CMND_CHR_POS_VAL_TRG, CMND_CHR_PATH_SETUP, CMND_CHR_TURN_*). The events loop on it with suspend() to wait for a move to end (over 2200 calls).\nIt checks the character's two action states in its slot (one for moving, one for turning). A character with no slot counts as not moving.\nCharacter moves and turns are run by a movement manager with 16 slots, one per character. CMND_CHR_POS_VAL_TRG, CMND_CHR_PATH_SETUP and the CMND_CHR_TURN_* commands take a free slot for the character when it has none."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true while a move or turn is running, false otherwise.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Waiting for two turns (real usage, from ev42011600.nut)",
+      "source": "real",
+      "code": "CMND_CHR_TURN_TRG(hShindouL, hSangokuL, 0, 15, 1);\nCMND_CHR_TURN_TRG(hKirinoL, hSangokuL, 0, 15, 1);\n\nwhile (CMND_CHR_POS_VAL_IS_MOVING(hShindouL))\n{\n\tsuspend();\n}"
+    }
+  ]
+}

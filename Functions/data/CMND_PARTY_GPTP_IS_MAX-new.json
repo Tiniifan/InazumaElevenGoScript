@@ -1,0 +1,22 @@
+{
+  "name": "CMND_PARTY_GPTP_IS_MAX",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Tells whether every member of the party list has full GP and full TP. It returns false as soon as one member has less GP or TP than their maximum. The rest area script uses it to say the team is already rested."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true if everyone is full, false otherwise.\nnull if the script system is not ready or the player data is not available."
+    }
+  },
+  "examples": [
+    {
+      "case": "Rest area (real usage, from ie4_ev_sub_heal.nut)",
+      "source": "real",
+      "code": "local heal_bit = 11;\nCMND_SET_TEMP_BIT_FLAG(heal_bit, true);\n\nif (CMND_PARTY_GPTP_IS_MAX())\n{\n\tCreateSpeech(\"sysmes-heal-full\");\n}"
+    }
+  ]
+}

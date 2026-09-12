@@ -1,0 +1,31 @@
+{
+  "name": "CMND_SET_UNIFORM_NUMBER_ALL",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets the shirt numbers of the party members in one go: element i of the array is the number of party list entry i. Then every one of the first 16 entries left without a number (0) gets the lowest number not used yet."
+  },
+  "params": [
+    {
+      "name": "numbers",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "One shirt number per party list entry, in list order."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Renumbering the team (real usage, from ev42020200.nut; the array is shortened here)",
+      "source": "real",
+      "code": "CMND_SET_UNIFORM_NUMBER_ALL([\n\t18,\n\t20,\n\t9,\n\t1\n\t// ...\n]);"
+    }
+  ]
+}

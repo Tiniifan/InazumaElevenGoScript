@@ -1,0 +1,39 @@
+{
+  "name": "RunUnlockSkill",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Teaches a character a Special Move with the jingle J_08 and the message \"sysmes-Skill-00001\" (RunUnlockSkillUseMsg). The move itself is given with CMND_SKILL_UNLOCK."
+  },
+  "params": [
+    {
+      "name": "_chr",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Parameter ID of the character, e.g. \"para_cp0008\"."
+      }
+    },
+    {
+      "name": "_skill",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Special Move ID, e.g. \"who0011\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Learning a new move (real usage, from ev42033100.nut)",
+      "source": "real",
+      "code": "RunUnlockSkill(\"para_cp0008\", \"who0011\");"
+    }
+  ]
+}

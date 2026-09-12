@@ -1,0 +1,31 @@
+{
+  "name": "EndUseGoalModel",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Deletes the goal model created by StartUseGoalModel (CMND_DELETE_CHARA)."
+  },
+  "params": [
+    {
+      "name": "_goal_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Handle returned by StartUseGoalModel."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "At the end of the scene (real usage, from ev44020010.nut)",
+      "source": "real",
+      "code": "local goal_hdl = StartUseGoalModel();\n// ... scene ...\nCMND_DELETE_CHARA(hTenmaH);\nEndUseGoalModel(goal_hdl);\nCamCtrlExit();"
+    }
+  ]
+}

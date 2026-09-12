@@ -1,0 +1,39 @@
+{
+  "name": "EndScEvent",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Ends an in-match scene started with StartScEvent. It does nothing outside a match. When the scene used the top screen, it shows the normal map again in place of the Special Move map, and removes the goal model. Then it switches the match out of event mode (CMND_BTL_SET_ACTIVE_EVENT(0, _is_upper)) and waits until the switch is done."
+  },
+  "params": [
+    {
+      "name": "_is_upper",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Non-zero when the scene uses the top screen (the events pass their isEvUpperDisp variable, usually 1)."
+      }
+    },
+    {
+      "name": "aHdl",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "3-element array the function fills with handles (map, Special Move map, goal model) and that EndScEvent reads back; the events pass their scEvHdl array."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "At the end of an in-match scene (real usage, from ev44010020.nut)",
+      "source": "real",
+      "code": "CamCtrlExit();\nSetExitRpgCamera();\nScEventContinuousBGMAtMatch(\"M_08\");\nEndScEvent(isEvUpperDisp, scEvHdl);"
+    }
+  ]
+}

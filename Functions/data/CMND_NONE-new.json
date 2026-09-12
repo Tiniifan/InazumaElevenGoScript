@@ -3,20 +3,18 @@
   "kind": "message-tag",
   "category": "talk",
   "description": {
-    "en": "An internal message/dialogue control-code identifier, not a callable Squirrel function. Found only as a debug-symbol string in the game's ELF binary, named `lxpCMessage::DATA::CMND_NONE` — an enum value of a `DATA` enum nested in a `lxpCMessage` class, the engine's message/dialogue text parser. It appears nowhere in `script_clean/` or the IDA/Ghidra decompiles as a registered function, so it can't be called from a `.nut` script. Based on the naming, this is likely the \"no command\" / default value of the tag enum — a plain text segment carrying no embedded control code."
+    "en": "Not a function a script can call: an identifier of the game's message (dialogue text) parser.\nIt exists only as a symbol string in the game's ELF binary, lxpCMessage::DATA::CMND_NONE. That makes it a value of an enum named DATA inside the lxpCMessage class, the list of control codes the parser recognises inside message text (ruby, line breaks, waits, colours and so on; see the other CMND_* message tags).\nIt is not registered as a Squirrel function and appears nowhere in the shipped scripts. Going by its name it is most likely the \"no control code\" value, plain text; its byte-level encoding was not traced.\nThe fifteen names of that enum appear together in the binary, CMND_NONE first, followed by CMND_CHAR, CMND_CHAR_RUBI, CMND_RUBI, CMND_RUBI_END, CMND_GAIJI, CMND_LINE, CMND_WAIT, CMND_TOUCH_WAIT, CMND_SKIP_START, CMND_SKIP_END, CMND_COLOR_START, CMND_COLOR_END, CMND_COLOR_RUBI_START and CMND_COLOR_RUBI_END. That order is probably the enum order, which would make CMND_NONE value 0 (not confirmed)."
   },
   "params": [],
   "returns": {
-    "type": "not confirmed",
-    "description": {
-      "en": "Not a callable function — this is a message-parser tag identifier, not confirmed to have any script-visible behavior."
-    }
+    "type": "null",
+    "description": { "en": "Not applicable: this is not a callable function. Calling CMND_NONE from a script would fail because no such global exists." }
   },
   "examples": [
     {
-      "case": "Not callable from a script",
+      "case": "Not usable from a script",
       "source": "invented",
-      "code": "// CMND_NONE is not a callable function; it's the message parser's \"plain text, no tag\" enum value.\n// It cannot be used from a .nut script."
+      "code": "// CMND_NONE is an enum value of the message parser, not a Squirrel\n// function. This check shows it is not defined as a global:\nif (!(\"CMND_NONE\" in getroottable()))\n{\n\t// always taken\n}"
     }
   ]
 }

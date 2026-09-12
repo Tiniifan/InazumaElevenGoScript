@@ -1,0 +1,44 @@
+{
+  "name": "CMND_2DO_STATE_DRAW_TELOP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Shows or hides a named caption.\nCaptions made by the CMND_2DO_CREATE_*_TELOP functions start hidden (the engine calls this same visibility switch with false right after creating them), so a script must call this with true before the caption appears."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the caption."
+      }
+    },
+    {
+      "name": "visible",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to show the caption, false to hide it (any non-zero value counts as true)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "any|null",
+    "description": {
+      "en": "null if the engine is not ready, fewer than 2 arguments were given, or no caption has that name.\nOn success the native reports a result without pushing one, so Squirrel hands back the last argument (the visible value)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Revealing captions after creating them (real usage, from ie4_soccer_sys.nut; caption names shortened from the script's Shift-JIS names)",
+      "source": "real",
+      "code": "// Create a tactic caption, then make it visible (it starts hidden).\nlocal size = [0, 0];\nCMND_2DO_CREATE_TELOP(\"tactic_0\", 1, 12, 0, \"ift0004\", size, 6);\nCMND_2DO_STATE_DRAW_TELOP(\"tactic_0\", true);"
+    },
+    {
+      "case": "Hiding a caption without deleting it",
+      "source": "invented",
+      "code": "// Hide the caption for now; it can be shown again later by name.\nCMND_2DO_STATE_DRAW_TELOP(\"tactic_0\", false);"
+    }
+  ]
+}

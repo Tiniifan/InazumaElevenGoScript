@@ -1,0 +1,32 @@
+{
+  "name": "EndStandEvent",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Closes the stand talk scene opened by StartStandEvent: it fades the camera's DepthLevel back to the saved value and the depth range from 1.5 to 1.0 over _frm frames, removes the blur (CMND_BOKE_DELETE(0.0, 7.0)), waits, restores the pause bits and clears the talking characters (CMND_RESET_TALK_CHARA).\nCalling it when no stand scene is open only prints a debug message."
+  },
+  "params": [
+    {
+      "name": "_frm",
+      "type": "integer",
+      "required": false,
+      "default": "10",
+      "description": {
+        "en": "Length of the transition in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Closing the stand scene (real usage, from ev42010450.nut)",
+      "source": "real",
+      "code": "StartStandEvent();\nShowTutorial2(\"tt0002\", 2);\nEndStandEvent();"
+    }
+  ]
+}

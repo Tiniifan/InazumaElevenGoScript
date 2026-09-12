@@ -1,0 +1,28 @@
+{
+  "name": "CMND_BTL_RESET_AVATER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Dismisses a Fighting Spirit that is out on the pitch (\"avater\" is the game's spelling of avatar).\nWith only a team, it picks that team's player on the pitch whose Fighting Spirit is out and has the lowest remaining gauge. With a player ID as second argument, it takes that player.\n\nDismissing costs the player GP. The cost grows with how much of the spirit's gauge was used, and higher Stamina lowers it. The spirit's skill effect is removed from the player or the team, and the player's Fighting Spirit flag is cleared (CMND_BTL_HAS_AVATER becomes false). Links the spirit had with other players are released.\nNothing happens if that player's Fighting Spirit is not out.\n\nNote: btl0014.nut calls it once as RESET_AVATER(\"para_cp0008\", \"ck0001\", 0), with the arguments in SET_AVATER order. The native reads the second argument as the player ID, so that call looks for a player named \"ck0001\" and does nothing."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team: 0 = the player's team, 1 = the opponent team. Used to pick the player when charaId is omitted." } },
+    { "name": "charaId", "type": "string", "required": false, "description": { "en": "Parameter ID of the player whose Fighting Spirit to dismiss. When omitted, the team's out spirit with the lowest gauge is chosen." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true if a Fighting Spirit was dismissed, false if none matched.\nnull if the script system is not ready or no argument is given." }
+  },
+  "examples": [
+    {
+      "case": "Dismissing two given players' Fighting Spirits (real usage, from btl0014.nut)",
+      "source": "real",
+      "code": "// After a scripted goal: new summons on both sides, then para_cp0009 and\n// para_cp0010 (team 0) lose theirs\nCMND_BTL_SET_AVATER(\"para_cp0290\", \"ck0004\", 1);\nCMND_BTL_SET_AVATER(\"para_cp0008\", \"ck0030\", 0);\nCMND_BTL_RESET_AVATER(0, \"para_cp0009\");\nCMND_BTL_RESET_AVATER(0, \"para_cp0010\");"
+    },
+    {
+      "case": "Letting the engine pick which one to dismiss (real usage, from btl0011.nut)",
+      "source": "real",
+      "code": "// Three or more of team 0's Fighting Spirits are out: dismiss the one\n// with the lowest gauge before a new summon\nif (CMND_BTL_GET_AVATER_NUM(0) >= 3)\n{\n\tCMND_BTL_RESET_AVATER(0);\n}\n\nCMND_BTL_SET_AVATER(\"para_cp0016\", \"ck0005\", 0);"
+    }
+  ]
+}

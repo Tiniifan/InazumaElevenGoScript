@@ -1,0 +1,47 @@
+{
+  "name": "CMND_REG_VISIBLE_HQ_EVENT",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Sets whether a registered object is visible during one cut of the next HQ event. The object must have been registered with CMND_REG_HDL_HQ_EVENT, and not as the camera. An HQ event (see RunHQEvent) plays its cuts with the objects registered here."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "A registered object."
+      }
+    },
+    {
+      "name": "cut",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Cut number, from 1."
+      }
+    },
+    {
+      "name": "visible",
+      "type": "boolean|integer",
+      "required": true,
+      "description": {
+        "en": "1 (true) to show, 0 to hide."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (nothing changes if the object is not registered or is the camera)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Objects that only appear in some cuts (real usage, from ev42123400.nut)",
+      "source": "real",
+      "code": "CMND_REG_HDL_HQ_EVENT(hEff, 2);\n// ...\nCMND_REG_VISIBLE_HQ_EVENT(hScram1, 1, 1);\nCMND_REG_VISIBLE_HQ_EVENT(hScram1, 2, 0);\nCMND_REG_VISIBLE_HQ_EVENT(hScram1, 3, 0);\nCMND_REG_VISIBLE_HQ_EVENT(hScram1, 4, 0);\nCMND_REG_VISIBLE_HQ_EVENT(hEff, 1, 0);"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "CMND_SET_BASE_MOT_NO_LOAD_FLAG",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Sets (true) or clears (false) the \"no base motion\" flag, bit 0x10 of the event system flags. While the flag is set, every character created with CMND_CREATE_CHARA gets the same setting as its noBase argument (bit 0x80 of its creation flags), which by this command's name skips loading the base motions. The HQ events set it while creating their models (StartSetupHQEventChara / EndSetupHQEventChara), since those models get their motions from the HQ event files."
+  },
+  "params": [
+    {
+      "name": "flag",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to set the flag, false to clear it."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (also when the script system is not ready or no argument is given, in which case nothing changes)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside the HQ setup helpers (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "StartSetupHQEventChara <- function ()\n{\n\tCMND_SET_BASE_MOT_NO_LOAD_FLAG(true);\n};\nEndSetupHQEventChara <- function ()\n{\n\tCMND_SET_BASE_MOT_NO_LOAD_FLAG(false);\n};"
+    }
+  ]
+}

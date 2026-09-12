@@ -1,0 +1,39 @@
+{
+  "name": "ShowTutorial2",
+  "kind": "ev_main",
+  "category": "image-ui",
+  "description": {
+    "en": "Shows one tutorial page with ShowTutorialEx(_imgFileName, \"str_005\", true). The second argument is ignored: the sound is always \"str_005\"."
+  },
+  "params": [
+    {
+      "name": "_imgFileName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Tutorial image name, e.g. \"tt1011\"."
+      }
+    },
+    {
+      "name": "_strm",
+      "type": "integer|string",
+      "required": true,
+      "description": {
+        "en": "Ignored (the events pass 1 or 2)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A series of tutorial pages (real usage, from ev42010100.nut)",
+      "source": "real",
+      "code": "ShowTutorial2(\"tt0000\", 1);\nShowTutorial2(\"tt1011\", 2);\nShowTutorial2(\"tt1012\", 2);\nShowTutorial2(\"tt0002\", 2);"
+    }
+  ]
+}

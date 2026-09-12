@@ -1,0 +1,31 @@
+{
+  "name": "CMND_BTL_ACTIVE_FLIPPER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Places a flipper reserved with CMND_BTL_REG_FLIPPER on the pitch and switches it on.\n\nThe flipper's entry in the pitch-object table receives the position (X and Z, height 0) and is marked active.\nThe optional rotation and direction vector are handled differently: they are not stored in the flipper's entry but appended to a separate list, in call order. The first call that passes a rotation fills the first slot of that list, the second call the second slot, and so on. The pinball map places its flippers in handle order, so the two line up."
+  },
+  "params": [
+    { "name": "handle", "type": "integer", "required": true, "description": { "en": "Flipper handle returned by CMND_BTL_REG_FLIPPER." } },
+    { "name": "x", "type": "float", "required": true, "description": { "en": "X position on the pitch." } },
+    { "name": "z", "type": "float", "required": true, "description": { "en": "Z position on the pitch." } },
+    { "name": "rotY", "type": "float", "required": false, "description": { "en": "Rotation around the vertical axis. Passing it appends a new entry to the flipper list." } },
+    { "name": "dir", "type": "array", "required": false, "description": { "en": "2-element direction vector stored with that list entry. Only read when rotY is also given." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the flipper is placed.\nnull if the match system is not ready or fewer than 3 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Placing the flippers in the four corners (real usage, from mf14b01.nut)",
+      "source": "real",
+      "code": "// Each flipper gets a mirrored position, rotation and direction\nlocal vec = [-1.0, 1.0];\nCMND_BTL_ACTIVE_FLIPPER(hFlipper[0], 93, 200, -50.0, vec);\nvec[0] = 1.0;\nvec[1] = 1.0;\nCMND_BTL_ACTIVE_FLIPPER(hFlipper[1], -93, 200, 50.0, vec);\nvec[0] = -1.0;\nvec[1] = -1.0;\nCMND_BTL_ACTIVE_FLIPPER(hFlipper[2], 93, -200, 50.0, vec);\nvec[0] = 1.0;\nvec[1] = -1.0;\nCMND_BTL_ACTIVE_FLIPPER(hFlipper[3], -93, -200, -50.0, vec);"
+    },
+    {
+      "case": "Moving an existing flipper without touching its rotation",
+      "source": "invented",
+      "code": "// Position only: no new rotation entry is appended\nCMND_BTL_ACTIVE_FLIPPER(hFlipper[0], 100, 200);"
+    }
+  ]
+}

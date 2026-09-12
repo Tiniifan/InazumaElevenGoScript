@@ -1,0 +1,39 @@
+{
+  "name": "RunGetTacticsUseMsg",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Gives a tactic with a chosen message. Tactics are given as items: RunGetItemEx(_tcs, 1, 30, 30, \"J_07\", 0, _msg). The BGM is stopped with a fade of 30, the function waits 30 frames, and the jingle J_07 plays while the message shows. No shipped script calls it directly."
+  },
+  "params": [
+    {
+      "name": "_tcs",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Tactic ID, e.g. \"ift0001\"."
+      }
+    },
+    {
+      "name": "_msg",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Message ID to show instead of the default one."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "How RunGetTactics uses it (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "RunGetTactics <- function ( _tcs )\n{\n\tRunGetTacticsUseMsg(_tcs, \"sysmes-Tactics-00001\");\n};"
+    }
+  ]
+}

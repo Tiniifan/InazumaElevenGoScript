@@ -1,0 +1,24 @@
+{
+  "name": "CMND_BTL_GET_KSN_SKILL_EFFECTIVE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Tells whether a team has a skill effect of a given type among its four team effect entries. It is the team-only half of CMND_BTL_GET_SKILL_EFFECTIVE, except that the value of the effect is not compared: any entry of that type counts.\nThe \"ksn\" in its name stands for keshin (Fighting Spirit). The same team entries also hold the type 29 bonus that CMND_BTL_GET_CALC_PARAM applies to Fighting Spirit power.\nThe result (0 or 1) is written into the output array."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team to check: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "effectType", "type": "integer", "required": true, "description": { "en": "Effect type to look for. ie4_soccer_sys.nut tests types 58 to 62, one per command element 1 to 5." } },
+    { "name": "result", "type": "array", "required": true, "description": { "en": "OUTPUT: result[0] receives 1 if the team has an effect of that type, 0 otherwise." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null. The answer comes back in the output array.\nAlso null, with nothing written, if fewer than 3 arguments are given." }
+  },
+  "examples": [
+    {
+      "case": "A team effect boosting one element (real usage, from ie4_soccer_sys.nut, GetSkillElement)",
+      "source": "real",
+      "code": "// Effect types 58 to 62 match the command's element 1 to 5\nlocal skill_val = 0;\nif (_cmndParam[3] == 1)\n{\n\tskill_val = 58;\n}\n// ... 59 to 62 for elements 2 to 5 ...\n\nlocal num = [0];\nCMND_BTL_GET_KSN_SKILL_EFFECTIVE(_TeamId, skill_val, num);\nif (num[0] >= 1)\n{\n\tvalue += 20;\n}"
+    }
+  ]
+}

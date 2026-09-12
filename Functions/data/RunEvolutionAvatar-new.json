@@ -1,0 +1,48 @@
+{
+  "name": "RunEvolutionAvatar",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Evolves a character's Fighting Spirit into a new form, with the jingle J_07 and the message \"sysmes-Avatar-00002\" (RunEvolutionAvatarUseMsg). The change is made with CMND_AVATAR_EVOLUTION, and the spirit is locked afterwards unless _lock is false."
+  },
+  "params": [
+    {
+      "name": "_chr",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Parameter ID of the character, e.g. \"para_cp0008\"."
+      }
+    },
+    {
+      "name": "_avt",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Fighting Spirit ID, e.g. \"ck0025\"."
+      }
+    },
+    {
+      "name": "_lock",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true to lock the character's Fighting Spirit afterwards (CMND_SET_AVATAR_LOCK_FLAG(hdl, true)); otherwise the lock state it had before is kept."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "The Fighting Spirit's new form (real usage, from ev44110040.nut)",
+      "source": "real",
+      "code": "RunEvolutionAvatar(\"para_cp0008\", \"ck0033\");"
+    }
+  ]
+}

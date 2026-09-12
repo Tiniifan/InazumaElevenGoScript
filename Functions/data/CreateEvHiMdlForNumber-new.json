@@ -1,0 +1,101 @@
+{
+  "name": "CreateEvHiMdlForNumber",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a detailed (Hi) model of the story character para_cpNNNN in the given kit: CMND_CREATE_CHARA(4, _charaName, set, _face, _body, true, _home, _keeper, shoes, gloves, false, _no_base, _mem, _uniform_no), with set \"Talk\" when _talk is true (\"dmy\" otherwise), shoes = _body and gloves = _body for a goalkeeper."
+  },
+  "params": [
+    {
+      "name": "_charaName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object; the events use the character's name followed by L (light model) or H (detailed model)."
+      }
+    },
+    {
+      "name": "_face",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Character number: the model is para_cpNNNN (the developers named this argument _face)."
+      }
+    },
+    {
+      "name": "_body",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Body (kit) number; also used as the shoes number, and as the gloves number for a goalkeeper."
+      }
+    },
+    {
+      "name": "_home",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true for the home kit, false for away."
+      }
+    },
+    {
+      "name": "_keeper",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true for the goalkeeper outfit (gloves get the body number)."
+      }
+    },
+    {
+      "name": "_talk",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true for the \"Talk\" motion set (talking model), false for \"dmy\"."
+      }
+    },
+    {
+      "name": "_no_base",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "Passed as CMND_CREATE_CHARA's noBase flag (effect not traced)."
+      }
+    },
+    {
+      "name": "_mem",
+      "type": "string",
+      "required": false,
+      "default": "DEV_MEM_NAME_EVENT",
+      "description": {
+        "en": "Memory area name."
+      }
+    },
+    {
+      "name": "_uniform_no",
+      "type": "integer",
+      "required": false,
+      "default": "0",
+      "description": {
+        "en": "Uniform number passed as CMND_CREATE_CHARA's uniform value."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character (see CMND_CREATE_CHARA)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A detailed model for a close-up (real usage, from ev42011200.nut; the Shift-JIS object name is replaced by a variable here)",
+      "source": "real",
+      "code": "local hShindouH = CreateEvHiMdlForNumber(charaName, 9, 1, true, false, false);"
+    }
+  ]
+}

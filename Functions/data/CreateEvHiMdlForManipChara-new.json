@@ -1,0 +1,31 @@
+{
+  "name": "CreateEvHiMdlForManipChara",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a detailed (Hi) model of the character the player controls, with the \"Talk\" motion set: CMND_CREATE_CHARA(0, _charaName, \"Talk\", true, false)."
+  },
+  "params": [
+    {
+      "name": "_charaName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object; the events use the character's name followed by L (light model) or H (detailed model)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character (see CMND_CREATE_CHARA)."
+    }
+  },
+  "examples": [
+    {
+      "case": "The player character for a close-up (real usage, from ev42010600.nut; the Shift-JIS object name is replaced by a variable here)",
+      "source": "real",
+      "code": "local hTenmaH = CreateEvHiMdlForManipChara(charaName);"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "name": "CMND_REG_MAP_LIGHT_HQ_EVENT",
+  "kind": "native",
+  "category": "lighting",
+  "description": {
+    "en": "Sets whether one of the map's lights is on during one cut of the next HQ event: light number (0 to 7), cut number (1 and up), on or off. An HQ event (see RunHQEvent) plays its cuts with the objects registered here."
+  },
+  "params": [
+    {
+      "name": "light",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Light number, 0 to 7."
+      }
+    },
+    {
+      "name": "cut",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Cut number, from 1."
+      }
+    },
+    {
+      "name": "on",
+      "type": "boolean|integer",
+      "required": true,
+      "description": {
+        "en": "1 (true) for on, 0 for off."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Setting up the first HQ event (real usage, from ev42010100.nut)",
+      "source": "real",
+      "code": "CMND_HQ_EVENT_INIT();\nCMND_REG_HDL_HQ_EVENT(hEvMap, 0);\nCMND_REG_HDL_HQ_EVENT(hCamera, 1);\nCMND_REG_HDL_HQ_EVENT(hTenmaH, 2);\nCMND_REG_HDL_HQ_EVENT(hSasukeH, 2);\nCMND_REG_HDL_HQ_EVENT(hEff, 2);\nCMND_REG_MAP_LIGHT_HQ_EVENT(0, 1, 1);\nCMND_REG_MAP_LIGHT_HQ_EVENT(0, 2, 1);\nCMND_REG_MAP_LIGHT_HQ_EVENT(0, 3, 0);\n// ...\nRunHQEvent(\"hqev010100\", 6);"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_SET_FORMATIONID",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets the formation a match team lines up in. It is stored in the team's match setup, so it is meant to be called while the match is being set up (InitBtl)."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "formationId", "type": "string|integer", "required": true, "description": { "en": "Formation ID, e.g. \"ifb0301\" (a 5-a-side formation), or its CRC32 hash as an integer." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has run.\nnull if the match system is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Forcing a formation for a 5-a-side story challenge (real usage, from btl0301.nut)",
+      "source": "real",
+      "code": "// The player's team plays this challenge in formation ifb0301\nCMND_BTL_SET_FORMATIONID(0, \"ifb0301\");"
+    }
+  ]
+}

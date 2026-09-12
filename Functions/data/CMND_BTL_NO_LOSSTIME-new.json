@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_NO_LOSSTIME",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets or clears the match's \"no loss time\" flag (loss time is stoppage time).\nThe only code found that reads it is the setup step that draws the loss time. Unless this flag is set (or one particular match mode is active), that step picks a random loss time of 60 to 144 seconds, in steps of 6 seconds; with the flag set, the loss time is 0. The same step also seeds the match's random generators and puts the match period back to 0.\nMatch setup resets the flag to false.\nThe only shipped use is at the end of the last scripted beat of btl0003.nut, just before the clock is moved to 30:30 in the second half."
+  },
+  "params": [
+    { "name": "enable", "type": "boolean", "required": true, "description": { "en": "true (non-zero) for no loss time, false to allow it again." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when no argument is given)." }
+  },
+  "examples": [
+    {
+      "case": "End of the last scripted beat of a story match (real usage, from btl0003.nut)",
+      "source": "real",
+      "code": "CMND_BTL_SET_MATCH_EFFECT(0, 0);\nCMND_BTL_SET_FORCE_TOUGH(false, \"para_cp0008\");\nScBtlResult();\nCMND_BTL_RESET_POS_LOCK();\nCMND_BTL_NO_LOSSTIME(true);\nCMND_BTL_SET_MATCH_PHASE(1, 1830);"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "CMND_CHECK_MOVE_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Tells whether the engine camera move of the given camera is still going on. The engine camera move is the one started with CMND_SET_MOVE_INFO_CAMERA; only one camera can be moving at a time.\nNote that sysCamCtrlStep, the only caller, passes no argument, so it always gets null."
+  },
+  "params": [
+    {
+      "name": "hCamera",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Camera handle (CMND_GET_ACT_CAMERA, CMND_LOAD_CAMERA, CMND_CREATE_CAMERA)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true while the move is going on, false once it is over.\nnull if the handle is not the camera of the last move, no argument is given or the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Checking a move (not found in script_clean/ with an argument; invented)",
+      "source": "invented",
+      "code": "local hCam = CMND_GET_ACT_CAMERA();\nCMND_SET_MOVE_INFO_CAMERA(hCam, [0.0, 40.0, 80.0], [0.0, 10.0, 0.0], 30.0, 0);\n\nwhile (CMND_CHECK_MOVE_CAMERA(hCam))\n{\n\tsuspend();\n}"
+    }
+  ]
+}

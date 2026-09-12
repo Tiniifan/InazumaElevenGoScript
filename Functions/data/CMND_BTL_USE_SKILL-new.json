@@ -1,0 +1,24 @@
+{
+  "name": "CMND_BTL_USE_SKILL",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Makes a player perform one of their Special Moves as a scripted action. The native finds the player among the team's players on the pitch, stores the move ID and posts a request; it does nothing if the player is not found.\nWhen the match handles the request, it looks the move up in the move data and checks it is one of the moves the player can use at that moment. If so, it sets up a clash with that player alone on the attacking side using that move. The move's data type decides how the clash is built; types 1 and 2 are handled. A move the player does not have is ignored.\nThe move ID is copied into an 8-byte field (7 characters plus the terminator), which fits the usual IDs; the copy is not bounded, so a longer ID would spill into the next field.\nNo shipped script calls it."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team of the player: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Parameter ID of the player, e.g. \"para_cp0008\"." } },
+    { "name": "skillId", "type": "string", "required": true, "description": { "en": "Special Move ID, e.g. \"whs0003\" (IDs have 7 characters)." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when fewer than 3 arguments are given)." }
+  },
+  "examples": [
+    {
+      "case": "A scripted shot right after a scene (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Give para_cp0008 the ball, then have them use their Special Move\n// whs0003 (they must know it)\nCMND_BTL_SET_BALL_HAVE(0, \"para_cp0008\");\nCMND_BTL_USE_SKILL(0, \"para_cp0008\", \"whs0003\");"
+    }
+  ]
+}

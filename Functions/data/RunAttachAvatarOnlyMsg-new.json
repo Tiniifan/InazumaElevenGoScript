@@ -1,0 +1,48 @@
+{
+  "name": "RunAttachAvatarOnlyMsg",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Shows the Fighting Spirit presentation (jingle J_07, message \"sysmes-Avatar-00001\" naming the character and the spirit) without attaching anything. The story uses it when the spirit is already set up by other means, for example during a match (CMND_BTL_SET_AVATER)."
+  },
+  "params": [
+    {
+      "name": "_chr",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Parameter ID of the character, e.g. \"para_cp0008\"."
+      }
+    },
+    {
+      "name": "_avt",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Fighting Spirit ID, e.g. \"ck0025\"."
+      }
+    },
+    {
+      "name": "_lock",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true to lock the character's Fighting Spirit afterwards (CMND_SET_AVATAR_LOCK_FLAG(hdl, true)); otherwise the lock state it had before is kept."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Announcing a Fighting Spirit in a match scene (real usage, from ev44030040.nut)",
+      "source": "real",
+      "code": "RunAttachAvatarOnlyMsg(\"para_cp0009\", \"ck0003\");"
+    }
+  ]
+}

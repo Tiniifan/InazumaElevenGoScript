@@ -1,0 +1,28 @@
+{
+  "name": "CMND_ADD_ITEM",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Adds a quantity of an item to the player's inventory.\n\nThe item can be given as its ID string (hashed with CRC32) or directly as an integer hash. The engine reads the item's category from the item table to pick the right bag, then adds the quantity there.\nOne item category (internal category 90) is capped at 30 items in total; adding more than that fails.\n\nThe same inventory holds every kind of item, including formations and Fighting Spirits, so this also works for IDs like \"ifa0001\"."
+  },
+  "params": [
+    { "name": "itemId", "type": "string|integer", "required": true, "description": { "en": "Item ID, e.g. \"iie0501\", or the item's CRC32 hash as an integer." } },
+    { "name": "quantity", "type": "integer", "required": true, "description": { "en": "How many to add." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true if the item was added, false if it could not be (unknown ID, no room in its bag, or the capped category is full).\nnull if the engine is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Giving the player a reward item",
+      "source": "real",
+      "code": "// Hand the player one item as a reward\nCMND_ADD_ITEM(\"iie0501\", 1);"
+    },
+    {
+      "case": "Checking that the item really fit in the inventory",
+      "source": "invented",
+      "code": "// Give three of an item and react if the inventory refused them\nif (!CMND_ADD_ITEM(\"iie0501\", 3))\n{\n\t// the item could not be added\n}"
+    }
+  ]
+}

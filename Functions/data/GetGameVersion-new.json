@@ -1,0 +1,22 @@
+{
+  "name": "GetGameVersion",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Returns the game version, straight from CMND_GET_GAME_VERSION(). The scripts compare it with GAME_VER_DR and GAME_VER_SH (the two editions of the game) to run edition-specific story branches."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer",
+    "description": {
+      "en": "The value returned by CMND_GET_GAME_VERSION (GAME_VER_DR or GAME_VER_SH)."
+    }
+  },
+  "examples": [
+    {
+      "case": "An edition-specific map jump (real usage, from ev42022200.nut)",
+      "source": "real",
+      "code": "if (GetGameVersion() == GAME_VER_SH)\n{\n\tReserveMapJump(\"mr02b02\", [0, 0, 0, 0]);\n}"
+    }
+  ]
+}

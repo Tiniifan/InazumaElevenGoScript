@@ -1,0 +1,31 @@
+{
+  "name": "CMND_DELETE_MAP_EFFECT",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Deletes a map effect object created with CMND_CREATE_MAP_EFFECT. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "hEffect",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Handle from CMND_CREATE_MAP_EFFECT."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once deleted.\nnull if the object is not found, the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Creating and removing a map effect (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local hEff = CMND_CREATE_MAP_EFFECT(\"effect_name\");\nWaitLoading(hEff);\n// ...\nCMND_DELETE_MAP_EFFECT(hEff);"
+    }
+  ]
+}

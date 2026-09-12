@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BOKE_CREATE",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Turns on the out-of-focus blur post-effect (\"boke\", the Japanese word for this kind of blur) and fades it in to a given strength over a number of frames.\nThe game uses it for its dialogue scenes: ev_main's StartStandEvent narrows the camera's depth of field and switches this blur on, so the background goes soft behind the characters who are talking. EndStandEvent undoes it with CMND_BOKE_DELETE.\nUse CMND_BOKE_FADE to change the strength while the effect is on."
+  },
+  "params": [
+    { "name": "strength", "type": "float", "required": true, "description": { "en": "Target blur strength. The dialogue scenes use 0.9." } },
+    { "name": "frames", "type": "float", "required": true, "description": { "en": "Length of the fade-in, in frames. The dialogue scenes use 7." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the effect has been started.\nnull if the engine is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Blurring the background for a dialogue scene (real usage, from ev_main's StartStandEvent)",
+      "source": "real",
+      "code": "// Narrow the depth of field of the active camera, then turn the blur on,\n// so the characters stay sharp and the background goes soft.\nlocal hCam = CMND_GET_ACT_CAMERA();\nEV_TALK_DP_LVL_TMP = CMND_GET_CAMERA_PARAM(hCam, \"DepthLevel\");\nCMND_DEPTHLEVEL_FADE(hCam, EV_TALK_DP_LVL, _frame);\nCMND_DEPTHRANGE_FADE(hCam, 1.0, 1.5, _frame);\nCMND_BOKE_CREATE(0.89999998, 7.0);\nWaitFrame(_frame);"
+    }
+  ]
+}

@@ -3,26 +3,38 @@
   "kind": "ev_main",
   "category": "camera",
   "description": {
-    "en": "Sets up the active camera at one of several predefined match-view position presets (e.g. CAMERA_CENTER, CAMERA_MY_GOAL, CAMERA_OTHER_GOAL), initializing camera control first. Each preset's coordinates can optionally be rescaled for technique cutscenes via ToScaleWazaMap."
+    "en": "Puts the active camera at one of five fixed views of the pitch, for scenes played during a match. It starts camera control on the active camera (CamCtrlInit) and places it with CamCtrlSetPosRef.\nThe views are given by the constants of ie4_ev_main.nut: CAMERA_CENTER (0), CAMERA_MY_GOAL (1), CAMERA_OTHER_GOAL (2), CAMERA_MY_BENCH (3), CAMERA_OTHER_BENCH (4). The goal and bench views of the two sides mirror each other along the Z axis.\nWith _waza_scale true, each coordinate goes through ToScaleWazaMap, for the scaled map used by Special Move scenes. Any other view number leaves the camera where it is (camera control is still started)."
   },
   "params": [
-    { "name": "_pos_id", "type": "integer", "required": true, "description": { "en": "Preset camera position constant to use (e.g. CAMERA_CENTER, CAMERA_MY_GOAL, CAMERA_OTHER_GOAL, CAMERA_MY_BENCH, CAMERA_OTHER_BENCH)." } },
-    { "name": "_waza_scale", "type": "boolean", "required": false, "default": "false", "description": { "en": "When true, rescales the preset's coordinates via ToScaleWazaMap for use on a technique map." } }
+    {
+      "name": "_pos_id",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "View: CAMERA_CENTER (0), CAMERA_MY_GOAL (1), CAMERA_OTHER_GOAL (2), CAMERA_MY_BENCH (3) or CAMERA_OTHER_BENCH (4)."
+      }
+    },
+    {
+      "name": "_waza_scale",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to scale the coordinates with ToScaleWazaMap."
+      }
+    }
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": {
+      "en": "Always null (no return statement)."
+    }
   },
   "examples": [
     {
-      "case": "Setting the camera to a preset position (real usage, e.g. from ev44030030.nut)",
+      "case": "Views for an in-match scene (real usage, from ev44010070.nut)",
       "source": "real",
-      "code": "// Set the camera to the \"my bench\" preset position\nCamSettingBattlePosRef(CAMERA_MY_BENCH);"
-    },
-    {
-      "case": "Setting the camera to a preset position rescaled for a technique map",
-      "source": "invented",
-      "code": "// Set the camera to the center-field preset position, rescaled for a technique cutscene\nCamSettingBattlePosRef(CAMERA_CENTER, true);"
+      "code": "StartScEvent(isEvUpperDisp, scEvHdl);\n// Centre view to begin with\nCamSettingBattlePosRef(0);\nCMND_RESET_TALK_CHARA();\n// ...\n// Later, the view of the player's bench (CAMERA_MY_BENCH)\nCamSettingBattlePosRef(3);"
     }
   ]
 }

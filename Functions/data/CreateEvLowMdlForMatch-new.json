@@ -1,0 +1,65 @@
+{
+  "name": "CreateEvLowMdlForMatch",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a light (Low) model of a match player for an in-match scene: CMND_CREATE_CHARA(6, _charaname, \"dmmy\", _paramID, _is_upper, false, false, _teamID). During a match the player is found in the match data and dressed in their match kit. Unless _no_bustup is true, a bust-up picture named after the object with \"ev顔\" appended is created too."
+  },
+  "params": [
+    {
+      "name": "_charaname",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object."
+      }
+    },
+    {
+      "name": "_is_upper",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "The scene's isEvUpperDisp value."
+      }
+    },
+    {
+      "name": "_paramID",
+      "type": "string|integer",
+      "required": true,
+      "description": {
+        "en": "Parameter ID of the player (or its hash, e.g. from CMND_BTL_GET_ADD_MEMBER_CRC)."
+      }
+    },
+    {
+      "name": "_teamID",
+      "type": "integer",
+      "required": false,
+      "default": "2",
+      "description": {
+        "en": "Team to search: 0 = the player's team, 1 = the opponent team, 2 = search by ID only."
+      }
+    },
+    {
+      "name": "_no_bustup",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to skip the bust-up picture."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character (see CMND_CREATE_CHARA)."
+    }
+  },
+  "examples": [
+    {
+      "case": "The newly added match member (real usage, from ev43030000.nut; the Shift-JIS object name is replaced by a variable here)",
+      "source": "real",
+      "code": "local crc = CMND_BTL_GET_ADD_MEMBER_CRC();\nlocal hNakamaL = CreateEvLowMdlForMatch(charaName, isEvUpperDisp, crc);"
+    }
+  ]
+}

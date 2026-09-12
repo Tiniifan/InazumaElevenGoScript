@@ -1,0 +1,28 @@
+{
+  "name": "CMND_CHR_MTN_IS_END",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Tells whether the motion playing on an object (character, effect model, chest...) has finished, so a script can wait for it before going on. The events loop on it with suspend() right after CMND_SET_MOTION.\nIt reads the object's motion status flags. By default it returns the \"motion ended\" flag (bit 0). With true as second argument it returns another flag of the same status (bit 3) instead. The scripts use that form 58 times, after some CMND_SET_MOTION calls; what distinguishes the two flags was not traced.\nA handle of 0 counts as finished."
+  },
+  "params": [
+    { "name": "handle", "type": "handle", "required": true, "description": { "en": "Handle of the object whose motion is checked." } },
+    { "name": "altFlag", "type": "boolean", "required": false, "default": "false", "description": { "en": "true to read the second end flag (bit 3) instead of the usual one (bit 0)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true when the flag is set (the motion has finished), false otherwise.\ntrue when the handle is 0.\nnull if the handle matches no object, or if the script system is not ready or no argument is given." }
+  },
+  "examples": [
+    {
+      "case": "Waiting for a motion to end (real usage, from ev42031600.nut)",
+      "source": "real",
+      "code": "CMND_SET_ENABLE(hTVFlash, true);\n\n// Wait until the effect model's motion has played through\nwhile (!CMND_CHR_MTN_IS_END(hTVFlash))\n{\n\tsuspend();\n}"
+    },
+    {
+      "case": "With the second flag, for two characters (real usage, from ev42031100.nut)",
+      "source": "real",
+      "code": "// Both characters start the same motion (Shift-JIS motion name shortened here)\nCMND_SET_MOTION(hTenmaL, motionName, 2);\nCMND_SET_MOTION(hShinsukeL, motionName, 2);\n\nwhile (!CMND_CHR_MTN_IS_END(hTenmaL, true))\n{\n\tsuspend();\n}\n\nwhile (!CMND_CHR_MTN_IS_END(hShinsukeL, true))\n{\n\tsuspend();\n}"
+    }
+  ]
+}

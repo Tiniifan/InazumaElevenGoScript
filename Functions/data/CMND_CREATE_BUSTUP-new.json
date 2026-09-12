@@ -1,0 +1,62 @@
+{
+  "name": "CMND_CREATE_BUSTUP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Builds the bust-up portrait of a character (the picture shown next to its lines in dialogues), from the files in data/bustup/skin/, data/bustup/uniform/ and data/bustup/face/, and returns the portrait's handle. The ev_main helper CreateBustup places it on the left or right of the bottom screen.\nThe animal helpers pass true and the animal's number as third and fourth arguments; what these change was not traced further."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "The character the portrait is for."
+      }
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the portrait object."
+      }
+    },
+    {
+      "name": "flag",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "Passed on to the portrait builder (the animal helpers pass true)."
+      }
+    },
+    {
+      "name": "number",
+      "type": "integer",
+      "required": false,
+      "default": "0",
+      "description": {
+        "en": "Passed on to the portrait builder (the animal helpers pass the animal's number)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "The portrait handle.\nnull if the portrait could not be built, the name is missing, the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside CreateBustup (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local hdl = CMND_CREATE_BUSTUP(_mdlHdl, _name);\n\nif (_right)\n{\n\tCMND_SET_POSRY(hdl, [\n\t\t5,\n\t\t66,\n\t\t0\n\t]);\n}"
+    },
+    {
+      "case": "For an animal (real code, from ie4_ev_main.nut, CreateEvLowMdlForCharaNo_Animal; the Shift-JIS suffix is replaced by a variable here)",
+      "source": "real",
+      "code": "local evc_hdl = CMND_CREATE_CHARA(3, _charaName, format(\"data/chr/model/rpg/npc/ca%04dm.xc\", _npc_no), \"dmy\", _shadow);\n\nif (!_no_bustup)\n{\n\tCMND_CREATE_BUSTUP(evc_hdl, _charaName + faceSuffix, true, _npc_no);\n}"
+    }
+  ]
+}

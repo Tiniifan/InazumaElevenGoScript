@@ -1,0 +1,22 @@
+{
+  "name": "CMND_INIT_SKILL_SCRIPT",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Starts setting up a new skill scene: it empties the skill scene settings (the table the CMND_SETUP_SKL_SQ_* commands and CMND_RUN_SKILL_SCRIPT fill) and clears system flag 6 (the flag RunTactics calls IFLAG_END_AUTO_FADEIN_OFF). The events call it before each skill scene."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Two skill scenes in a row (real usage, from ev42011800.nut)",
+      "source": "real",
+      "code": "CMND_INIT_SKILL_SCRIPT();\nSetChrPrmDetailForSkillScript(\"ATK\", 1, 13, 1, true, false, 0, 0, 10);\nRunSkillScript(\"vsj0001\", \"mv01i21\", 0, 0, true, false, true, false, 1);\nCMND_SET_DRAW_OFF_BIT(off_bit);\nCMND_INIT_SKILL_SCRIPT();\nSetChrPrmDetailForSkillScript(\"DEF\", 1, 41, 2, true, true, 2, 2, 1);\nRunSkillScript(\"vsk0001\", \"mv01i21\", 0, 0, true, false);"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "CMND_DEL_ITEM",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Removes a number of an item from the player's items. The item is given by its ID string or hash."
+  },
+  "params": [
+    {
+      "name": "itemID",
+      "type": "string|integer",
+      "required": true,
+      "description": {
+        "en": "Item ID, e.g. \"iii0002\", or its hash."
+      }
+    },
+    {
+      "name": "count",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "How many to remove."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "The removal's result (true once removed; true too when the item data is not available).\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Handing over an item (real usage, from ev42040800.nut)",
+      "source": "real",
+      "code": "CreateSpeech(\"ev100\");\nCMND_MESWIN_UNLOCK();\nCMND_DEL_ITEM(\"iii0002\", 1);\nCMND_MESWIN_LOCK();"
+    }
+  ]
+}

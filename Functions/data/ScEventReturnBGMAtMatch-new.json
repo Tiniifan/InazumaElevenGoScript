@@ -1,0 +1,22 @@
+{
+  "name": "ScEventReturnBGMAtMatch",
+  "kind": "ev_main",
+  "category": "sound",
+  "description": {
+    "en": "Calls CMND_BTL_RETURN_BGM(), which saves the position of the track now playing so the match can resume its music from there. No shipped script calls it."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Before an in-match scene changes the music (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "ScEventReturnBGMAtMatch();\nlocal hEvSnd = CMND_SND_OPEN_BGM(\"M_08\");"
+    }
+  ]
+}

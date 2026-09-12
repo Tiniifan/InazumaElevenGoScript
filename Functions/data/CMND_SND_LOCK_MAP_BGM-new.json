@@ -1,0 +1,22 @@
+{
+  "name": "CMND_SND_LOCK_MAP_BGM",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Sets a flag of the event system (bit 0x20 of its state flags) that, going by its name, locks the map music so the next map does not switch it. The engine code that reads the flag was not traced.\nThe events call it just before a map jump (ReserveMapJump)."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Before jumping to another map (real usage, from ev42032600.nut)",
+      "source": "real",
+      "code": "CMND_DELETE_CHARA(hKirinoL);\nCMND_SET_GLOBAL_BIT_FLAG(232);\nCMND_SND_LOCK_MAP_BGM();\nReserveMapJump(\"mr01i22\", [0, 0, 0, 0]);"
+    }
+  ]
+}

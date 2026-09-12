@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GET_ENABLE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Tells whether an object is shown (see CMND_SET_ENABLE). The answer is an integer, not a boolean."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle (character, model, image...)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "1 if the object is shown, 0 if it is hidden or not found.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Hiding the goal during a skill scene and restoring it (real usage, from ev44030016.nut)",
+      "source": "real",
+      "code": "local post_enable = CMND_GET_ENABLE(goal_hdl);\nCMND_SET_ENABLE(goal_hdl, 0);\nRunSkillScript(\"vsl0009\", \"mv04b01\", 0, 0, true, false);\nCMND_SET_ENABLE(goal_hdl, post_enable);"
+    }
+  ]
+}

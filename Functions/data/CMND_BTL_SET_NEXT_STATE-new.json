@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_SET_NEXT_STATE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Forces the match flow into a given state. The match runs as a sequence of numbered states (kick-off, play, restarts, end...). This call posts a request, and on its next update the match switches to the given state instead of the one it would have chosen.\nState numbers seen in the engine: 29 for a kick-off and 8 for a placed restart (both used by CMND_BTL_SET_MATCH_RESTART), 33 for the end of the match (used by CMND_BTL_END_MATCH). The meaning of the other numbers was not mapped.\nThe only shipped use is SET_NEXT_STATE(22) in btl0003.nut, at the end of a scripted beat, after clearing the on-screen objective."
+  },
+  "params": [
+    { "name": "state", "type": "integer", "required": true, "description": { "en": "Match state number to switch to (see above)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the request is posted.\nnull if the script system is not ready or no argument is given." }
+  },
+  "examples": [
+    {
+      "case": "End of a scripted beat (real usage, from btl0003.nut)",
+      "source": "real",
+      "code": "// Clear the objective display, then force match state 22\nCMND_BTL_SET_PURPOSE(0, -1, false, 60, 0);\nCMND_BTL_SET_PURPOSETEXT(false, 0, 0);\nCMND_BTL_SET_DPURPOSETEXT(0, 0);\nCMND_BTL_SET_NEXT_STATE(22);"
+    }
+  ]
+}

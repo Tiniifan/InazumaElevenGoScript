@@ -1,0 +1,40 @@
+{
+  "name": "SetDrawAndPause",
+  "kind": "ev_main",
+  "category": "screen-fx",
+  "description": {
+    "en": "Shows and resumes (true) or hides and pauses (false) parts of the field: it clears or sets the bits _offBit in both the draw-off bits and the pause bits, then waits one frame. By default it acts on the field characters and the field camera."
+  },
+  "params": [
+    {
+      "name": "_flg",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to show and resume, false to hide and pause."
+      }
+    },
+    {
+      "name": "_offBit",
+      "type": "integer",
+      "required": false,
+      "default": "OFF_RPG_CHARA | OFF_RPG_CAMERA",
+      "description": {
+        "en": "Bits to change (OFF_RPG_CHARA = 1, OFF_RPG_MAP = 2, ...)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Hiding the field before placing characters (real usage, from ev42010300.nut; the Shift-JIS motion name is replaced by a variable here)",
+      "source": "real",
+      "code": "SetDrawAndPause(false);\nSetCharaPosAndMotName(hTenmaL, [206.60001, 30.299999, -254.5, -95], runMotion);"
+    }
+  ]
+}

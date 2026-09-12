@@ -1,0 +1,22 @@
+{
+  "name": "CMND_IS_DEPTHLEVEL_FADE",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Tells whether a depth-of-field level fade (CMND_DEPTHLEVEL_FADE) is still in progress. It takes no camera: there is one such fade at a time. No shipped script calls it; the talk helpers wait a fixed number of frames instead."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true while the fade is in progress, false otherwise.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Waiting for a depth fade (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local hCam = CMND_GET_ACT_CAMERA();\nCMND_DEPTHLEVEL_FADE(hCam, 3.0, 20.0);\n\nwhile (CMND_IS_DEPTHLEVEL_FADE())\n{\n\tsuspend();\n}"
+    }
+  ]
+}

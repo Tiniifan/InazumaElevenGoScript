@@ -1,0 +1,22 @@
+{
+  "name": "CMND_DELETE_TALK_ICON_FOR_TL",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Deletes the talk-lock icons created with CMND_CREATE_TALK_ICON_FOR_TL. EndTalkLock calls it."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside EndTalkLock (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_SET_GLOBAL_BIT_FLAG(1403, false);\nCMND_SET_TALK_LOCK_STATE(false);\nCMND_DELETE_TALK_ICON_FOR_TL();"
+    }
+  ]
+}

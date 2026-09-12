@@ -1,0 +1,40 @@
+{
+  "name": "CMND_SET_TEMP_MAP_BIT_FLAG",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Sets or clears a temporary map bit flag. Without a second argument the flag is set. Temporary map bit flags are a table of 32 bits (numbers 0 to 31) in the flag data, meant by their name for the current map. A number outside that range makes the game report an error, and the bit is still written past the table."
+  },
+  "params": [
+    {
+      "name": "flag",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Flag number, 0 to 31."
+      }
+    },
+    {
+      "name": "value",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true to set the flag, false to clear it."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true (also when the flag data is not available and nothing is written).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Something done once on this map (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "if (!CMND_GET_TEMP_MAP_BIT_FLAG(0))\n{\n\tCMND_SET_TEMP_MAP_BIT_FLAG(0, true);\n\tCreateSpeech(\"ev00001\");\n}"
+    }
+  ]
+}

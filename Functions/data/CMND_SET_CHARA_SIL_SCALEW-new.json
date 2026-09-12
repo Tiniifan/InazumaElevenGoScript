@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_CHARA_SIL_SCALEW",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Turns on or off a scaling option of a character's silhouette width (not traced further). The silhouette is the outline drawn around a character. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "on",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true or false."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "null in every case (also when the character is not found)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Example (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "CMND_SET_CHARA_SIL_SCALEW(hTenmaL, true);"
+    }
+  ]
+}

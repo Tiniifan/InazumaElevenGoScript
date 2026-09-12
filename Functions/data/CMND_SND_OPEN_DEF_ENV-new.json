@@ -1,0 +1,32 @@
+{
+  "name": "CMND_SND_OPEN_DEF_ENV",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Opens the ambient sound of the current map, read from the map's MAP_ENV data (SndEnv entry), and returns its handle. Start it with CMND_SND_PLAY.\nDuring a match, and when the optional argument is not true, it does not open anything: it returns the same match-state BGM name string as CMND_SND_GET_DEF_BGMID (the code of the two functions matches there)."
+  },
+  "params": [
+    {
+      "name": "forceMap",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to use the map's value even during a match."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|string|null",
+    "description": {
+      "en": "Handle of the ambient sound.\nDuring a match (without forceMap): a string, see the description.\nnull if the map has no ambient sound, or if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Starting the map's ambience in a scene (real usage, from ev42093000.nut)",
+      "source": "real",
+      "code": "CMND_SND_PLAY(hEvSnd);\nCMND_SND_PLAY(hEvSe);\nlocal hEnvSnd = CMND_SND_OPEN_DEF_ENV();\nCMND_SND_PLAY(hEnvSnd);"
+    }
+  ]
+}

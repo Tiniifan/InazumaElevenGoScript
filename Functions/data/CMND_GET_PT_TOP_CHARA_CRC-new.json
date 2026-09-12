@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_PT_TOP_CHARA_CRC",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns the parameter ID hash of the first member of the party list (compare it with CMND_GET_HASH(\"para_cp0008\"))."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The parameter ID hash.\nnull if the character data is not found or the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Branching on the team's first member (real usage, from ev42123210.nut)",
+      "source": "real",
+      "code": "if (CMND_GET_PT_TOP_CHARA_CRC() == CMND_GET_HASH(\"para_cp0008\"))\n{\n\tev42123210_10();\n}"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "name": "CMND_SET_POP_ITEM",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Shows the item popping out of a treasure chest: the item ID and the position where it appears (see CMND_CREATE_POP_ITEM)."
+  },
+  "params": [
+    {
+      "name": "itemID",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Item ID."
+      }
+    },
+    {
+      "name": "x",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Position x."
+      }
+    },
+    {
+      "name": "y",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Position y."
+      }
+    },
+    {
+      "name": "z",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Position z."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (also when the script system is not ready or fewer than 4 arguments are given, in which case nothing is set)."
+    }
+  },
+  "examples": [
+    {
+      "case": "The chest gives its item (real usage, from ie4_ev_sub_tbox.nut)",
+      "source": "real",
+      "code": "CMND_SET_POP_ITEM(itemID, posX, posY, posZ);\nlocal popSE = CMND_SND_OPEN_SYS_SE(26);\nCMND_SND_PLAY(popSE);\nCMND_MESSAGE_REPLACE_ITEM(0, itemID);"
+    }
+  ]
+}

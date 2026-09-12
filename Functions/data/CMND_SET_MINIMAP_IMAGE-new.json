@@ -1,0 +1,31 @@
+{
+  "name": "CMND_SET_MINIMAP_IMAGE",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Chooses the image of the map's minimap (MiniMapFile), for maps that change with the story. It writes into the map start settings that the map scripts fill while the map loads (their init code), so it is meant to be called from a map script."
+  },
+  "params": [
+    {
+      "name": "fileName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Minimap image name, e.g. \"mr01b01_sakura\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "The cherry-blossom version of a map (real usage, from mr01b01.nut)",
+      "source": "real",
+      "code": "if (CMND_GET_GAME_SUB_PHASE() < 30000000)\n{\n\tCMND_SET_MINIMAP_IMAGE(\"mr01b01_sakura\");\n}"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "CMND_BTL_SET_POINT_HISTORY",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Records a goal in the match's goal log and adds one to that team's goal counter. Scripts call it right after awarding a goal with CMND_BTL_ADD_POINT or CMND_BTL_SET_POINT, so the goal appears in the match report.\n\nEach log entry keeps the scorer, the team, the half and the minute. The match report builds its goal list from these entries, one line per goal with the fields Time, Half and Name.\nThe scorer is looked up among the players on the pitch by parameter ID. The log holds at most 99 goals per team."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team that scored: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "half", "type": "integer", "required": true, "description": { "en": "Half the goal was scored in: 0 = first half, 1 = second half. Shown as the Half field of the goal line." } },
+    { "name": "minute", "type": "integer", "required": true, "description": { "en": "Minute of the goal, shown as the Time field of the goal line. Scripts pass either a fixed number or CMND_BTL_GET_MATCH_TIME() / 60." } },
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Parameter ID of the scorer, e.g. \"para_cp0008\". Its name is shown as the Name field of the goal line.\nThe native only checks for 3 arguments but always reads this one, so pass it." } },
+    { "name": "useSystemText", "type": "boolean", "required": false, "default": "false", "description": { "en": "true to show the system message \"sysmes-game-0002\" in the Name field instead of the scorer's name. The text of that message is not in the files available here. It is used once, in btl0005.nut." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Logging a goal at the current minute (real usage, from btl0010.nut)",
+      "source": "real",
+      "code": "// Team 0 (the player's team) scores: add the goal, log it in the first\n// half at the current minute, then let team 1 kick off.\nlocal time = CMND_BTL_GET_MATCH_TIME();\nCMND_BTL_ADD_POINT([1, 0]);\nCMND_BTL_SET_POINT_HISTORY(0, 0, time / 60, format(\"para_cp%04d\", idKageyama));\nCMND_BTL_SET_MATCH_RESTART(1);"
+    },
+    {
+      "case": "Logging a goal at a fixed time, then jumping to the second half (real usage, from btl0003.nut)",
+      "source": "real",
+      "code": "// Team 1 (the opponent) scores in the second half at minute 5, then the\n// match continues from 5:00 in the second half.\nCMND_BTL_SET_POINT_HISTORY(1, 1, 5, \"para_cp0069\");\nCMND_BTL_SET_MATCH_PHASE(1, 300);"
+    },
+    {
+      "case": "A goal whose report line shows the system text instead of the scorer (real usage, from btl0005.nut)",
+      "source": "real",
+      "code": "// After the event scene, team 1 gets a goal in minute 1 of the first\n// half, and team 0 kicks off again.\nCMND_BTL_SET_EVPARAM(44040010);\nsuspend();\nCMND_BTL_ADD_POINT([0, 1]);\nCMND_BTL_SET_POINT_HISTORY(1, 0, 1, \"para_cp0010\", true);\nCMND_BTL_SET_MATCH_RESTART(0);"
+    }
+  ]
+}

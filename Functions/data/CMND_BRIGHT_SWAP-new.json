@@ -1,0 +1,29 @@
+{
+  "name": "CMND_BRIGHT_SWAP",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Sets two brightness-related display flags for one screen, in the display controller's control word (bits 9 and 11 for the top screen, bits 10 and 12 for the bottom screen).\nExactly what each flag changes on screen was not identified. Only screens 0 and 1 are supported: SCREEN_AB (2) does nothing, use CMND_BRIGHT_SWAP_ALL for both screens."
+  },
+  "params": [
+    { "name": "screen", "type": "integer", "required": true, "description": { "en": "SCREEN_A (0) or SCREEN_B (1)." } },
+    { "name": "flag1", "type": "boolean", "required": true, "description": { "en": "First flag (bit 9 for the top screen, bit 10 for the bottom screen)." } },
+    { "name": "flag2", "type": "boolean", "required": false, "default": "false", "description": { "en": "Second flag (bit 11 for the top screen, bit 12 for the bottom screen)." } }
+  ],
+  "returns": {
+    "type": "float|null",
+    "description": { "en": "1.0 once the flags were set, 0.0 if the screen was not 0 or 1 (or the display controller was missing).\nnull if the engine is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Right after the story chart (real usage, from ev_main's OutlineEffect)",
+      "source": "real",
+      "code": "// The screens are black, the sub-phase changes and the story chart is\n// shown; then both flags are set on the top screen before the objective\n// effect plays.\nSetGameSubPhase(_subPhase, false);\nShowStoryChart();\nCMND_BRIGHT_SWAP(SCREEN_A, true, true);\nPurposeEffect(\"J_10\", _bgm_fade_off);"
+    },
+    {
+      "case": "Clearing the first flag after a phase change (real usage, from ev42113300.nut)",
+      "source": "real",
+      "code": "// Two-argument form: the second flag is cleared too (default false).\nSetGameSubPhase(120010005, false);\nCMND_BRIGHT_SWAP(SCREEN_A, false);"
+    }
+  ]
+}

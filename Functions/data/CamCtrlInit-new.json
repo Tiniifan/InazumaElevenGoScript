@@ -3,20 +3,29 @@
   "kind": "ev_main",
   "category": "camera",
   "description": {
-    "en": "Initializes the current event context's camera-control state (subev_ctx.cam_ctrl) for the given camera handle, resetting it and clearing any character-follow target."
+    "en": "Starts scripted camera control for an event: creates a fresh camera-control state, takes the camera's current position and look-at point as the starting point (CamCtrlReset), and clears the character to follow (CamCtrlLookAtChara(_hcam, 0, 0)).\nEvents call it once near the start, with the active camera, and CamCtrlExit at the end.\nThe camera-control helpers keep their state in subev_ctx.cam_ctrl, the context of an event started by CallEvent. While such an event runs, CallEvent calls sysCamCtrlStep every frame: it applies the engine's camera move (CMND_GET_MOVE_INFO_CAMERA) to the camera, keeps the look-at point on the followed character when there is one, and marks the move as finished once it is over (see IsCamCtrlMove)."
   },
   "params": [
-    { "name": "_hcam", "type": "handle", "required": true, "description": { "en": "Handle of the camera to control." } }
+    {
+      "name": "_hcam",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Camera handle, usually from CMND_GET_ACT_CAMERA()."
+      }
+    }
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": {
+      "en": "Always null (no return statement)."
+    }
   },
   "examples": [
     {
-      "case": "Initializing camera control for the active camera",
+      "case": "Start and end of camera control in an event (real usage, from ev42010200.nut)",
       "source": "real",
-      "code": "// Initialize camera control for the active camera at the start of a scripted sequence\nlocal hCam = CMND_GET_ACT_CAMERA();\nCamCtrlInit(hCam);"
+      "code": "Event <- function ()\n{\n\tlocal hTenmaL = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC);\n\tlocal hCam = CMND_GET_ACT_CAMERA();\n\tCamCtrlInit(hCam);\n\t// ... camera moves with CamCtrlMoveTo ...\n\tWaitCamCtrlMoving(hCam);\n\tCamCtrlExit();\n};"
     }
   ]
 }

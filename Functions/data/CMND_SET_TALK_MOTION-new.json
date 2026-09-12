@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_TALK_MOTION",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Plays an NPC's talk motion (the motion name stored in the NPC's data), with the given mode and a 30-frame transition (see CMND_SET_MOTION)."
+  },
+  "params": [
+    {
+      "name": "hNpc",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "NPC handle."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer|boolean",
+      "required": true,
+      "description": {
+        "en": "Play mode (the NPC talk script passes true, i.e. 1)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (also when the NPC or its motion is not found)."
+    }
+  },
+  "examples": [
+    {
+      "case": "After the turn to face the player (real usage, from ev43010000.nut)",
+      "source": "real",
+      "code": "if (body_turn != 0)\n{\n\tCMND_SET_TALK_MOTION(npcHdl, true);\n}"
+    }
+  ]
+}

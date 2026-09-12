@@ -1,0 +1,56 @@
+{
+  "name": "RemovePartyNum_Message_NoFadeBGM",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "RemovePartyNum_Message with the preset RemoveParty_MessageEx(_rmv_num, _aParamID, _aStReset, 0, 0, 21, 0, \"sysmes-remove_party\", _not_pt_lock). For each character, the sound effect sys_021 plays (CMND_SND_OPEN_SYS_SE(21)), the system message \"sysmes-remove_party\" is shown with the character's name filled in, then the character is removed; the next one waits until the sound has finished.\nDespite its name, this preset passes a fade of 0, not -1: the BGM is stopped at once and started again at the end (AddParty's NoFadeBGM presets pass -1 and leave the BGM alone).\nNo shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "_rmv_num",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Number of characters to remove (read from index 0 of the arrays)."
+      }
+    },
+    {
+      "name": "_aParamID",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Parameter IDs of the characters to remove."
+      }
+    },
+    {
+      "name": "_aStReset",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "One _flg_st_reset value per character."
+      }
+    },
+    {
+      "name": "_not_pt_lock",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to call RemovePartyCmnd(id, reset, false) instead of RemoveParty(id, reset); see RemoveParty for the difference."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Removing two members (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "RemovePartyNum_Message_NoFadeBGM(2, [\"para_cp0005\", \"para_cp0016\"], [false, false]);"
+    }
+  ]
+}

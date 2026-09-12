@@ -1,0 +1,31 @@
+{
+  "name": "CMND_TALK_END",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Ends an NPC's talk reaction started with CMND_TALK_START: its look-at state is switched off (the same as CMND_RESET_LOOK_AT)."
+  },
+  "params": [
+    {
+      "name": "hNpc",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "NPC handle."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "null once done; false if the NPC is not found.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "End of the NPC talk script (real usage, from ev43010000.nut)",
+      "source": "real",
+      "code": "if (npcHdl > 0)\n{\n\tCMND_SET_MOTION(npcHdl, mot_name);\n\tCMND_TALK_END(npcHdl);\n}"
+    }
+  ]
+}

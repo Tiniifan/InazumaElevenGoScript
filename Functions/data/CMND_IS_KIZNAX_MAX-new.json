@@ -1,0 +1,22 @@
+{
+  "name": "CMND_IS_KIZNAX_MAX",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Tells whether the Kiznax count in the item data has reached 30."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true at 30 or more, false below.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "A different talk when the count is full (real usage, from ev42135200.nut)",
+      "source": "real",
+      "code": "if (CMND_IS_KIZNAX_MAX())\n{\n\tCMND_MESWIN_LOCK();\n\t// ...\n\tCreateSpeech(\"ev100\");\n\t// ...\n}"
+    }
+  ]
+}

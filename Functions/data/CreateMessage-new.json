@@ -1,0 +1,55 @@
+{
+  "name": "CreateMessage",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Shows a message with explicit layout settings and waits until it is closed: CMND_MESSAGE_OPEN(_id, _center_x, _center_y, _window), then waits with suspend() until CMND_IS_RUN_CHILD_SCENE() is false, that is until the player has read and closed the message."
+  },
+  "params": [
+    {
+      "name": "_id",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Message ID, e.g. \"ev100\"."
+      }
+    },
+    {
+      "name": "_center_x",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "Centre the text horizontally."
+      }
+    },
+    {
+      "name": "_center_y",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "Centre the text vertically."
+      }
+    },
+    {
+      "name": "_window",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "Show the speech window."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A horizontally centred message in the window (real usage, from ev42022500.nut)",
+      "source": "real",
+      "code": "CreateMessage(\"ev100\", true, false, true);"
+    }
+  ]
+}

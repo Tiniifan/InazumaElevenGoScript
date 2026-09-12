@@ -1,0 +1,103 @@
+{
+  "name": "RunSkillScript",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Plays a skill scene set up with CMND_INIT_SKILL_SCRIPT and the SetChrPrmDetailForSkillScript... / SetAvatarDetailForSkillScript helpers.\nIt lets the field camera run (clears OFF_RPG_CAMERA from the pause bits), hides the goal model created by StartScEvent (eventGoalMouseHdl), requests the scene with CMND_RUN_SKILL_SCRIPT and suspends: the scene plays and the script resumes after it. It then shows the skill map model if one is loaded (CMND_GET_WAZA_MAP_HANDLE), shows the goal again and restores the pause bits.\nSee CMND_RUN_SKILL_SCRIPT for how success and mapReverse can be overridden."
+  },
+  "params": [
+    {
+      "name": "_wazaID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Skill ID, e.g. \"vsj0001\"."
+      }
+    },
+    {
+      "name": "_mapID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Background map, e.g. \"mv01i21\"."
+      }
+    },
+    {
+      "name": "_evolution",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Evolution level of the skill."
+      }
+    },
+    {
+      "name": "_production",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Production value (the events pass 0)."
+      }
+    },
+    {
+      "name": "_success",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "Whether the skill succeeds."
+      }
+    },
+    {
+      "name": "_mapReverse",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to play the scene towards the other goal."
+      }
+    },
+    {
+      "name": "_endAutoFade",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "Passed to CMND_RUN_SKILL_SCRIPT (system flag 6)."
+      }
+    },
+    {
+      "name": "_noTelop",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "Stored as NO_TELOP (by its name, true skips the skill name caption)."
+      }
+    },
+    {
+      "name": "_cmrCut",
+      "type": "integer",
+      "required": false,
+      "default": "-1",
+      "description": {
+        "en": "Camera cut number."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A shoot scene (real usage, from ev42011800.nut)",
+      "source": "real",
+      "code": "local off_bit = CMND_GET_DRAW_OFF_BIT();\nCMND_SET_DRAW_OFF_BIT(off_bit | OFF_RPG);\nCMND_INIT_SKILL_SCRIPT();\nSetChrPrmDetailForSkillScript(\"ATK\", 1, 13, 1, true, false, 0, 0, 10);\nRunSkillScript(\"vsj0001\", \"mv01i21\", 0, 0, true, false, true, false, 1);\nCMND_SET_DRAW_OFF_BIT(off_bit);"
+    },
+    {
+      "case": "With spirits (real usage, from ev42019997.nut)",
+      "source": "real",
+      "code": "CMND_INIT_SKILL_SCRIPT();\nSetChrPrmDetailForSkillScript(\"ATK\", 1, 8, 1, true, false, 0, 0, 0);\nSetChrPrmDetailForSkillScript(\"DEF\", 1, 10, 903, true, false, 0, 0, 0);\nSetAvatarDetailForSkillScript(\"ATK\", 1);\nSetAvatarDetailForSkillScript(\"DEF\", 2);\nRunSkillScript(\"kka0001\", \"mv01b01\", 0, 0, true, false, true);"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_RESET_POS_LOCK",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Clears every lineup lock set with CMND_BTL_SET_POS_LOCK (all 32 entries), so the player can arrange the lineup freely again.\nThe story matches call it when a scripted beat changes who must play where, usually followed by the new locks."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Replacing all locks with a new one (real usage, from btl0016.nut)",
+      "source": "real",
+      "code": "// Drop every lock, then keep para_cp0009 on the bench\nCMND_BTL_RESET_POS_LOCK();\nCMND_BTL_SET_POS_LOCK(true, \"para_cp0009\", LOCK_TYPE_BENCH);\nCMND_BTL_SET_FORCE_TOUGH(false, \"para_cp0321\");"
+    }
+  ]
+}

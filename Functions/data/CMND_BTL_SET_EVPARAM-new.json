@@ -1,0 +1,26 @@
+{
+  "name": "CMND_BTL_SET_EVPARAM",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Asks the match to play an in-match event scene. The ID names the event script (44010020 plays ev44010020.nut). The native only stores the request in the match state; the calling script then calls suspend(), and resumes once the scene is over. This is how nearly every scripted beat of the story matches starts (97 calls in the shipped scripts).\n\nThe native also stores four extra values when more arguments are given (3 or more arguments fill two of them, 5 or more fill all four). Each value can be an integer or a string (stored as its hash). Because of a slip in the native, it checks the type of arguments 1 to 4 but always reads arguments 0 and 1, so the four values end up as copies of the first two arguments. The only such calls in the shipped scripts pass five zeros."
+  },
+  "params": [
+    { "name": "eventId", "type": "integer", "required": true, "description": { "en": "Event number, e.g. 44010020 for ev44010020.nut." } },
+    { "name": "extra1", "type": "integer|string", "required": false, "description": { "en": "Extra value (see the description: the native actually stores argument 0 or 1 in its place)." } },
+    { "name": "extra2", "type": "integer|string", "required": false, "description": { "en": "Extra value; read together with extra1." } },
+    { "name": "extra3", "type": "integer|string", "required": false, "description": { "en": "Extra value; needs 5 arguments." } },
+    { "name": "extra4", "type": "integer|string", "required": false, "description": { "en": "Extra value; read together with extra3." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the request is stored.\nnull if the script system is not ready or no argument is given." }
+  },
+  "examples": [
+    {
+      "case": "Playing a scene, then continuing the match beat (real usage, from btl0004.nut)",
+      "source": "real",
+      "code": "RunEv44030016 <- function ()\n{\n\t// Play ev44030016 and wait for it to finish\n\tCMND_BTL_SET_EVPARAM(44030016);\n\tsuspend();\n\t// Then apply what the scene showed\n\tCMND_BTL_LEARNING_TACTICS(0, \"wht0001\");\n};"
+    }
+  ]
+}

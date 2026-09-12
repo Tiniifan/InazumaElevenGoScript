@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GP_IS_MAX",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Tells whether one player's GP (Guard Points) is full: it compares the player's current GP with their maximum."
+  },
+  "params": [
+    {
+      "name": "playerHandle",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Player handle, as returned by CMND_GET_PARTY_HANDLE or CMND_ADD_PARTY."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true if the current GP equals the maximum, false otherwise.\nnull if the script system is not ready, no argument is given, the player data is not available or the handle is not a valid player."
+    }
+  },
+  "examples": [
+    {
+      "case": "Checking before restoring (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local hdl = CMND_GET_PARTY_HANDLE(\"para_cp0008\");\n\nif (!CMND_GP_IS_MAX(hdl))\n{\n\tCMND_GP_RECV_ALL(hdl);\n}"
+    }
+  ]
+}

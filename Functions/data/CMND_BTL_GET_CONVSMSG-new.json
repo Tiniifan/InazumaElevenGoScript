@@ -1,0 +1,29 @@
+{
+  "name": "CMND_BTL_GET_CONVSMSG",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Reads the data of the short in-match exchange between two characters that the engine has just started (\"convs\" for conversation). It is meant for the event script ev47900100.nut, which the engine launches for it.\nWhen the engine starts that event, it stores two characters and, for each, a line taken from that character's message table according to the match situation. If the character has no table, it uses the generic tables of para_cp9998 or para_cp9999. It also stores the motion data needed to stage them. This function copies that data into the arrays passed to it.\n\nEach array gets at most two entries (entry 0 and entry 1), and never more than its own length. The first two arrays are always filled; each later one only if it is passed."
+  },
+  "params": [
+    { "name": "chara", "type": "array", "required": true, "description": { "en": "OUTPUT: the two characters' parameter ID hashes. The event passes them to CreateEvHiMdlForMatch and CMND_GET_CHARABASEID." } },
+    { "name": "msg", "type": "array", "required": true, "description": { "en": "OUTPUT: the message of each character, 0 when that character has no line. The event shows them with CreateSpeech." } },
+    { "name": "motPath", "type": "array", "required": false, "description": { "en": "OUTPUT: a motion path string per character (empty string when none)." } },
+    { "name": "motType", "type": "array", "required": false, "description": { "en": "OUTPUT: a motion type number per character." } },
+    { "name": "extMtnPath", "type": "array", "required": false, "description": { "en": "OUTPUT: path of an extra motion file per character, or an empty string. The event loads it with CMND_LOAD_MOTION." } },
+    { "name": "extMtnName", "type": "array", "required": false, "description": { "en": "OUTPUT: name of the motion to play from that extra file, or an empty string." } },
+    { "name": "teamID", "type": "array", "required": false, "description": { "en": "OUTPUT: the team of each character, passed on to CreateEvHiMdlForMatch." } },
+    { "name": "order", "type": "array", "required": false, "description": { "en": "OUTPUT: speaking order: order[0] is the entry that speaks first, order[1] the one that answers." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the arrays are filled.\nnull if the script system is not ready or fewer than 2 arguments are given." }
+  },
+  "examples": [
+    {
+      "case": "Staging the in-match exchange (real usage, from ev47900100.nut, trimmed)",
+      "source": "real",
+      "code": "// One array per output, sized for the two characters\nlocal chara = [0, 0];\nlocal msg = [0, 0];\nlocal motPath = [\"\", \"\"];\nlocal motType = [0, 0];\nlocal extMtnPath = [\"\", \"\"];\nlocal extMtnName = [\"\", \"\"];\nlocal teamID = [2, 2];\nlocal order = [0, 1];\nCMND_BTL_GET_CONVSMSG(chara, msg, motPath, motType, extMtnPath, extMtnName, teamID, order);\n\n// ... create and load the two models from chara[] and teamID[] ...\n\n// First speaker, then the answer if there is one\nif (msg[order[0]])\n{\n\tCMND_SET_MOTION(hdlCh[order[0]], extMtnName[order[0]]);\n\tCreateSpeech(msg[order[0]], chara[order[0]], order[0]);\n\n\tif (msg[order[1]])\n\t{\n\t\tCMND_SET_MOTION(hdlCh[order[1]], extMtnName[order[1]]);\n\t\tCreateSpeech(msg[order[1]], chara[order[1]], order[1]);\n\t}\n}"
+    }
+  ]
+}

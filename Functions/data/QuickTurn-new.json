@@ -1,0 +1,66 @@
+{
+  "name": "QuickTurn",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Makes the player character and an NPC face each other at the start of a conversation. With the flags set, each turns toward the other with CMND_CHR_TURN_NORMAL_TALK (15 frames). The NPC's current motion is saved first.\nIf either is still turning, the function waits (running SYS_EVENT_STEP each frame when _ev_step is true). As each one stops, the player character gets the stand motion 立ち01 and the NPC gets its saved motion back. It then waits 30 more frames.\nIf neither needed to turn, the motions are set straight away."
+  },
+  "params": [
+    {
+      "name": "_main_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Player character (or main character)."
+      }
+    },
+    {
+      "name": "_npc_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "NPC to talk to."
+      }
+    },
+    {
+      "name": "_main_rot_flg",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true to turn the main character toward the NPC."
+      }
+    },
+    {
+      "name": "_npc_rot_flg",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true to turn the NPC toward the main character."
+      }
+    },
+    {
+      "name": "_ev_step",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to call SYS_EVENT_STEP() every frame while waiting."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Facing each other before talking (real usage, from ev42010450.nut)",
+      "source": "real",
+      "code": "WaitLoading(hTokioL);\nWaitLoading(hTenmaL);\nQuickTurn(hTenmaL, hTokioL, true, true);\nCreateSpeech(\"ev200\");"
+    }
+  ]
+}

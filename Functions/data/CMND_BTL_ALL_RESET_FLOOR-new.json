@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_ALL_RESET_FLOOR",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Removes every floor zone registered with CMND_BTL_REGIST_FLOOR_ATTR: all 12 zone slots are wiped (rectangle, name and attributes) and the zone count goes back to 0.\nAfter this call the zone names no longer exist, so they must be registered again before CMND_BTL_ADD_FLOOR_ATTR can use them. To keep a zone and only clear its attributes, use CMND_BTL_RESET_FLOOR_ATTR."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the zones are removed.\nnull if the match system is not ready." }
+  },
+  "examples": [
+    {
+      "case": "Restoring the pitch when the map resets (real usage, from mf13b01.nut)",
+      "source": "real",
+      "code": "// If a section is lowered, hide its mesh and drop every zone.\n// ScMapPitchDown registers the zones again the next time it runs.\nMapReset <- function ()\n{\n\tif (isPitchDown == 1)\n\t{\n\t\tlocal hMap = CMND_GET_MAP_HANDLE();\n\t\tCMND_SET_MAP_MESH_VISIBLE(hMap, mapMesh[nowIdx], 0, 0);\n\t\tCMND_BTL_ALL_RESET_FLOOR();\n\t\texecTimer = 0;\n\t\tisPitchDown = 0;\n\t}\n};"
+    }
+  ]
+}

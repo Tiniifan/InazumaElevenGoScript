@@ -1,0 +1,32 @@
+{
+  "name": "StartStandEvent",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Opens a \"stand\" talk scene, where the detailed character models stand in front of a blurred background.\nIt saves the camera's DepthLevel, fades it to EV_TALK_DP_LVL (10.0) and the depth range from 1.0 to 1.5 over _frame frames, and adds the depth-of-field blur (CMND_BOKE_CREATE(0.9, 7.0)). After waiting _frame frames it pauses the field characters, map and camera (pause bits OFF_RPG_CHARA, OFF_RPG_MAP and OFF_RPG_CAMERA, keeping the previous bits to restore). EndStandEvent undoes all of this.\nCalling it while a stand scene is already open only prints a debug message."
+  },
+  "params": [
+    {
+      "name": "_frame",
+      "type": "integer",
+      "required": false,
+      "default": "10",
+      "description": {
+        "en": "Length of the transition in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A stand scene for tutorials (real usage, from ev42010450.nut)",
+      "source": "real",
+      "code": "StartStandEvent();\nShowTutorial2(\"tt1022\", 1);\nShowTutorial2(\"tt2021\", 2);\nCMND_SET_GLOBAL_BIT_FLAG(1541);\nEndStandEvent();"
+    }
+  ]
+}

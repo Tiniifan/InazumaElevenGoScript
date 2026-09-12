@@ -1,0 +1,49 @@
+{
+  "name": "CMND_MAKE_CHILD_MENU_SCENE",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Opens a menu as a child scene: it queues a change to a \"Menu\" child scene (task Ie4MenuTask) with the menu name. The menu opens once the calling script suspends; wait for it to close with CMND_IS_RUN_CHILD_SCENE.\nMenus used by the scripts: \"OrganizeMenu\", \"FormationMenu\", \"PlotMenu\" (story chart), \"SaveMenu\", \"ShopMenu\", \"KiznaxMenu\", \"TRouteMenu\", \"AddMember\", \"KMasterMenu\" and \"Staffroll\".\nSome menus take extra arguments:\n- ShopMenu: an array of up to 3 integers, stored as Type, Act and No.\n- KiznaxMenu: ID, Type, Handle (integers) and a BGM name.\n- FormationMenu: a team number (TEAM_NO, default 0).\n- TRouteMenu: a route ID and a BGM name (strings).\n- AddMember: one integer (the scripts pass a character hash).\n- SaveMenu: Prm_Fade, Prm_Caution and Prm_SaveMes (integers).\n- KMasterMenu: one integer stored as NPC_ID.\nThe other menus ignore extra arguments."
+  },
+  "params": [
+    {
+      "name": "menu",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Menu name, e.g. \"FormationMenu\"."
+      }
+    },
+    {
+      "name": "...",
+      "type": "any",
+      "required": false,
+      "description": {
+        "en": "Extra arguments of that menu (see the description)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once queued.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Team organisation, then formation (real usage, from ev42022000.nut)",
+      "source": "real",
+      "code": "local off_bit = CMND_GET_DRAW_OFF_BIT();\nCMND_SET_DRAW_OFF_BIT(off_bit | OFF_RPG);\nCMND_MAKE_CHILD_MENU_SCENE(\"OrganizeMenu\");\nsuspend();\n\nwhile (CMND_IS_RUN_CHILD_SCENE())\n{\n\tsuspend();\n}\n\nCMND_MAKE_CHILD_MENU_SCENE(\"FormationMenu\");\nsuspend();"
+    },
+    {
+      "case": "A shop (real usage, from ie4_ev_sub_shop.nut)",
+      "source": "real",
+      "code": "local now_draw_off_bit = CMND_GET_DRAW_OFF_BIT();\nlocal now_pause_bit = CMND_GET_PAUSE_BIT();\nCMND_SET_DRAW_OFF_BIT(now_draw_off_bit | OFF_RPG_MINIMAP);\nCMND_SET_PAUSE_BIT(now_pause_bit | OFF_RPG_MINIMAP);\nCMND_MAKE_CHILD_MENU_SCENE(\"ShopMenu\", [\n\tshopType,\n\tret,\n\tshopNo\n]);"
+    },
+    {
+      "case": "The save menu (real code, from ie4_ev_main.nut, SaveRun)",
+      "source": "real",
+      "code": "CMND_MAKE_CHILD_MENU_SCENE(\"SaveMenu\", 0, cation, 2);"
+    }
+  ]
+}

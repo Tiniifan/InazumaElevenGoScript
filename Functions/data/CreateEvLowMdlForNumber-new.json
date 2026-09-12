@@ -1,0 +1,92 @@
+{
+  "name": "CreateEvLowMdlForNumber",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a light (Low) model of the story character para_cpNNNN, dressed in the given kit: CMND_CREATE_CHARA(4, _charaName, \"dmmy\", _face, _body, false, _home, _keeper, shoes, gloves, _ev, false, _mem), where shoes = _body and gloves = _body for a goalkeeper, 0 otherwise. Unless _no_bustup is true, it also creates the character's bust-up picture (CreateBustup) named after the object with \"顔\" (face) appended. Wait for it with WaitLoading."
+  },
+  "params": [
+    {
+      "name": "_charaName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object; the events use the character's name followed by L (light model) or H (detailed model)."
+      }
+    },
+    {
+      "name": "_face",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Character number: the model is para_cpNNNN (the developers named this argument _face)."
+      }
+    },
+    {
+      "name": "_body",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Body (kit) number; also used as the shoes number, and as the gloves number for a goalkeeper."
+      }
+    },
+    {
+      "name": "_home",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true for the home kit, false for away."
+      }
+    },
+    {
+      "name": "_keeper",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true for the goalkeeper outfit (gloves get the body number)."
+      }
+    },
+    {
+      "name": "_ev",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "Passed as CMND_CREATE_CHARA's ev flag (choice between two light settings)."
+      }
+    },
+    {
+      "name": "_mem",
+      "type": "string",
+      "required": false,
+      "default": "DEV_MEM_NAME_EVENT",
+      "description": {
+        "en": "Memory area name."
+      }
+    },
+    {
+      "name": "_no_bustup",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to skip the bust-up picture."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character (see CMND_CREATE_CHARA)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A character in the away kit (real usage, from ev42010400.nut; the Shift-JIS object name is replaced by a variable here)",
+      "source": "real",
+      "code": "local hTokioL = CreateEvLowMdlForNumber(charaName, 427, 23, false);\nWaitLoading(hTokioL);"
+    }
+  ]
+}

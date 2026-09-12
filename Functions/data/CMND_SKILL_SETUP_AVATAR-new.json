@@ -1,0 +1,31 @@
+{
+  "name": "CMND_SKILL_SETUP_AVATAR",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Used by the skill scene script to read the fighting spirits set with CMND_SETUP_SKL_SQ_AVATAR: element 0 of the array receives the attacking side's spirit (ATK_AVATAR) and element 1 the defending side's (DEF_AVATAR)."
+  },
+  "params": [
+    {
+      "name": "avatars",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Receives [atkSpirit, defSpirit]; create it with 2 elements."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true (the array is left unchanged if no skill setup exists).\nnull if the script system is not ready, no argument is given or it is not an array."
+    }
+  },
+  "examples": [
+    {
+      "case": "In the skill scene script (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "local avatar = array(2, 0);\nCMND_SKILL_SETUP_AVATAR(avatar);\nSetupAvatarBaseID(avatar);"
+    }
+  ]
+}

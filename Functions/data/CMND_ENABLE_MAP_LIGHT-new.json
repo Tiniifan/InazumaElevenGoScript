@@ -1,0 +1,36 @@
+{
+  "name": "CMND_ENABLE_MAP_LIGHT",
+  "kind": "native",
+  "category": "lighting",
+  "description": {
+    "en": "Asks a map to use its own lights again (sets a request flag on the map object). The skill scene script calls it on the field map after a skill scene."
+  },
+  "params": [
+    {
+      "name": "hMap",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Map handle (CMND_GET_MAP_HANDLE or CMND_CREATE_MAP)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "After a skill scene (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "if (hMapMF != 0)\n{\n\tCMND_ENABLE_MAP_LIGHT(hMapMF);\n}"
+    },
+    {
+      "case": "On the current map (real usage, from ev44010040.nut)",
+      "source": "real",
+      "code": "CMND_ENABLE_MAP_LIGHT(CMND_GET_MAP_HANDLE());"
+    }
+  ]
+}

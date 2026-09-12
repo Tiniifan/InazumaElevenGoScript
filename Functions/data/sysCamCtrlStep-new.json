@@ -1,0 +1,31 @@
+{
+  "name": "sysCamCtrlStep",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Internal per-frame step of the camera-control helpers (CamCtrlInit, CamCtrlMoveTo, CamCtrlLookAtChara...). CallEvent calls it every frame with subev_ctx.cam_ctrl; events do not call it.\nWithout a camera it does nothing. With no move queued, it points the camera at its look-at point (following the character set by CamCtrlLookAtChara, if any) and marks the control finished.\nOtherwise it advances the first queued move by the elapsed frames and interpolates: type 0 moves the position and look-at point in a straight line, type 1 turns around the look-at point by distance and angles. It then applies the engine camera move (CMND_GET_MOVE_INFO_CAMERA, then CMND_SET_CAMERA_POS and CMND_SET_CAMERA_REF). When the move's frames are over, the move is removed; once none are left, the control is marked finished (IsCamCtrlMove becomes false). It also calls CMND_CHECK_MOVE_CAMERA to wait for the engine move, but without the camera handle that command needs, so it always gets null and never delays the end."
+  },
+  "params": [
+    {
+      "name": "cam_ctrl",
+      "type": "CCamCtrlData",
+      "required": true,
+      "description": {
+        "en": "Camera-control state (subev_ctx.cam_ctrl)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "In CallEvent's loop (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "SYS_EVENT_STEP();\nsysCamCtrlStep(subev_ctx.cam_ctrl);\nsuspend();"
+    }
+  ]
+}

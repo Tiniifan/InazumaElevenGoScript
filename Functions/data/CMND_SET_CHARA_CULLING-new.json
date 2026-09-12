@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_CHARA_CULLING",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Turns culling on or off for a character: when on, the character is not drawn when out of view; the events turn it off for characters that must always be drawn."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "on",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true for culling, false to always draw."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set, false if the object is not found.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Always drawing a character (real usage, from ev42011700.nut)",
+      "source": "real",
+      "code": "CMND_SET_CHARA_CULLING(hTsurugiL, false);"
+    }
+  ]
+}

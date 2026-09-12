@@ -1,0 +1,39 @@
+{
+  "name": "CMND_GET_SOCCER_POSITION",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Returns a player's position in a lineup. The game keeps two lineups: the main formation (positions 1 to 11 for the players on the pitch) and a second lineup of 5 positions (probably the team for the small field matches). The second argument chooses the lineup: false for the main formation, true (only the value 1) for the 5-position one."
+  },
+  "params": [
+    {
+      "name": "playerHandle",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Player handle (CMND_ADD_PARTY, CMND_GET_PARTY_HANDLE)."
+      }
+    },
+    {
+      "name": "small",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "false: main formation; true: the 5-position lineup."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The position number, or -1 if the handle is 0 or the player is not in that lineup.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Is this member the goalkeeper? (real usage, from ev42020800.nut)",
+      "source": "real",
+      "code": "local hdl = CMND_GET_PARTY_HANDLE(\"para_cp0001\");\nlocal isSangokuKeeper = CMND_GET_SOCCER_POSITION(hdl, true) == 1;"
+    }
+  ]
+}

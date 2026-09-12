@@ -1,0 +1,31 @@
+{
+  "name": "CreateEvLowMdlBall_Shadow",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "CreateEvLowMdlBall with a shadow. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "_ballName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character (see CMND_CREATE_CHARA)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A ball with a shadow (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local hBall = CreateEvLowMdlBall_Shadow(\"ball1\");"
+    }
+  ]
+}

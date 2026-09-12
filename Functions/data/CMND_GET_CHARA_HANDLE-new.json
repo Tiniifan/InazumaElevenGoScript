@@ -1,0 +1,52 @@
+{
+  "name": "CMND_GET_CHARA_HANDLE",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Returns the handle of a character already on the map, so an event can use it. The first argument says which one:\n- 1 (GET_HANDLE_TYPE_CTRL_PC): the character the player controls.\n- 3 (GET_HANDLE_TYPE_NPC): a map NPC, found by its ID string (e.g. \"evc0001\") among the 32 NPC slots of the map.\n- 4: one of 4 other characters kept by the script system, found by name.\n- 2: the guest, the follower created with CMND_CREATE_GUEST_CHARA (0 if there is none); some of its display settings are reset first.\nThe character is added to the event's character list. Unless the flag argument is true (the second argument for type 1, the third for type 3), its bust-up portrait is also prepared, as for a talking character. Type 4 never prepares it."
+  },
+  "params": [
+    {
+      "name": "type",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "1, 2, 3 or 4 (see the description)."
+      }
+    },
+    {
+      "name": "idOrFlag",
+      "type": "string|boolean",
+      "required": false,
+      "description": {
+        "en": "Type 3 and 4: the NPC ID or name. Type 1 and 2: the flag (true skips the bust-up)."
+      }
+    },
+    {
+      "name": "flag",
+      "type": "boolean",
+      "required": false,
+      "description": {
+        "en": "Type 3: true skips the bust-up."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "The character handle, or 0 if it is not found.\nnull if the script system is not ready, no argument is given, or type 3 is used without an ID string."
+    }
+  },
+  "examples": [
+    {
+      "case": "The player's character, without bust-up (real code, from ie4_ev_main.nut, StopEventRun)",
+      "source": "real",
+      "code": "local hTenmaL = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC, true);\nlocal hCam = CMND_GET_ACT_CAMERA();\nCamCtrlInit(hCam);"
+    },
+    {
+      "case": "Map NPCs (real usage, from ev42011100.nut)",
+      "source": "real",
+      "code": "local hIshikariL = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_NPC, \"evc0039\");\nlocal hIchinoL = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_NPC, \"evc0040\");\nlocal hTsurugiL = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_NPC, \"evc0001\");"
+    }
+  ]
+}

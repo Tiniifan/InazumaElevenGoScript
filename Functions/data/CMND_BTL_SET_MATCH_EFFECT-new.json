@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_SET_MATCH_EFFECT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Switches one bit of the match's effect flags on or off. Effect 0 also writes a flag in the player team's match setup.\nThe story scripts only ever use effect 0, and they switch it on for the scripted beats where they also force the outcome of duels (CMND_BTL_SET_FORCE_WIN), then off again afterwards. What the flag changes on screen was not identified."
+  },
+  "params": [
+    { "name": "enable", "type": "integer", "required": true, "description": { "en": "Non-zero to switch the effect on, 0 to switch it off." } },
+    { "name": "effectIndex", "type": "integer", "required": true, "description": { "en": "Bit number of the effect (0 to 7). Only 0 is used by the shipped scripts." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the flag has been changed.\nnull if the match system is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Around a forced scripted beat (real usage, from btl0008.nut)",
+      "source": "real",
+      "code": "// After an event scene: force the duel outcomes and switch effect 0 on\nCMND_BTL_SET_EVPARAM(44070070);\nsuspend();\nCMND_BTL_SET_FORCE_WIN(true, 0, 1, true);\nCMND_BTL_SET_FORCE_WIN(true, 0, 0, true);\nCMND_BTL_SET_MATCH_EFFECT(1, 0);\n\n// Later, in the closing beat: switch everything back off\nCMND_BTL_SET_MATCH_EFFECT(0, 0);\nCMND_BTL_SET_MATCH_PHASE(1, 300);\nCMND_BTL_SET_FORCE_WIN(false, 0, 1, true);\nCMND_BTL_SET_FORCE_WIN(false, 0, 0, true);"
+    }
+  ]
+}

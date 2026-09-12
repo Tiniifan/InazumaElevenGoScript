@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_ANTIALIASE",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Sets an anti-aliasing mode: the first argument is 0 or 1 (probably the screen, 0 being the top one) and the mode 0 to 2. The camera animation scenes of the matches switch the top screen to mode 1 while they play and back to 0 afterwards."
+  },
+  "params": [
+    {
+      "name": "screen",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "0 or 1 (probably the screen: 0 top, 1 bottom)."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Mode, 0 to 2 (0 is the normal mode)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set.\nfalse if the screen is above 1 or the mode above 2 (nothing changes).\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Around a camera animation (real usage, from ev44010001.nut)",
+      "source": "real",
+      "code": "CMND_SET_ENABLE(hTelop, true);\nCMND_SET_ANTIALIASE(0, 1);\nCMND_PUSH_CAMERA(hCamera);\n// ...\nStartBrightFade(SCREEN_A, -1.0, 60.0);\nCMND_POP_CAMERA();\nCMND_SET_ANTIALIASE(0, 0);"
+    }
+  ]
+}

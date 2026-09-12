@@ -1,0 +1,55 @@
+{
+  "name": "SetChrPrmDetailForSkillScriptAtMatchByIdx",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Sets one participant of the next skill scene from the players on the pitch (CMND_SETUP_SKL_SQ_CHARAM_BY_IDX).\nSets one participant of the next skill scene from the players on the pitch in the current match: the player in slot posIdx of the team's pitch slots (counted from the team's first slot) gives the parameter ID, then it works like CMND_SETUP_SKL_SQ_CHARAM with that team. A team of 2 or more, or a slot out of range, gives character 0."
+  },
+  "params": [
+    {
+      "name": "_side",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Side of the skill scene: \"ATK\" (attacking side) or \"DEF\" (defending side)."
+      }
+    },
+    {
+      "name": "_index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Participant number on that side, starting at 1."
+      }
+    },
+    {
+      "name": "_team",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Team slot: 0 = the player's team, 1 = the opponent."
+      }
+    },
+    {
+      "name": "_pos_idx",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Slot number within the team's pitch slots, from 0."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "The player's first pitch slot as the defender (real usage, from ev44020012.nut)",
+      "source": "real",
+      "code": "CMND_INIT_SKILL_SCRIPT();\nSetChrPrmDetailForSkillScriptAtMatchByIdx(\"DEF\", 1, 0, 0);\nRunSkillScript(\"vsk0004\", \"mv03b01\", 0, 0, false, false);"
+    }
+  ]
+}

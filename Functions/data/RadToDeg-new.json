@@ -1,0 +1,31 @@
+{
+  "name": "RadToDeg",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Converts an angle from radians to degrees: _r * 180.0 / 3.1415927. ie4_ev_main.nut uses it with atan2 to turn directions into angles (GetRyLookAtPos, CalcPosRefToDistRot)."
+  },
+  "params": [
+    {
+      "name": "_r",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Angle in radians."
+      }
+    }
+  ],
+  "returns": {
+    "type": "float",
+    "description": {
+      "en": "The angle in degrees."
+    }
+  },
+  "examples": [
+    {
+      "case": "Direction from a character to a point (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "return RadToDeg(atan2(_pos[0] - chpos[0], _pos[2] - chpos[2]));"
+    }
+  ]
+}

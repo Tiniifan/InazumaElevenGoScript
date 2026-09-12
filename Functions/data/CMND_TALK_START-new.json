@@ -1,0 +1,31 @@
+{
+  "name": "CMND_TALK_START",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Starts an NPC's reaction to being talked to and returns its reaction type (0 to 3, from the NPC's data). With type 2 the NPC starts looking at the speaker; with type 1 a stored look setting of the NPC is applied, and the NPC talk script also turns the NPC to face the player. CMND_TALK_END ends it."
+  },
+  "params": [
+    {
+      "name": "hNpc",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "NPC handle."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The reaction type, 0 to 3 (0 if the NPC is not found).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Talking to an NPC (real usage, from ev43010000.nut)",
+      "source": "real",
+      "code": "mot_name = CMND_GET_MOTION_NAME(npcHdl);\nlocal body_turn = CMND_TALK_START(npcHdl);\nlocal is_turn = false;\n\nif (body_turn == 1)\n{\n\tis_turn = true;\n}"
+    }
+  ]
+}

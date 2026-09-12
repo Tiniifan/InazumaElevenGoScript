@@ -1,0 +1,48 @@
+{
+  "name": "CreateImage",
+  "kind": "ev_main",
+  "category": "image-ui",
+  "description": {
+    "en": "Loads a tutorial image, data/tutorial/<_fileName>.xa, with its animation of the same name (CMND_LOAD_IMAGE(_imgName, path, 1, _fileName)), places it at _pos and returns its handle."
+  },
+  "params": [
+    {
+      "name": "_imgName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the image object."
+      }
+    },
+    {
+      "name": "_fileName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "File name without folder or extension, e.g. \"cut0101\"."
+      }
+    },
+    {
+      "name": "_pos",
+      "type": "array",
+      "required": false,
+      "default": "[200, 120, 0, 0]",
+      "description": {
+        "en": "Position [x, y, z, rotY]."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the image."
+    }
+  },
+  "examples": [
+    {
+      "case": "A picture shown during a scene (real usage, from ev42010100.nut; the Shift-JIS object name is replaced by a variable here)",
+      "source": "real",
+      "code": "local hImg2 = CreateImage(imageName, \"cut0101\");\nWaitLoading(hImg2);"
+    }
+  ]
+}

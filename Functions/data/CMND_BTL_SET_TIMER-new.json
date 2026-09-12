@@ -1,0 +1,28 @@
+{
+  "name": "CMND_BTL_SET_TIMER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Starts a named match timer. When it runs out, the match calls the script's CallMatchTimer function with the hash of the timer's name, and the timer is freed.\nThe duration is in tenths of a second: the timer gains 34 per match update (about a millisecond count at 30 updates a second) and expires once that count divided by 100 is greater than the duration. The scripts use 300 (30 seconds) and 600 (60 seconds).\nUp to 4 timers can run at once."
+  },
+  "params": [
+    { "name": "name", "type": "string", "required": true, "description": { "en": "Timer name, e.g. \"timer44120042\". CallMatchTimer receives its hash, which the script can compare with CMND_GET_HASH(name)." } },
+    { "name": "duration", "type": "integer", "required": true, "description": { "en": "Duration in tenths of a second (300 = 30 s)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true if the timer was started, false if 4 timers are already running.\nnull if the script system is not ready or fewer than 2 arguments are given." }
+  },
+  "examples": [
+    {
+      "case": "Starting a timer and reacting when it ends (real usage, from btl0016.nut)",
+      "source": "real",
+      "code": "// 60 seconds after this beat...\nCMND_BTL_SET_TIMER(\"timer44120042\", 600);\n\n// ... the engine calls this\nCallMatchTimer <- function ( _timer )\n{\n\tif (eventCounter == 2)\n\t{\n\t\teventCounter++;\n\t\tRunEv44120042();\n\t}\n};"
+    },
+    {
+      "case": "Telling timers apart by name (real usage, from btl0012.nut)",
+      "source": "real",
+      "code": "CallMatchTimer <- function ( timerID )\n{\n\tif (evCnt == 1 && timerID == CMND_GET_HASH(\"timer44100012\"))\n\t{\n\t\t// ...\n\t}\n};"
+    }
+  ]
+}

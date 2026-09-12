@@ -1,0 +1,30 @@
+{
+  "name": "CMND_BTL_SET_FORCE_LOSE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Adds a player to, or removes them from, the match's forced-lose list. It is the mirror of CMND_BTL_SET_FORCE_WIN: the clash resolution checks both lists for the players taking part in a clash and overrides the result the ScBtlCalc_* callback computed.\nAdding a player to this list also removes them from the forced-win list. Removing them (false) takes them out of both lists.\n\nThe player can be given in three ways, chosen by the number of arguments:\n- 2 arguments (enable, charaId): by parameter ID.\n- 3 arguments (enable, memberIndex, teamSlot): member number memberIndex of that team's match roster. It is turned into that member's parameter ID at the time of the call.\n- 4 arguments (enable, slotOffset, teamSlot, any): whoever stands at position slotOffset among that team's players on the pitch, checked at each clash. The fourth argument is not read.\nAn entry is removed only by a call that names it the same way.\nThe list holds up to 32 entries. CMND_BTL_RESET_FORCE_LOSE empties it."
+  },
+  "params": [
+    { "name": "enable", "type": "boolean", "required": true, "description": { "en": "true to add the player to the forced-lose list, false to remove them." } },
+    { "name": "player", "type": "string|integer", "required": true, "description": { "en": "2-argument form: parameter ID (e.g. \"para_cp0008\").\n3-argument form: member number in the team's match roster.\n4-argument form: position offset among the team's players on the pitch." } },
+    { "name": "teamSlot", "type": "integer", "required": false, "description": { "en": "3- and 4-argument forms: team of the player, 0 = the player's team, 1 = the opponent team." } },
+    { "name": "unused", "type": "any", "required": false, "description": { "en": "Only there to select the 4-argument form; never read. The scripts pass true." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when fewer than 2 arguments are given)." }
+  },
+  "examples": [
+    {
+      "case": "Switching position 0 of the opponent from forced win to forced lose (real usage, from btl0014.nut)",
+      "source": "real",
+      "code": "// Stop forcing wins on both sides, then make position 0 of team 1 lose\nCMND_BTL_SET_FORCE_WIN(false, 0, 0, true);\nCMND_BTL_SET_FORCE_WIN(false, 0, 1, true);\nCMND_BTL_SET_FORCE_LOSE(true, 0, 1, true);"
+    },
+    {
+      "case": "Clearing roster members 1 to 10 of the player's team (real usage, from btl0003.nut)",
+      "source": "real",
+      "code": "// 3-argument form: (enable, memberIndex, teamSlot)\nfor( local i = 1; i < 11; ++i )\n{\n\tCMND_BTL_SET_FORCE_LOSE(false, i, 0);\n}"
+    }
+  ]
+}

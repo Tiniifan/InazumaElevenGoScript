@@ -1,0 +1,28 @@
+{
+  "name": "CMND_BTL_GET_RAND",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Returns a random integer from min up to max - 1 (max is excluded). If min equals max, it returns min without drawing.\nThe numbers come from the match's own random generator (a xorshift generator kept in the match state); each call advances it.\nDespite the BTL prefix it is also used outside matches, by several map scripts.\nmax should be greater than min: with max below min, the range wraps around and the result is not meaningful."
+  },
+  "params": [
+    { "name": "min", "type": "integer", "required": true, "description": { "en": "Smallest value that can be returned." } },
+    { "name": "max", "type": "integer", "required": true, "description": { "en": "Upper bound, never returned (except when equal to min)." } }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": { "en": "A random integer in [min, max - 1].\nnull if the script system is not ready or fewer than 2 arguments are given." }
+  },
+  "examples": [
+    {
+      "case": "Random values for a forced duel result (real usage, from btl0302.nut)",
+      "source": "real",
+      "code": "// Replacement of the duel callback: the attacker always wins, with an\n// attack value from 50 to 98 and a defence value from 1 to 18.\nScBtlCalc_CMDBTL <- function ( _cmdAtk, _cmdDef, _avtAtk, _avtDef )\n{\n\tlocal trg = CMND_BTL_GET_RAND(50, 99);\n\tlocal tnm = CMND_BTL_GET_RAND(1, 19);\n\tCMND_BTL_SET_RESULT(true, trg, tnm, false);\n};"
+    },
+    {
+      "case": "Picking one of several cases in a map script (real usage, from mf15b01.nut)",
+      "source": "real",
+      "code": "// 0, 1 or 2\nlocal r = CMND_BTL_GET_RAND(0, 3);"
+    }
+  ]
+}

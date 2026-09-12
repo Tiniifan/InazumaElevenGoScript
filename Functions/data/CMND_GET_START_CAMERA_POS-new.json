@@ -1,0 +1,39 @@
+{
+  "name": "CMND_GET_START_CAMERA_POS",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Copies the position and look-at point of the map's start camera (the camera the map begins with) into two arrays. Without that camera, pos is [0, 100, 100] and ref is [0, 0, 0]."
+  },
+  "params": [
+    {
+      "name": "pos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Receives [x, y, z] of the position."
+      }
+    },
+    {
+      "name": "ref",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Receives [x, y, z] of the look-at point."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null; the results are in the arrays."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside GetStartCameraPos (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local pos = array(3, 0.0);\nlocal ref = array(3, 0.0);\nCMND_GET_START_CAMERA_POS(pos, ref);"
+    }
+  ]
+}

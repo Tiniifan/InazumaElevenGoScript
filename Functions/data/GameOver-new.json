@@ -3,25 +3,30 @@
   "kind": "ev_main",
   "category": "scene",
   "description": {
-    "en": "Plays the full game-over sequence: fades to black, shows the \"game over\" image, plays the game-over sound, fades screen A back in, waits, shows a final message, fades everything to black again, cleans up, and returns to the title screen."
+    "en": "Plays the game-over screen and returns to the title screen.\nIt fades both screens out (CMND_BRIGHT_FADE_ALL(-1.0, 30)), loads the \"gameover\" image and the music _snd, then shows the image, fades the top screen in and plays the music. After 120 frames it shows message \"ev9999\" (CreateSpeech) and fades both screens out. When the music has finished it closes it, deletes the image and calls CMND_GOTO_TITLE().\nThe story events call it on the branch where the player has lost."
   },
   "params": [
-    { "name": "_snd", "type": "string", "required": false, "default": "\"evt_006\"", "description": { "en": "Game-over BGM/sound ID to play." } }
+    {
+      "name": "_snd",
+      "type": "string",
+      "required": false,
+      "default": "\"evt_006\"",
+      "description": {
+        "en": "Music played on the game-over screen (opened with CMND_SND_OPEN_BGM)."
+      }
+    }
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": {
+      "en": "Always null (no return statement)."
+    }
   },
   "examples": [
     {
-      "case": "Default game-over jingle (every real call site in script_clean/ uses this 0-arg form)",
+      "case": "A game-over branch of a story event (real usage, from ev42034000.nut)",
       "source": "real",
-      "code": "// A story event's dedicated \"game over\" step, e.g. ev42043100_30 in ev42043100.nut:\n// simply trigger the game-over sequence with the default jingle.\nev42043100_30 <- function ()\n{\n\tGameOver();\n};"
-    },
-    {
-      "case": "Overriding the game-over jingle",
-      "source": "invented",
-      "code": "// Custom event step, styled like the game's own numbered event-step functions:\n// trigger Game Over with a jingle other than the default \"evt_006\"\n// (jingle ID here is illustrative, not a verified in-game asset name).\nmyEvent_GameOverStep <- function ()\n{\n\tGameOver(\"evt_alt_defeat\");\n};"
+      "code": "ev42034000_30 <- function ()\n{\n\tGameOver();\n};"
     }
   ]
 }

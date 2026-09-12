@@ -1,0 +1,61 @@
+{
+  "name": "CMND_CHR_TURN_AUTO_TRG",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Turns a character to face another character or a direction, choosing the motion and the duration by itself. It is CMND_CHR_TURN_TRG with mode 2 and no duration: up to 45 degrees the character turns with the stand motion (10 frames), up to about 130 degrees with the short turn motion (50 frames), beyond that with the long turn motion (65 frames).\nThe final direction is the direction from the character to the target plus angle, in degrees. With no target (0, or a handle that matches nothing), angle is used as an absolute direction instead.\nThe turn is handled by the character movement manager, which has 16 slots. The character takes a free slot if it has none (see CMND_CHR_REG_MOVE_MNGR). Wait for the end of the turn with CMND_CHR_POS_VAL_IS_MOVING.\nIt is by far the most used turning command of the scripts (about 2700 calls)."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character to turn."
+      }
+    },
+    {
+      "name": "hTarget",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character to face, or 0 to use angle as an absolute direction."
+      }
+    },
+    {
+      "name": "angle",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Degrees: an offset from the direction to the target, or the absolute direction when there is no target (e.g. 0, 90, 180, 270, -160)."
+      }
+    },
+    {
+      "name": "motionNum",
+      "type": "integer",
+      "required": false,
+      "default": "1",
+      "description": {
+        "en": "Number NN of the motions used (the scripts pass 1 or 7 for instance)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "Slot number (0 to 15) of the character in the movement manager.\nnull if the character is not found, all 16 slots are taken, the script system is not ready, or too few arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Facing another character (real usage, from ev42010450.nut)",
+      "source": "real",
+      "code": "CMND_CHR_TURN_AUTO_TRG(hTenmaL, hAoiL, 0);"
+    },
+    {
+      "case": "Turning around, no target (real usage, from ev42012200.nut)",
+      "source": "real",
+      "code": "// Face the absolute direction 180 degrees\nCMND_CHR_TURN_AUTO_TRG(hTenmaL, 0, 180);"
+    }
+  ]
+}

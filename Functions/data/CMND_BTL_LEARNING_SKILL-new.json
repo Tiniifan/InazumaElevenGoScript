@@ -1,0 +1,36 @@
+{
+  "name": "CMND_BTL_LEARNING_SKILL",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Gives a Special Move to a player of one match team. The story matches use it when a character learns a move during a scripted beat. The counterpart is CMND_BTL_FORGET_SKILL.\n\nUnless the fifth argument is non-zero, it:\n- adds the move to the live move list (six moves) of the player on the pitch, if a match is under way and the move is not already there;\n- writes the move into the first empty slot of the player's entry in the match team data (its six Special Move slots, SpecialMove1ID to SpecialMove6ID in the projectz BattlePlayer layout), with the level given as fourth argument. There is no duplicate check at this step.\nIn every case, if the move is a skill-effect move (its data record has type 15 and carries an effect type and a value), that effect is also put into the first free of the three effect slots of the player on the pitch. Those slots are what CMND_BTL_GET_SKILL_EFFECTIVE and CMND_BTL_GET_PLY_SKILL_EFFECTIVE check.\nUnlike CMND_BTL_FORGET_SKILL, it does not write the player's saved data."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team of the player: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Parameter ID of the player, e.g. \"para_cp0008\"." } },
+    { "name": "skillId", "type": "string", "required": true, "description": { "en": "Special Move ID, e.g. \"whs0003\"." } },
+    { "name": "level", "type": "integer", "required": false, "default": "0", "description": { "en": "Value stored as the move's level in the team data slot (a byte). The shipped scripts always pass 0." } },
+    { "name": "skipTeamData", "type": "integer", "required": false, "default": "0", "description": { "en": "Non-zero to skip the live move list and the team data slot, so only the effect-slot step runs. Never used by the shipped scripts." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when fewer than 3 arguments are given)." }
+  },
+  "examples": [
+    {
+      "case": "A character learns a move during a scripted beat (real usage, from btl0006.nut)",
+      "source": "real",
+      "code": "// After a scripted goal by the player's team: team 1 kicks off, the team\n// gets a new tactic, and para_cp0008 learns the Special Move whs0003.\nCMND_BTL_SET_MATCH_RESTART(1);\nCMND_BTL_LEARNING_TACTICS(0, \"wht0002\");\nCMND_BTL_LEARNING_SKILL(0, \"para_cp0008\", \"whs0003\", 0);"
+    },
+    {
+      "case": "Giving the opponent a move when the match begins (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "// Called by the engine when the match starts\nCallMatchBeginMatch <- function ()\n{\n\t// The opponent's para_cp0010 gets the Special Move whs0004\n\tCMND_BTL_LEARNING_SKILL(1, \"para_cp0010\", \"whs0004\", 0);\n\t// ...\n};"
+    },
+    {
+      "case": "Only once per save, guarded by a story flag (real usage, from btl0016.nut)",
+      "source": "real",
+      "code": "// Skip it if global flag 2000 is already set\nif (!CMND_GET_GLOBAL_BIT_FLAG(2000))\n{\n\tCMND_BTL_LEARNING_SKILL(0, \"para_cp0010\", \"whs0035\", 0);\n}"
+    }
+  ]
+}

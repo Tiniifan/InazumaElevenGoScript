@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_GET_MATCHPHASE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Returns the match's progress milestone. The engine raises it as the match goes on and never lowers it:\n- 100 once the first half is under way;\n- 200 on a second signal of the first period (not identified);\n- 300 once a later period (1 to 4) has started;\n- 400 or 500 for period 5.\nSo a value of 100 means the match is still in its first half. CMND_BTL_SET_MATCH_PHASE raises it, and CMND_BTL_SET_MATCHPHASE can write it directly."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": { "en": "The current milestone (100, 200, 300, 400 or 500 once set).\nnull if the match system is not ready." }
+  },
+  "examples": [
+    {
+      "case": "Firing a scripted beat only during the first half (real usage, from btl0019.nut)",
+      "source": "real",
+      "code": "// Called by the engine at each kick-off after a goal. The event runs once,\n// when the player's team (0) has one goal and the match is still in its\n// first half.\nCallMatchKickoffRestart <- function ()\n{\n\tif (CMND_BTL_GET_POINT(0) == 1 && CMND_BTL_GET_MATCHPHASE() == 100 && eventCounter == 0)\n\t{\n\t\tev44130070_Run();\n\t\teventCounter++;\n\t}\n};"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "name": "CMND_RESERVE_EVENT",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Schedules a story event to run next. The event type must be \"STD\" (the standard events); any other type is refused. With overwrite, the event already scheduled is cleared first. The request is stored with the event ID and a Replace setting of 1. The ev_main helper ReserveEvent wraps it."
+  },
+  "params": [
+    {
+      "name": "type",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Event type; only \"STD\" is accepted."
+      }
+    },
+    {
+      "name": "eventID",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Event number, e.g. 42200400."
+      }
+    },
+    {
+      "name": "overwrite",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to clear the event already scheduled first."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once scheduled.\nnull if the type is not \"STD\", the request could not be stored, the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside ReserveEvent (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "ReserveEvent <- function ( eventID, overwrite = false )\n{\n\tCMND_RESERVE_EVENT(\"STD\", eventID, overwrite);\n};"
+    }
+  ]
+}

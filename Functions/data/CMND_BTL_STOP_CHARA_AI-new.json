@@ -1,0 +1,24 @@
+{
+  "name": "CMND_BTL_STOP_CHARA_AI",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Stops or restarts the AI of one player, or of a whole team's players on the pitch. It sets or clears a flag on each matching player; while it is set, the player's AI update drops the action it chose, so the player stands idle.\nWithout a player ID, every player of the team on the pitch is affected.\nThe story matches use it to keep the opponent's ace from acting during the opening beat, then release them after a scripted goal."
+  },
+  "params": [
+    { "name": "stop", "type": "boolean", "required": true, "description": { "en": "true to stop the AI, false to let it act again." } },
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "charaId", "type": "string", "required": false, "description": { "en": "Parameter ID of the player, e.g. \"para_cp0010\". Omit it to affect all of the team's players on the pitch." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when fewer than 2 arguments are given)." }
+  },
+  "examples": [
+    {
+      "case": "Holding the opponent's ace, then releasing them after a goal (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "// Opening: para_cp0010 (team 1) does not act, and cannot summon\nCMND_BTL_STOP_CHARA_AI(true, 1, \"para_cp0010\");\nCMND_BTL_SET_DISABLE_AVATER(\"para_cp0010\", true);\n\n// Later, after their scripted goal: they act normally again\nCMND_BTL_ADD_POINT(point);\nCMND_BTL_SET_POINT_HISTORY(1, 1, time / 60, \"para_cp0010\");\nCMND_BTL_STOP_CHARA_AI(false, 1, \"para_cp0010\");\nCMND_BTL_SET_MATCH_RESTART(0);"
+    }
+  ]
+}

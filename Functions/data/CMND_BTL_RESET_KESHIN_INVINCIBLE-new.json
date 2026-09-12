@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_RESET_KESHIN_INVINCIBLE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Empties the match's invincible list: every player added with CMND_BTL_SET_KESHIN_INVINCIBLE (32 entries at most) is cleared at once, so their Fighting Spirits can run out in clashes again.\nNo shipped script calls it."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Ending a protected stretch (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Protect two Fighting Spirits for a scripted beat...\nCMND_BTL_SET_KESHIN_INVINCIBLE(true, \"para_cp0009\");\nCMND_BTL_SET_KESHIN_INVINCIBLE(true, \"para_cp0010\");\n// ... then drop every protection at once\nCMND_BTL_RESET_KESHIN_INVINCIBLE();"
+    }
+  ]
+}

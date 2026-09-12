@@ -1,0 +1,22 @@
+{
+  "name": "GetStartCameraPos",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Returns the map's start camera position and look-at point (CMND_GET_START_CAMERA_POS) as [posX, posY, posZ, refX, refY, refZ]. No shipped script calls it."
+  },
+  "params": [],
+  "returns": {
+    "type": "array",
+    "description": {
+      "en": "[posX, posY, posZ, refX, refY, refZ]."
+    }
+  },
+  "examples": [
+    {
+      "case": "Placing the camera at the map's start view (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "CamCtrlSetPosRef(hCam, GetStartCameraPos());"
+    }
+  ]
+}

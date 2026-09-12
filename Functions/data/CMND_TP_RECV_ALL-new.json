@@ -1,0 +1,31 @@
+{
+  "name": "CMND_TP_RECV_ALL",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Fully restores one player's TP (Technique Points): it is set to the player's maximum. GP is not changed."
+  },
+  "params": [
+    {
+      "name": "playerHandle",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Player handle, as returned by CMND_GET_PARTY_HANDLE or CMND_ADD_PARTY."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once restored.\nnull if the script system is not ready, no argument is given, the player data is not available or the handle is not a valid player."
+    }
+  },
+  "examples": [
+    {
+      "case": "Restoring one player (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local hdl = CMND_GET_PARTY_HANDLE(\"para_cp0008\");\nCMND_TP_RECV_ALL(hdl);"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "name": "RunEvolutionAvatarUseMsg",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "RunEvolutionAvatarEx(_chr, _avt, 30, 30, \"J_07\", 0, _msg, true, _lock): evolves a Fighting Spirit with a chosen message. The BGM is stopped with a fade of 30, the function waits 30 frames, and the jingle J_07 plays while the message shows. No shipped script calls it directly."
+  },
+  "params": [
+    {
+      "name": "_chr",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Parameter ID of the character, e.g. \"para_cp0008\"."
+      }
+    },
+    {
+      "name": "_avt",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Fighting Spirit ID, e.g. \"ck0025\"."
+      }
+    },
+    {
+      "name": "_msg",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Message ID to show instead of the default one."
+      }
+    },
+    {
+      "name": "_lock",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true to lock the character's Fighting Spirit afterwards (CMND_SET_AVATAR_LOCK_FLAG(hdl, true)); otherwise the lock state it had before is kept."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "How RunEvolutionAvatar uses it (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "RunEvolutionAvatar <- function ( _chr, _avt, _lock = true )\n{\n\tRunEvolutionAvatarUseMsg(_chr, _avt, \"sysmes-Avatar-00002\", _lock);\n};"
+    }
+  ]
+}

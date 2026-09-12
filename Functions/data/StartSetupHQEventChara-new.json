@@ -1,0 +1,22 @@
+{
+  "name": "StartSetupHQEventChara",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Starts creating the models of an HQ event: CMND_SET_BASE_MOT_NO_LOAD_FLAG(true). While the flag is set, every character created with CMND_CREATE_CHARA gets the same setting as its noBase argument (bit 0x80 of its creation flags), which by this command's name skips loading the base motions. End with EndSetupHQEventChara."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Creating HQ event models (real usage, from ev42010100.nut; the Shift-JIS object names are replaced by variables here)",
+      "source": "real",
+      "code": "StartSetupHQEventChara();\nlocal hEvMap = CMND_CREATE_MAP(\"me51b01\");\nlocal hTenmaH = CMND_CREATE_CHARA(3, tenmaName, \"data/chr/model/waza/ev_chr/ev_cp0008a.xc\", \"dmy\", 2, false);\n// ...\nlocal hCamera = CMND_LOAD_CAMERA(cameraName, \"data/chr/motion/waza/hqev010100.pck|hqev010100_cam.xv\");\nEndSetupHQEventChara();\nCMND_LOAD_MOTION(hTenmaH, \"data/chr/motion/waza/hqev010100/hqev010100_cp0008a.xc\");"
+    }
+  ]
+}

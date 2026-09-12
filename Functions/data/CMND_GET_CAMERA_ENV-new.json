@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GET_CAMERA_ENV",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Returns one of the current map's field camera settings. The map's camera settings (MAP_ENV of the current map) give RefOffsetY (height of the look-at point above the character), Dist (distance), RotH and RotV (angles, in degrees in the map data). Without them the defaults are 3.5, 130.0, 0 and 20 degrees. The angles are returned in radians."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "\"RefOffsetY\", \"Dist\", \"RotH\" or \"RotV\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "float|null",
+    "description": {
+      "en": "The value (RotH and RotV in radians).\nnull if the name is unknown, the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Reading the map's camera distance (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local dist = CMND_GET_CAMERA_ENV(\"Dist\");\nlocal height = CMND_GET_CAMERA_ENV(\"RefOffsetY\");"
+    }
+  ]
+}

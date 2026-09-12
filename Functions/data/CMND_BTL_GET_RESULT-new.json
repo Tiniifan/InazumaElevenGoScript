@@ -1,0 +1,27 @@
+{
+  "name": "CMND_BTL_GET_RESULT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Tells a match script whether the player's team won the match that just ended.\nMatch scripts call it inside their ScBtlResult function, which the engine runs once the result is known, to set story flags depending on the outcome.\n\nHow the engine fills the result: at full time it compares the two scores and records the winning team (0 = the player's team, 1 = the opponent team, -1 for a draw). It then stores a separate \"player won\" flag that is set only when the winning team is 0. This function returns that flag.\nSo it returns true when the player's team won, and false when the opponent team won or the match was a draw.\n\nIt can also copy the final score into an array you pass as argument: element 0 receives the player's team score, element 1 the opponent team score."
+  },
+  "params": [
+    { "name": "scoreArray", "type": "array", "required": false, "description": { "en": "OUTPUT. If given, element 0 is overwritten with the player's team score and element 1 with the opponent team score (at most 2 elements are written, fewer if the array is shorter)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true if the player's team (team 0) won the match.\nfalse if the opponent team (team 1) won, or if the match was a draw.\nnull if the match system is not ready." }
+  },
+  "examples": [
+    {
+      "case": "Setting story flags from the outcome (real usage, from btl0004.nut)",
+      "source": "real",
+      "code": "// Runs once the match result is known.\n// isWin is true when the player's team won.\nScBtlResult <- function ()\n{\n\tlocal isWin = 0;\n\tisWin = CMND_BTL_GET_RESULT();\n\n\tif (isWin)\n\t{\n\t\t// Player's team won: record it and unlock the rematch.\n\t\tCMND_SET_GLOBAL_BIT_FLAG(1354, 1);\n\t\tOPEN_CPU_BTL_FLAG(1652);\n\t}\n\telse\n\t{\n\t\t// Opponent won or draw.\n\t\tCMND_SET_GLOBAL_BIT_FLAG(1354, 0);\n\t\tCMND_SET_GLOBAL_BIT_FLAG(250, 1);\n\t}\n};"
+    },
+    {
+      "case": "Reading the final score as well",
+      "source": "invented",
+      "code": "// Pass an array to also get the final score back.\nScBtlResult <- function ()\n{\n\tlocal score = [0, 0];\n\tlocal isWin = CMND_BTL_GET_RESULT(score);\n\tlocal playerGoals = score[0];\n\tlocal opponentGoals = score[1];\n\n\tif (isWin && playerGoals - opponentGoals >= 3)\n\t{\n\t\t// Won by three goals or more.\n\t}\n};"
+    }
+  ]
+}

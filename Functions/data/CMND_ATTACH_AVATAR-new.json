@@ -3,51 +3,32 @@
   "kind": "native",
   "category": "party",
   "description": {
-    "en": "Attaches a Fighting Spirit to a party member. Both the character and the Fighting Spirit are identified by name: the engine hashes each name with CRC32 to resolve the matching party record and the matching Fighting Spirit record. By default, any Fighting Spirit state previously stored on that character is reset before the new one is assigned; an optional third argument can skip that reset. The call also resolves which evolution/visual stage of the Fighting Spirit to display, based on the character's already-stored progress with it (the exact stage-selection formula was not traced in detail)."
+    "en": "Gives a Fighting Spirit to one of the player's recruited players (\"avatar\" is the engine's internal word for a Fighting Spirit).\n\nThe player is found by its parameter ID (for example \"para_cp0008\") among the player's recruits, and the Fighting Spirit is named by its ID (for example \"ck0001\"). Both are hashed with CRC32.\n\nWhat happens:\n1. By default, the Fighting Spirit the player currently has is detached first. Its experience is saved in the player's record and the Fighting Spirit goes back into the inventory (Fighting Spirits are handled as inventory items). Pass 0 as third argument to skip this step.\n2. The new Fighting Spirit is set on the player.\n3. Its level (1 to 6) is worked out from the experience this player has already earned with this Fighting Spirit, so a player who had it before gets its old level back.\n\nThe ev_main helpers RunAttachAvatar, RunAttachAvatarUseMsg and RunAttachAvatarOnlyMsg wrap this call with the jingle and the message."
   },
   "params": [
-    {
-      "name": "charaName",
-      "type": "string",
-      "required": true,
-      "description": {
-        "en": "Name of the party member to attach the Fighting Spirit to (matched by CRC32 hash against the currently loaded party)."
-      }
-    },
-    {
-      "name": "avatarName",
-      "type": "string",
-      "required": true,
-      "description": {
-        "en": "Name of the Fighting Spirit to attach (matched by CRC32 hash)."
-      }
-    },
-    {
-      "name": "resetPrevious",
-      "type": "integer",
-      "required": false,
-      "default": "true (implied) when omitted",
-      "description": {
-        "en": "When 0, skips resetting the character's previously stored Fighting Spirit state before attaching the new one. When omitted, or any non-zero value, the reset step runs."
-      }
-    }
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Player parameter ID of the recruited player, e.g. \"para_cp0008\"." } },
+    { "name": "avatarId", "type": "string", "required": true, "description": { "en": "Fighting Spirit ID, e.g. \"ck0001\"." } },
+    { "name": "detachCurrent", "type": "integer", "required": false, "default": "detach (as if true)", "description": { "en": "0 to skip detaching the current Fighting Spirit. Its experience is then not saved and it does not go back into the inventory.\nAny other value, or leaving it out, detaches it normally." } }
   ],
   "returns": {
     "type": "boolean|null",
-    "description": {
-      "en": "Returns null if the Fighting Spirit system hasn't been initialized, if fewer than 2 arguments are given, or if the named character or Fighting Spirit can't be resolved. Otherwise returns true once the Fighting Spirit has been attached."
-    }
+    "description": { "en": "true once the Fighting Spirit is attached.\nnull if the engine is not ready, fewer than 2 arguments were given, or the player is not among the recruits." }
   },
   "examples": [
     {
-      "case": "Attaching a Fighting Spirit after temporarily unlocking it (real usage, from ev_main's RunAttachAvatarEx)",
+      "case": "The attach step of ev_main's RunAttachAvatarEx (real usage)",
       "source": "real",
-      "code": "// Excerpt from RunAttachAvatarEx(_chr, _avt, ...): enable the character's\n// Fighting Spirit slot, temporarily unlock it, attach the named Fighting Spirit,\n// then restore whatever lock state it had before.\nlocal partyHandle = CMND_GET_PARTY_HANDLE(_chr);\nlocal wasLocked = CMND_GET_AVATAR_LOCK_FLAG(partyHandle);\nCMND_SET_AVATAR_ENABLE(partyHandle, true);\nCMND_SET_AVATAR_LOCK_FLAG(partyHandle, false);\nCMND_ATTACH_AVATAR(_chr, _avt);\nCMND_SET_AVATAR_LOCK_FLAG(partyHandle, wasLocked);"
+      "code": "// _chr is a player ID (e.g. \"para_cp0008\"), _avt a Fighting Spirit ID\n// (e.g. \"ck0001\"). The slot is enabled and unlocked for the change,\n// then its previous lock state is restored.\nlocal hdl = CMND_GET_PARTY_HANDLE(_chr);\nlocal lock = CMND_GET_AVATAR_LOCK_FLAG(hdl);\nCMND_SET_AVATAR_ENABLE(hdl, true);\nCMND_SET_AVATAR_LOCK_FLAG(hdl, false);\nCMND_ATTACH_AVATAR(_chr, _avt);\nCMND_SET_AVATAR_LOCK_FLAG(hdl, lock);"
     },
     {
-      "case": "Attaching without resetting the character's previous Fighting Spirit progress",
+      "case": "Through the ev_main wrapper, as story events do (real usage)",
+      "source": "real",
+      "code": "// Story event giving a Fighting Spirit to the protagonist, with the\n// jingle and \"obtained\" message handled by the wrapper.\nRunAttachAvatar(\"para_cp0008\", \"ck0001\");"
+    },
+    {
+      "case": "Replacing a Fighting Spirit without saving the old one",
       "source": "invented",
-      "code": "// Custom helper: attach a Fighting Spirit but keep whatever evolution\n// progress was already stored for this character (skip the reset step\n// by passing 0 as the third argument).\nlocal ReattachAvatarKeepProgress = function (_chr, _avt)\n{\n\tlocal attached = CMND_ATTACH_AVATAR(_chr, _avt, 0);\n\tif (attached == null)\n\t{\n\t\t// Character or Fighting Spirit name could not be resolved.\n\t}\n\treturn attached;\n};"
+      "code": "// Overwrite the current Fighting Spirit: the old one is not returned to\n// the inventory and its experience is not saved.\nCMND_ATTACH_AVATAR(\"para_cp0008\", \"ck0033\", 0);"
     }
   ]
 }

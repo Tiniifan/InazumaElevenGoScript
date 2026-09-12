@@ -1,0 +1,22 @@
+{
+  "name": "CMND_INATTER_IS_LOADING",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Inatter is the game's in-game social feed (its posts are listed in data/res/history/tweets_config.cfg.bin). Tells whether the background load started by CMND_INATTER_BGLOADING is still in progress: it reads the state of the loader and returns true unless that state is idle (-1) or finished (2)."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true while the file is loading, false otherwise.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside Inatter_Check (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_INATTER_BGLOADING();\n\nwhile (CMND_INATTER_IS_LOADING())\n{\n\tsuspend();\n}"
+    }
+  ]
+}

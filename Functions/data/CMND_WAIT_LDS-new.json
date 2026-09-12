@@ -1,0 +1,31 @@
+{
+  "name": "CMND_WAIT_LDS",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Meant to tell whether a script load (CMND_LOAD_SCRIPT) is still going on. Its argument is read but not used. When the loader is busy it pushes true and then false, and the caller receives the last value, so in practice it always returns false and the waiting loops of the ev_main helpers end at once."
+  },
+  "params": [
+    {
+      "name": "script",
+      "type": "any",
+      "required": true,
+      "description": {
+        "en": "Ignored (the helpers pass the value CMND_LOAD_SCRIPT returned)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "false in practice (see the description).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside CallEvent (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local script = CMND_LOAD_SCRIPT(path, \"subev_ctx\");\n\nwhile (CMND_WAIT_LDS(script))\n{\n\tsuspend();\n}"
+    }
+  ]
+}

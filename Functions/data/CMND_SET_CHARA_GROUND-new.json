@@ -1,0 +1,57 @@
+{
+  "name": "CMND_SET_CHARA_GROUND",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Turns a character's ground contact on (true: it stays on the ground below it) or off (false: it keeps the height it is given). Two optional values (default 40.0 and 100.0) are stored with it; by their use they are probably how far above and below the ground is looked for."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "on",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to follow the ground."
+      }
+    },
+    {
+      "name": "value1",
+      "type": "float",
+      "required": false,
+      "default": "40.0",
+      "description": {
+        "en": "First distance."
+      }
+    },
+    {
+      "name": "value2",
+      "type": "float",
+      "required": false,
+      "default": "100.0",
+      "description": {
+        "en": "Second distance."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set, false if the object is not found.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Keeping a character on the ground (real usage, from ev42010450.nut)",
+      "source": "real",
+      "code": "CMND_SET_CHARA_GROUND(hTenmaL, true);"
+    }
+  ]
+}

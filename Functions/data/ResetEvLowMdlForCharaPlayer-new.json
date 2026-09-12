@@ -1,0 +1,31 @@
+{
+  "name": "ResetEvLowMdlForCharaPlayer",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Rebuilds the character the player controls with another body (kit) number: it deletes the current one (CMND_DELETE_CHARA on the GET_HANDLE_TYPE_CTRL_PC handle), creates it again with CMND_CREATE_MANIP_CHARA(0, _body), and returns the new handle."
+  },
+  "params": [
+    {
+      "name": "_body",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Body (kit) number for the new model, e.g. 950."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the recreated player character."
+    }
+  },
+  "examples": [
+    {
+      "case": "Changing the player character's outfit (real usage, from ev42010100.nut)",
+      "source": "real",
+      "code": "local hTenmaL = ResetEvLowMdlForCharaPlayer(950);"
+    }
+  ]
+}

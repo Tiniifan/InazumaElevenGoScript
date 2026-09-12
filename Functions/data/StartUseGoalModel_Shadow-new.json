@@ -1,0 +1,22 @@
+{
+  "name": "StartUseGoalModel_Shadow",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "StartUseGoalModel(true): the goal model with a shadow. No shipped script calls it."
+  },
+  "params": [],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the goal model."
+    }
+  },
+  "examples": [
+    {
+      "case": "A goal with a shadow (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local goal_hdl = StartUseGoalModel_Shadow();\n// ... scene ...\nEndUseGoalModel(goal_hdl);"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "CMND_PARTY_GPTP_RECV_ALL",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Fully restores the GP and the TP of every member of the party list (the same work as CMND_TEAM_GP_RECV_ALL)."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once done.\nnull if the script system is not ready or the player data is not available."
+    }
+  },
+  "examples": [
+    {
+      "case": "Rest area, after paying (real usage, from ie4_ev_sub_heal.nut)",
+      "source": "real",
+      "code": "local now_pt = CMND_GET_PASSION_PT();\n\nif (lost_pt > now_pt)\n{\n\tCreateSpeech(\"sysmes-heal-01\");\n}\nelse\n{\n\tCMND_SET_PASSION_PT(now_pt - lost_pt);\n}\n\nCMND_PARTY_GPTP_RECV_ALL();\nlocal hSe = CMND_SND_OPEN_SYS_SE(102);\nCMND_SND_PLAY(hSe);\nCreateSpeech(\"sysmes-heal-02\");"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "CMND_ADD_TALK_CHARA",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Registers a character model as a speaker for the dialogue system, together with the name to show for it.\nThe name is given as a text key (for players, \"pname_\" followed by the character's base ID). The key is resolved to its localised text, and that text is stored with the model handle.\n\nUp to 16 speakers can be registered at once. CMND_RESET_TALK_CHARA clears the list."
+  },
+  "params": [
+    { "name": "handle", "type": "handle", "required": true, "description": { "en": "Handle of the character model that speaks." } },
+    { "name": "nameKey", "type": "string", "required": true, "description": { "en": "Text key of the speaker's name, e.g. \"pname_0035\"." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the speaker is registered.\nfalse if 16 speakers are already registered.\nnull if the engine is not ready, fewer than 2 arguments were given, or the name key does not exist." }
+  },
+  "examples": [
+    {
+      "case": "Registering a freshly created model as a speaker (real usage, from ev_main's SetHiMdlPosAndMotID)",
+      "source": "real",
+      "code": "// _hdl is the model just placed in the scene,\n// _baseID its base character ID (for example \"0035\").\nWaitLoading(_hdl);\nif (_baseID != \"\")\n{\n\tCMND_ADD_TALK_CHARA(_hdl, format(\"pname_%s\", _baseID));\n}"
+    },
+    {
+      "case": "Naming a story character before a dialogue scene (real usage, from ev42010600.nut)",
+      "source": "real",
+      "code": "// hHarunaH is a high-detail model created earlier in the event.\n// Register it under its name key, then start the scene.\nCMND_ADD_TALK_CHARA(hHarunaH, \"pname_cp0000\");\nStartStandEvent();"
+    }
+  ]
+}

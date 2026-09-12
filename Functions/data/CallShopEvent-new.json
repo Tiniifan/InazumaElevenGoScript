@@ -3,21 +3,37 @@
   "kind": "ev_main",
   "category": "scene",
   "description": {
-    "en": "Loads and runs the fixed shop event script (data/script/event/ev43020000.nutb), passing it the given event ID and NPC handle, then drives its Event coroutine to completion frame by frame. Used for NPCs that open a shop when talked to."
+    "en": "Runs the shop event script (ev43020000) for an NPC. It creates a fresh event context (subev_ctx) with room for 4 coroutines, loads the event script \"data/script/event/ev43020000.nutb\" (always the same script, whatever the ID) into that context (CMND_LOAD_SCRIPT) and waits for it to load. It then runs the script's Event function as a coroutine, waking it up once per frame until it has finished, and clears the context at the end. Before loading, it stores _id in subev_ctx.id and _hdl in subev_ctx.npc_hdl, so the event script can read them.\nUnlike CallEvent, it does not call SYS_EVENT_STEP or the camera-control step each frame.\nIt is called by ie4_ev_sub_std.nut, the standard event script: its Main function picks the runner from the event type set by SetupParam (4 = CallKiznaxEvent, 5 = CallShopEvent, 9 = CallMasterAvatar, anything else = CallEvent)."
   },
   "params": [
-    { "name": "_id", "type": "integer", "required": true, "description": { "en": "Event ID passed through to the loaded script as subev_ctx.id." } },
-    { "name": "_hdl", "type": "handle", "required": true, "description": { "en": "NPC handle passed through to the loaded script as subev_ctx.npc_hdl." } }
+    {
+      "name": "_id",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Event ID, stored in subev_ctx.id for the event script."
+      }
+    },
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Handle of the NPC talked to, stored in subev_ctx.npc_hdl."
+      }
+    }
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": {
+      "en": "Always null (no return statement)."
+    }
   },
   "examples": [
     {
-      "case": "Dispatching to the right event runner depending on the NPC's event type (real usage, from ie4_ev_sub_std.nut)",
+      "case": "How the standard event script chooses the runner (real code, from ie4_ev_sub_std.nut)",
       "source": "real",
-      "code": "// Excerpt from ie4_ev_sub_std.nut: evID/evType/npcHdl are set earlier by\n// Initialize()/SetupParam() from the NPC that triggered this event.\nevID <- 0;\nevType <- 0;\nnpcHdl <- 0;\n\n// Dispatch to the right event runner depending on the NPC's event type\nif (evType == 4)\n{\n\tCallKiznaxEvent(evID, npcHdl);\n}\nelse if (evType == 5)\n{\n\tCallShopEvent(evID, npcHdl);\n}\nelse if (evType == 9)\n{\n\tCallMasterAvatar(evID, npcHdl);\n}\nelse\n{\n\tCallEvent(evID);\n}"
+      "code": "Main <- function ( arg_tbl )\n{\n\tif (evType == 4)\n\t{\n\t\tCallKiznaxEvent(evID, npcHdl);\n\t}\n\telse if (evType == 5)\n\t{\n\t\tCallShopEvent(evID, npcHdl);\n\t}\n\telse if (evType == 9)\n\t{\n\t\tCallMasterAvatar(evID, npcHdl);\n\t}\n\telse\n\t{\n\t\tCallEvent(evID);\n\t}\n};"
     }
   ]
 }

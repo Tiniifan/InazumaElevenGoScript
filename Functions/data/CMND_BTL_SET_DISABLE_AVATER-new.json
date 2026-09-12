@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_SET_DISABLE_AVATER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Blocks or unblocks a player's Fighting Spirit for the match AI (\"avater\" is the game's spelling of avatar). It sets or clears a flag on the player's match data.\nThe only code found that reads the flag is the AI logic that decides when a team summons a Fighting Spirit: it leaves blocked players out.\nThe story matches block the opponent's Fighting Spirit users at kick-off, so the AI cannot summon early. They unblock them just before summoning in the scripted beat with CMND_BTL_SET_AVATER, and unblock them all again in their result callback."
+  },
+  "params": [
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Parameter ID of the player, e.g. \"para_cp0150\". Searched among all match players." } },
+    { "name": "disable", "type": "boolean", "required": true, "description": { "en": "true to block, false to unblock." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true if the player was found and the flag changed, false if no match player has that ID.\nnull if the script system is not ready or fewer than 2 arguments are given." }
+  },
+  "examples": [
+    {
+      "case": "Blocking the opponent's spirits at kick-off, releasing one for the story beat (real usage, from btl0007.nut)",
+      "source": "real",
+      "code": "// First kick-off: block three opponents' Fighting Spirits\nCallMatchKickoffFirst <- function ()\n{\n\tif (eventCounter == 0)\n\t{\n\t\tCMND_BTL_SET_DISABLE_AVATER(\"para_cp0142\", true);\n\t\tCMND_BTL_SET_DISABLE_AVATER(\"para_cp0149\", true);\n\t\tCMND_BTL_SET_DISABLE_AVATER(\"para_cp0150\", true);\n\t\t// ...\n\t}\n};\n\n// Later, in the scripted beat: unblock and summon one of them\nCMND_BTL_SET_DISABLE_AVATER(\"para_cp0150\", false);\nCMND_BTL_SET_AVATER(\"para_cp0150\", \"ck0013\", 1);"
+    }
+  ]
+}

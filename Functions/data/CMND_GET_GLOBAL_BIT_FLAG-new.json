@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GET_GLOBAL_BIT_FLAG",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Reads a global bit flag, one of the 2560 story and progress flags (numbers 0 to 2559). The flags live in the game's flag data (part of the save data)."
+  },
+  "params": [
+    {
+      "name": "flag",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Flag number, 0 to 2559."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true if the flag is set, false otherwise (also false if the flag data is not available).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A branch on story progress (real usage, from ev42010450.nut)",
+      "source": "real",
+      "code": "if (CMND_GET_GLOBAL_BIT_FLAG(53))\n{\n\t// ...\n\n\tif (CMND_GET_GLOBAL_BIT_FLAG(54))\n\t{\n\t\tev42010450_40();\n\t}"
+    }
+  ]
+}

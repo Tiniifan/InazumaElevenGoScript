@@ -1,0 +1,40 @@
+{
+  "name": "CMND_SET_SOCCER_POSITION_ALL",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets the positions of the party members in one go: element i of the array is the position of party list entry i. The game keeps two lineups: the main formation (positions 1 to 11 for the players on the pitch) and a second lineup of 5 positions (probably the team for the small field matches). With true as second argument (only the value 1) the 5-position lineup is set instead of the main formation."
+  },
+  "params": [
+    {
+      "name": "positions",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "One position per party list entry, in list order."
+      }
+    },
+    {
+      "name": "small",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true for the 5-position lineup."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Both lineups after a recruitment (real usage, from ev42013800.nut; the arrays are written on fewer lines here)",
+      "source": "real",
+      "code": "CMND_SET_SOCCER_POSITION_ALL([\n\t3, 2, 1, 4, 5, 6, 7, 8,\n\t9, 10, 11, 12, 13, 14, 15, 16\n]);\nCMND_SET_SOCCER_POSITION_ALL([\n\t5, 2, 1, 3, 4\n], true);"
+    }
+  ]
+}

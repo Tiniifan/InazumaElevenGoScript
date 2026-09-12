@@ -1,0 +1,40 @@
+{
+  "name": "RunGetImportantItem",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Gives an important item: like RunGetItem but with the jingle J_07 (RunGetItemEx(_item, _num, 30, 30, \"J_07\", 0, \"sysmes-item-get\")). The BGM is stopped with a fade of 30, the function waits 30 frames, and the jingle J_07 plays while the message shows."
+  },
+  "params": [
+    {
+      "name": "_item",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Item ID, e.g. \"ssa0100\"."
+      }
+    },
+    {
+      "name": "_num",
+      "type": "integer",
+      "required": false,
+      "default": "1",
+      "description": {
+        "en": "How many to give."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Receiving a key item (real usage, from ev42032600.nut)",
+      "source": "real",
+      "code": "RunGetImportantItem(\"iii0001\", 1);"
+    }
+  ]
+}

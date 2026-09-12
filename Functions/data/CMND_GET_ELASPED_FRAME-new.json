@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_ELASPED_FRAME",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Returns the number of frames elapsed since the previous update, as a float (the spelling ELASPED is the game's). Scripts that animate by hand scale their steps with it."
+  },
+  "params": [],
+  "returns": {
+    "type": "float|null",
+    "description": {
+      "en": "Elapsed frames.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Stepping a skill scene (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "while (!CMND_CHR_MTN_IS_END(hCamera))\n{\n\tlocal elasped = CMND_GET_ELASPED_FRAME() * 0.5;\n\tStepTelop(frm_cnt, _cut, elasped);\n\tStepFrame(_cut, frm_cnt);"
+    }
+  ]
+}

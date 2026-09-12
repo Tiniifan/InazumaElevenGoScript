@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_SAVE_HISTORY",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Copies the match's goal log (the goals recorded with CMND_BTL_SET_POINT_HISTORY) to a store that outlives the match, so that a later match can restore it with CMND_BTL_LOAD_HISTORY.\nThe story uses the pair for a match split into two scripts with an event in between: btl0015.nut saves the log when it ends, and btl0016.nut loads it when it begins, so the score carries over.\nOnly the first 200 bytes of the log are copied: 16 goal entries of 12 bytes, plus part of a 17th."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the log has been copied.\nfalse if the store is not available.\nnull if the script system is not ready." }
+  },
+  "examples": [
+    {
+      "case": "Keeping the goals of the first part of a split match (real usage, from btl0015.nut)",
+      "source": "real",
+      "code": "// End of the first part: set a story flag if the player's team leads,\n// keep the goal log, then end this match\nlocal point_self = CMND_BTL_GET_POINT(0);\nlocal point_enemy = CMND_BTL_GET_POINT(1);\n\nif (point_self > point_enemy)\n{\n\tCMND_SET_GLOBAL_BIT_FLAG(1375, 1);\n}\n\nCMND_BTL_SAVE_HISTORY();\nCMND_BTL_END_MATCH();"
+    }
+  ]
+}

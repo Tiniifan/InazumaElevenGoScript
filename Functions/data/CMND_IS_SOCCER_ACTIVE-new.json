@@ -1,0 +1,22 @@
+{
+  "name": "CMND_IS_SOCCER_ACTIVE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Tells whether the soccer (match) scene exists, i.e. whether the script runs during a match. StartScEvent and EndScEvent use it to set up in-match scenes differently."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true during a match, false otherwise.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside StartScEvent (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local isActive = CMND_IS_SOCCER_ACTIVE();\n\nif (!isActive)\n{\n\t// ...\n}"
+    }
+  ]
+}

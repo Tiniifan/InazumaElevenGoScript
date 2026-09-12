@@ -1,0 +1,31 @@
+{
+  "name": "InitEvent",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Called by the engine by name (the string \"InitEvent\" is passed to the script call routine in the binary, with one argument). The ev_main version only prints the debug line \"InitEvent\" with SPrint. An event script can define its own InitEvent to replace it."
+  },
+  "params": [
+    {
+      "name": "_arg_tbl",
+      "type": "any",
+      "required": true,
+      "description": {
+        "en": "Argument passed by the engine (not used by the ev_main version)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "The ev_main definition (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "InitEvent <- function ( _arg_tbl )\n{\n\tSPrint(\"InitEvent\");\n};"
+    }
+  ]
+}

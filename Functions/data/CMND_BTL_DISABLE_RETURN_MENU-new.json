@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_DISABLE_RETURN_MENU",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Leaves a one-shot request for one in-match menu, named by its ID. The engine only ever checks it for \"KsnBtlMenu\", the menu used in a Fighting Spirit clash (ksn = keshin). When that menu queries the request it gets true, and the request is cleared at once.\nThe name says it disables the menu's way back (return option); the exact effect on screen was not traced.\nThe only shipped use is in btl0002.nut, at the moment a Fighting Spirit appears, just before the scene that introduces the clash."
+  },
+  "params": [
+    { "name": "menuId", "type": "string", "required": true, "description": { "en": "Menu ID. Only \"KsnBtlMenu\" is recognised; any other name is stored but never matched." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "When a Fighting Spirit appears in a story match (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "// Called by the engine when a Fighting Spirit is summoned\nCallMatchAvatar <- function ()\n{\n\tif (eventCounter == 4)\n\t{\n\t\teventCounter++;\n\t\t// One-shot request for the Fighting Spirit clash menu\n\t\tCMND_BTL_DISABLE_RETURN_MENU(\"KsnBtlMenu\");\n\t\tCMND_BTL_SET_EVPARAM(44010110);\n\t\tsuspend();\n\t\tCMND_BTL_SET_KESHIN_INVINCIBLE(true, \"para_cp0009\");\n\t}\n};"
+    }
+  ]
+}

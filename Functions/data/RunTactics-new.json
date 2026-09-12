@@ -1,0 +1,56 @@
+{
+  "name": "RunTactics",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Plays a tactics scene with the given characters. It lets the field camera run (clears OFF_RPG_CAMERA from the pause bits), sets system flag 6 (IFLAG_END_AUTO_FADEIN_OFF) to 1, requests the scene with CMND_SETUP_RUN_TAC(_tacID, _aAtk, _aDef, 0, _mapID) and suspends while it plays. It then clears the flag and restores the pause bits."
+  },
+  "params": [
+    {
+      "name": "_tacID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Tactics ID, e.g. \"vet0001\"."
+      }
+    },
+    {
+      "name": "_aAtk",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Handles of the moving participants (at most 11)."
+      }
+    },
+    {
+      "name": "_aDef",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Handles of the other participants; [0] for none."
+      }
+    },
+    {
+      "name": "_mapID",
+      "type": "string",
+      "required": false,
+      "default": "\"\"",
+      "description": {
+        "en": "Background map."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Four characters for a tactics scene (real usage, from ev42011800.nut)",
+      "source": "real",
+      "code": "CMND_SET_ENABLE(tacs1, true);\nCMND_SET_ENABLE(tacs2, true);\nCMND_SET_ENABLE(tacs3, true);\nCMND_SET_ENABLE(tacs4, true);\n// ...\nlocal hAtk = [\n\ttacs1,\n\ttacs2,\n\ttacs3,\n\ttacs4\n];\nlocal hDef = [\n\t0\n];\nRunTactics(\"vet0001\", hAtk, hDef, \"mf01i21\");\nsuspend();\nCMND_DELETE_CHARA(tacs1);"
+    }
+  ]
+}

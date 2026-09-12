@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_FAKE2D",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Sets an object's \"fake 2D\" display setting (a byte of the object; by the name, the object is drawn flat like a 2D picture) and clears another byte next to it. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle."
+      }
+    },
+    {
+      "name": "value",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Value of the setting (0 off)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "null (also when the object is not found or fewer than 2 arguments are given)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Turning the setting on (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "CMND_SET_FAKE2D(hModel, 1);"
+    }
+  ]
+}

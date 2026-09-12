@@ -1,0 +1,55 @@
+{
+  "name": "CMND_SETUP_SKL_SQ_CHARAM_BY_IDX",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Sets one participant of the next skill scene from the players on the pitch in the current match: the player in slot posIdx of the team's pitch slots (counted from the team's first slot) gives the parameter ID, then it works like CMND_SETUP_SKL_SQ_CHARAM with that team. A team of 2 or more, or a slot out of range, gives character 0."
+  },
+  "params": [
+    {
+      "name": "side",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Side of the skill scene: \"ATK\" (attacking side) or \"DEF\" (defending side)."
+      }
+    },
+    {
+      "name": "index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Participant number on that side, starting at 1."
+      }
+    },
+    {
+      "name": "team",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Team slot: 0 = the player's team, 1 = the opponent."
+      }
+    },
+    {
+      "name": "posIdx",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Slot number within the team's pitch slots, from 0."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (null if the script system is not ready or fewer than 3 arguments are given: nothing is written)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside SetChrPrmDetailForSkillScriptAtMatchByIdx (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "SetChrPrmDetailForSkillScriptAtMatchByIdx <- function ( _side, _index, _team, _pos_idx )\n{\n\tCMND_SETUP_SKL_SQ_CHARAM_BY_IDX(_side, _index, _team, _pos_idx);\n};"
+    }
+  ]
+}

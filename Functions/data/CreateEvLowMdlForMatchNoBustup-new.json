@@ -1,0 +1,56 @@
+{
+  "name": "CreateEvLowMdlForMatchNoBustup",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "CreateEvLowMdlForMatch without the bust-up picture."
+  },
+  "params": [
+    {
+      "name": "_charaname",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object."
+      }
+    },
+    {
+      "name": "_is_upper",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "The scene's isEvUpperDisp value."
+      }
+    },
+    {
+      "name": "_paramID",
+      "type": "string|integer",
+      "required": true,
+      "description": {
+        "en": "Parameter ID of the player (or its hash)."
+      }
+    },
+    {
+      "name": "_teamID",
+      "type": "integer",
+      "required": false,
+      "default": "2",
+      "description": {
+        "en": "Team to search: 0 = the player's team, 1 = the opponent team, 2 = search by ID only."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character (see CMND_CREATE_CHARA)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Models for a tactics scene (real usage, from ev44030016.nut)",
+      "source": "real",
+      "code": "local tacs1 = CreateEvLowMdlForMatchNoBustup(\"tacs1L\", isEvUpperDisp, tacs_id_1);"
+    }
+  ]
+}

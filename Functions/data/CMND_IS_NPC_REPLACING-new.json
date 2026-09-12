@@ -1,0 +1,22 @@
+{
+  "name": "CMND_IS_NPC_REPLACING",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Tells whether the NPC replacement requested with CMND_NPC_REPLACE is still in progress: it checks the 32 NPC slots of the map and returns true if one of them is still being set up."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true while an NPC slot is still being set up, false otherwise.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside SetGameSubPhase (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "Inatter_Check();\n\nwhile (CMND_IS_NPC_REPLACING())\n{\n\tsuspend();\n}"
+    }
+  ]
+}

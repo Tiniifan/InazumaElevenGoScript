@@ -1,0 +1,40 @@
+{
+  "name": "CMND_SND_STOP",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Stops a sound, with an optional fade. The stream stays open (unlike CMND_SND_CLOSE), so it can be played again. Wait for the end of the fade with CMND_SND_IS_PLAYING.\nLike CMND_SND_PLAY, the native returns the inverse of the stop call's result.\nSound handles are integers. Streams opened with the CMND_SND_OPEN_* commands (BGM, event sounds, voices, Special Move sounds, map ambience) get a handle that refers to a stream channel. CMND_SND_OPEN_SYS_SE returns a packed number that names a sound effect instead."
+  },
+  "params": [
+    {
+      "name": "hSnd",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Sound handle from a CMND_SND_OPEN_* or CMND_SND_GET_*_SNDID call."
+      }
+    },
+    {
+      "name": "fade",
+      "type": "integer",
+      "required": false,
+      "default": "0",
+      "description": {
+        "en": "Fade value (the scripts use 30 or 60)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "false when the stop was accepted, true otherwise (inverted result).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Fading the BGM out before a jingle (real code, from ie4_ev_main.nut, AddParty_MessageEx)",
+      "source": "real",
+      "code": "local hBGM = CMND_SND_GET_BGM_SNDID();\nCMND_SND_STOP(hBGM, _fade);\n\nwhile (CMND_SND_IS_PLAYING(hBGM))\n{\n\tsuspend();\n}"
+    }
+  ]
+}

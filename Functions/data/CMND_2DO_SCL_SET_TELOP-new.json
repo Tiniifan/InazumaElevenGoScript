@@ -1,0 +1,47 @@
+{
+  "name": "CMND_2DO_SCL_SET_TELOP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Sets the horizontal and vertical scale of a named caption (created with one of the CMND_2DO_CREATE_*_TELOP functions).\nThe cutscene scripts use it to zoom the technique name in and out."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the caption to scale."
+      }
+    },
+    {
+      "name": "scaleX",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Horizontal scale (1.0 = normal size)."
+      }
+    },
+    {
+      "name": "scaleY",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Vertical scale (1.0 = normal size)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "float|null",
+    "description": {
+      "en": "null if the engine is not ready, fewer than 3 arguments were given, or no caption has that name.\nOn success the native reports a result without pushing one, so Squirrel hands back the last argument (scaleY)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Zooming a caption uniformly (real usage, from ie4_ev_sub_skl.nut; caption names shortened from the script's Shift-JIS names)",
+      "source": "real",
+      "code": "// Scale the technique name caption by the same factor on both axes.\nlocal scale = 1.5;\nCMND_2DO_SCL_SET_TELOP(\"skill_name\", scale, scale);"
+    }
+  ]
+}

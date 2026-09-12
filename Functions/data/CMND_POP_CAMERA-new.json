@@ -1,0 +1,22 @@
+{
+  "name": "CMND_POP_CAMERA",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Returns from a camera switched to with CMND_PUSH_CAMERA: it sets the same request flag on the active camera (or on the default camera when the active one is not an event camera)."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "A camera animation for a match scene (real usage, from ev44010001.nut; the Shift-JIS object names are replaced by variables here)",
+      "source": "real",
+      "code": "local hCamera = CMND_LOAD_CAMERA(cameraName, \"data/chr/motion/waza/vma0001.pck|vma0001_cam.xv\");\nlocal hTelop = CMND_CREATE_CHARA(7, telopName, \"data/chr/motion/waza/vma0001/vma0001_telop.xc\", \"Effect\");\nWaitLoading(hCamera);\nWaitLoading(hTelop);\nCMND_SET_ENABLE(hTelop, true);\nCMND_SET_ANTIALIASE(0, 1);\nCMND_PUSH_CAMERA(hCamera);\nCMND_BRIGHT_FADE(SCREEN_A, 0.0, 60.0);\nCMND_SET_MOTION(hCamera, \"01\", 3, 0);\n// ... wait for the motion ...\nStartBrightFade(SCREEN_A, -1.0, 60.0);\nCMND_POP_CAMERA();\nCMND_SET_ANTIALIASE(0, 0);\nCMND_DELETE_CHARA(hTelop);\nCMND_DELETE_CAMERA(hCamera);"
+    }
+  ]
+}

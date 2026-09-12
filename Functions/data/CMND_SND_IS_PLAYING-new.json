@@ -1,0 +1,31 @@
+{
+  "name": "CMND_SND_IS_PLAYING",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Tells whether a sound is playing. The events use it to wait for a jingle to end, or for a fading track to stop.\nSound handles are integers. Streams opened with the CMND_SND_OPEN_* commands (BGM, event sounds, voices, Special Move sounds, map ambience) get a handle that refers to a stream channel. CMND_SND_OPEN_SYS_SE returns a packed number that names a sound effect instead."
+  },
+  "params": [
+    {
+      "name": "hSnd",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Sound handle from a CMND_SND_OPEN_* or CMND_SND_GET_*_SNDID call."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true while the sound is playing, false otherwise.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Waiting for a jingle (real code, from ie4_ev_main.nut, AddParty_MessageEx)",
+      "source": "real",
+      "code": "CMND_SND_PLAY(hJingle);\nCreateSpeech(_event);\n\nwhile (CMND_SND_IS_PLAYING(hJingle))\n{\n\tsuspend();\n}"
+    }
+  ]
+}

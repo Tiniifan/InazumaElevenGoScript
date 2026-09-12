@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_CAMERA_REF",
+  "kind": "native",
+  "category": "camera",
+  "description": {
+    "en": "Sets a camera's look-at point from an array [x, y, z] (at most 3 values read; integers are converted)."
+  },
+  "params": [
+    {
+      "name": "hCamera",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Camera handle (CMND_GET_ACT_CAMERA, CMND_LOAD_CAMERA, CMND_CREATE_CAMERA)."
+      }
+    },
+    {
+      "name": "ref",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "[x, y, z]."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set, false if the camera is not found.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Placing the active camera at the field view (real code, from ie4_ev_main.nut, SetExitRpgCamera)",
+      "source": "real",
+      "code": "local hcam = CMND_GET_ACT_CAMERA();\nCMND_SET_CAMERA_POS(hcam, pos);\nCMND_SET_CAMERA_REF(hcam, ref);"
+    }
+  ]
+}

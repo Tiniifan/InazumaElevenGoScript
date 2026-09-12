@@ -1,0 +1,27 @@
+{
+  "name": "CMND_UPDATE_PURPOSE",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Loads the objective (purpose) message for the current story state into the objective display and returns that display's handle, so the script can wait for it with CMND_IS_LOADING. If there is no objective message for the current state, nothing is loaded and false is returned."
+  },
+  "params": [],
+  "returns": {
+    "type": "handle|boolean|null",
+    "description": {
+      "en": "The objective display handle once the load is started.\nfalse if there is no objective message for the current state.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside SetGameSubPhase (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_NPC_REPLACE();\nCMND_SET_GAME_SUB_PHASE(_subPhase);\nlocal hdlPpsMes = CMND_UPDATE_PURPOSE();\n\nwhile (CMND_IS_LOADING(hdlPpsMes))\n{\n\tsuspend();\n}"
+    },
+    {
+      "case": "After a heal (real usage, from ev42061300.nut)",
+      "source": "real",
+      "code": "CMND_TEAM_GP_RECV_ALL();\nCMND_TEAM_TP_RECV_ALL();\nlocal hdlPpsMes = CMND_UPDATE_PURPOSE();\n\nwhile (CMND_IS_LOADING(hdlPpsMes))\n{\n\tsuspend();\n}\n\nCMND_SET_PURPOSE_STATE(true);"
+    }
+  ]
+}

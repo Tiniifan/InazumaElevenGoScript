@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_SET_RESTART_BALL",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Chooses which team takes the next kick-off that the match sets up by itself (at the start of the match or a half, or after a goal), instead of the team the engine would pick. The choice is kept until that kick-off uses it, then cleared.\nCMND_BTL_SET_MATCH_RESTART, which sets up a kick-off immediately, goes through the same request internally.\nThe only shipped use is btl0302.nut, which gives the first kick-off to team 1 in its pre-match setup."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team that kicks off: 0 = the player's team, 1 = the opponent team." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when no argument is given)." }
+  },
+  "examples": [
+    {
+      "case": "The opponent kicks off first (real usage, from btl0302.nut)",
+      "source": "real",
+      "code": "BtlSetting <- function ()\n{\n\tCMND_BTL_SET_TEAM_NAME(0, 1, \"name_te0998\");\n\tCMND_BTL_CHANGE_UNIFORM(1, \"para_cp0010\", 903, 0, 0, 903);\n\tCMND_BTL_CHANGE_UNIFORM(0, \"para_cp0008\", 901, 0, 0);\n\tCMND_BTL_SET_RESTART_BALL(1);\n};"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "name": "GetCharaDistRotCameraPos",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "GetDistRotCameraPos around a character: the look-at point is the character's position (CMND_GET_POSRY) raised by _ofsy. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "_hchara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character to look at."
+      }
+    },
+    {
+      "name": "_dhv",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "[distance, horizontal angle, vertical angle], angles in degrees."
+      }
+    },
+    {
+      "name": "_ofsy",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Height added to the character's position."
+      }
+    }
+  ],
+  "returns": {
+    "type": "array",
+    "description": {
+      "en": "[posX, posY, posZ, refX, refY, refZ]."
+    }
+  },
+  "examples": [
+    {
+      "case": "A camera looking at a character's head (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local posref = GetCharaDistRotCameraPos(hTenmaL, [60.0, 180.0, 10.0], 12.0);\nCamCtrlSetPosRef(hCam, posref);"
+    }
+  ]
+}

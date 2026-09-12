@@ -1,0 +1,22 @@
+{
+  "name": "CMND_SET_NO_REPLACE",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Sets bit 0x08 of the event system flags, which by the command's name keeps the NPCs from being replaced. It takes no argument and cannot clear the bit. The events that use it first test that the command exists."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Only when the command exists (real usage, from ev42011250.nut; the existence test is written as in system_fixed/ie4_ev_main.nut, the decompiled event shows it as $[stack offset 0]; the decompiled file shows the existence test as $[stack offset 0]; it is written here with getroottable(), the form ev42019001.nut shows)",
+      "source": "real",
+      "code": "if (\"CMND_SET_NO_REPLACE\" in getroottable())\n{\n\tCMND_SET_NO_REPLACE();\n}"
+    }
+  ]
+}

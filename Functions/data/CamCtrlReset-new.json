@@ -3,20 +3,29 @@
   "kind": "ev_main",
   "category": "camera",
   "description": {
-    "en": "Resets the current camera-control state's movement queue and re-reads the camera's current position/reference as its starting point, without touching its follow target."
+    "en": "Restarts the camera-control state from where the camera is now: stores the camera handle, clears the queued moves and the finished flag, and reads the camera's current position and look-at point (CMND_GET_CAMERA_POSREF) as both the current and the previous point. The character to follow is kept.\nCamCtrlInit and CamCtrlMoveTo call it; events also call it directly after moving the camera by other means.\nThe camera-control helpers keep their state in subev_ctx.cam_ctrl, the context of an event started by CallEvent. While such an event runs, CallEvent calls sysCamCtrlStep every frame: it applies the engine's camera move (CMND_GET_MOVE_INFO_CAMERA) to the camera, keeps the look-at point on the followed character when there is one, and marks the move as finished once it is over (see IsCamCtrlMove)."
   },
   "params": [
-    { "name": "_hcam", "type": "handle", "required": true, "description": { "en": "Handle of the camera being controlled." } }
+    {
+      "name": "_hcam",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Camera handle, usually from CMND_GET_ACT_CAMERA()."
+      }
+    }
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": {
+      "en": "Always null (no return statement)."
+    }
   },
   "examples": [
     {
-      "case": "Resetting the movement queue before a new camera move (real usage, from ev42102900.nut)",
+      "case": "Taking the camera's new position into account after a message (real usage, from ev42102700.nut)",
       "source": "real",
-      "code": "// Reset the camera-control movement queue before starting a new movement\nlocal hCam = CMND_GET_ACT_CAMERA();\nCamCtrlReset(hCam);"
+      "code": "StartBrightFade(SCREEN_A, 0.0, 60);\nCMND_SET_AUTO_APPR_BUSTUP(hAmagiL, false);\nCreateSpeech(\"ev40400\");\nCamCtrlReset(hCam);"
     }
   ]
 }

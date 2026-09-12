@@ -1,0 +1,39 @@
+{
+  "name": "StartBlackFadeIn",
+  "kind": "ev_main",
+  "category": "screen-fx",
+  "description": {
+    "en": "Fades a screen back in from black with CMND_BLACK_FADE_IN and waits until CMND_IS_BLACK_FADE is false."
+  },
+  "params": [
+    {
+      "name": "_screen",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "SCREEN_A (0, top), SCREEN_B (1, bottom) or SCREEN_AB (2, both)."
+      }
+    },
+    {
+      "name": "_frame",
+      "type": "integer|float",
+      "required": true,
+      "description": {
+        "en": "Length of the fade in frames (EV_FADE_QUICK = 5, EV_FADE_NORMAL = 10, EV_FADE_SLOW = 15); 0 for an instant change."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "An instant change on both screens (real usage, e.g. ev42010100.nut)",
+      "source": "real",
+      "code": "StartBlackFadeIn(SCREEN_AB, 0.0);"
+    }
+  ]
+}

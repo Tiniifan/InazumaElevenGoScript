@@ -1,0 +1,22 @@
+{
+  "name": "CMND_RESET_TALK_CHARA",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "Empties the list of talking characters (the list CMND_ADD_TALK_CHARA fills, 16 entries), before an event sets up its own speakers."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once done.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Before new speakers (real usage, from ev42012000.nut)",
+      "source": "real",
+      "code": "CMND_RESET_TALK_CHARA();\nlocal hTenmaL = ResetEvLowMdlForCharaPlayer(950);\nlocal hShinsukeL = CMND_CREATE_GUEST_CHARA(0, 5, 950);"
+    }
+  ]
+}

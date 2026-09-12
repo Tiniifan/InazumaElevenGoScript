@@ -1,0 +1,40 @@
+{
+  "name": "ToScaleWazaMap",
+  "kind": "ev_main",
+  "category": "scene",
+  "description": {
+    "en": "Scales a coordinate for the Special Move map: _val * _scale, with 0.45 by default, the same scale ScEventWazaMapScale gives that map. Used when writing camera positions for in-match scenes shown on the scaled map."
+  },
+  "params": [
+    {
+      "name": "_val",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Coordinate to scale."
+      }
+    },
+    {
+      "name": "_scale",
+      "type": "float",
+      "required": false,
+      "default": "0.45",
+      "description": {
+        "en": "Scale factor."
+      }
+    }
+  ],
+  "returns": {
+    "type": "float",
+    "description": {
+      "en": "_val * _scale."
+    }
+  },
+  "examples": [
+    {
+      "case": "Camera placement on the scaled map (real usage, from ev43030000.nut)",
+      "source": "real",
+      "code": "ScEventWazaMapScale();\nlocal hCam = CMND_GET_ACT_CAMERA();\nCamCtrlInit(hCam);\nCamCtrlSetPosRef(hCam, [\n\tToScaleWazaMap(-68.699997),\n\t50.799999,\n\tToScaleWazaMap(170.5),\n\tToScaleWazaMap(-7.1999998),\n\t6.0,\n\tToScaleWazaMap(14.6)\n]);"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "name": "CreateEvHiMdlForCharaNo_NPCOnly",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a detailed (Hi) model of the NPC cnNNNN: CMND_CREATE_CHARA(5, _charaName, set, _npc_no, true, false, _no_base, _mem), with set \"Talk\" when _talk is true."
+  },
+  "params": [
+    {
+      "name": "_charaName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object; the events use the character's name followed by L (light model) or H (detailed model)."
+      }
+    },
+    {
+      "name": "_npc_no",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "NPC number: the model is cnNNNN."
+      }
+    },
+    {
+      "name": "_talk",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "true for the \"Talk\" motion set (talking model), false for \"dmy\"."
+      }
+    },
+    {
+      "name": "_no_base",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "Passed as CMND_CREATE_CHARA's noBase flag (effect not traced)."
+      }
+    },
+    {
+      "name": "_mem",
+      "type": "string",
+      "required": false,
+      "default": "DEV_MEM_NAME_EVENT",
+      "description": {
+        "en": "Memory area name."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character (see CMND_CREATE_CHARA)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A detailed NPC model (real usage, from ev42010600.nut; the Shift-JIS object name is replaced by a variable here)",
+      "source": "real",
+      "code": "local hHarunaH = CreateEvHiMdlForCharaNo_NPCOnly(charaName, 4);"
+    }
+  ]
+}

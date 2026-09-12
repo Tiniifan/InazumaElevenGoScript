@@ -1,0 +1,31 @@
+{
+  "name": "CMND_IS_HAVE_ITEM",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Tells whether the player holds an item, by the item ID's hash."
+  },
+  "params": [
+    {
+      "name": "itemHash",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Hash of the item ID (CMND_GET_HASH(\"iii0007\"))."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true if the item is held, false otherwise (also when the item data is not available).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Checking for a key item (real usage, from ev42135600.nut)",
+      "source": "real",
+      "code": "if (!CMND_IS_HAVE_ITEM(CMND_GET_HASH(\"iii0007\")))\n{\n\tWaitFrame(15);\n\t// ...\n}"
+    }
+  ]
+}

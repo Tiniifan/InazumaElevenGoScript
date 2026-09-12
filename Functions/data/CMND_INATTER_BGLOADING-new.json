@@ -1,0 +1,22 @@
+{
+  "name": "CMND_INATTER_BGLOADING",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Inatter is the game's in-game social feed (its posts are listed in data/res/history/tweets_config.cfg.bin). Starts loading that file in the background, unless global bit flag 1418 is already set (the flag CMND_INATTER_CHECK_ADD sets). Wait for the load with CMND_INATTER_IS_LOADING, then call CMND_INATTER_CHECK_ADD. The ev_main helper Inatter_Check does the three steps."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "Always false (the native pushes false whether or not it started a load).\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside Inatter_Check (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_INATTER_BGLOADING();\n\nwhile (CMND_INATTER_IS_LOADING())\n{\n\tsuspend();\n}\n\nCMND_INATTER_CHECK_ADD();"
+    }
+  ]
+}

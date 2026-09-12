@@ -1,0 +1,56 @@
+{
+  "name": "RemovePartyNum_Message",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Removes several characters, one after the other, with the leaving presentation. For each character, the sound effect sys_021 plays (CMND_SND_OPEN_SYS_SE(21)), the system message \"sysmes-remove_party\" is shown with the character's name filled in, then the character is removed; the next one waits until the sound has finished.\nThe BGM is first stopped with a fade of 30, then the function waits 45 frames; once everyone is removed, the BGM plays again with a fade of 30 and the function waits 30 more frames.\nIt is RemoveParty_MessageEx(_rmv_num, _aParamID, _aStReset, 30, 45, 21, 0, \"sysmes-remove_party\", _not_pt_lock)."
+  },
+  "params": [
+    {
+      "name": "_rmv_num",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Number of characters to remove (read from index 0 of the arrays)."
+      }
+    },
+    {
+      "name": "_aParamID",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Parameter IDs of the characters to remove."
+      }
+    },
+    {
+      "name": "_aStReset",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "One _flg_st_reset value per character."
+      }
+    },
+    {
+      "name": "_not_pt_lock",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to call RemovePartyCmnd(id, reset, false) instead of RemoveParty(id, reset); see RemoveParty for the difference."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Wrapped by an event's local helper that shows a black backdrop (real usage, from ev42014600.nut)",
+      "source": "real",
+      "code": "RemovePartyNum_Message_Black <- function ( _rmv_num, _aParamID, _aStReset, _not_pt_lock = false )\n{\n\t// ... black image on screen, fade in ...\n\tRemovePartyNum_Message(_rmv_num, _aParamID, _aStReset, _not_pt_lock);\n\t// ... fade out, remove the image ...\n};"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_RESET_FORCE_LOSE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Empties the match's forced-lose list: all 32 entries added with CMND_BTL_SET_FORCE_LOSE are cleared at once, whichever form was used to add them. The forced-win list is not touched (see CMND_BTL_RESET_FORCE_WIN).\nThe story matches call both resets in their result callback."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Cleaning up in the result callback (real usage, from btl0003.nut)",
+      "source": "real",
+      "code": "ScBtlResult <- function ()\n{\n\t// ... result handling ...\n\tCMND_BTL_RESET_FORCE_WIN();\n\tCMND_BTL_RESET_FORCE_LOSE();\n};"
+    }
+  ]
+}

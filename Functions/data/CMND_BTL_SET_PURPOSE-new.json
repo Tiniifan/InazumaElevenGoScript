@@ -1,0 +1,47 @@
+{
+  "name": "CMND_BTL_SET_PURPOSE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets the objective of a story match beat: a character to reach, a spot to bring the ball to, a line to cross, a timer, or a number of passes. For the marker kinds, a face-icon marker is shown on the pitch. When the objective is met, the engine calls the match script's CallPurposeMarker function, which the story scripts use to run their next scene. The objective text is shown separately with CMND_BTL_SET_PURPOSETEXT.\nEvery call first removes the previous marker. SET_PURPOSE(0) alone clears the objective.\n\nThe first argument is the kind; ie4_ev_main.nut names 0 to 4 PURPOSE_NONE, PURPOSE_MARK_CHR, PURPOSE_MARK_POS, PURPOSE_LINE and PURPOSE_TIMER. The other arguments depend on it:\n- 1 argument: (kind). Only sets the kind (8 also clears an internal flag).\n- 4 (TIMER): (4, time).\n- 9: (9, count). A pass count: btl0010.nut passes PASS_NUM_3 = 3.\n- all other kinds: (kind, iconChara, iconVariant, timeLimit, target..., variant).\n  - 1 or 5 (character): target = character number n, the character para_cpNNNN to reach (-1 for none).\n  - 2 or 6 (spot): target = x, z, pitch-relative like CMND_BTL_SET_MATCH_RESTART (ie4_ev_main.nut gives PURPOSE_GOAL_CIRCLE_OFF = -0.75 and PURPOSE_GOAL_CIRCLE_DFF = 0.75).\n  - 3 or 7 (line): target = z, pitch-relative (PURPOSE_LINE_OFF = -0.5, PURPOSE_LINE_DFF = 0.5).\n  - 0: nothing more; no marker is created.\nWhat 5, 6 and 7 change compared with 1, 2 and 3 was not identified.\n\nThe marker model is data/chr/model/menu/gvNNNNa.xc, where NNNN is iconChara (the face of para_cpNNNN) and the letter is \"b\" when iconVariant is true. With iconChara = -1, the generic gv9999 marker is used; the last optional argument then picks gv9999a (0) or gv9999b (1)."
+  },
+  "params": [
+    { "name": "kind", "type": "integer", "required": true, "description": { "en": "Objective kind: 0 none, 1 character, 2 spot, 3 line, 4 timer (PURPOSE_* constants), 5 to 7 variants of 1 to 3, 8, 9 pass count." } },
+    { "name": "iconChara", "type": "integer", "required": false, "description": { "en": "Character number whose face icon marks the objective (8 = para_cp0008), or -1 for the generic marker.\nFor kind 4 this is the time, for kind 9 the pass count." } },
+    { "name": "iconVariant", "type": "boolean", "required": false, "description": { "en": "true for the \"b\" version of the face icon, false for \"a\"." } },
+    { "name": "timeLimit", "type": "integer", "required": false, "description": { "en": "Stored as the objective's time value (the same field kind 4 sets). The scripts pass 0, 60 or a variable named timeEv..._limit." } },
+    { "name": "target", "type": "integer|float", "required": false, "description": { "en": "Kinds 1/5: character number to reach. Kinds 2/6: pitch-relative x, followed by z. Kinds 3/7: pitch-relative z of the line." } },
+    { "name": "variant", "type": "integer", "required": false, "default": "-1", "description": { "en": "Last argument, after the target: with iconChara = -1, 0 gives the gv9999a marker and 1 gives gv9999b." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the objective is set.\nnull if the script system is not ready or no argument is given." }
+  },
+  "examples": [
+    {
+      "case": "Bring the ball to a spot, marked with para_cp0009's face (real usage, from btl0011.nut)",
+      "source": "real",
+      "code": "// Spot objective at pitch x 0.0, z -0.4, then the matching text\nCMND_BTL_SET_PURPOSE(2, 9, true, 0, 0.0, -0.40000001);\nCMND_BTL_SET_PURPOSETEXT(true, \"purpose_021\", \"para_cp0009\");"
+    },
+    {
+      "case": "Cross a line, generic marker (real usage, from btl0003.nut)",
+      "source": "real",
+      "code": "// Line objective at pitch z -0.4, marker gv9999a\nCMND_BTL_SET_PURPOSE(3, -1, true, 0, -0.40000001, 0);\nCMND_BTL_SET_PURPOSETEXT(true, \"purpose_130\");"
+    },
+    {
+      "case": "Reach a character (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "// Marker with para_cp0009's face; the character to reach is para_cp0010\nCMND_BTL_SET_PURPOSE(1, 9, true, 0, 10);\nCMND_BTL_SET_PURPOSETEXT(true, \"purpose_120\", \"para_cp0009\");"
+    },
+    {
+      "case": "Reacting when the objective is met (real usage, from btl0003.nut)",
+      "source": "real",
+      "code": "// Called by the engine when the current objective is reached\nCallPurposeMarker <- function ()\n{\n\tif (eventCounter == 0)\n\t{\n\t\tRunEv44020010();\n\t\teventCounter++;\n\t}\n\t// ... next beats ...\n};"
+    },
+    {
+      "case": "Clearing the objective (real usage)",
+      "source": "real",
+      "code": "CMND_BTL_SET_PURPOSE(0);\nCMND_BTL_SET_PURPOSETEXT(false, 0, 0);"
+    }
+  ]
+}

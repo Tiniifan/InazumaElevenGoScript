@@ -1,0 +1,25 @@
+{
+  "name": "CMND_BTL_SET_SKILL_EFFECT",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Gives a player on the pitch a skill effect directly, without a move or a Fighting Spirit. The effect is written into the first free of the player's three effect slots, with value 0. Those slots are what CMND_BTL_GET_SKILL_EFFECTIVE and CMND_BTL_GET_PLY_SKILL_EFFECTIVE check (for example SKILL_EFF_IGNORE_EFFECTIVE = 22 in ie4_soccer_sys.nut).\nNothing happens if the player is not found or all three slots are taken. There is no way to remove the effect from a script.\nThe optional fourth argument is stored in a 16-bit field of the slot; effects added by moves and Fighting Spirits store -1 there. Its use was not traced.\nNo shipped script calls it."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team of the player: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Parameter ID of the player." } },
+    { "name": "effectType", "type": "integer", "required": true, "description": { "en": "Effect type to add, e.g. 22 (SKILL_EFF_IGNORE_EFFECTIVE) or 14 (SKILL_EFF_PLUS_CRITICAL)." } },
+    { "name": "extra", "type": "integer", "required": false, "default": "-1", "description": { "en": "Stored in the slot's 16-bit field; use not traced." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null (also when fewer than 3 arguments are given)." }
+  },
+  "examples": [
+    {
+      "case": "Letting a player ignore element advantage (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// SKILL_EFF_IGNORE_EFFECTIVE (22) with value 0: the element bonus of\n// clashes involving para_cp0008 is cancelled (see CalcSuccessRate)\nCMND_BTL_SET_SKILL_EFFECT(0, \"para_cp0008\", 22);"
+    }
+  ]
+}

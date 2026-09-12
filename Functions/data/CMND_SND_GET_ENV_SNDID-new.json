@@ -1,0 +1,22 @@
+{
+  "name": "CMND_SND_GET_ENV_SNDID",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Returns the handle of the sound on the environment channel (the map ambience opened by CMND_SND_OPEN_DEF_ENV, for example), 0 if none.\nSound handles are integers. Streams opened with the CMND_SND_OPEN_* commands (BGM, event sounds, voices, Special Move sounds, map ambience) get a handle that refers to a stream channel. CMND_SND_OPEN_SYS_SE returns a packed number that names a sound effect instead."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "Handle of the ambient sound, 0 if none.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Closing the ambience and the music (real usage, from ev42034000.nut)",
+      "source": "real",
+      "code": "local sid = CMND_SND_GET_ENV_SNDID();\nCMND_SND_CLOSE(sid, 15);\nlocal hMapsnd = CMND_SND_GET_BGM_SNDID();\nCMND_SND_CLOSE(hMapsnd);\nCMND_BRIGHT_FADE_ALL(-1.0, EV_FADE_SLOW);"
+    }
+  ]
+}

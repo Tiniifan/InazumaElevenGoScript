@@ -1,0 +1,48 @@
+{
+  "name": "ReserveMapJump",
+  "kind": "ev_main",
+  "category": "map",
+  "description": {
+    "en": "Schedules a jump to another map at the end of the event: CMND_RESERVE_MAP_JUMP(mapID, pos, bgmOff)."
+  },
+  "params": [
+    {
+      "name": "mapID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Map ID, e.g. \"mr02b02\"."
+      }
+    },
+    {
+      "name": "pos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Arrival [x, y, z, rotY]."
+      }
+    },
+    {
+      "name": "bgmOff",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "Passed to CMND_RESERVE_MAP_JUMP."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Moving to the next map (real usage, from ev42010300.nut)",
+      "source": "real",
+      "code": "CMND_SET_GLOBAL_BIT_FLAG(3);\nReserveMapJump(\"mr02b02\", [115.7, 30.299999, -233.7, 0]);"
+    }
+  ]
+}

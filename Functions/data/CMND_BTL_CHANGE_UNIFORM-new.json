@@ -1,0 +1,37 @@
+{
+  "name": "CMND_BTL_CHANGE_UNIFORM",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Changes the kit worn by one match player's model.\n\nThe player can be given by parameter ID or by formation number. The kit is stored in the player's on-pitch data as kitId x 1000, plus 2 when the away variant is chosen (the projectz tools read it back this way).\nTwo optional values are stored in two further fields of that data. The fifth argument goes into a byte field that the projectz tools read back as the \"kit number\"; the sixth goes into a 16-bit field whose use was not identified (the shipped calls give it the same value as the kit ID).\nNothing changes if the player is not found."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team of the player: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "chara", "type": "string|integer", "required": true, "description": { "en": "Player parameter ID (string, e.g. \"para_cp0008\") or formation number (integer)." } },
+    { "name": "kitId", "type": "integer", "required": true, "description": { "en": "Kit ID, e.g. 1, 23, 24 or 903 in the shipped scripts." } },
+    { "name": "away", "type": "integer", "required": true, "description": { "en": "0 for the home variant, any other value for the away variant (adds 2 to the stored kit code)." } },
+    { "name": "kitNumber", "type": "integer", "required": false, "description": { "en": "Stored in a byte field of the player's data (read back as the \"kit number\" by the projectz tools). The shipped scripts pass 0, 1 or 18." } },
+    { "name": "extra", "type": "integer", "required": false, "description": { "en": "Stored in a 16-bit field of the player's data; its use was not identified. Only read when kitNumber is also given." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has run, including when the player was not found.\nnull if the match system is not ready or fewer than 4 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Dressing both teams for a story match (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "// Opponent player in kit 903, then the protagonist in kit 1\n// with the byte field set to 18.\nCMND_BTL_CHANGE_UNIFORM(1, \"para_cp0010\", 903, 0, 0, 903);\nCMND_BTL_CHANGE_UNIFORM(0, \"para_cp0008\", 1, 0, 18);"
+    },
+    {
+      "case": "Only the kit and its variant (real usage, from btl0007.nut)",
+      "source": "real",
+      "code": "// Four-argument form: home variant of kit 24\nCMND_BTL_CHANGE_UNIFORM(0, \"para_cp0008\", 24, 0);"
+    },
+    {
+      "case": "Selecting a player by formation number",
+      "source": "invented",
+      "code": "// Give the goalkeeper slot (number 0) of the opponent the away variant\nCMND_BTL_CHANGE_UNIFORM(1, 0, 903, 1);"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "CMND_BTL_RETURN_BGM",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Saves a value read from the track now playing on the BGM channel (most likely its playback position; the read goes through a virtual call that was not traced). The next time the match reopens its BGM, it passes that value to the BGM open call once, then clears it. The name suggests it lets the match music resume where it was after an event.\nIt only has an effect while a match is running.\n\nThe ev_main wrapper ScEventReturnBGMAtMatch() calls it, but no shipped script calls that wrapper."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has been handled, including when no match is running.\nnull if the script system is not ready." }
+  },
+  "examples": [
+    {
+      "case": "The ev_main wrapper (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "// Defined in ie4_ev_main.nut, never called by the shipped scripts\nScEventReturnBGMAtMatch <- function ()\n{\n\tCMND_BTL_RETURN_BGM();\n};"
+    },
+    {
+      "case": "Calling it before an in-match scene changes the music (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Remember where the match music is, then play the scene with its own\n// track. When play resumes and the match reopens its BGM, it uses the\n// saved value.\nScEventReturnBGMAtMatch();\nlocal hEvSnd = CMND_SND_OPEN_BGM(\"M_08\");"
+    }
+  ]
+}

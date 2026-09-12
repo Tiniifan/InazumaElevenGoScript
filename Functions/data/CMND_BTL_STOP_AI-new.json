@@ -1,0 +1,27 @@
+{
+  "name": "CMND_BTL_STOP_AI",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Stops or restarts the match AI for everyone. The value is stored as a mode byte. With any non-zero value, the match skips its AI update, so the computer-controlled players stop making decisions. 0 lets the AI run again. Every reader found only tests zero against non-zero, so 1 and 2 behave the same.\nIt also posts a matching on/off request to another part of the match (the same kind of request the event-mode switch uses); what that part does was not traced.\nMatch setup resets the mode to 0. The shipped scripts use 0 and 2, both in btl0002.nut."
+  },
+  "params": [
+    { "name": "mode", "type": "integer", "required": true, "description": { "en": "0 = AI runs, any other value = AI stopped (the scripts use 2)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the mode is set.\nnull if the script system is not ready or no argument is given." }
+  },
+  "examples": [
+    {
+      "case": "Freezing the AI for the last beat of a story match (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "CMND_BTL_SET_BALL_HAVE(0, \"para_cp0009\");\nCMND_BTL_SET_AVATER(\"para_cp0010\", \"ck0002\", 1);\nCMND_BTL_SET_KESHIN_INVINCIBLE(true, \"para_cp0010\");\n// Every AI player stops acting\nCMND_BTL_STOP_AI(2);\nCMND_BTL_SET_PURPOSE(0);\nCMND_BTL_SET_PURPOSETEXT(true, \"purpose_110\");"
+    },
+    {
+      "case": "Making sure the AI runs (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "CMND_BTL_SET_EVPARAM(44010110);\nsuspend();\nCMND_SET_GLOBAL_BIT_FLAG(1402, 1);\nCMND_BTL_STOP_AI(0);"
+    }
+  ]
+}

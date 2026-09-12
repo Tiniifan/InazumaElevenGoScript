@@ -1,0 +1,65 @@
+{
+  "name": "SetHiMdlPosAndMotID",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Places a detailed model on the left or right of a stand scene and sets its motion.\nIt waits for the model to load. With a base ID, it registers the speaker's name (CMND_ADD_TALK_CHARA(_hdl, \"pname_\" + _baseID)). It then picks a scale and a position from the character's body figure (CMND_GET_CHARA_FIGURE of _baseID, or of _ubaseID when _baseID is empty, figure 4 by default):\n- figures 1, 4, 7: scale 0.9, position [-6.0, -11.0, -17.0], turned 30 degrees;\n- figures 2, 3: scale 0.65, [-5.0, -10.0, -17.0];\n- figures 5, 8: scale 0.8, [-6.0, -8.0, -17.0];\n- figure 6: scale 0.98, [-5.5, -13.5, -17.0];\n- the NPCs cn0013, cn0015, cn0019 and cn0045 have their own settings (scale 1.0).\nOn the right side (EV_CHARA_POS_RIGHT) the x position and the turn are mirrored. Finally it sets the motion with CMND_SET_MOTION_ID(_hdl, _motion[0], _motion[1], _motion[2], 0, 0)."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Detailed model handle."
+      }
+    },
+    {
+      "name": "_stdPos",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "EV_CHARA_POS_LEFT (0) or EV_CHARA_POS_RIGHT (1)."
+      }
+    },
+    {
+      "name": "_motion",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Three motion IDs passed to CMND_SET_MOTION_ID, e.g. [19, 1, 1]."
+      }
+    },
+    {
+      "name": "_baseID",
+      "type": "string",
+      "required": false,
+      "default": "\"\"",
+      "description": {
+        "en": "Base ID of the character, e.g. \"cp0008\" or \"cn0004\" (used for the name and the figure)."
+      }
+    },
+    {
+      "name": "_ubaseID",
+      "type": "integer",
+      "required": false,
+      "default": "0",
+      "description": {
+        "en": "Base ID used for the figure when _baseID is empty."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Two speakers for a stand scene (real usage, from ev42010600.nut)",
+      "source": "real",
+      "code": "WaitLoading(hTenmaH);\nWaitLoading(hHarunaH);\nSetHiMdlPosAndMotID(hTenmaH, EV_CHARA_POS_LEFT, [19, 1, 1], \"cp0008\");\nSetHiMdlPosAndMotID(hHarunaH, EV_CHARA_POS_RIGHT, [41, 1, 1], \"cn0004\");\nStartStandEvent();"
+    }
+  ]
+}

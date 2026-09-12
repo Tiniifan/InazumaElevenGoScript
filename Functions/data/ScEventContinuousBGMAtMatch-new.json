@@ -1,0 +1,32 @@
+{
+  "name": "ScEventContinuousBGMAtMatch",
+  "kind": "ev_main",
+  "category": "sound",
+  "description": {
+    "en": "At the end of an in-match scene, keeps the scene's music playing in the match: it calls CMND_BTL_CONTINUOUS_BGM(_bgmid). With the default empty name nothing happens."
+  },
+  "params": [
+    {
+      "name": "_bgmid",
+      "type": "string",
+      "required": false,
+      "default": "\"\"",
+      "description": {
+        "en": "Name of the track the scene opened, e.g. \"M_08\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Handing the scene's track to the match (real usage, from ev44010020.nut)",
+      "source": "real",
+      "code": "ScEventContinuousBGMAtMatch(\"M_08\");\nEndScEvent(isEvUpperDisp, scEvHdl);"
+    }
+  ]
+}

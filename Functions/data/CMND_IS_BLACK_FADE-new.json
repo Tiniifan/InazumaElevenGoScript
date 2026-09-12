@@ -1,0 +1,31 @@
+{
+  "name": "CMND_IS_BLACK_FADE",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Tells whether a black fade (CMND_BLACK_FADE_OUT or CMND_BLACK_FADE_IN) is still in progress on a screen.\nScreens use SCREEN_A (0, top), SCREEN_B (1, bottom) and SCREEN_AB (2, both)."
+  },
+  "params": [
+    {
+      "name": "screen",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "SCREEN_A, SCREEN_B or SCREEN_AB."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true while the fade is in progress, false otherwise.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside StartBlackFadeOut (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_BLACK_FADE_OUT(_screen, _frame);\n\nwhile (CMND_IS_BLACK_FADE(_screen))\n{\n\tsuspend();\n}"
+    }
+  ]
+}

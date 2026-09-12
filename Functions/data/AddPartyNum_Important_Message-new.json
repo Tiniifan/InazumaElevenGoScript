@@ -3,25 +3,25 @@
   "kind": "ev_main",
   "category": "party",
   "description": {
-    "en": "Same as AddPartyNum_Message, but plays the \"J_07\" jingle instead of \"J_08\" — used for adding several important members at once."
+    "en": "Adds several characters, one after the other, to the party with the important recruitment presentation. For each character, the jingle J_07 plays, the system message \"sysmes-add_party\" is shown with the character's name filled in (CMND_MESSAGE_REPLACE_CHARA), then the character is added with AddParty. The next character waits until the jingle has finished.\nThe current BGM is first stopped with a fade of 30 (CMND_SND_STOP); the function waits until it has stopped, then waits 30 more frames. Once everyone is added, the BGM starts again with the same fade.\nIt is a preset of AddParty_MessageEx(_add_num, _aParamID, _aPtLock, _aAvatarEnable, _aAvatarLock, _aLv, 30, 30, \"J_07\", 0, \"sysmes-add_party\")."
   },
   "params": [
-    { "name": "_add_num", "type": "integer", "required": true, "description": { "en": "Number of members to add." } },
-    { "name": "_aParamID", "type": "array", "required": true, "description": { "en": "Array of param IDs, one per member." } },
-    { "name": "_aPtLock", "type": "array", "required": true, "description": { "en": "Array of position-lock flags, one per member." } },
-    { "name": "_aAvatarEnable", "type": "array", "required": true, "description": { "en": "Array of Fighting Spirit-enable flags, one per member." } },
-    { "name": "_aAvatarLock", "type": "array", "required": true, "description": { "en": "Array of Fighting Spirit-lock flags, one per member." } },
-    { "name": "_aLv", "type": "array", "required": true, "description": { "en": "Array of levels to set, one per member (-1 to leave unchanged)." } }
+    {"name": "_add_num", "type": "integer", "required": true, "description": {"en": "Number of characters to add; the arrays below are read from index 0 to _add_num - 1."}},
+    {"name": "_aParamID", "type": "array", "required": true, "description": {"en": "Parameter IDs of the characters, e.g. [\"para_cp0001\", \"para_cp0013\"]."}},
+    {"name": "_aPtLock", "type": "array", "required": true, "description": {"en": "One _ptLock value per character (see AddParty)."}},
+    {"name": "_aAvatarEnable", "type": "array", "required": true, "description": {"en": "One _avatarEnable value per character (see AddParty)."}},
+    {"name": "_aAvatarLock", "type": "array", "required": true, "description": {"en": "One _avatarLock value per character (see AddParty)."}},
+    {"name": "_aLv", "type": "array", "required": true, "description": {"en": "One level per character; -1 (or any value of 0 or less) keeps the current level."}}
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": { "en": "Always null (no return statement)." }
   },
   "examples": [
     {
-      "case": "Adding several important members, forwarded through a local event helper (real usage, from ev42014600.nut's AddPartyNum_Message_Black)",
+      "case": "Chosen by a local helper that shows a black backdrop (real usage, from ev42014600.nut)",
       "source": "real",
-      "code": "// Excerpt from ev42014600.nut's AddPartyNum_Message_Black(_add_num, _aParamID, _ptLock,\n// _avatarEnable, _avatarLock, _aLv, _important = false): when _important is true, the\n// whole batch of new members is added with the \"J_07\" important-recruitment jingle.\nAddPartyNum_Message_Black <- function ( _add_num, _aParamID, _ptLock, _avatarEnable, _avatarLock, _aLv, _important = false )\n{\n\tif (_important)\n\t{\n\t\tAddPartyNum_Important_Message(_add_num, _aParamID, _ptLock, _avatarEnable, _avatarLock, _aLv);\n\t}\n};"
+      "code": "AddPartyNum_Message_Black <- function ( _add_num, _aParamID, _ptLock, _avatarEnable, _avatarLock, _aLv, _important = false )\n{\n\t// ... black image on screen, fade in ...\n\tif (_important)\n\t{\n\t\tAddPartyNum_Important_Message(_add_num, _aParamID, _ptLock, _avatarEnable, _avatarLock, _aLv);\n\t}\n\telse\n\t{\n\t\tAddPartyNum_Message(_add_num, _aParamID, _ptLock, _avatarEnable, _avatarLock, _aLv);\n\t}\n\t// ... fade out, remove the image ...\n};"
     }
   ]
 }

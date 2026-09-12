@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_GET_ADD_MEMBER_CRC",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Returns a player parameter ID, as its CRC32 hash, stored in the match setup data (a block filled by the match menus).\nThe only script that uses it is the system event ev43030000, which passes it to CreateEvLowMdlForMatch to show the model of a \"nakama\" (new teammate) next to the protagonist. That fits the player who joins the team after a challenge. The part of the engine that fills this value was not traced."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": { "en": "The stored CRC32 of a player parameter ID.\nnull if the match system is not ready." }
+  },
+  "examples": [
+    {
+      "case": "Showing the new teammate's model (real usage, from ev43030000.nut; the model name is romanised from the script's Shift-JIS string)",
+      "source": "real",
+      "code": "// Build the new teammate's model from the stored ID, next to the\n// protagonist (whose ID comes from CMND_GET_PT_TOP_CHARA_CRC).\nlocal mcrc = CMND_GET_PT_TOP_CHARA_CRC();\nlocal crc = CMND_BTL_GET_ADD_MEMBER_CRC();\nlocal hNakamaL = CreateEvLowMdlForMatch(\"nakamaL\", isEvUpperDisp, crc);"
+    }
+  ]
+}

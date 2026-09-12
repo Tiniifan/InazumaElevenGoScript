@@ -1,0 +1,48 @@
+{
+  "name": "CreateEvLowMdlForCharaNo_NPCOnly",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a light (Low) model of the NPC cnNNNN: CMND_CREATE_CHARA(5, _charaName, \"dmmy\", _npc_no, false, false, false, DEV_MEM_NAME_EVENT). Unless _no_bustup is true, it also creates the character's bust-up picture (CreateBustup) named after the object with \"顔\" (face) appended."
+  },
+  "params": [
+    {
+      "name": "_charaName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object; the events use the character's name followed by L (light model) or H (detailed model)."
+      }
+    },
+    {
+      "name": "_npc_no",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "NPC number: the model is cnNNNN."
+      }
+    },
+    {
+      "name": "_no_bustup",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to skip the bust-up picture."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character (see CMND_CREATE_CHARA)."
+    }
+  },
+  "examples": [
+    {
+      "case": "An NPC for a scene (real usage, from ev42010700.nut; the Shift-JIS object name is replaced by a variable here)",
+      "source": "real",
+      "code": "local hKudouL = CreateEvLowMdlForCharaNo_NPCOnly(charaName, 12);"
+    }
+  ]
+}

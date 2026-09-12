@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_GAME_SUB_PHASE",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Returns the current game sub-phase, the number that tracks the player's progress through the story (set with CMND_SET_GAME_SUB_PHASE). Map scripts compare it to choose what the map shows."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The current sub-phase.\nnull if the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "Choosing the minimap image by story progress (real usage, from mr01b01.nut)",
+      "source": "real",
+      "code": "if (CMND_GET_GAME_SUB_PHASE() < 30000000)\n{\n\tCMND_SET_MINIMAP_IMAGE(\"mr01b01_sakura\");\n}"
+    }
+  ]
+}

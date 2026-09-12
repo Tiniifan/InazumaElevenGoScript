@@ -1,0 +1,31 @@
+{
+  "name": "CMND_SET_MAP_BGM",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Chooses the BGM the map plays (BgmID), e.g. \"M_07\". It writes into the map start settings that the map scripts fill while the map loads (their init code), so it is meant to be called from a map script."
+  },
+  "params": [
+    {
+      "name": "bgmID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "BGM ID, e.g. \"M_07\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Map music depending on the story (real usage, from mr01b01.nut)",
+      "source": "real",
+      "code": "if (CMND_GET_GLOBAL_BIT_FLAG(10) && !CMND_GET_GLOBAL_BIT_FLAG(9))\n{\n\tCMND_SET_MAP_BGM(\"M_07\");\n\tCMND_MAP_BGM_OFF();\n\t// ...\n}"
+    }
+  ]
+}

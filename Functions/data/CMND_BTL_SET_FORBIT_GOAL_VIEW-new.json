@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_SET_FORBIT_GOAL_VIEW",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Hides, or lets the match show again, the on-screen indicator for one team's goal (\"forbit\" is the developers' spelling of forbid).\nEvery frame the match hides the two indicators, one per team. It shows a team's indicator again while that team's goalkeeper is in the forced-win list (CMND_BTL_SET_FORCE_WIN), unless this flag is set for the team. This is the same update that keeps CMND_BTL_GET_NOT_FORCE_FAUL_FLAG in sync.\nSo with the scripts' usual forced wins on both goalkeepers, calling this for both teams keeps the indicators off. CMND_BTL_RESET_FORBIT_GOAL_VIEW clears the flags of both teams.\nThe team is not range-checked: pass 0 or 1."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team whose indicator is concerned: 0 = the player's team, 1 = the opponent team." } },
+    { "name": "forbid", "type": "boolean", "required": true, "description": { "en": "true to hide the indicator, false to allow it again." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Forced wins on both goalkeepers without the indicators (real usage, from btl0304.nut)",
+      "source": "real",
+      "code": "CMND_BTL_SET_TIMER(\"timer\", 300);\n// Position 0 of both teams wins its clashes...\nCMND_BTL_SET_FORCE_WIN(true, 0, 1, true);\nCMND_BTL_SET_FORCE_WIN(true, 0, 0, true);\n// ... but the goal indicators stay hidden\nCMND_BTL_SET_FORBIT_GOAL_VIEW(1, true);\nCMND_BTL_SET_FORBIT_GOAL_VIEW(0, true);"
+    }
+  ]
+}

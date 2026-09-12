@@ -1,0 +1,22 @@
+{
+  "name": "SYS_CACHE_CLEAR",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Asks the engine's resource system to clear a cache (an internal call with the value 1). The skill and tactics sub-scripts (ie4_ev_sub_skl.nut, ie4_ev_sub_tac.nut) call it at their end."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "At the end of a sub-script (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "SYS_CACHE_CLEAR();"
+    }
+  ]
+}

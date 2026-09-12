@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTLEV_MOVEBALL",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Meant to move the ball to a position during a scripted match event, but it does nothing in this build.\nThe native checks the argument count, reads the position array and the second value into local variables, then returns true without using them: no movement routine is called and nothing is written to the match. It is never called by the shipped scripts. CMND_BTLEV_MOVECHARA is in the same state."
+  },
+  "params": [
+    { "name": "position", "type": "array", "required": true, "description": { "en": "3-element array [x, y, z]. Read, then ignored." } },
+    { "name": "value", "type": "float", "required": true, "description": { "en": "Read as a float, then ignored." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "Always true when 2 or more arguments are given (this only means the arguments were accepted).\nnull if the match system is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "The call has no visible effect (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Accepted, but the ball does not move in this build.\n// Use CMND_BTL_SET_BALL_HAVE to give the ball to a player instead.\nCMND_BTLEV_MOVEBALL([0.0, 0.0, 0.0], 0.0);"
+    }
+  ]
+}

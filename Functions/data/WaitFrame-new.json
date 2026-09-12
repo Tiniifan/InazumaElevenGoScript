@@ -1,0 +1,31 @@
+{
+  "name": "WaitFrame",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Waits a number of frames: it calls suspend() and subtracts the frames that really passed (CMND_GET_ELASPED_FRAME) until the count reaches 0. A value of 0 or less returns at once. It is the most used helper of the events."
+  },
+  "params": [
+    {
+      "name": "_frm",
+      "type": "integer|float",
+      "required": true,
+      "description": {
+        "en": "Number of frames to wait."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A short pause (real usage, from ev42010100.nut)",
+      "source": "real",
+      "code": "WaitLoading(hImg);\nWaitFrame(15);"
+    }
+  ]
+}

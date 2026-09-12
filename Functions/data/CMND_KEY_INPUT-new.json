@@ -1,0 +1,39 @@
+{
+  "name": "CMND_KEY_INPUT",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Reads a button or the touch screen. Buttons: \"A\", \"B\", \"X\", \"Y\", \"L\", \"R\", \"DU\", \"DD\", \"DL\", \"DR\" (the directional pad), \"SELECT\", \"START\"; states \"Down\" and \"On\". For \"TOUCH\" the states are \"Down\", \"On\" and \"TouchS\". By the names, Down is a new press and On a held one. It answers false while the script system's input is not enabled."
+  },
+  "params": [
+    {
+      "name": "button",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Button name or \"TOUCH\"."
+      }
+    },
+    {
+      "name": "state",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "\"Down\", \"On\" (or \"TouchS\" for TOUCH)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true if the button is in that state, false otherwise.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Waiting for A, B or a touch (real code, from ie4_ev_main.nut, BtnImageNext)",
+      "source": "real",
+      "code": "if (CMND_KEY_INPUT(\"A\", \"Down\") || CMND_KEY_INPUT(\"B\", \"Down\") || CMND_KEY_INPUT(\"TOUCH\", \"TouchS\"))\n{\n\treturn true;\n\tbreak;\n}"
+    }
+  ]
+}

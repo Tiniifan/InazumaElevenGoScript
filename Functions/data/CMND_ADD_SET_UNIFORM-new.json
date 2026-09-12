@@ -1,0 +1,22 @@
+{
+  "name": "CMND_ADD_SET_UNIFORM",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Gives the player a kit and makes it team 0's kit, in one call: one copy of the uniform item is added to the inventory, then it is set on team 0."
+  },
+  "params": [
+    { "name": "uniformId", "type": "string", "required": true, "description": { "en": "Uniform item ID, e.g. \"iiu0001\"." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the call has run (the kit is set even if the ID did not match, in which case an empty kit is set).\nfalse if the item system is not ready.\nnull if the engine is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "Giving the starting kit (real usage, new-game setup)",
+      "source": "real",
+      "code": "// Put the starting kit in the inventory and on the main team\nCMND_ADD_SET_UNIFORM(\"iiu0001\");"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "CMND_BTL_SET_AVATER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Brings out a Fighting Spirit for a player during a match, as if the player had summoned it (\"avater\" is the game's spelling of avatar). The story matches call it right after the scene that shows the summon.\n\nThe player is looked up among the members of the given team. If the Fighting Spirit differs from the one the player already has, it is assigned. The spirit's values are then copied from its data: its gauge, its power, its element, and those of its second form when it has one.\nThe player's Fighting Spirit flag is set, which CMND_BTL_HAS_AVATER and CMND_BTL_GET_AVATER_NUM read. The team's Fighting Spirit counters are updated.\nIf the spirit comes with a skill effect, the effect is applied, either to the player or to the whole team depending on the effect. Team effects are what CMND_BTL_GET_KSN_SKILL_EFFECTIVE checks. Dismissing the spirit (CMND_BTL_RESET_AVATER) removes the effect again.\nThe scripts often call CMND_BTL_SET_DISABLE_AVATER(chara, false) just before, to lift the block they put on that player at kick-off."
+  },
+  "params": [
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Parameter ID of the player, e.g. \"para_cp0150\"." } },
+    { "name": "avatarId", "type": "string", "required": true, "description": { "en": "Fighting Spirit ID, e.g. \"ck0013\"." } },
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team of the player: 0 = the player's team, 1 = the opponent team." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the Fighting Spirit is out.\nfalse if the player is not in that team or the Fighting Spirit ID is unknown.\nnull if the script system is not ready or fewer than 3 arguments are given." }
+  },
+  "examples": [
+    {
+      "case": "The opponent summons their Fighting Spirit in a story beat (real usage, from btl0007.nut)",
+      "source": "real",
+      "code": "// Lift the kick-off block on para_cp0150 (team 1), then bring out\n// their Fighting Spirit ck0013\nCMND_BTL_SET_MATCH_PHASE(0, 300);\nCMND_BTL_SET_DISABLE_AVATER(\"para_cp0150\", false);\nCMND_BTL_SET_AVATER(\"para_cp0150\", \"ck0013\", 1);"
+    },
+    {
+      "case": "Making room before summoning for the player's team (real usage, from btl0011.nut)",
+      "source": "real",
+      "code": "// Dismiss the team's Fighting Spirits if three or more are out,\n// then bring out para_cp0016's Fighting Spirit ck0005 (team 0)\nif (CMND_BTL_GET_AVATER_NUM(0) >= 3)\n{\n\tCMND_BTL_RESET_AVATER(0);\n}\n\nCMND_BTL_SET_AVATER(\"para_cp0016\", \"ck0005\", 0);"
+    }
+  ]
+}

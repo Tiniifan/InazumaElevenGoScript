@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BRIGHT_FADE_ALL",
+  "kind": "native",
+  "category": "screen-fx",
+  "description": {
+    "en": "Starts changing the brightness of both screens together to a target level over a number of frames (CMND_BRIGHT_FADE does it for one screen). The call returns straight away; use CMND_IS_BRIGHT_FADE_ALL to wait for it.\nBrightness -1.0 is fully black and 0.0 is the normal picture."
+  },
+  "params": [
+    { "name": "brightness", "type": "float", "required": true, "description": { "en": "Target brightness: -1.0 for black, 0.0 for the normal picture." } },
+    { "name": "frames", "type": "float", "required": true, "description": { "en": "Length of the fade, in frames." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the fade has been started.\nnull if the engine is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Darkening both screens at the end of a scene and waiting (real usage, from an event script)",
+      "source": "real",
+      "code": "// Take both screens slowly to black and wait for the fade\nCMND_BRIGHT_FADE_ALL(-1.0, EV_FADE_SLOW);\nwhile (CMND_IS_BRIGHT_FADE_ALL())\n{\n\tsuspend();\n}"
+    }
+  ]
+}

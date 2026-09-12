@@ -1,0 +1,31 @@
+{
+  "name": "CMND_RESERVE_TRAINING",
+  "kind": "native",
+  "category": "scene",
+  "description": {
+    "en": "Schedules the training minigame (the lightning-bolt training spots) of the given type: a TRAINING request with that TYPE is queued and starts when the event ends."
+  },
+  "params": [
+    {
+      "name": "type",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Training type (the training sub-script passes its traType setting)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once queued.\nnull if the request could not be queued, the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "After the player accepts (real usage, from ie4_ev_sub_training.nut)",
+      "source": "real",
+      "code": "local ret = CMND_MESWIN_GET_SEL();\n\nif (ret == 0)\n{\n\tCMND_RESERVE_TRAINING(traType);\n\tStartBrightFade(SCREEN_AB, -1.0, 30.0);\n}"
+    }
+  ]
+}

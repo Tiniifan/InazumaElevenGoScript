@@ -1,0 +1,31 @@
+{
+  "name": "CMND_DELETE_IMAGE",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Deletes an image loaded with CMND_LOAD_IMAGE (and the object linked to it, if any)."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once deleted, false if it was not found.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside ShowTutorialEx (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local hAnm = CMND_LOAD_IMAGE(\"nextAnm\", \"data/win_<LG>.xa\", 1, 1);\nlocal imgTTHdl = CMND_LOAD_IMAGE(\"imgTT\", file_path, 1, _imgFileName);\n// ...\nCMND_SET_IMAGE_ANM(hAnm, \"next1\");\n// ...\nCMND_DELETE_IMAGE(hAnm);\n// ...\nCMND_DELETE_IMAGE(imgTTHdl);"
+    }
+  ]
+}

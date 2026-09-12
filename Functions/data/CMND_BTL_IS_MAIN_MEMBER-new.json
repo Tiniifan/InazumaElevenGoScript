@@ -1,0 +1,23 @@
+{
+  "name": "CMND_BTL_IS_MAIN_MEMBER",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Tells whether a character is in the first 5 places of the player's team order.\nIt is the same check as CMND_BTL_IS_MATCH_MEMBER, limited to 5 places instead of 16. The game's player lists treat those first 5 places as a group of their own, which matches the size of a 5-a-side challenge line-up.\nIt is never called by the shipped scripts."
+  },
+  "params": [
+    { "name": "unused", "type": "integer", "required": true, "description": { "en": "Read but not used." } },
+    { "name": "charaId", "type": "string", "required": true, "description": { "en": "Player parameter ID to look for, e.g. \"para_cp0008\"." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true if the character is in the first 5 places, false otherwise.\nnull if the engine is not ready or fewer than 2 arguments were given." }
+  },
+  "examples": [
+    {
+      "case": "Requiring the protagonist in the main five (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Only start the scripted challenge if the protagonist is in the\n// first five places of the team order.\nif (CMND_BTL_IS_MAIN_MEMBER(0, \"para_cp0008\"))\n{\n\tmember_check = true;\n}"
+    }
+  ]
+}

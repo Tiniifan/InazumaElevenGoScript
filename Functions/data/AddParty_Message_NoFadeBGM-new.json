@@ -3,29 +3,29 @@
   "kind": "ev_main",
   "category": "party",
   "description": {
-    "en": "Same as AddParty_Message, but without fading/stopping the current BGM (passes -1 for both the fade and wait durations)."
+    "en": "Adds one character to the party with the recruitment presentation. The jingle J_08 plays, the system message \"sysmes-add_party\" is shown with the character's name filled in (CMND_MESSAGE_REPLACE_CHARA), then the character is added with AddParty, and the function waits until the jingle has finished.\nThe BGM is left playing: no fade and no extra wait.\nIt is a preset of AddParty_MessageEx(1, [_paramID], [_ptLock], [_avatarEnable], [_avatarLock], [_lv], -1, -1, \"J_08\", 0, \"sysmes-add_party\")."
   },
   "params": [
-    { "name": "_paramID", "type": "string", "required": true, "description": { "en": "Param ID of the character to add to the party." } },
-    { "name": "_ptLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's position slot." } },
-    { "name": "_avatarEnable", "type": "boolean", "required": true, "description": { "en": "Whether to enable the member's Fighting Spirit." } },
-    { "name": "_avatarLock", "type": "boolean", "required": true, "description": { "en": "Whether to lock the member's Fighting Spirit." } },
-    { "name": "_lv", "type": "integer", "required": false, "default": "-1 (don't change the member's level)", "description": { "en": "Level to set for the new member." } }
+    {"name": "_paramID", "type": "string", "required": true, "description": {"en": "Parameter ID of the character to add, e.g. \"para_cp0015\"."}},
+    {"name": "_ptLock", "type": "boolean", "required": true, "description": {"en": "Passed to CMND_SET_PT_LOCK_FLAG for the new member. Every shipped call passes true."}},
+    {"name": "_avatarEnable", "type": "boolean", "required": true, "description": {"en": "Passed to CMND_SET_AVATAR_ENABLE (whether the member's Fighting Spirit is enabled). Most shipped calls pass false; a few later events pass true for para_cp0009 and para_cp0010."}},
+    {"name": "_avatarLock", "type": "boolean", "required": true, "description": {"en": "Passed to CMND_SET_AVATAR_LOCK_FLAG for the new member."}},
+    {"name": "_lv", "type": "integer", "required": false, "default": "-1 (keep the current level)", "description": {"en": "Level to give the member with CMND_SET_LV. Only used when greater than 0."}}
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": { "en": "Always null (no return statement)." }
   },
   "examples": [
     {
-      "case": "Adding a member without changing their level (real usage, from ev42012500.nut)",
+      "case": "Adding a member without touching the BGM (real usage, from ev42012500.nut)",
       "source": "real",
-      "code": "// Add a party member with the recruitment presentation, without fading the BGM, keeping their current level\nAddParty_Message_NoFadeBGM(\"para_cp0005\", true, false, false);"
+      "code": "AddParty_Message_NoFadeBGM(\"para_cp0005\", true, false, false);"
     },
     {
-      "case": "Adding a member and setting their level (real usage, from ev42082500.nut)",
+      "case": "Same, with a level (real usage, from ev42082500.nut)",
       "source": "real",
-      "code": "// Add a party member with the recruitment presentation, without fading the BGM, and set their level to 25\nAddParty_Message_NoFadeBGM(\"para_cp0016\", true, false, false, 25);"
+      "code": "// para_cp0016 joins at level 25; the BGM keeps playing\nAddParty_Message_NoFadeBGM(\"para_cp0016\", true, false, false, 25);"
     }
   ]
 }

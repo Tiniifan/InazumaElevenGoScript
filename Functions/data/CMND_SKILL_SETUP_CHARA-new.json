@@ -1,0 +1,63 @@
+{
+  "name": "CMND_SKILL_SETUP_CHARA",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Used by the skill scene script (ie4_ev_sub_skl.nut) to read the participants set with the CMND_SETUP_SKL_SQ_* commands: for the given numbers of attackers and defenders it fills the array with their data (character, kit, preloaded model and position). The last two arguments are the script's chara_copy pair (a side name and a count), which, by the names, makes the scene reuse a participant for copies."
+  },
+  "params": [
+    {
+      "name": "atkNum",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Number of attacking participants."
+      }
+    },
+    {
+      "name": "defNum",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Number of defending participants."
+      }
+    },
+    {
+      "name": "dataSet",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Receives the participants' data (the script passes array(12, 0))."
+      }
+    },
+    {
+      "name": "copySide",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Side name of chara_copy."
+      }
+    },
+    {
+      "name": "copyNum",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Count of chara_copy."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null; the results are in the array."
+    }
+  },
+  "examples": [
+    {
+      "case": "In the skill scene script (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "local data_set = array(12, 0);\nCMND_SKILL_SETUP_CHARA(g_data.iAtkNum, g_data.iDefNum, data_set, g_data.chara_copy[0], g_data.chara_copy[1]);\nSetupChara(data_set);"
+    }
+  ]
+}

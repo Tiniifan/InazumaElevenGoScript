@@ -3,18 +3,20 @@
   "kind": "ev_main",
   "category": "camera",
   "description": {
-    "en": "Tears down the current event context's camera-control state, replacing it with a fresh CCamCtrlData — used when leaving a scripted camera-controlled sequence."
+    "en": "Ends scripted camera control: replaces the camera-control state with an empty one. With no camera handle in it, sysCamCtrlStep stops touching the camera. The camera itself is not moved back.\nThe camera-control helpers keep their state in subev_ctx.cam_ctrl, the context of an event started by CallEvent. While such an event runs, CallEvent calls sysCamCtrlStep every frame: it applies the engine's camera move (CMND_GET_MOVE_INFO_CAMERA) to the camera, keeps the look-at point on the followed character when there is one, and marks the move as finished once it is over (see IsCamCtrlMove)."
   },
   "params": [],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": {
+      "en": "Always null (no return statement)."
+    }
   },
   "examples": [
     {
-      "case": "Tearing down camera control at the end of a scripted sequence",
+      "case": "After the last camera move of an event (real usage, from ev42010200.nut)",
       "source": "real",
-      "code": "// Tear down camera control once the scripted sequence is done\nCamCtrlExit();"
+      "code": "CamCtrlMoveTo(hCam, 80, [-86.699997, 81.699997, -55.900002, -86.699997, 3.5, -159.7]);\nWaitEvLowMdlMoving(hTenmaL);\nWaitCamCtrlMoving(hCam);\nCMND_CHR_WARP_SET(hTenmaL, true);\nCamCtrlExit();"
     }
   ]
 }

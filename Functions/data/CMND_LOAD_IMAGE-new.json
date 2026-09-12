@@ -1,0 +1,61 @@
+{
+  "name": "CMND_LOAD_IMAGE",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Loads a 2D image and returns its handle; \"<LG>\" in the file name is replaced by the game's language code. The image is added to the event's object list. Wait with WaitLoading, show it with CMND_SET_ENABLE, place it with CMND_SET_POSRY([x, y]) and delete it with CMND_DELETE_IMAGE.\nThe third argument is the kind: 0 (default) a still image (.xi), 1 an animated image (.xa). The fourth argument is read twice: as a string it is the animation to start with (kind 1); as a number, 1 selects a second setting (not traced; the scripts pass 1 for the \"next\" arrow)."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object."
+      }
+    },
+    {
+      "name": "file",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Image file, e.g. \"data/img/cut0504.xi\" or \"data/win_<LG>.xa\"."
+      }
+    },
+    {
+      "name": "kind",
+      "type": "integer",
+      "required": false,
+      "default": "0",
+      "description": {
+        "en": "0 still image, 1 animated image."
+      }
+    },
+    {
+      "name": "animOrSetting",
+      "type": "string|integer",
+      "required": false,
+      "description": {
+        "en": "Animation name, or 1 (see the description)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle|null",
+    "description": {
+      "en": "Handle of the image.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside ShowTutorialEx (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local hAnm = CMND_LOAD_IMAGE(\"nextAnm\", \"data/win_<LG>.xa\", 1, 1);\nlocal imgTTHdl = CMND_LOAD_IMAGE(\"imgTT\", file_path, 1, _imgFileName);\n// ...\nCMND_SET_IMAGE_ANM(hAnm, \"next1\");\n// ...\nCMND_DELETE_IMAGE(hAnm);\n// ...\nCMND_DELETE_IMAGE(imgTTHdl);"
+    },
+    {
+      "case": "A still picture (real code, from ie4_ev_main.nut, PlayTrailer)",
+      "source": "real",
+      "code": "hImg[0] = CMND_LOAD_IMAGE(\"Trailer0\", \"data/img/np_bg_<LG>.xi\");"
+    }
+  ]
+}

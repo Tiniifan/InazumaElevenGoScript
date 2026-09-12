@@ -1,0 +1,31 @@
+{
+  "name": "CMND_RESET_LOOK_AT",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Switches a character's look-at off (see CMND_SET_LOOK_AT)."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "null once done; false if the character is not found.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Ending a look (real usage, from ev42010400.nut)",
+      "source": "real",
+      "code": "CMND_RESET_LOOK_AT(hAoiL);"
+    }
+  ]
+}

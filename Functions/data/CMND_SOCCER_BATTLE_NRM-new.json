@@ -1,0 +1,47 @@
+{
+  "name": "CMND_SOCCER_BATTLE_NRM",
+  "kind": "native",
+  "category": "encounter",
+  "description": {
+    "en": "A variant of CMND_SOCCER_BATTLE: the match map name is made from the first argument with its second letter replaced by \"f\" (e.g. \"mv02b02\" gives \"mf02b02\"). It prepares the match data (the battle ID), then schedules a jump to the match map. The place to come back to is the current map and the position and direction of the character the player controls. It needs three arguments but the third is not read. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "mapID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Map ID whose second letter becomes \"f\"."
+      }
+    },
+    {
+      "name": "battleID",
+      "type": "string|integer",
+      "required": true,
+      "description": {
+        "en": "Battle ID (or its hash)."
+      }
+    },
+    {
+      "name": "unused",
+      "type": "any",
+      "required": true,
+      "description": {
+        "en": "Required but not read."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once scheduled, false if the jump could not be scheduled.\nnull if the script system is not ready or fewer than 3 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Example (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "CMND_SOCCER_BATTLE_NRM(\"mv02b02\", \"btl0023\", 0);"
+    }
+  ]
+}

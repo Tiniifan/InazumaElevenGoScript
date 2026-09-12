@@ -1,0 +1,31 @@
+{
+  "name": "CMND_SET_LIGHT",
+  "kind": "native",
+  "category": "lighting",
+  "description": {
+    "en": "Selects the engine's light setting by name, for both of its light slots (0 and 1). The skill scene script sets \"sky\" (its DEFAULT_LIGHT) when it ends without a field map."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Light setting name, e.g. \"sky\"."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Back to the default light (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "if (hMapMF != 0)\n{\n\tCMND_ENABLE_MAP_LIGHT(hMapMF);\n}\nelse\n{\n\tCMND_SET_LIGHT(DEFAULT_LIGHT);\n}"
+    }
+  ]
+}

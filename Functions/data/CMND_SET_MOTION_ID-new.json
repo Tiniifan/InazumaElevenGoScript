@@ -1,0 +1,78 @@
+{
+  "name": "CMND_SET_MOTION_ID",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Plays a motion on an object given by three numbers instead of a name (e.g. 42, 2, 3; what each number stands for was not traced). mode: the scripts pass 0 for most character motions, 3 for camera and effect animations, sometimes 1 or 2 (the values were not traced further). frames: the transition length in frames (default 30; the scripts often pass 0 for an immediate change)."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle."
+      }
+    },
+    {
+      "name": "id1",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "First number."
+      }
+    },
+    {
+      "name": "id2",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Second number."
+      }
+    },
+    {
+      "name": "id3",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Third number."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer",
+      "required": false,
+      "default": "0",
+      "description": {
+        "en": "Play mode."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "float",
+      "required": false,
+      "default": "30.0",
+      "description": {
+        "en": "Transition length in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once requested.\nnull if the object is not found or has no motion, the script system is not ready or fewer than 4 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "During a talk (real usage, from ev42052200.nut)",
+      "source": "real",
+      "code": "CreateSpeech(\"ev100\", 0, true);\nCMND_SET_MOTION_ID(hMikadoH, 42, 2, 3);\nCreateSpeech(\"ev200\");"
+    },
+    {
+      "case": "With mode and transition (real usage, from ev44040014.nut)",
+      "source": "real",
+      "code": "CMND_SET_MOTION_ID(hIsozakiH, 73, 2, 3, 0, 15);"
+    }
+  ]
+}

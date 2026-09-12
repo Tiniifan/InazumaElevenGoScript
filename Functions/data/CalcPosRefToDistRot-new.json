@@ -3,21 +3,37 @@
   "kind": "ev_main",
   "category": "camera",
   "description": {
-    "en": "Computes the distance, horizontal angle and vertical angle from a reference point to a target position — the inverse of GetDistRotCameraPos. Returns a fixed fallback [100.0, 0.0, 0.0] when the two points are extremely close together (an underflow guard in the distance check)."
+    "en": "Meant to turn a camera position and look-at point into distance and angles: [distance, horizontal angle, vertical angle], the angles in degrees. It is the inverse of GetDistRotCameraPos, and sysCamCtrlStep uses it for moves of type 1.\nAs decompiled, the function first returns [100.0, 0.0, 0.0] when dist < 99999999999999.0. Read literally, that covers every realistic distance, so the function would always return [100.0, 0.0, 0.0]. The constant looks like a decompilation artefact of a small threshold for nearly identical points; this was not checked against the compiled script.\nOtherwise: the direction from _ref to _pos is normalised; the horizontal angle is atan2(x, z) and the vertical angle is atan2(y, horizontal length), both converted with RadToDeg.\nNo shipped event calls it, and CamCtrlMoveTo only queues moves of type 0."
   },
   "params": [
-    { "name": "_pos", "type": "array", "required": true, "description": { "en": "3-element array [x, y, z] with the target position." } },
-    { "name": "_ref", "type": "array", "required": true, "description": { "en": "3-element array [x, y, z] with the reference point." } }
+    {
+      "name": "_pos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Camera position [x, y, z]."
+      }
+    },
+    {
+      "name": "_ref",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Look-at point [x, y, z]."
+      }
+    }
   ],
   "returns": {
     "type": "array",
-    "description": { "en": "A 3-element array [distance, horizontalAngleDeg, verticalAngleDeg]; a fixed [100.0, 0.0, 0.0] fallback if the two points are effectively coincident." }
+    "description": {
+      "en": "[distance, horizontalDeg, verticalDeg], or [100.0, 0.0, 0.0] when the distance guard triggers (see the description)."
+    }
   },
   "examples": [
     {
-      "case": "Computing distance/angle between a camera's current position and reference point (real call pattern, from sysCamCtrlStep; position values here are illustrative)",
+      "case": "Use inside sysCamCtrlStep for a type 1 move (real code, from ie4_ev_main.nut)",
       "source": "real",
-      "code": "// A CCamCtrlData tracks a controlled camera's current position and reference\n// point each frame; sysCamCtrlStep uses CalcPosRefToDistRot exactly like this\n// to recover the distance/angles between them.\nlocal cam_ctrl = CCamCtrlData();\ncam_ctrl.now_pos = [10.0, 5.0, -20.0];\ncam_ctrl.now_ref = [0.0, 5.0, 0.0];\nlocal dhv = CalcPosRefToDistRot(cam_ctrl.now_pos, cam_ctrl.now_ref);\nlocal distance = dhv[0];\nlocal horizontalAngleDeg = dhv[1];\nlocal verticalAngleDeg = dhv[2];"
+      "code": "if (!move_to.init)\n{\n\tparam.dhv_0 = CalcPosRefToDistRot(cam_ctrl.now_pos, cam_ctrl.now_ref);\n\tparam.dhv_1[0] += param.dhv_0[0];\n\tparam.dhv_1[1] += param.dhv_0[1];\n\tparam.dhv_1[2] += param.dhv_0[2];\n\tmove_to.init = true;\n}"
     }
   ]
 }

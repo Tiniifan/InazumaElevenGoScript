@@ -1,0 +1,47 @@
+{
+  "name": "CMND_SET_MAP_LIGHT_ENABLE",
+  "kind": "native",
+  "category": "lighting",
+  "description": {
+    "en": "Turns one of a map's lights on or off: light number 0 to 8; only the value 1 (or true) turns it on. The map is then marked as having changed lights. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "hMap",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Map handle (CMND_GET_MAP_HANDLE or CMND_CREATE_MAP)."
+      }
+    },
+    {
+      "name": "index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Light number, 0 to 8."
+      }
+    },
+    {
+      "name": "enable",
+      "type": "boolean|integer",
+      "required": true,
+      "description": {
+        "en": "true (1) to turn on, anything else to turn off."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once set.\nfalse if the map is not found or the number is above 8.\nnull if the script system is not ready or fewer than 3 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Turning off a map light (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local hMap = CMND_GET_MAP_HANDLE();\nCMND_SET_MAP_LIGHT_ENABLE(hMap, 0, false);"
+    }
+  ]
+}

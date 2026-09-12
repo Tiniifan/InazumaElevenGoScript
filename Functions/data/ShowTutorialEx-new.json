@@ -1,0 +1,47 @@
+{
+  "name": "ShowTutorialEx",
+  "kind": "ev_main",
+  "category": "image-ui",
+  "description": {
+    "en": "Shows one tutorial page: the image data/tutorial/<_imgFileName>_<LG>.xa slides in from the right while the sound _strm plays. After 60 frames the \"next\" arrow appears and the function waits for A, B or a touch (BtnImageNext). With _decide it then plays the confirm sound (sys_001). Finally the page slides out to the left and is deleted."
+  },
+  "params": [
+    {
+      "name": "_imgFileName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Tutorial image name, e.g. \"tt1011\"."
+      }
+    },
+    {
+      "name": "_strm",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Event sound played when the page appears."
+      }
+    },
+    {
+      "name": "_decide",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to play the confirm sound when the player moves on."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "How ShowTutorial2 uses it (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "ShowTutorial2 <- function ( _imgFileName, _strm )\n{\n\tShowTutorialEx(_imgFileName, \"str_005\", true);\n};"
+    }
+  ]
+}

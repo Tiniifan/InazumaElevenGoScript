@@ -1,0 +1,56 @@
+{
+  "name": "CMND_LOAD_MOTION",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Loads an extra motion file onto a character so it can play motions from it, e.g. data/chr/motion/rpg/mot_uz_game01.xc (match moves). The third argument (default 2) and the optional fourth (a string) are passed to the loader; the events pass 2 or nothing. Remove extra motions with CMND_DELETE_MOTION."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "file",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Motion file (an archive path \"file.pck|name.xc\" also works)."
+      }
+    },
+    {
+      "name": "type",
+      "type": "integer",
+      "required": false,
+      "default": "2",
+      "description": {
+        "en": "Loader setting."
+      }
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": {
+        "en": "Optional name passed to the loader."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "The loader's result (true once queued).\nfalse if the object is not found.\nnull if the script system is not ready or fewer than 2 arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Match moves for a scene (real usage, from ev42011800.nut)",
+      "source": "real",
+      "code": "CMND_LOAD_MOTION(hSangokuL, \"data/chr/motion/rpg/mot_uz_event01.xc\");\nCMND_LOAD_MOTION(hSangokuL, \"data/chr/motion/rpg/mot_uz_game01.xc\", 2);\nCMND_LOAD_MOTION(hShindouL, \"data/chr/motion/rpg/mot_uz_game01.xc\");"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "name": "RemovePartyCmnd",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "Direct wrapper of CMND_REMOVE_PARTY(_paramID, _flg_st_reset, _flg_pt_lock)."
+  },
+  "params": [
+    {
+      "name": "_paramID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Parameter ID of the character to remove, e.g. \"para_cp0010\"."
+      }
+    },
+    {
+      "name": "_flg_st_reset",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to also delete the character's saved record, so they start over if they join again. The shipped calls pass false."
+      }
+    },
+    {
+      "name": "_flg_pt_lock",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "Flag passed to the removal routine; when true, the record is never deleted."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "How RemoveParty uses it (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "RemoveParty <- function ( _paramID, _flg_st_reset )\n{\n\tRemovePartyCmnd(_paramID, _flg_st_reset, !_flg_st_reset);\n};"
+    }
+  ]
+}

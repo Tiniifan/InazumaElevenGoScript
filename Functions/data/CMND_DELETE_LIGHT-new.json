@@ -1,0 +1,31 @@
+{
+  "name": "CMND_DELETE_LIGHT",
+  "kind": "native",
+  "category": "lighting",
+  "description": {
+    "en": "Deletes a light object loaded with CMND_LOAD_LIGHT."
+  },
+  "params": [
+    {
+      "name": "hLight",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Light handle."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once deleted, false if it was not found.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "End of a skill scene (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "CMND_DELETE_LIGHT(hLight);\nhLight = 0;\nCMND_SET_ENABLE(hMapMF, true);"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "CMND_SET_GLOBAL_KIZNAX_BIT_FLAG",
+  "kind": "native",
+  "category": "flags",
+  "description": {
+    "en": "Marks a Kiznax flag (numbers 0 to 2047). The flag data holds two Kiznax bit tables: if the flag is not already set in the first one, it is set in the second one. With value false nothing happens. The events call it right after giving an important item named ika plus the same number."
+  },
+  "params": [
+    {
+      "name": "flag",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Kiznax flag number, 0 to 2047."
+      }
+    },
+    {
+      "name": "value",
+      "type": "boolean",
+      "required": false,
+      "default": "true",
+      "description": {
+        "en": "false does nothing."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true (also when the flag data is not available and nothing is written).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "After receiving an important item (real usage, from ev42135200.nut; the Shift-JIS motion name is replaced by a variable here)",
+      "source": "real",
+      "code": "CMND_SET_MOTION(hTenmaL, itemMotion);\nRunGetImportantItem(\"ika1609\", 1);\nCMND_SET_GLOBAL_KIZNAX_BIT_FLAG(1609);"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "StartTalkLock",
+  "kind": "ev_main",
+  "category": "talk",
+  "description": {
+    "en": "Starts a talk lock: sets global flag 1403 (read by IsTalkLock) and creates the talk-lock icons (CMND_CREATE_TALK_ICON_FOR_TL). If arguments are given, they are collected into an array and passed to CMND_SET_TALK_LOCK_CHARA; the events pass a type (e.g. TL_TYPE_B), a number, then NPC IDs. EndTalkLock ends it."
+  },
+  "params": [
+    {
+      "name": "...",
+      "type": "any",
+      "required": false,
+      "description": {
+        "en": "Values passed as an array to CMND_SET_TALK_LOCK_CHARA (type, number, NPC IDs...)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A talk lock on six NPCs before a map jump (real usage, from ev42011250.nut)",
+      "source": "real",
+      "code": "StartTalkLock(TL_TYPE_B, 1, \"evc0052\", \"evc0001\", \"evc0002\", \"evc0003\", \"evc0005\", \"evc0006\");\nReserveMapJump(\"mr01i21\", [0.0, 0.5, 204.0, 180]);"
+    }
+  ]
+}

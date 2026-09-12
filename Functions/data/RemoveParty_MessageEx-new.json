@@ -1,0 +1,96 @@
+{
+  "name": "RemoveParty_MessageEx",
+  "kind": "ev_main",
+  "category": "party",
+  "description": {
+    "en": "The general routine behind the RemoveParty_Message and RemovePartyNum_Message helpers: removes one or more characters from the party, each with a sound effect and a system message.\nIf _fade is 0 or more, the current BGM is stopped with that fade and the function waits until it has stopped. It then waits _wait frames.\nFor each character: the sound effect number _jingle (CMND_SND_OPEN_SYS_SE) is played if it exists, the message placeholder 0 is set to the character, the message _event is shown with CreateSpeech, and the character is removed. With _not_pt_lock true it uses RemovePartyCmnd(id, reset, false), otherwise RemoveParty(id, reset). The function waits for the sound to finish before the next character.\nAt the end, if _fade is 0 or more, the BGM plays again with that fade and the function waits _fade frames."
+  },
+  "params": [
+    {
+      "name": "_rmv_num",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Number of characters to remove (read from index 0 of the arrays)."
+      }
+    },
+    {
+      "name": "_aParamID",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Parameter IDs of the characters to remove."
+      }
+    },
+    {
+      "name": "_aStReset",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "One _flg_st_reset value per character."
+      }
+    },
+    {
+      "name": "_fade",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Fade used to stop and restart the BGM; -1 leaves it alone. The presets pass 30 or 0."
+      }
+    },
+    {
+      "name": "_wait",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Frames to wait before the first character (the presets pass 45 or 0)."
+      }
+    },
+    {
+      "name": "_jingle",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "System sound effect number (the presets pass 21, sys_021)."
+      }
+    },
+    {
+      "name": "_index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Not used; the presets pass 0."
+      }
+    },
+    {
+      "name": "_event",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Message shown for each character (the presets pass \"sysmes-remove_party\")."
+      }
+    },
+    {
+      "name": "_not_pt_lock",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to call RemovePartyCmnd(id, reset, false) instead of RemoveParty(id, reset); see RemoveParty for the difference."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "What RemoveParty_Message(\"para_cp0005\", false) runs (real preset, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "RemoveParty_MessageEx(1, [\"para_cp0005\"], [false], 30, 45, 21, 0, \"sysmes-remove_party\", false);"
+    }
+  ]
+}

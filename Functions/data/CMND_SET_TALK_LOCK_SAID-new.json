@@ -1,0 +1,47 @@
+{
+  "name": "CMND_SET_TALK_LOCK_SAID",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "A talk lock is a phase where the player has to talk to a set of NPCs (see StartTalkLock). The list lives in the game progress data and holds up to 12 NPCs.\nSets the \"talked to\" state of one NPC of the talk lock, and optionally a second state; only the value 1 (true) counts as set."
+  },
+  "params": [
+    {
+      "name": "npcID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "An NPC ID of the talk lock."
+      }
+    },
+    {
+      "name": "said",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true if the NPC has been talked to."
+      }
+    },
+    {
+      "name": "state2",
+      "type": "boolean",
+      "required": false,
+      "description": {
+        "en": "Second state of the entry (not traced further)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (nothing changes if the NPC is not in the list)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Resetting one NPC (real usage, from ev42020800.nut)",
+      "source": "real",
+      "code": "CMND_SET_TALK_LOCK_SAID(\"evc0039\", false, true);\nCMND_DELETE_CHARA(hTenmaH);\nCMND_DELETE_CHARA(hShinsukeH);"
+    }
+  ]
+}

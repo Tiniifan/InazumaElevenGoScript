@@ -1,0 +1,31 @@
+{
+  "name": "WaitLoading",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Waits until an object has finished loading: it loops on CMND_IS_LOADING(_hdl) with suspend()."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Handle of the object being loaded (character, image, map...)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Waiting for an image (real usage, from ev42010100.nut)",
+      "source": "real",
+      "code": "WaitLoading(hImg);"
+    }
+  ]
+}

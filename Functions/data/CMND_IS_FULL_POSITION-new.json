@@ -1,0 +1,31 @@
+{
+  "name": "CMND_IS_FULL_POSITION",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Tells whether a lineup is complete. The game keeps two lineups: the main formation (positions 1 to 11 for the players on the pitch) and a second lineup of 5 positions (probably the team for the small field matches). With false it checks that 11 of the first 16 party list entries have a main formation position; with true, that the first 5 entries all have a position in the 5-position lineup. No shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "small",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "false: main formation; true: the 5-position lineup."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true if the lineup is complete, false otherwise.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Before a match (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "if (!CMND_IS_FULL_POSITION(false))\n{\n\tCMND_MAKE_CHILD_MENU_SCENE(\"FormationMenu\");\n\tsuspend();\n}"
+    }
+  ]
+}

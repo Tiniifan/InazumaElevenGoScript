@@ -1,0 +1,56 @@
+{
+  "name": "SaveRun",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Offers the player a save: it records the save point (CMND_SET_SAVE_INFO(_phase_no, _map_id, _pos), only if that command exists), blacks out both screens, opens the save menu (CMND_MAKE_CHILD_MENU_SCENE(\"SaveMenu\", 0, caution, 2)) and waits until it closes, then brings the screens back."
+  },
+  "params": [
+    {
+      "name": "_phase_no",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Phase number stored with the save."
+      }
+    },
+    {
+      "name": "_map_id",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Map where the game resumes, e.g. \"mr01b06\"."
+      }
+    },
+    {
+      "name": "_pos",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Position where the game resumes."
+      }
+    },
+    {
+      "name": "_cation",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "Passed to the save menu as 1 or 0 (the developers' spelling of caution)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A save point at the end of a chapter (real usage, from ev42015100.nut)",
+      "source": "real",
+      "code": "PlayTrailer(2, 4);\nReserveMapJump(\"mr01b06\", [0, 0, 0, 0]);\nCMND_SET_GLOBAL_BIT_FLAG(51);\nSaveRun(2, \"mr01b06\", [0, 0, 0]);"
+    }
+  ]
+}

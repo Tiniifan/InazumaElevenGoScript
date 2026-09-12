@@ -1,0 +1,86 @@
+{
+  "name": "CMND_CHR_TURN_TRG",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Turns a character, over a given number of frames, to face another character or a direction.\nThe final direction is the direction from the character to the target plus angle, in degrees. With no target (0, or a handle that matches nothing), angle is used as an absolute direction instead.\nMotions played during the turn, by mode:\n- 0: none, the character just rotates;\n- 1: the walk motion 歩き前NN;\n- 2: chosen from the angle. Up to 45 degrees the stand motion 立ちNN plays; up to about 130 degrees a short turn motion (振り向き右 or 左, right or left); beyond that a long turn motion.\nNN is the motion number (last argument, default 1).\nWith the optional speed (degrees per frame), the duration is worked out from the angle to turn instead of using frames.\nThe turn is handled by the character movement manager, which has 16 slots. The character takes a free slot if it has none (see CMND_CHR_REG_MOVE_MNGR). Wait for the end of the turn with CMND_CHR_POS_VAL_IS_MOVING."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character to turn."
+      }
+    },
+    {
+      "name": "hTarget",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character to face, or 0 to use angle as an absolute direction."
+      }
+    },
+    {
+      "name": "angle",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Degrees: an offset from the direction to the target, or the absolute direction when there is no target (e.g. 0, 90, 180, 270, -160)."
+      }
+    },
+    {
+      "name": "frames",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Duration of the turn in frames (e.g. 10, 15, 30)."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer",
+      "required": false,
+      "default": "1",
+      "description": {
+        "en": "Motion played during the turn: 0 none, 1 walk, 2 chosen from the angle (see the description)."
+      }
+    },
+    {
+      "name": "speed",
+      "type": "float",
+      "required": false,
+      "description": {
+        "en": "Turning speed in degrees per frame; when given, it sets the duration."
+      }
+    },
+    {
+      "name": "motionNum",
+      "type": "integer",
+      "required": false,
+      "default": "1",
+      "description": {
+        "en": "Number NN of the motions used (e.g. 歩き前01)."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "Slot number (0 to 15) of the character in the movement manager.\nnull if the character is not found, all 16 slots are taken, the script system is not ready, or too few arguments are given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Two characters turning to face a third one (real usage, from ev42011600.nut)",
+      "source": "real",
+      "code": "// Both turn toward hSangokuL over 15 frames, with the walk motion\nCMND_CHR_TURN_TRG(hShindouL, hSangokuL, 0, 15, 1);\nCMND_CHR_TURN_TRG(hKirinoL, hSangokuL, 0, 15, 1);\n\nwhile (CMND_CHR_POS_VAL_IS_MOVING(hShindouL))\n{\n\tsuspend();\n}"
+    },
+    {
+      "case": "Turning to an absolute direction, no motion (real usage, from ev42123600.nut)",
+      "source": "real",
+      "code": "// Face 270 degrees in 10 frames, rotating in place\nCMND_CHR_TURN_TRG(hTenmaL, 0, 270, 10, 0);"
+    }
+  ]
+}

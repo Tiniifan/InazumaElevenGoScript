@@ -1,0 +1,31 @@
+{
+  "name": "CMND_CHR_REG_MOVE_MNGR",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Gives a character a slot in the movement manager, or returns the slot it already has. Character moves and turns are run by a movement manager with 16 slots, one per character. CMND_CHR_POS_VAL_TRG, CMND_CHR_PATH_SETUP and the CMND_CHR_TURN_* commands take a free slot for the character when it has none. So calling this first is optional.\nNo shipped script calls it."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "Slot number (0 to 15), or -1 if all 16 slots are taken.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Reserving a slot before moving a character (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local slot = CMND_CHR_REG_MOVE_MNGR(hTenmaL);\nif (slot >= 0)\n{\n\tCMND_CHR_POS_VAL_TRG(hTenmaL, [0.0, 0.0, 50.0], 999, 0, EV_MINI_CHARA_MOVE_SPEED_WALK);\n}"
+    }
+  ]
+}

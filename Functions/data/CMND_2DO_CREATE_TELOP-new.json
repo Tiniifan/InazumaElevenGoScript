@@ -1,0 +1,90 @@
+{
+  "name": "CMND_2DO_CREATE_TELOP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Creates a named 2D caption (\"telop\") that shows the localised name of a Special Move, Fighting Spirit or tactic. This is the banner the technique and tactic cutscenes display.\n\nThe fifth argument is not free text. It is an ID that the engine looks up, in this order:\n1. the Special Move table (IDs like \"whs0035\");\n2. the Fighting Spirit table (IDs like \"ck0023\");\n3. the tactic table (IDs like \"ift0004\").\nThe first match gives the name text, which is taken from the game's text tables and is therefore localised. If the ID matches nothing, no caption is made and the function returns null.\n\nThe caption is coloured from the matched entry. Four colours are used (cyan, green, orange, yellow) plus a magenta default, which lines up with the four elements (Wind, Wood, Fire, Earth) and suggests the colour follows the move's element. Tactics use their own colour.\n\nThe caption is created hidden. Show it with CMND_2DO_STATE_DRAW_TELOP, then place and animate it with the other CMND_2DO_*_TELOP functions, using its name.\nThe text is measured glyph by glyph and the resulting width and height are written back into the array passed as sixth argument, so the script can centre the caption."
+  },
+  "params": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name to register the caption under. The other CMND_2DO_*_TELOP functions find it by this name."
+      }
+    },
+    {
+      "name": "objParam1",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Passed unchanged to the engine's 2D object creation call. Its meaning was not identified.\nThe shipped scripts pass 0 or 1."
+      }
+    },
+    {
+      "name": "objParam2",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Passed unchanged to the engine's 2D object creation call. Its meaning was not identified.\nThe shipped scripts always pass 12."
+      }
+    },
+    {
+      "name": "objParam3",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Passed unchanged to the engine's 2D object creation call. Its meaning was not identified.\nThe shipped scripts always pass 0."
+      }
+    },
+    {
+      "name": "techniqueId",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "ID of the Special Move, Fighting Spirit or tactic whose name is displayed, e.g. \"whs0035\", \"ck0023\" or \"ift0004\"."
+      }
+    },
+    {
+      "name": "outSize",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "OUTPUT. Element 0 receives the caption's width and element 1 its height, in pixels. Pass a 2-element array such as [0, 0]."
+      }
+    },
+    {
+      "name": "spacing",
+      "type": "float",
+      "required": false,
+      "default": "4.0",
+      "description": {
+        "en": "Base spacing between characters, used while laying out and measuring the text (the engine subtracts a per-letter-pair kerning value from it).\nThe shipped scripts pass 6."
+      }
+    }
+  ],
+  "returns": {
+    "type": "any|null",
+    "description": {
+      "en": "null if the engine is not ready, fewer than 6 arguments were given, or the ID matches no Special Move, Fighting Spirit or tactic.\nOn success the native reports a result without pushing one, so Squirrel hands back the last argument you passed. It is never null, so compare the result with null to know whether the caption was created."
+    }
+  },
+  "examples": [
+    {
+      "case": "Showing a technique name banner (real usage, from ie4_ev_sub_skl.nut; caption names shortened from the script's Shift-JIS names)",
+      "source": "real",
+      "code": "// Build the technique-name caption for a Special Move cutscene.\n// wh receives the caption size so it can be centred later.\nlocal fn = \"whs0035\";\nlocal wh = [0, 0];\nCMND_2DO_CREATE_TELOP(\"skill_name\", 0, 12, 0, fn, wh, 6);\n\nCMND_2DO_STATE_DRAW_TELOP(\"skill_name\", true);\nCMND_2DO_POS_SET_TELOP(\"skill_name\", 200 - wh[0] / 2, 204 - wh[1] / 2);"
+    },
+    {
+      "case": "Showing a tactic name (real usage, from ie4_soccer_sys.nut; caption names shortened from the script's Shift-JIS names)",
+      "source": "real",
+      "code": "// Tactic scripts are named \"whtNNNN\"; the caption needs the tactic ID\n// \"iftNNNN\", which MakeTacFileName builds.\nlocal skl_0 = \"wht0004\";\nif (IsTacName(skl_0))\n{\n\tskl_0 = MakeTacFileName(skl_0);\n}\nlocal vTelopSize_0 = [0, 0];\nCMND_2DO_CREATE_TELOP(\"tactic_0\", 1, 12, 0, skl_0, vTelopSize_0, 6);"
+    },
+    {
+      "case": "Using the default character spacing",
+      "source": "invented",
+      "code": "// Leave out the spacing argument to use the engine default (4.0).\nlocal size = [0, 0];\nif (CMND_2DO_CREATE_TELOP(\"move_name\", 0, 12, 0, \"whs0035\", size) == null)\n{\n\t// Unknown ID: no caption was created.\n}"
+    }
+  ]
+}

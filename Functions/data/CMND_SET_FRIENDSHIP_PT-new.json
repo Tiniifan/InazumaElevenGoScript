@@ -1,0 +1,40 @@
+{
+  "name": "CMND_SET_FRIENDSHIP_PT",
+  "kind": "native",
+  "category": "party",
+  "description": {
+    "en": "Sets the player's friendship points, or adds to them when the second argument is true. Friendship points are a value kept with the party data (0 to 9,999,999). In add mode the result is kept between 0 and 9,999,999; a plain set stores the value as given."
+  },
+  "params": [
+    {
+      "name": "value",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "New value, or amount to add."
+      }
+    },
+    {
+      "name": "add",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to add instead of set."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true.\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "A reward after a tutorial (real usage, from ev42021600.nut)",
+      "source": "real",
+      "code": "local FriendPNT = CMND_GET_FRIENDSHIP_PT();\nCMND_SET_FRIENDSHIP_PT(FriendPNT + 50);\nShowTutorial2(\"tt1081\", 2);"
+    }
+  ]
+}

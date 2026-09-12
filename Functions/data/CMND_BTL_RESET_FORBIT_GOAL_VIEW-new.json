@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_RESET_FORBIT_GOAL_VIEW",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Clears the \"forbid\" flags set with CMND_BTL_SET_FORBIT_GOAL_VIEW for both teams at once, so the match can show both goal indicators again while a goalkeeper is in the forced-win list.\nNo shipped script calls it."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Allowing the indicators again after a beat (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Hide both goal indicators during the scripted beat...\nCMND_BTL_SET_FORBIT_GOAL_VIEW(0, true);\nCMND_BTL_SET_FORBIT_GOAL_VIEW(1, true);\n// ... and allow them again afterwards\nCMND_BTL_RESET_FORBIT_GOAL_VIEW();"
+    }
+  ]
+}

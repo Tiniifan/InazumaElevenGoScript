@@ -3,22 +3,45 @@
   "kind": "ev_main",
   "category": "camera",
   "description": {
-    "en": "Sets the camera-control state's follow target to a given character (with a vertical offset), so subsequent camera movements track that character."
+    "en": "Sets the character the camera keeps looking at: the look-at point becomes the character's position, raised by _ofsy. Passing 0 as the character clears it (CamCtrlInit does this).\nThe setting is stored in the camera-control state. A later CamCtrlMoveTo takes it with its move, and sysCamCtrlStep then aims the camera at the character during that move. When no move is queued, sysCamCtrlStep still sets the camera's look-at point on the character every frame.\nThe camera handle argument is not used.\nNo shipped event calls it directly.\nThe camera-control helpers keep their state in subev_ctx.cam_ctrl, the context of an event started by CallEvent. While such an event runs, CallEvent calls sysCamCtrlStep every frame: it applies the engine's camera move (CMND_GET_MOVE_INFO_CAMERA) to the camera, keeps the look-at point on the followed character when there is one, and marks the move as finished once it is over (see IsCamCtrlMove)."
   },
   "params": [
-    { "name": "_hcam", "type": "handle", "required": true, "description": { "en": "Handle of the camera being controlled (read but not itself modified here)." } },
-    { "name": "_hchara", "type": "handle", "required": true, "description": { "en": "Handle of the character to follow." } },
-    { "name": "_ofsy", "type": "float", "required": true, "description": { "en": "Vertical (Y) offset applied to the followed character's position." } }
+    {
+      "name": "_hcam",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Camera handle (not used by the function)."
+      }
+    },
+    {
+      "name": "_hchara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character to look at, or 0 for none."
+      }
+    },
+    {
+      "name": "_ofsy",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Height added to the character's position for the look-at point."
+      }
+    }
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": {
+      "en": "Always null (no return statement)."
+    }
   },
   "examples": [
     {
-      "case": "Making the camera follow the player character",
-      "source": "real",
-      "code": "// Make the camera follow a character after initializing camera control\nlocal hCam = CMND_GET_ACT_CAMERA();\nlocal hChara = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC, true);\nCamCtrlInit(hCam);\nCamCtrlLookAtChara(hCam, hChara, 0);"
+      "case": "Keeping a character in view during a move (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "local hCam = CMND_GET_ACT_CAMERA();\nlocal hTenmaL = CMND_GET_CHARA_HANDLE(GET_HANDLE_TYPE_CTRL_PC);\nCamCtrlInit(hCam);\n// Look at the character's chest height while the camera moves\nCamCtrlLookAtChara(hCam, hTenmaL, 10.0);\nCamCtrlMoveTo(hCam, 60, [0.0, 80.0, -60.0, 0.0, 10.0, 0.0]);\nWaitCamCtrlMoving(hCam);"
     }
   ]
 }

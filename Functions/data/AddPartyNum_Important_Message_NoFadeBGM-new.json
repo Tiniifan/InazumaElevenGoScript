@@ -3,25 +3,25 @@
   "kind": "ev_main",
   "category": "party",
   "description": {
-    "en": "Same as AddPartyNum_Important_Message, but without fading/stopping the current BGM (passes -1 for both the fade and wait durations)."
+    "en": "Adds several characters, one after the other, to the party with the important recruitment presentation. For each character, the jingle J_07 plays, the system message \"sysmes-add_party\" is shown with the character's name filled in (CMND_MESSAGE_REPLACE_CHARA), then the character is added with AddParty. The next character waits until the jingle has finished.\nThe BGM is left playing: no fade and no extra wait.\nIt is a preset of AddParty_MessageEx(_add_num, _aParamID, _aPtLock, _aAvatarEnable, _aAvatarLock, _aLv, -1, -1, \"J_07\", 0, \"sysmes-add_party\")."
   },
   "params": [
-    { "name": "_add_num", "type": "integer", "required": true, "description": { "en": "Number of members to add." } },
-    { "name": "_aParamID", "type": "array", "required": true, "description": { "en": "Array of param IDs, one per member." } },
-    { "name": "_aPtLock", "type": "array", "required": true, "description": { "en": "Array of position-lock flags, one per member." } },
-    { "name": "_aAvatarEnable", "type": "array", "required": true, "description": { "en": "Array of Fighting Spirit-enable flags, one per member." } },
-    { "name": "_aAvatarLock", "type": "array", "required": true, "description": { "en": "Array of Fighting Spirit-lock flags, one per member." } },
-    { "name": "_aLv", "type": "array", "required": true, "description": { "en": "Array of levels to set, one per member (-1 to leave unchanged)." } }
+    {"name": "_add_num", "type": "integer", "required": true, "description": {"en": "Number of characters to add; the arrays below are read from index 0 to _add_num - 1."}},
+    {"name": "_aParamID", "type": "array", "required": true, "description": {"en": "Parameter IDs of the characters, e.g. [\"para_cp0001\", \"para_cp0013\"]."}},
+    {"name": "_aPtLock", "type": "array", "required": true, "description": {"en": "One _ptLock value per character (see AddParty)."}},
+    {"name": "_aAvatarEnable", "type": "array", "required": true, "description": {"en": "One _avatarEnable value per character (see AddParty)."}},
+    {"name": "_aAvatarLock", "type": "array", "required": true, "description": {"en": "One _avatarLock value per character (see AddParty)."}},
+    {"name": "_aLv", "type": "array", "required": true, "description": {"en": "One level per character; -1 (or any value of 0 or less) keeps the current level."}}
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": { "en": "Always null (no return statement)." }
   },
   "examples": [
     {
-      "case": "Adding three important party members in sequence without fading the BGM (not found in script_clean/; invented, following AddPartyNum_Message's real usage pattern)",
+      "case": "Typical call (not found in script_clean/; invented)",
       "source": "invented",
-      "code": "// Add three important party members in sequence with the \"J_07\" jingle presentation, without fading the BGM\nlocal charaID = [\"para_cp0001\", \"para_cp0013\", \"para_cp0002\"];\nlocal ptLock = [true, true, true];\nlocal avaEnable = [false, false, false];\nlocal avaLock = [false, false, false];\nlocal level = [-1, -1, -1];\nAddPartyNum_Important_Message_NoFadeBGM(3, charaID, ptLock, avaEnable, avaLock, level);"
+      "code": "local charaID = [\"para_cp0001\", \"para_cp0002\"];\nlocal ptLock = [true, true];\nlocal avaEnable = [false, false];\nlocal avaLock = [false, false];\nlocal level = [-1, -1];\nAddPartyNum_Important_Message_NoFadeBGM(2, charaID, ptLock, avaEnable, avaLock, level);"
     }
   ]
 }

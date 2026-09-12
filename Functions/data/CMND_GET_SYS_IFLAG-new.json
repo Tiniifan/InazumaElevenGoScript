@@ -1,0 +1,31 @@
+{
+  "name": "CMND_GET_SYS_IFLAG",
+  "kind": "native",
+  "category": "system",
+  "description": {
+    "en": "Reads a system flag. System flags are 32 integer slots (0 to 31) kept by the script system, used to pass states between the scripts and the engine. Names found in the scripts: 1 IFLAG_WAZA_EVENT, 3 IFLAG_BUILD_FINISH, 4 IFLAG_WAIT_RUN_EVENT, 5 IFLAG_WAZA_TRIGGER, 6 IFLAG_END_AUTO_FADEIN_OFF, 7 IFLAG_WAZA_SKIP, 8 RPG_IFLAG_DEBUG_PRINT_BTL_CALC, 11 IFLAG_WAZA_GOAL_OFF. Flags 9 and 10 are the ones CMND_BTL_NO_FADEIN sets."
+  },
+  "params": [
+    {
+      "name": "index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Slot number, 0 to 31."
+      }
+    }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": {
+      "en": "The slot's value (0 for a number of 32 or more).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "The skill scene waits for the event (real usage, from ie4_ev_sub_skl.nut)",
+      "source": "real",
+      "code": "CMND_SET_SYS_IFLAG(IFLAG_BUILD_FINISH, 1);\n\nwhile (CMND_GET_SYS_IFLAG(IFLAG_WAIT_RUN_EVENT) != 0)\n{\n\tsuspend();\n}"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "CreateEvLowMdlBall",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Creates a soccer ball model for a scene: CMND_CREATE_CHARA(3, _ballName, \"data/chr/model/itm/ev_bal01.xc\", \"dmy\", _shadow)."
+  },
+  "params": [
+    {
+      "name": "_ballName",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Name of the new object."
+      }
+    },
+    {
+      "name": "_shadow",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to give the model a shadow."
+      }
+    }
+  ],
+  "returns": {
+    "type": "handle",
+    "description": {
+      "en": "Handle of the new character (see CMND_CREATE_CHARA)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A ball for a scene (real usage, from ev42010900.nut; the Shift-JIS object name is replaced by a variable here)",
+      "source": "real",
+      "code": "local hBall = CreateEvLowMdlBall(ballName);\nWaitLoading(hBall);"
+    }
+  ]
+}

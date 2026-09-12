@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_SET_VISIBLE_PURPOSE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Sets or clears a flag in the match's display state, apparently tied to showing the objective. The engine also acts on it: at the end of a clash it checks this flag and, if set, clears it and sets another bit of the same byte instead. What either bit changes on screen was not traced.\nThe only shipped use is in btl0002.nut, right after clearing the objective marker and showing a new objective text."
+  },
+  "params": [
+    { "name": "visible", "type": "boolean", "required": true, "description": { "en": "true to set the flag, false to clear it." } }
+  ],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "After a new objective text (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "CMND_SET_GLOBAL_BIT_FLAG(1402, 0);\nCMND_BTL_SET_PURPOSE(0);\nCMND_BTL_SET_PURPOSETEXT(true, \"purpose_110\");\nCMND_BTL_SET_VISIBLE_PURPOSE(true);"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_GET_MATCH_TIME",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Returns the match clock, in whole seconds. It is the clock CMND_BTL_SET_MATCH_PHASE sets (the engine stores it in hundredths of a second and this function divides by 100).\nThe story scripts divide it by 60 to get the minute of a scripted goal, which they pass to CMND_BTL_SET_POINT_HISTORY together with the half."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": { "en": "Match time in seconds.\nnull if the match system is not ready." }
+  },
+  "examples": [
+    {
+      "case": "Timestamping a scripted goal (real usage, from btl0002.nut)",
+      "source": "real",
+      "code": "// Give team 1 a goal and credit it at the current minute\n// (seconds / 60) of the second half.\nlocal time = CMND_BTL_GET_MATCH_TIME();\nlocal point = [0, 1];\nCMND_BTL_ADD_POINT(point);\nCMND_BTL_SET_POINT_HISTORY(1, 1, time / 60, \"para_cp0010\");"
+    }
+  ]
+}

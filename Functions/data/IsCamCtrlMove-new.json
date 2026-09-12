@@ -3,18 +3,20 @@
   "kind": "ev_main",
   "category": "camera",
   "description": {
-    "en": "Reports whether the current camera-control movement (started with CamCtrlMoveTo) is still in progress."
+    "en": "Tells whether the camera move started with CamCtrlMoveTo is still going on. It returns the opposite of the camera-control state's finished flag.\nsysCamCtrlStep sets that flag once all queued moves are done, or at once when no move is queued. sysCamCtrlStep also calls CMND_CHECK_MOVE_CAMERA to wait for the engine move, but without the camera handle that command needs, so it always gets null and never delays the end. CamCtrlReset and CamCtrlMoveTo clear it.\nWaitCamCtrlMoving(_hcam) is the ev_main loop that waits on it.\nThe camera-control helpers keep their state in subev_ctx.cam_ctrl, the context of an event started by CallEvent. While such an event runs, CallEvent calls sysCamCtrlStep every frame: it applies the engine's camera move (CMND_GET_MOVE_INFO_CAMERA) to the camera, keeps the look-at point on the followed character when there is one, and marks the move as finished once it is over (see IsCamCtrlMove)."
   },
   "params": [],
   "returns": {
     "type": "boolean",
-    "description": { "en": "True while the camera is still moving; false once the movement has ended." }
+    "description": {
+      "en": "true while the camera move is still going on, false once it is finished."
+    }
   },
   "examples": [
     {
-      "case": "Waiting for a queued camera movement to finish",
+      "case": "Waiting for a camera move (real usage, from ev42120100.nut)",
       "source": "real",
-      "code": "// Wait for the current camera movement to finish\nwhile (IsCamCtrlMove())\n{\n\tsuspend();\n}"
+      "code": "CamCtrlMoveTo(hCam, 200, [84.82, 109.61, -58.549999, 8.8400002, -12.65, -265.48999]);\n\nwhile (IsCamCtrlMove())\n{\n\tsuspend();\n}"
     }
   ]
 }

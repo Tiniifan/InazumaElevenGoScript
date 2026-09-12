@@ -1,0 +1,22 @@
+{
+  "name": "CMND_BTL_SET_MATCHPHASE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Writes the match progress milestone read by CMND_BTL_GET_MATCHPHASE directly (the engine normally raises it by itself to 100, 200, 300, 400 or 500 as the match advances).\nUnlike the engine, this call can also lower it. Note that the engine only raises the milestone when the new value is higher, so a value set here can be overwritten at the next period change.\nNot to be confused with CMND_BTL_SET_MATCH_PHASE, which sets the period and the clock. It is never called by the shipped scripts."
+  },
+  "params": [
+    { "name": "milestone", "type": "integer", "required": true, "description": { "en": "Value to store (16-bit)." } }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the value is stored.\nnull if the match system is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "Replaying a first-half beat after a period change (not found in script_clean/; invented)",
+      "source": "invented",
+      "code": "// Put the milestone back to 100 so that a script checking\n// CMND_BTL_GET_MATCHPHASE() == 100 fires again.\nCMND_BTL_SET_MATCHPHASE(100);"
+    }
+  ]
+}

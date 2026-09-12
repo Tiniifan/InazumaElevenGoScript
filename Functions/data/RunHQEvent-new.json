@@ -1,0 +1,53 @@
+{
+  "name": "RunHQEvent",
+  "kind": "ev_main",
+  "category": "movie",
+  "description": {
+    "en": "Plays an HQ event (a staged cut-scene using the models, camera and lights the event has prepared) and waits until it ends: CMND_MAKE_CHILD_HQ_EVENT_SCENE(_sndID + \"_<LG>\", _cutNum, _endWhiteFade), then it suspends until CMND_IS_RUN_CHILD_SCENE is false.\nThe events create the models between StartSetupHQEventChara and EndSetupHQEventChara, register the map, camera and objects with CMND_HQ_EVENT_INIT and CMND_REG_HDL_HQ_EVENT, and set which map lights are on in each cut with CMND_REG_MAP_LIGHT_HQ_EVENT."
+  },
+  "params": [
+    {
+      "name": "_sndID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Sound name without the language suffix, e.g. \"hqev010100\"."
+      }
+    },
+    {
+      "name": "_cutNum",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Number of cuts."
+      }
+    },
+    {
+      "name": "_endWhiteFade",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "true to end on a fade to white."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "The first HQ event (real usage, from ev42010100.nut)",
+      "source": "real",
+      "code": "CMND_REG_MAP_LIGHT_HQ_EVENT(2, 5, 1);\nCMND_REG_MAP_LIGHT_HQ_EVENT(2, 6, 0);\nRunHQEvent(\"hqev010100\", 6);\nStartBlackFadeOut(SCREEN_AB, 0.0);"
+    },
+    {
+      "case": "Ending on white (real usage, from ev42011200.nut)",
+      "source": "real",
+      "code": "RunHQEvent(\"hqev010200\", 3, true);"
+    }
+  ]
+}

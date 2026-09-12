@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_LOAD_HISTORY",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Restores the goal log saved by CMND_BTL_SAVE_HISTORY into the current match, then sets each team's score to the number of goals the log holds for that team (capped at 99).\nThe story uses it at the start of the second part of a match split into two scripts (btl0016.nut), so the scoreline of the first part (btl0015.nut) carries over.\nOnly the first 200 bytes of the log are restored (16 goal entries and part of a 17th), the same amount SAVE_HISTORY copies."
+  },
+  "params": [],
+  "returns": {
+    "type": "boolean|null",
+    "description": { "en": "true once the log and the scores are restored.\nfalse if the store is not available.\nnull if the script system is not ready." }
+  },
+  "examples": [
+    {
+      "case": "Carrying the score into the second part of a split match (real usage, from btl0016.nut)",
+      "source": "real",
+      "code": "CallMatchBeginMatch <- function ()\n{\n\t// Restore the goals (and so the score) of the first part\n\tCMND_BTL_LOAD_HISTORY();\n\t// Play the event scene, then carry on from 5:00 in the second half\n\tCMND_BTL_SET_EVPARAM(44120026);\n\tsuspend();\n\tCMND_BTL_SET_MATCH_PHASE(1, 300);\n\t// ...\n};"
+    }
+  ]
+}

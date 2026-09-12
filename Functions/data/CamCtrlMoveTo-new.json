@@ -3,28 +3,54 @@
   "kind": "ev_main",
   "category": "camera",
   "description": {
-    "en": "Queues a smooth camera movement to a given position/reference over a number of frames, resetting the camera-control state first. Check progress with IsCamCtrlMove."
+    "en": "Moves the camera to a new position and look-at point over a number of frames.\nIt restarts the camera-control state from the camera's current place (CamCtrlReset), queues the move (with the current follow target, see CamCtrlLookAtChara), and, when _mv_type is 0 or more, starts the engine camera move with CMND_SET_MOVE_INFO_CAMERA(_hcam, pos, ref, _mv_frame, _mv_type).\nEach frame, sysCamCtrlStep then applies the engine's move to the camera and, when the frames have elapsed and no other move is queued, marks the move finished. sysCamCtrlStep also calls CMND_CHECK_MOVE_CAMERA to wait for the engine move, but without the camera handle that command needs, so it always gets null and never delays the end. Wait for that with IsCamCtrlMove or WaitCamCtrlMoving.\nWith _mv_type below 0 the engine move is not started: the move is only queued in the script state, while the camera takes its position from the engine's move data as usual.\nThe camera-control helpers keep their state in subev_ctx.cam_ctrl, the context of an event started by CallEvent. While such an event runs, CallEvent calls sysCamCtrlStep every frame: it applies the engine's camera move (CMND_GET_MOVE_INFO_CAMERA) to the camera, keeps the look-at point on the followed character when there is one, and marks the move as finished once it is over (see IsCamCtrlMove)."
   },
   "params": [
-    { "name": "_hcam", "type": "handle", "required": true, "description": { "en": "Handle of the camera being controlled." } },
-    { "name": "_mv_frame", "type": "integer", "required": true, "description": { "en": "Number of frames the movement should take." } },
-    { "name": "_posref", "type": "array", "required": true, "description": { "en": "6-element array [posX, posY, posZ, refX, refY, refZ] with the target camera position and reference point." } },
-    { "name": "_mv_type", "type": "integer", "required": false, "default": "0", "description": { "en": "Movement/interpolation type; values below 0 queue the move without applying it immediately." } }
+    {
+      "name": "_hcam",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Camera handle, usually from CMND_GET_ACT_CAMERA()."
+      }
+    },
+    {
+      "name": "_mv_frame",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Duration of the move in frames."
+      }
+    },
+    {
+      "name": "_posref",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "6-element array [posX, posY, posZ, refX, refY, refZ]: camera position, then the point it looks at."
+      }
+    },
+    {
+      "name": "_mv_type",
+      "type": "integer",
+      "required": false,
+      "default": "0",
+      "description": {
+        "en": "Move type passed to CMND_SET_MOVE_INFO_CAMERA; below 0, that call is skipped."
+      }
+    }
   ],
   "returns": {
     "type": "null",
-    "description": { "en": "No explicit return statement — Squirrel functions implicitly return null." }
+    "description": {
+      "en": "Always null (no return statement)."
+    }
   },
   "examples": [
     {
-      "case": "Moving the camera with the default interpolation (real usage pattern, seen throughout script_clean/'s event scripts)",
+      "case": "Following a walking character with the camera (real usage, from ev42010200.nut)",
       "source": "real",
-      "code": "// Smoothly move the camera to a new position/reference over 40 frames\nlocal hCam = CMND_GET_ACT_CAMERA();\nCamCtrlMoveTo(hCam, 40, [122.3, 29.9, 64.6, -19.0, 17.3, -35.7]);\nwhile (IsCamCtrlMove())\n{\n\tsuspend();\n}"
-    },
-    {
-      "case": "Queuing a move without applying it immediately",
-      "source": "invented",
-      "code": "// Queue a camera move without applying it right away, by passing a negative move type\nlocal hCam = CMND_GET_ACT_CAMERA();\nCamCtrlMoveTo(hCam, 40, [122.3, 29.9, 64.6, -19.0, 17.3, -35.7], -1);"
+      "code": "// The character walks for 80 frames; the camera moves along with it\nEvLowMdlMove(hTenmaL, [-86.699997, 0.0, -159.7], 80);\nCamCtrlMoveTo(hCam, 80, [-86.699997, 81.699997, -55.900002, -86.699997, 3.5, -159.7]);\nWaitEvLowMdlMoving(hTenmaL);\nWaitCamCtrlMoving(hCam);"
     }
   ]
 }

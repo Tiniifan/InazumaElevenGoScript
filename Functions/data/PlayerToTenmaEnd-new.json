@@ -1,0 +1,31 @@
+{
+  "name": "PlayerToTenmaEnd",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Ends the swap started with PlayerToTenmaBgn: the player character is placed at the position and direction of the given model (CMND_SET_POSRY, then CMND_CHR_POS_VAL_TRG over 1 frame) and a warp is requested (CMND_CHR_WARP_SET). The given model is not deleted here."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Model created by PlayerToTenmaBgn."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "End of the swap (real usage, from ev42130200.nut)",
+      "source": "real",
+      "code": "PlayerToTenmaEnd(hTenmaL);"
+    }
+  ]
+}

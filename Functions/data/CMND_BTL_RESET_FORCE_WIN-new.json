@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_RESET_FORCE_WIN",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Empties the match's forced-win list: all 32 entries added with CMND_BTL_SET_FORCE_WIN are cleared at once, whichever form was used to add them. The forced-lose list is not touched (see CMND_BTL_RESET_FORCE_LOSE).\nThe story matches call both resets in their result callback."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": { "en": "Always null." }
+  },
+  "examples": [
+    {
+      "case": "Cleaning up in the result callback (real usage, from btl0003.nut)",
+      "source": "real",
+      "code": "ScBtlResult <- function ()\n{\n\tCMND_BTL_SET_NOT_FORCE_FAUL_FLAG(false);\n\tlocal isWin = 0;\n\tisWin = CMND_BTL_GET_RESULT();\n\tCMND_SET_GLOBAL_BIT_FLAG(1352, 0);\n\tCMND_SET_GLOBAL_BIT_FLAG(131, 1);\n\tOPEN_CPU_BTL_FLAG(1651);\n\t// Drop every forced outcome\n\tCMND_BTL_RESET_FORCE_WIN();\n\tCMND_BTL_RESET_FORCE_LOSE();\n};"
+    }
+  ]
+}

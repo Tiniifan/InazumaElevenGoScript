@@ -1,0 +1,47 @@
+{
+  "name": "EvLowMdlSetRotY",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Turns a character to an absolute direction over a number of frames, with the walk motion: CMND_CHR_TURN_TRG(_hdl, 0, _rotY, _frame, 1). Wait for the end with WaitEvLowMdlMoving."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "_rotY",
+      "type": "float",
+      "required": true,
+      "description": {
+        "en": "Direction in degrees."
+      }
+    },
+    {
+      "name": "_frame",
+      "type": "integer|float",
+      "required": true,
+      "description": {
+        "en": "Duration of the turn in frames."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Turning a character (real usage, from ev42010450.nut)",
+      "source": "real",
+      "code": "EvLowMdlSetRotY(hTokioL, -45, 30);\nWaitEvLowMdlMoving(hTokioL);"
+    }
+  ]
+}

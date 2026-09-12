@@ -1,0 +1,27 @@
+{
+  "name": "CMND_BTL_GET_AVATER_NUM",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Returns how many players of one team currently have their Fighting Spirit out on the pitch (\"avater\" is the game's spelling of avatar). It counts the team's players on the pitch whose Fighting Spirit flag is set, the same flag CMND_BTL_HAS_AVATER reads for one player and CMND_BTL_SET_AVATER sets.\nThe story matches check it before summoning a Fighting Spirit with CMND_BTL_SET_AVATER: when three or more are already out, they first dismiss one of them with CMND_BTL_RESET_AVATER(0) (the one with the lowest gauge)."
+  },
+  "params": [
+    { "name": "teamSlot", "type": "integer", "required": true, "description": { "en": "Team to count: 0 = the player's team, 1 = the opponent team. Any other value gives 0." } }
+  ],
+  "returns": {
+    "type": "integer|null",
+    "description": { "en": "Number of players of that team with their Fighting Spirit out.\nnull if the script system is not ready or no argument was given." }
+  },
+  "examples": [
+    {
+      "case": "Making room before a scripted summon (real usage, from btl0011.nut)",
+      "source": "real",
+      "code": "// If three or more of the player's team's Fighting Spirits are out,\n// dismiss the one with the lowest gauge, then summon para_cp0016's Fighting Spirit ck0005.\nif (CMND_BTL_GET_AVATER_NUM(0) >= 3)\n{\n\tCMND_BTL_RESET_AVATER(0);\n}\n\nCMND_BTL_SET_AVATER(\"para_cp0016\", \"ck0005\", 0);"
+    },
+    {
+      "case": "Same check, sparing a player whose Fighting Spirit is not out (real usage, from btl0014.nut)",
+      "source": "real",
+      "code": "// Dismiss one of the team's Fighting Spirits only if three or more are\n// out and para_cp0008's is not one of them\nif (CMND_BTL_GET_AVATER_NUM(0) >= 3 && !CMND_BTL_HAS_AVATER(\"para_cp0008\"))\n{\n\tCMND_BTL_RESET_AVATER(0);\n}\n\n// Arguments in SET_AVATER order: RESET_AVATER reads \"ck0001\" as the\n// player ID, so this call does nothing (see CMND_BTL_RESET_AVATER)\nCMND_BTL_RESET_AVATER(\"para_cp0008\", \"ck0001\", 0);"
+    }
+  ]
+}

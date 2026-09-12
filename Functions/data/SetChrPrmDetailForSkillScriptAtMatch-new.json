@@ -1,0 +1,56 @@
+{
+  "name": "SetChrPrmDetailForSkillScriptAtMatch",
+  "kind": "ev_main",
+  "category": "skill",
+  "description": {
+    "en": "Sets one participant of the next skill scene from a team member, by parameter ID, with the kit the member wears (CMND_SETUP_SKL_SQ_CHARAM).\nWhen the soccer scene exists, the character is looked up in the team rosters (team 0 or 1; 2 or more searches every team by parameter ID) and its kit is copied: uniform, home or away, goalkeeper outfit, shoes, gloves (goalkeepers only) and shirt number. Otherwise, or if the character is not found, a default kit is written: uniform 1, home, not goalkeeper, shoes 1, no gloves, number 1. The shirt number is written as 0 for uniforms 900 and above."
+  },
+  "params": [
+    {
+      "name": "_side",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Side of the skill scene: \"ATK\" (attacking side) or \"DEF\" (defending side)."
+      }
+    },
+    {
+      "name": "_index",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Participant number on that side, starting at 1."
+      }
+    },
+    {
+      "name": "_paramID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Parameter ID, e.g. \"para_cp0008\"."
+      }
+    },
+    {
+      "name": "_team",
+      "type": "integer",
+      "required": false,
+      "default": "2",
+      "description": {
+        "en": "Team slot: 0 = the player's team, 1 = the opponent. 2 or more searches every team."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "A match scene (real usage, from ev44010070.nut)",
+      "source": "real",
+      "code": "local off_bit = CMND_GET_DRAW_OFF_BIT();\nCMND_SET_DRAW_OFF_BIT(off_bit | OFF_RPG);\nCMND_INIT_SKILL_SCRIPT();\nSetChrPrmDetailForSkillScriptAtMatch(\"ATK\", 1, \"para_cp0008\");\nSetChrPrmDetailForSkillScript(\"DEF\", 1, 10, 903, true, false, 903, 903, 10);\nRunSkillScript(\"vca0004\", \"mv01i21\", 0, 0, false, false);\nCMND_SET_DRAW_OFF_BIT(off_bit);"
+    }
+  ]
+}

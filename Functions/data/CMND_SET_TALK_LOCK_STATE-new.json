@@ -1,0 +1,31 @@
+{
+  "name": "CMND_SET_TALK_LOCK_STATE",
+  "kind": "native",
+  "category": "talk",
+  "description": {
+    "en": "A talk lock is a phase where the player has to talk to a set of NPCs (see StartTalkLock). The list lives in the game progress data and holds up to 12 NPCs.\nSets the talk lock state flag of the script system (any non-zero value counts as true). EndTalkLock clears it."
+  },
+  "params": [
+    {
+      "name": "state",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true or false."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside EndTalkLock (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "CMND_SET_GLOBAL_BIT_FLAG(1403, false);\nCMND_SET_TALK_LOCK_STATE(false);\nCMND_DELETE_TALK_ICON_FOR_TL();"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "CMND_BTL_REG_TORNADE",
+  "kind": "native",
+  "category": "battle",
+  "description": {
+    "en": "Reserves a tornado hazard on the match pitch and returns its handle. The tornado is not active yet: place and switch it on with CMND_BTL_ACTIVE_TORNADE, and check it with CMND_BTL_IS_ACTIVE_TORNADE.\n\nThe match keeps a table of pitch objects. Tornadoes, bumpers and flippers are three kinds of entry in it (CMND_BTL_REG_BUMPER and CMND_BTL_REG_FLIPPER reserve the other two kinds). The hazard maps call these from their ScMapInit function."
+  },
+  "params": [],
+  "returns": {
+    "type": "integer|null",
+    "description": { "en": "Handle (index) of the reserved tornado in the pitch-object table.\nnull if the match system is not ready." }
+  },
+  "examples": [
+    {
+      "case": "Reserving tornadoes when a hazard map loads",
+      "source": "real",
+      "code": "// Keep the handles in a script-level array so other map functions can\n// switch the tornadoes on later.\nhTornade <- [0, 0, 0];\nScMapInit <- function ()\n{\n\thTornade[0] = CMND_BTL_REG_TORNADE();\n\thTornade[1] = CMND_BTL_REG_TORNADE();\n\thTornade[2] = CMND_BTL_REG_TORNADE();\n};"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "CMND_SET_AUTO_APPR_BUSTUP",
+  "kind": "native",
+  "category": "image-ui",
+  "description": {
+    "en": "Turns on (true) or off (false) the automatic appearance of a character's bust-up portrait when it speaks: the setting goes to the character's portrait in the event's character list."
+  },
+  "params": [
+    {
+      "name": "hChara",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    },
+    {
+      "name": "enable",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true for automatic portraits, false to keep them hidden."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null."
+    }
+  },
+  "examples": [
+    {
+      "case": "No portraits during a scene (real usage, from ev42012300.nut)",
+      "source": "real",
+      "code": "StartBrightFade(SCREEN_A, 0.0, 60);\nWaitFrame(30);\nCMND_SET_AUTO_APPR_BUSTUP(hTenmaL, false);\nCMND_SET_AUTO_APPR_BUSTUP(hShinsukeL, false);\nCMND_MESWIN_LOCK();"
+    }
+  ]
+}

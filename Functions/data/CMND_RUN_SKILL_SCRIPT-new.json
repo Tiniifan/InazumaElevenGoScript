@@ -1,0 +1,97 @@
+{
+  "name": "CMND_RUN_SKILL_SCRIPT",
+  "kind": "native",
+  "category": "skill",
+  "description": {
+    "en": "Requests a skill scene (a technique cut-scene such as a shoot or a save): it queues a change to the \"SubScript\" state with the skill settings. The scene plays once the calling script suspends. Use the RunSkillScript helper, which also handles the pause bits and the goal model.\nThe settings stored are SKILL, MAP, EVOLUTION, PRODUCTION, SUCCESS, MAP_REVERSE and NO_TELOP, plus SP_NUMBER (the camera cut) in the skill settings table. endAutoFade is written to system flag 6.\nSuccess is forced to true unless the skill ID starts with whd, whk, wkk, vca, vsk, vkk, vpa or kka (the kinds that can fail); it is also forced for vca0013, vca0014, kka0010, kka0011 and kka0012.\nWhen a match-period value is 1 or 3 (probably the second halves, when the teams have changed ends), mapReverse is inverted."
+  },
+  "params": [
+    {
+      "name": "skillID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Skill ID, e.g. \"vsj0001\"."
+      }
+    },
+    {
+      "name": "mapID",
+      "type": "string",
+      "required": true,
+      "description": {
+        "en": "Map used as the scene's background, e.g. \"mv01i21\"."
+      }
+    },
+    {
+      "name": "evolution",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Evolution level of the skill."
+      }
+    },
+    {
+      "name": "production",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Production value (stored as PRODUCTION; its use was not traced)."
+      }
+    },
+    {
+      "name": "success",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "Whether the skill succeeds (forced to true for skill kinds that cannot fail, see above)."
+      }
+    },
+    {
+      "name": "mapReverse",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "true to play the scene towards the other goal."
+      }
+    },
+    {
+      "name": "endAutoFade",
+      "type": "boolean",
+      "required": true,
+      "description": {
+        "en": "Written to system flag 6."
+      }
+    },
+    {
+      "name": "noTelop",
+      "type": "boolean",
+      "required": false,
+      "default": "false",
+      "description": {
+        "en": "Stored as NO_TELOP (by its name, true skips the skill name caption)."
+      }
+    },
+    {
+      "name": "cameraCut",
+      "type": "integer",
+      "required": false,
+      "default": "-1",
+      "description": {
+        "en": "Stored as SP_NUMBER; the events pass 0 or 1 to pick a camera cut."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (also when the script system is not ready or fewer than 7 arguments are given, in which case nothing is queued)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Inside RunSkillScript (real code, from ie4_ev_main.nut)",
+      "source": "real",
+      "code": "local stp_bit = CMND_GET_PAUSE_BIT();\nCMND_SET_PAUSE_BIT(stp_bit & ~OFF_RPG_CAMERA);\nCMND_SET_ENABLE(eventGoalMouseHdl, false);\nCMND_RUN_SKILL_SCRIPT(_wazaID, _mapID, _evolution, _production, _success, _mapReverse, _endAutoFade, _noTelop, _cmrCut);\nsuspend();"
+    }
+  ]
+}

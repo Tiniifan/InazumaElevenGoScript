@@ -1,0 +1,39 @@
+{
+  "name": "GetDistRotCameraPos",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Works out a camera position around a look-at point, from a distance and two angles. It returns [posX, posY, posZ, refX, refY, refZ], ready for CamCtrlSetPosRef or CamCtrlMoveTo: the position is _ref + dist * (cos(v) * sin(h), sin(v), cos(v) * cos(h)), with h and v converted from degrees.\nCalcPosRefToDistRot does the reverse, and sysCamCtrlStep uses the pair for moves of type 1."
+  },
+  "params": [
+    {
+      "name": "_ref",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "Look-at point [x, y, z]."
+      }
+    },
+    {
+      "name": "_dhv",
+      "type": "array",
+      "required": true,
+      "description": {
+        "en": "[distance, horizontal angle, vertical angle], angles in degrees."
+      }
+    }
+  ],
+  "returns": {
+    "type": "array",
+    "description": {
+      "en": "[posX, posY, posZ, refX, refY, refZ]."
+    }
+  },
+  "examples": [
+    {
+      "case": "Placing the camera 100 units away, slightly above (not found in the events; invented)",
+      "source": "invented",
+      "code": "local posref = GetDistRotCameraPos([0.0, 10.0, 0.0], [100.0, 45.0, 20.0]);\nCamCtrlSetPosRef(hCam, posref);"
+    }
+  ]
+}

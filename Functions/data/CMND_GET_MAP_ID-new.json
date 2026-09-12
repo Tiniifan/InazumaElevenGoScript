@@ -1,0 +1,22 @@
+{
+  "name": "CMND_GET_MAP_ID",
+  "kind": "native",
+  "category": "map",
+  "description": {
+    "en": "Returns the ID of the current map, e.g. \"me01i01\"."
+  },
+  "params": [],
+  "returns": {
+    "type": "string|null",
+    "description": {
+      "en": "The map ID.\nnull if there is no current map or the script system is not ready."
+    }
+  },
+  "examples": [
+    {
+      "case": "A special case for one map (real usage, from ev43040000.nut)",
+      "source": "real",
+      "code": "CMND_GET_PRE_CTRL_CHARA_POS(pos);\nlocal isCaravan = false;\n\nif (CMND_GET_MAP_ID() == \"me01i01\")\n{\n\tpos[0] = 24.0;\n\tpos[1] = -1.5;\n\tpos[2] = 24.0;\n\tisCaravan = true;\n}"
+    }
+  ]
+}

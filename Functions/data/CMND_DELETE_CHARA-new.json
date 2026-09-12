@@ -1,0 +1,45 @@
+{
+  "name": "CMND_DELETE_CHARA",
+  "kind": "native",
+  "category": "chara",
+  "description": {
+    "en": "Deletes an object created by the event (character, model, effect...). Its movement slot is freed, and a second object linked to it (probably its bust-up) is deleted too.\nDuring a match, a match player is not deleted: the second argument (default 2) goes to the routine CMND_DELETE_MOTION uses, which removes loaded motions. Linked objects are then removed as above. The events pass true there when they delete models at the end of a match scene."
+  },
+  "params": [
+    {
+      "name": "handle",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Object handle (character, model, image...)."
+      }
+    },
+    {
+      "name": "mode",
+      "type": "integer|boolean",
+      "required": false,
+      "default": "2",
+      "description": {
+        "en": "Removal mode for match players."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "true once deleted.\nnull if the object is not found, the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Deleting models after a scene (real usage, from ev44020010.nut)",
+      "source": "real",
+      "code": "CMND_DELETE_CHARA(hSindoH);\nCMND_DELETE_CHARA(hTenmaH);\nEndUseGoalModel(goal_hdl);"
+    },
+    {
+      "case": "With the second argument (real usage, from ev42061300.nut)",
+      "source": "real",
+      "code": "EncountEffect();\nCMND_DELETE_CHARA(hEndouL, true);\nCMND_DELETE_CHARA(hTsurugiL, true);\nCMND_DELETE_CHARA(hShindouL, true);"
+    }
+  ]
+}

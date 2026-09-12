@@ -1,0 +1,31 @@
+{
+  "name": "WaitEvLowMdlMoving",
+  "kind": "ev_main",
+  "category": "chara",
+  "description": {
+    "en": "Waits until a character has finished its move or turn: it loops on CMND_CHR_POS_VAL_IS_MOVING(_hdl) with suspend()."
+  },
+  "params": [
+    {
+      "name": "_hdl",
+      "type": "handle",
+      "required": true,
+      "description": {
+        "en": "Character handle."
+      }
+    }
+  ],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "Waiting for a walk (real usage, from ev42010200.nut)",
+      "source": "real",
+      "code": "EvLowMdlMove(hTenmaL, [-86.699997, 0.0, -159.7], 80);\nWaitEvLowMdlMoving(hTenmaL);"
+    }
+  ]
+}

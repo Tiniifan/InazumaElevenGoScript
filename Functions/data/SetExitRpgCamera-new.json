@@ -1,0 +1,22 @@
+{
+  "name": "SetExitRpgCamera",
+  "kind": "ev_main",
+  "category": "camera",
+  "description": {
+    "en": "Puts the active camera back at the field (RPG) camera position for the character the player controls (CMND_GET_RPG_CAMERA_POS, then CMND_SET_CAMERA_POS and CMND_SET_CAMERA_REF), and calls CMND_COPY_EXIT_CAMERA(1). The events call it at their end, before handing control back."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "End of an event (real usage, from ev42010100.nut; the Shift-JIS motion name is replaced by a variable here)",
+      "source": "real",
+      "code": "SetCharaPosAndMotName(hTenmaL, [33.400002, 0.0, -19.9, 0], standMotion);\nCMND_CHR_WARP_SET(hTenmaL, true);\nSetExitRpgCamera();"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "RunChildThread",
+  "kind": "ev_main",
+  "category": "system",
+  "description": {
+    "en": "Runs the child threads added with AddChildThread until all of them have finished: every frame it wakes each thread up once, drops the ones that are no longer suspended, then suspends itself. It returns when no thread is left."
+  },
+  "params": [],
+  "returns": {
+    "type": "null",
+    "description": {
+      "en": "Always null (no return statement)."
+    }
+  },
+  "examples": [
+    {
+      "case": "After adding the threads (real usage, from ev42010300.nut)",
+      "source": "real",
+      "code": "InitChildThread(2);\nAddChildThread(TextProc);\nAddChildThread(TenmaProc);\nRunChildThread();"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "name": "CMND_SND_PLAY",
+  "kind": "native",
+  "category": "sound",
+  "description": {
+    "en": "Starts a sound opened with a CMND_SND_OPEN_* command. With a sound-effect handle from CMND_SND_OPEN_SYS_SE, it plays that effect.\nThe optional second argument is a float passed with the play command, 1.0 by default; most likely the volume (the scripts pass 1.0). The optional third argument is a fade value, 0 by default; AddParty_MessageEx passes its _fade there to bring the BGM back.\nNote: the native returns the inverse of the play call's result, so it gives false when the sound started and true when it could not.\nSound handles are integers. Streams opened with the CMND_SND_OPEN_* commands (BGM, event sounds, voices, Special Move sounds, map ambience) get a handle that refers to a stream channel. CMND_SND_OPEN_SYS_SE returns a packed number that names a sound effect instead."
+  },
+  "params": [
+    {
+      "name": "hSnd",
+      "type": "integer",
+      "required": true,
+      "description": {
+        "en": "Sound handle from a CMND_SND_OPEN_* or CMND_SND_GET_*_SNDID call."
+      }
+    },
+    {
+      "name": "level",
+      "type": "float",
+      "required": false,
+      "default": "1.0",
+      "description": {
+        "en": "Float passed with the play command (probably the volume)."
+      }
+    },
+    {
+      "name": "fade",
+      "type": "integer",
+      "required": false,
+      "default": "0",
+      "description": {
+        "en": "Fade value used when starting."
+      }
+    }
+  ],
+  "returns": {
+    "type": "boolean|null",
+    "description": {
+      "en": "false when the sound was started, true when it could not be (inverted result).\nnull if the script system is not ready or no argument is given."
+    }
+  },
+  "examples": [
+    {
+      "case": "Bringing the BGM back with a fade (real code, from ie4_ev_main.nut, AddParty_MessageEx)",
+      "source": "real",
+      "code": "if (0 <= _fade)\n{\n\tCMND_SND_PLAY(hBGM, 1.0, _fade);\n}"
+    }
+  ]
+}
